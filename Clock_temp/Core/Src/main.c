@@ -52,7 +52,6 @@ int main(void)
 
   appGlobals.touchPanelTimer = xTimerCreate ("Touch Screen", pdMS_TO_TICKS(100), pdTRUE, &appGlobals.touchPanelTimerId, TouchPanel_TimerCallback );
   
-  
   vTaskStartScheduler();
   
   for(;;);
