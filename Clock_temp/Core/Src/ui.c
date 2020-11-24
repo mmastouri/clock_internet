@@ -336,7 +336,10 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
   }
 }
 
-
+/*********************************************************************
+*
+*       ui_set_setting_mode
+*/
 void ui_set_setting_mode (uint32_t enable)
 {
   WM_HWIN hItem;  
@@ -362,30 +365,37 @@ void ui_set_setting_mode (uint32_t enable)
   }
 }
 
+/*********************************************************************
+*
+*       UI_SetWifiDisconnected
+*/
 void UI_SetWifiDisconnected(void)
 {  
   WM_SendMessageNoPara (hWin, WIFI_DISCONNECTED);   
 }
 
+/*********************************************************************
+*
+*       UI_SetWifiConnected
+*/
 void UI_SetWifiConnected(void)
 {
   WM_SendMessageNoPara (hWin, WIFI_CONNECTED);     
 }
+/*********************************************************************
+*
+*       UI_SetWifiConnecting
+*/
 void UI_SetWifiConnecting(void)
 {
   WM_SendMessageNoPara (hWin, WIFI_CONNECTING); 
 }
-/*********************************************************************
-*
-*       Public code
-*
-**********************************************************************
-*/
+
 /*********************************************************************
 *
 *       CreateWindow
 */
-WM_HWIN CreateWindow(void);
+
 WM_HWIN CreateWindow(void) {
 
 

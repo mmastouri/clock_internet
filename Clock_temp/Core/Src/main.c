@@ -72,14 +72,14 @@ void GUI_Task(void const *arg) {
  WM_SetCreateFlags(WM_CF_MEMDEV | WM_CF_MEMDEV_ON_REDRAW);
  WM_MULTIBUF_Enable(1);
  GUI_Clear();   
-
-  CreateWindow();
-  UI_SetWifiConnecting();
-  xTimerStart(appGlobals.touchPanelTimer, 0);
-  
-  for (;;) {
-    GUI_Delay(10);
-  }
+ 
+ CreateWindow();
+ UI_SetWifiConnecting();
+ xTimerStart(appGlobals.touchPanelTimer, 0);
+ 
+ for (;;) {
+   GUI_Delay(10);
+ }
 }
 
 /**
