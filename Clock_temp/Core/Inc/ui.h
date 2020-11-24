@@ -40,6 +40,11 @@ void UI_SetTemperature(uint32_t Temperature_int, uint32_t Temeparture_dec);
 void UI_SetHumidity(uint32_t Humidity_int, uint32_t Humidity_dec);
 void UI_SetTime(uint32_t hour, uint32_t min, uint32_t sec);
 void ui_set_setting_mode (uint32_t enable);
+
+void UI_SetWifiDisconnected(void);
+void UI_SetWifiConnected(void);
+void UI_SetWifiConnecting(void);
+
 #ifdef __cplusplus
 }
 #endif

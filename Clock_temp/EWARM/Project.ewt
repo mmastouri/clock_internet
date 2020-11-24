@@ -1230,6 +1230,9 @@
                 <file>
                     <name>$PROJ_DIR$\..\Core\Src\Digital_Font.c</name>
                 </file>
+                <file>
+                    <name>$PROJ_DIR$\..\Core\Src\icon_wifi.c</name>
+                </file>
             </group>
         </group>
     </group>

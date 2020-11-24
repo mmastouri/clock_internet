@@ -29,6 +29,7 @@
 #include "rtc.h"
 
 static void GUI_Task(void const *argument);
+static void WIFI_Task(void const *argument);
 static void TouchPanel_TimerCallback(TimerHandle_t pxTimer);
 
 static void SystemClock_Config(void);
@@ -45,7 +46,8 @@ int main(void)
   HAL_Init();
   SystemClock_Config();
   
-  xTaskCreate((TaskFunction_t)GUI_Task, "GUI_Task", 4024, NULL, 1, &appGlobals.guiTaskId);
+  xTaskCreate((TaskFunction_t)GUI_Task, "GUI_Task", 1024, NULL, 1, &appGlobals.guiTaskId);
+  xTaskCreate((TaskFunction_t)WIFI_Task, "WIFI_Task", 1024, NULL, 1, &appGlobals.WIFITaskId);  
   
   k_BspInit(); 
   k_rtc_init();
@@ -63,16 +65,14 @@ void GUI_Task(void const *arg) {
  __HAL_RCC_CRC_CLK_ENABLE();
  
   /* Initialize the SDRAM */
-  BSP_SDRAM_Init();
-  
-  WM_SetCreateFlags(WM_CF_MEMDEV | WM_CF_MEMDEV_ON_REDRAW);
-  
-  GUI_Init();
-  WM_MULTIBUF_Enable(1);
-  GUI_Clear();   
+ BSP_SDRAM_Init();
+ GUI_Init(); 
+ WM_SetCreateFlags(WM_CF_MEMDEV | WM_CF_MEMDEV_ON_REDRAW);
+ WM_MULTIBUF_Enable(1);
+ GUI_Clear();   
 
   CreateWindow();
-  
+  UI_SetWifiConnecting();
   xTimerStart(appGlobals.touchPanelTimer, 0);
   
   for (;;) {
@@ -80,6 +80,14 @@ void GUI_Task(void const *arg) {
   }
 }
 
+
+void WIFI_Task(void const *arg) {
+  
+  for (;;) {
+    osDelay(100);
+  }
+  
+}
 /**
   * @brief  System Clock Configuration
   *         The system Clock is configured as follow : 

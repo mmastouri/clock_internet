@@ -84,8 +84,8 @@ static void floatToInt(float in, displayFloatToInt_t *out_value, int32_t dec_pre
     
     k_GetTime(&Time) ;
     k_GetDate(&Date) ;    
-      
-      UI_SetTime(Time.Hours, Time.Minutes, Time.Seconds);   
+    
+    UI_SetTime(Time.Hours, Time.Minutes, Time.Seconds);   
     
     refresh_bound = 0;    
   }

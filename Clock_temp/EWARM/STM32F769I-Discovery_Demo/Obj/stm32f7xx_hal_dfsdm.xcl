@@ -56,6 +56,8 @@ D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Projects\STM32F769I-Discovery\misc\C
 -I
 D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\Components\lps22hh
 -I
+D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\WiFi
+-I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.3\arm\CMSIS\Core\Include
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.3\arm\CMSIS\DSP\Include
@@ -109,6 +111,8 @@ D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Middlewares\Third_Party\FreeRTOS\Sou
 D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Drivers\BSP\Components\hts221
 -I
 D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Drivers\BSP\Components\lps22hh
+-I
+D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Projects\STM32F769I-Discovery\misc\Clock_temp\WiFi
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.3\arm\CMSIS\Core\Include
 -I

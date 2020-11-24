@@ -43,6 +43,7 @@
 #define ID_HUMIDITY                 (GUI_ID_USER + 0x0F)
 #define ID_HEADER_0                 (GUI_ID_USER + 0x10)
 #define ID_HEADER_1                 (GUI_ID_USER + 0x11)
+#define ID_WIFI                     (GUI_ID_USER + 0x12)
 
 WM_HWIN hWin;
 
@@ -69,9 +70,10 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
   { TEXT_CreateIndirect, "00", ID_TIME_MIN, 430, 100, 770, 220, 0, 0x66, 0 },   
   { TEXT_CreateIndirect, ":", ID_DOT, 370, 100, 120, 220, 0, 0x66, 0 },    
   { TEXT_CreateIndirect, "00.0 °C", ID_TEMPERATURE, 20, 360, 720, 120, 0, 0x64, 0 },
-  { TEXT_CreateIndirect, "00 %", ID_HUMIDITY, 480, 360, 680, 120, 0, 0x65, 0 },
-  { HEADER_CreateIndirect, "Header", ID_HEADER_0, 20, 300, 760, 5, 0, 0x0, 0 },  
-  { HEADER_CreateIndirect, "Header", ID_HEADER_1, 20, 40, 760, 5, 0, 0x0, 0 },    
+  { TEXT_CreateIndirect, "00 %", ID_HUMIDITY, 480, 360, 680, 120, 0, 0x65, 0 },  
+  { HEADER_CreateIndirect, "Header", ID_HEADER_1, 20, 50, 760, 5, 0, 0x0, 0 }, 
+  { HEADER_CreateIndirect, "Header", ID_HEADER_0, 20, 300, 760, 5, 0, 0x0, 0 }, 
+  { IMAGE_CreateIndirect, "Image", ID_WIFI, 740, 7, 50, 50, 0, 0, 0 },  
 
 };
 
@@ -89,14 +91,26 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
 *
 *       _cbDialog
 */
-#define RERESH_TIME 200
+#define TIME_REFRESH_PERIOD        100
+#define WIFI_REFRESH_PERIOD        500
+#define SETTINGS_COLOR     GUI_ORANGE
+#define WIFI_CONNECTING   (WM_USER + 0x00)
+#define WIFI_CONNECTED    (WM_USER + 0x01)
+#define WIFI_DISCONNECTED (WM_USER + 0x02)
+
 extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigital_Font;
 extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigita_Clock;
+extern GUI_CONST_STORAGE GUI_BITMAP bmicon_wifi;
+
 static void _cbDialog(WM_MESSAGE * pMsg) {
   WM_HWIN hItem;
-  static WM_HTIMER   hTimer;  
-  static WM_HTIMER   mTimer;    
+  static WM_HTIMER   hTimer = 0;  
+  static WM_HTIMER   mTimer = 0;    
+  static WM_HTIMER   wifiTimer = 0;     
   int Id, Node;
+  RTC_TimeTypeDef Time;  
+  RTC_DateTypeDef Date;    
+  
   switch (pMsg->MsgId) {
   case WM_INIT_DIALOG:
 
@@ -130,42 +144,70 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     TEXT_SetFont(hItem, &GUI_FontDigita_Clock);
     TEXT_SetText(hItem, ":");       
     
-    // USER START (Optionally insert additional code for further widget initialization)
-    // USER END
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_WIFI);
+    IMAGE_SetBitmap(hItem, &bmicon_wifi);
+    WM_HideWin(hItem);
     break;
+    
+  case WIFI_DISCONNECTED:
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_WIFI);
+    WM_HideWin(hItem);    
+    break;
+    
+  case WIFI_CONNECTED:
+     if(wifiTimer) WM_DeleteTimer(wifiTimer); 
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_WIFI);
+    WM_ShowWin(hItem);    
+    break;
+    
+  case WIFI_CONNECTING:
+      if(!wifiTimer) wifiTimer = WM_CreateTimer(pMsg->hWin, 3, WIFI_REFRESH_PERIOD, 0);       
+    break;
+    
+  case WM_TIMER:  
+    
 
-  case WM_TIMER:
-    RTC_TimeTypeDef Time;  
-    RTC_DateTypeDef Date;      
-    WM_RestartTimer(pMsg->Data.v, RERESH_TIME);
     Id = WM_GetTimerId(pMsg->Data.v);
     
-    k_GetTime(&Time) ; 
-    k_GetDate(&Date) ;            
-    if(Id == 0) //hour
-    {        
-      Time.Hours++;
-      
-      if(Time.Hours >= 24)
-      {
-        Time.Hours = 0;
-      }        
-      k_SetTime(&Time) ; 
-      UI_SetTime(Time.Hours, Time.Minutes, Time.Seconds);
-    }
-    else if(Id == 1) //min
+    if((Id == 0) || (Id == 1))
     {
-      Time.Minutes++;
-      if(Time.Minutes >= 60)
-      {
-        Time.Minutes = 0;
-        Time.Seconds = 0;          
+      WM_RestartTimer(pMsg->Data.v, TIME_REFRESH_PERIOD);
+      k_GetTime(&Time) ; 
+      k_GetDate(&Date) ;            
+      if(Id == 0) //hour
+      {        
+        Time.Hours++;
+        
+        if(Time.Hours >= 24)
+        {
+          Time.Hours = 0;
+        }        
+        k_SetTime(&Time) ; 
+        UI_SetTime(Time.Hours, Time.Minutes, Time.Seconds);
       }
-      
-      k_SetTime(&Time) ; 
-      UI_SetTime(Time.Hours, Time.Minutes, Time.Seconds);
-    }      
-    
+      else if(Id == 1) //min
+      {
+        Time.Minutes++;
+        if(Time.Minutes >= 60)
+        {
+          Time.Minutes = 0;
+          Time.Seconds = 0;          
+        }
+        
+        k_SetTime(&Time) ; 
+        UI_SetTime(Time.Hours, Time.Minutes, Time.Seconds);
+      } 
+    }
+    else
+    {
+      hItem = WM_GetDialogItem(pMsg->hWin, ID_WIFI);
+      if(WM_IsVisible(hItem))
+        WM_HideWin(hItem);  
+      else
+        WM_ShowWin(hItem);     
+      WM_RestartTimer(pMsg->Data.v, WIFI_REFRESH_PERIOD);
+    }
+         
     break;  
       
   case WM_NOTIFY_PARENT:
@@ -179,11 +221,11 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
       Id    = WM_GetId(pMsg->hWinSrc);    /* Id of widget */
       if((Id == ID_TIME_HOUR) && (enable_setting))
       {
-        if(!hTimer) hTimer = WM_CreateTimer(pMsg->hWin, 0, RERESH_TIME, 0);         
+        if(!hTimer) hTimer = WM_CreateTimer(pMsg->hWin, 0, TIME_REFRESH_PERIOD, 0);         
       }
       if((Id == ID_TIME_MIN) && (enable_setting))
       {
-        if(!mTimer) mTimer = WM_CreateTimer(pMsg->hWin, 1, RERESH_TIME, 0);           
+        if(!mTimer) mTimer = WM_CreateTimer(pMsg->hWin, 1, TIME_REFRESH_PERIOD, 0);           
       }      
     }
     
@@ -264,11 +306,11 @@ void ui_set_setting_mode (uint32_t enable)
   if(enable)
   {
     hItem = WM_GetDialogItem(hWin, ID_TIME_HOUR);
-    TEXT_SetTextColor(hItem, GUI_ORANGE);
+    TEXT_SetTextColor(hItem, SETTINGS_COLOR);
     hItem = WM_GetDialogItem(hWin, ID_TIME_MIN);
-    TEXT_SetTextColor(hItem, GUI_ORANGE);
+    TEXT_SetTextColor(hItem, SETTINGS_COLOR);
     hItem = WM_GetDialogItem(hWin, ID_DOT);
-    TEXT_SetTextColor(hItem, GUI_ORANGE);    
+    TEXT_SetTextColor(hItem, SETTINGS_COLOR);    
   }
   else
   {
@@ -279,6 +321,20 @@ void ui_set_setting_mode (uint32_t enable)
     hItem = WM_GetDialogItem(hWin, ID_DOT);
     TEXT_SetTextColor(hItem, 0x00FFFF00);     
   }
+}
+
+void UI_SetWifiDisconnected(void)
+{  
+  WM_SendMessageNoPara (hWin, WIFI_DISCONNECTED);   
+}
+
+void UI_SetWifiConnected(void)
+{
+  WM_SendMessageNoPara (hWin, WIFI_CONNECTED);     
+}
+void UI_SetWifiConnecting(void)
+{
+  WM_SendMessageNoPara (hWin, WIFI_CONNECTING); 
 }
 /*********************************************************************
 *

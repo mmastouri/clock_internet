@@ -54,13 +54,9 @@
 
 typedef struct {
 	TaskHandle_t guiTaskId;
-	TaskHandle_t signalTaskId;
-	TaskHandle_t fftTaskId;
-	QueueHandle_t gestureQueue;
-	TimerHandle_t touchPanelTimer;
-	TimerHandle_t TempRereshTimer;        
+	TaskHandle_t WIFITaskId;        
+	TimerHandle_t touchPanelTimer;    
 	int32_t	touchPanelTimerId;
-	int32_t	TempRereshTimerId;        
 } AppGlobals_s;
 
 void App_task (void);
