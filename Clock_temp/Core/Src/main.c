@@ -45,13 +45,11 @@ int main(void)
 {
   HAL_Init();
   SystemClock_Config();
+  k_BspInit(); 
+  k_rtc_init();  
   
   xTaskCreate((TaskFunction_t)GUI_Task, "GUI_Task", 1024, NULL, 1, &appGlobals.guiTaskId);
   xTaskCreate((TaskFunction_t)WIFI_Task, "WIFI_Task", 1024, NULL, 1, &appGlobals.WIFITaskId);  
-  
-  k_BspInit(); 
-  k_rtc_init();
-
   appGlobals.touchPanelTimer = xTimerCreate ("Touch Screen", pdMS_TO_TICKS(100), pdTRUE, &appGlobals.touchPanelTimerId, TouchPanel_TimerCallback );
   
   vTaskStartScheduler();
