@@ -43,9 +43,8 @@ typedef struct
   uint32_t out_dec;
 } displayFloatToInt_t;
 
-
+WM_HWIN CreateWindow(void);
 void ui_set_setting_mode (uint32_t enable);
-
 void UI_SetWifiDisconnected(void);
 void UI_SetWifiConnected(void);
 void UI_SetWifiConnecting(void);

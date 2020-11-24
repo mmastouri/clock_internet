@@ -33,7 +33,6 @@ static void WIFI_Task(void const *argument);
 static void TouchPanel_TimerCallback(TimerHandle_t pxTimer);
 
 static void SystemClock_Config(void);
-WM_HWIN CreateWindow(void);
 static AppGlobals_s appGlobals;
 
 /**
@@ -57,6 +56,11 @@ int main(void)
   for(;;);
 }
 
+/**
+  * @brief  GUI Task
+  * @param  GUI Task args
+  * @retval None
+  */
 void GUI_Task(void const *arg) {
   
   /* Enable CRC to Unlock GUI */
@@ -78,7 +82,11 @@ void GUI_Task(void const *arg) {
   }
 }
 
-
+/**
+  * @brief  WIFI Task
+  * @param  WIFI Task args
+  * @retval None
+  */
 void WIFI_Task(void const *arg) {
   
   for (;;) {
@@ -171,11 +179,21 @@ void assert_failed(uint8_t* file, uint32_t line)
 }
 #endif
 
+/**
+  * @brief  vApplicationTickHook
+  * @param  None
+  * @retval None
+  */
 void vApplicationTickHook( void )
 {
     HAL_IncTick();
 }
 
+/**
+  * @brief  TouchPanel_TimerCallback
+  * @param  None
+  * @retval None
+  */
 static void TouchPanel_TimerCallback(TimerHandle_t pxTimer) {
   
   k_TouchUpdate();
