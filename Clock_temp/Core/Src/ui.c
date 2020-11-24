@@ -60,22 +60,6 @@ uint32_t enable_setting = 0;
 // USER START (Optionally insert additional static data)
 // USER END
 
-/*********************************************************************
-*
-*       _aDialogCreate
-*/
-static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
-  { WINDOW_CreateIndirect, "Window", ID_WINDOW, -2, -2, 800, 480, 0, 0x0, 0 },
-  { TEXT_CreateIndirect, "00", ID_TIME_HOUR, 30, 100, 770, 220, 0, 0x66, 0 },  
-  { TEXT_CreateIndirect, "00", ID_TIME_MIN, 430, 100, 770, 220, 0, 0x66, 0 },   
-  { TEXT_CreateIndirect, ":", ID_DOT, 370, 100, 120, 220, 0, 0x66, 0 },    
-  { TEXT_CreateIndirect, "00.0 °C", ID_TEMPERATURE, 20, 360, 720, 120, 0, 0x64, 0 },
-  { TEXT_CreateIndirect, "00 %", ID_HUMIDITY, 480, 360, 680, 120, 0, 0x65, 0 },  
-  { HEADER_CreateIndirect, "Header", ID_HEADER_1, 20, 50, 760, 5, 0, 0x0, 0 }, 
-  { HEADER_CreateIndirect, "Header", ID_HEADER_0, 20, 300, 760, 5, 0, 0x0, 0 }, 
-  { IMAGE_CreateIndirect, "Image", ID_WIFI, 740, 7, 50, 50, 0, 0, 0 },  
-
-};
 
 /*********************************************************************
 *
@@ -135,6 +119,23 @@ static void floatToInt(float in, displayFloatToInt_t *out_value, int32_t dec_pre
   in = in - (float)(out_value->out_int);
   out_value->out_dec = (int32_t)trunc(in * pow(10, dec_prec));
 }
+
+/*********************************************************************
+*
+*       _aDialogCreate
+*/
+static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
+  { WINDOW_CreateIndirect, "Window", ID_WINDOW, -2, -2, 800, 480, 0, 0x0, 0 },
+  { TEXT_CreateIndirect, "00", ID_TIME_HOUR, 30, 100, 770, 220, 0, 0x66, 0 },  
+  { TEXT_CreateIndirect, "00", ID_TIME_MIN, 430, 100, 770, 220, 0, 0x66, 0 },   
+  { TEXT_CreateIndirect, ":", ID_DOT, 370, 100, 120, 220, 0, 0x66, 0 },    
+  { TEXT_CreateIndirect, "00.0 °C", ID_TEMPERATURE, 20, 360, 720, 120, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "00 %", ID_HUMIDITY, 480, 360, 680, 120, 0, 0x65, 0 },  
+  { HEADER_CreateIndirect, "Header", ID_HEADER_1, 20, 50, 760, 5, 0, 0x0, 0 }, 
+  { HEADER_CreateIndirect, "Header", ID_HEADER_0, 20, 300, 760, 5, 0, 0x0, 0 }, 
+  { IMAGE_CreateIndirect, "Image", ID_WIFI, 740, 7, 50, 50, 0, 0, 0 },  
+
+};
 
 static void _cbDialog(WM_MESSAGE * pMsg) {
   WM_HWIN hItem;
