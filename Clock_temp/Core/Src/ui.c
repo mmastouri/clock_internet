@@ -93,23 +93,61 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
 */
 #define TIME_REFRESH_PERIOD        100
 #define WIFI_REFRESH_PERIOD        500
-#define SETTINGS_COLOR     GUI_ORANGE
-#define WIFI_CONNECTING   (WM_USER + 0x00)
-#define WIFI_CONNECTED    (WM_USER + 0x01)
-#define WIFI_DISCONNECTED (WM_USER + 0x02)
+#define GUI_REFRESH_PERIOD         1000
+#define SETTINGS_COLOR             GUI_ORANGE
+
+
+#define WIFI_CONNECTING           (WM_USER + 0x00)
+#define WIFI_CONNECTED            (WM_USER + 0x01)
+#define WIFI_DISCONNECTED         (WM_USER + 0x02)
+
+#define TIME_SET                  (WM_USER + 0x10)
+#define TIME_ENTER_SETTING_MODE   (WM_USER + 0x11)
+#define TEMPERATURE_SET           (WM_USER + 0x20)
+#define HUMIDITY_SET              (WM_USER + 0x30)
+
+#define ENV_UPDATE                (WM_USER + 0x40)
+#define TIME_UPDATE               (WM_USER + 0x50)
 
 extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigital_Font;
 extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigita_Clock;
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_wifi;
 
+static void floatToInt(float in, displayFloatToInt_t *out_value, int32_t dec_prec);
+
+static void floatToInt(float in, displayFloatToInt_t *out_value, int32_t dec_prec)
+{
+  if(in >= 0.0f)
+  {
+    out_value->sign = 0;
+  }else
+  {
+    out_value->sign = 1;
+    in = -in;
+  }
+
+  in = in + (0.5 / pow(10, dec_prec));
+  out_value->out_int = (int32_t)in;
+  in = in - (float)(out_value->out_int);
+  out_value->out_dec = (int32_t)trunc(in * pow(10, dec_prec));
+}
+
 static void _cbDialog(WM_MESSAGE * pMsg) {
   WM_HWIN hItem;
   static WM_HTIMER   hTimer = 0;  
   static WM_HTIMER   mTimer = 0;    
-  static WM_HTIMER   wifiTimer = 0;     
+  static WM_HTIMER   wifiTimer = 0;  
+  static WM_HTIMER   GuiRefreshTimer = 0;      
   int Id, Node;
   RTC_TimeTypeDef Time;  
-  RTC_DateTypeDef Date;    
+  RTC_DateTypeDef Date; 
+  
+  char temp[20];
+  static uint32_t toggle =0;  
+  
+  float Temperature;
+  float Humidity;
+  displayFloatToInt_t out_value;    
   
   switch (pMsg->MsgId) {
   case WM_INIT_DIALOG:
@@ -147,6 +185,10 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     hItem = WM_GetDialogItem(pMsg->hWin, ID_WIFI);
     IMAGE_SetBitmap(hItem, &bmicon_wifi);
     WM_HideWin(hItem);
+    
+    if(!GuiRefreshTimer) GuiRefreshTimer = WM_CreateTimer(pMsg->hWin, 4, GUI_REFRESH_PERIOD, 0);   
+    WM_SendMessageNoPara (pMsg->hWin, TIME_UPDATE);
+    WM_SendMessageNoPara (pMsg->hWin, ENV_UPDATE);
     break;
     
   case WIFI_DISCONNECTED:
@@ -164,9 +206,40 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
       if(!wifiTimer) wifiTimer = WM_CreateTimer(pMsg->hWin, 3, WIFI_REFRESH_PERIOD, 0);       
     break;
     
-  case WM_TIMER:  
+  case ENV_UPDATE:
+      Temperature = bsp_get_temp();
+      floatToInt(Temperature, &out_value, 1);
+      
+      hItem = WM_GetDialogItem(pMsg->hWin, ID_TEMPERATURE);
+      snprintf(temp, sizeof(temp), "%d.%d C", out_value.out_int, out_value.out_dec);
+      TEXT_SetText(hItem, temp);      
+      
+      Humidity = bsp_get_humidity(); 
+      floatToInt(Humidity, &out_value, 0);
+      
+      hItem = WM_GetDialogItem(pMsg->hWin, ID_HUMIDITY);
+      snprintf(temp, sizeof(temp), "%d %%", out_value.out_int);
+      TEXT_SetText(hItem, temp); 
+    break;    
     
-
+  case TIME_UPDATE:
+      
+      k_GetTime(&Time) ;
+      k_GetDate(&Date) ;   
+      
+      hItem = WM_GetDialogItem(pMsg->hWin, ID_TIME_HOUR);    
+      snprintf(temp, sizeof(temp), "%02d", Time.Hours);
+      
+      TEXT_SetText(hItem, temp);      
+      
+      hItem = WM_GetDialogItem(pMsg->hWin, ID_TIME_MIN);
+      snprintf(temp, sizeof(temp), "%02d", Time.Minutes);
+      
+      TEXT_SetText(hItem, temp);  
+      
+    break;     
+    
+  case WM_TIMER:  
     Id = WM_GetTimerId(pMsg->Data.v);
     
     if((Id == 0) || (Id == 1))
@@ -183,7 +256,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
           Time.Hours = 0;
         }        
         k_SetTime(&Time) ; 
-        UI_SetTime(Time.Hours, Time.Minutes, Time.Seconds);
+        WM_SendMessageNoPara (pMsg->hWin, TIME_UPDATE);
       }
       else if(Id == 1) //min
       {
@@ -195,10 +268,10 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
         }
         
         k_SetTime(&Time) ; 
-        UI_SetTime(Time.Hours, Time.Minutes, Time.Seconds);
+        WM_SendMessageNoPara (pMsg->hWin, TIME_UPDATE);
       } 
     }
-    else
+    else if (Id == 3)
     {
       hItem = WM_GetDialogItem(pMsg->hWin, ID_WIFI);
       if(WM_IsVisible(hItem))
@@ -207,7 +280,23 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
         WM_ShowWin(hItem);     
       WM_RestartTimer(pMsg->Data.v, WIFI_REFRESH_PERIOD);
     }
-         
+    
+    else if (Id == 4)
+    {            
+      WM_SendMessageNoPara (pMsg->hWin, ENV_UPDATE);
+      WM_SendMessageNoPara (pMsg->hWin, TIME_UPDATE);
+      
+      hItem = WM_GetDialogItem(pMsg->hWin, ID_DOT); 
+      toggle = 1- toggle;
+      
+      if(toggle)
+        TEXT_SetText(hItem, ":");       
+      else
+        TEXT_SetText(hItem, " ");     
+      
+      WM_RestartTimer(pMsg->Data.v, GUI_REFRESH_PERIOD);
+    }
+    
     break;  
       
   case WM_NOTIFY_PARENT:
@@ -252,51 +341,6 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
   }
 }
 
-void UI_SetTemperature(uint32_t Temperature_int, uint32_t Temeparture_dec)
-{
-    WM_HWIN hItem;
-    char temp[10];
-    hItem = WM_GetDialogItem(hWin, ID_TEMPERATURE);
-    snprintf(temp, sizeof(temp), "%d.%d C", Temperature_int, Temeparture_dec);
-    TEXT_SetText(hItem, temp);      
-}
-
-void UI_SetHumidity(uint32_t Humidity_int, uint32_t Humidity_dec)
-{
-    WM_HWIN hItem;
-    char temp[10];
-    hItem = WM_GetDialogItem(hWin, ID_HUMIDITY);
-    snprintf(temp, sizeof(temp), "%d %%", Humidity_int);
-    TEXT_SetText(hItem, temp);      
-}
-
-void UI_SetTime(uint32_t hour, uint32_t min, uint32_t sec)
-{
-  WM_HWIN hItem;
-  char temp[20];
-  static uint32_t toggle =0;
-  
-  hItem = WM_GetDialogItem(hWin, ID_TIME_HOUR);
-  
-  snprintf(temp, sizeof(temp), "%02d", hour);
-  
-  TEXT_SetText(hItem, temp);      
-  
-  hItem = WM_GetDialogItem(hWin, ID_TIME_MIN);
-  
-  snprintf(temp, sizeof(temp), "%02d", min);
-  
-  TEXT_SetText(hItem, temp);     
-  
-  hItem = WM_GetDialogItem(hWin, ID_DOT); 
-  toggle = 1- toggle;
-  
-  if(toggle)
-  TEXT_SetText(hItem, ":");       
-  else
-  TEXT_SetText(hItem, " ");      
-    
-}
 
 void ui_set_setting_mode (uint32_t enable)
 {

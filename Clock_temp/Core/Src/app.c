@@ -29,67 +29,13 @@
 #include "ui.h"
 #include "rtc.h"
 
-
-typedef struct 
-{
-  int8_t sign; /* 0 means positive, 1 means negative*/
-  uint32_t out_int;
-  uint32_t out_dec;
-} displayFloatToInt_t;
   
 uint32_t enable_time_count = 0;
 uint32_t  enable_time_setting = 0;
-static float Temperature;
-static float Humidity;
-displayFloatToInt_t out_value;  
 
-static void floatToInt(float in, displayFloatToInt_t *out_value, int32_t dec_prec);
-
-
-static void floatToInt(float in, displayFloatToInt_t *out_value, int32_t dec_prec)
-{
-  if(in >= 0.0f)
-  {
-    out_value->sign = 0;
-  }else
-  {
-    out_value->sign = 1;
-    in = -in;
-  }
-
-  in = in + (0.5 / pow(10, dec_prec));
-  out_value->out_int = (int32_t)in;
-  in = in - (float)(out_value->out_int);
-  out_value->out_dec = (int32_t)trunc(in * pow(10, dec_prec));
-}
 
  void App_task (void){
-  
-  displayFloatToInt_t out_value;    
-  static int32_t refresh_bound = -1;  
-  
-  RTC_TimeTypeDef Time;
-  RTC_DateTypeDef Date;  
-  
-  if((refresh_bound < 0) || (refresh_bound++ > 8))
-  {  
-    
-    Temperature = bsp_get_temp();
-    floatToInt(Temperature, &out_value, 1);
-    UI_SetTemperature(out_value.out_int,out_value.out_dec);
-    
-    Humidity = bsp_get_humidity(); 
-    floatToInt(Humidity, &out_value, 0);
-    UI_SetHumidity(out_value.out_int,out_value.out_dec);
-    
-    k_GetTime(&Time) ;
-    k_GetDate(&Date) ;    
-    
-    UI_SetTime(Time.Hours, Time.Minutes, Time.Seconds);   
-    
-    refresh_bound = 0;    
-  }
-  
+     
   if(BSP_PB_GetState (BUTTON_USER))
   {
     enable_time_count++;
