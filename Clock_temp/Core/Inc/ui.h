@@ -36,8 +36,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "cmsis_compiler.h"   
 
-
-
 typedef struct 
 {
   int8_t sign; /* 0 means positive, 1 means negative*/

@@ -45,36 +45,6 @@
 #define ID_HEADER_1                 (GUI_ID_USER + 0x11)
 #define ID_WIFI                     (GUI_ID_USER + 0x12)
 
-WM_HWIN hWin;
-
-// USER START (Optionally insert additional defines)
-// USER END
-uint32_t enable_setting = 0;
-/*********************************************************************
-*
-*       Static data
-*
-**********************************************************************
-*/
-
-// USER START (Optionally insert additional static data)
-// USER END
-
-
-/*********************************************************************
-*
-*       Static code
-*
-**********************************************************************
-*/
-
-// USER START (Optionally insert additional static code)
-// USER END
-
-/*********************************************************************
-*
-*       _cbDialog
-*/
 #define TIME_REFRESH_PERIOD        100
 #define WIFI_REFRESH_PERIOD        500
 #define GUI_REFRESH_PERIOD         1000
@@ -97,12 +67,24 @@ uint32_t enable_setting = 0;
 #define ENV_UPDATE                (WM_USER + 0x40)
 #define TIME_UPDATE               (WM_USER + 0x50)
 
+/*********************************************************************
+*
+*       Static data
+*
+**********************************************************************
+*/
+
+WM_HWIN hWin;
+uint32_t enable_setting = 0;
 extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigital_Font;
 extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigita_Clock;
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_wifi;
-
-static void floatToInt(float in, displayFloatToInt_t *out_value, int32_t dec_prec);
-
+/*********************************************************************
+*
+*       Static code
+*
+**********************************************************************
+*/
 static void floatToInt(float in, displayFloatToInt_t *out_value, int32_t dec_prec)
 {
   if(in >= 0.0f)
@@ -124,6 +106,7 @@ static void floatToInt(float in, displayFloatToInt_t *out_value, int32_t dec_pre
 *
 *       _aDialogCreate
 */
+
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
   { WINDOW_CreateIndirect, "Window", ID_WINDOW, -2, -2, 800, 480, 0, 0x0, 0 },
   { TEXT_CreateIndirect, "00", ID_TIME_HOUR, 30, 100, 770, 220, 0, 0x66, 0 },  
@@ -136,6 +119,11 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
   { IMAGE_CreateIndirect, "Image", ID_WIFI, 740, 7, 50, 50, 0, 0, 0 },  
 
 };
+
+/*********************************************************************
+*
+*       _cbDialog
+*/
 
 static void _cbDialog(WM_MESSAGE * pMsg) {
   WM_HWIN hItem;
@@ -404,8 +392,4 @@ WM_HWIN CreateWindow(void) {
   hWin = GUI_CreateDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), _cbDialog, WM_HBKWIN, 0, 0);
   return hWin;
 }
-
-// USER START (Optionally insert additional public code)
-// USER END
-
 /*************************** End of file ****************************/
