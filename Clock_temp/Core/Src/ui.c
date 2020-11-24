@@ -96,6 +96,10 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
 #define GUI_REFRESH_PERIOD         1000
 #define SETTINGS_COLOR             GUI_ORANGE
 
+#define TIME_HOUR_TIMER_ID         0X01
+#define TIME_MIN_TIMER_ID          0X02
+#define WIFI_CONNECTING_TIMER_ID   0X03
+#define GUI_TIMER_ID               0x04
 
 #define WIFI_CONNECTING           (WM_USER + 0x00)
 #define WIFI_CONNECTED            (WM_USER + 0x01)
@@ -186,7 +190,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     IMAGE_SetBitmap(hItem, &bmicon_wifi);
     WM_HideWin(hItem);
     
-    if(!GuiRefreshTimer) GuiRefreshTimer = WM_CreateTimer(pMsg->hWin, 4, GUI_REFRESH_PERIOD, 0);   
+    if(!GuiRefreshTimer) GuiRefreshTimer = WM_CreateTimer(pMsg->hWin, GUI_TIMER_ID, GUI_REFRESH_PERIOD, 0);   
     WM_SendMessageNoPara (pMsg->hWin, TIME_UPDATE);
     WM_SendMessageNoPara (pMsg->hWin, ENV_UPDATE);
     break;
@@ -202,8 +206,8 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     WM_ShowWin(hItem);    
     break;
     
-  case WIFI_CONNECTING:
-      if(!wifiTimer) wifiTimer = WM_CreateTimer(pMsg->hWin, 3, WIFI_REFRESH_PERIOD, 0);       
+  case WIFI_CONNECTING: 
+      if(!wifiTimer) wifiTimer = WM_CreateTimer(pMsg->hWin, WIFI_CONNECTING_TIMER_ID, WIFI_REFRESH_PERIOD, 0);       
     break;
     
   case ENV_UPDATE:
@@ -242,12 +246,14 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
   case WM_TIMER:  
     Id = WM_GetTimerId(pMsg->Data.v);
     
-    if((Id == 0) || (Id == 1))
+    if((Id == TIME_HOUR_TIMER_ID) || (Id == TIME_MIN_TIMER_ID))
     {
       WM_RestartTimer(pMsg->Data.v, TIME_REFRESH_PERIOD);
       k_GetTime(&Time) ; 
-      k_GetDate(&Date) ;            
-      if(Id == 0) //hour
+      k_GetDate(&Date) ;    
+      
+      
+      if(Id == TIME_HOUR_TIMER_ID) //hour
       {        
         Time.Hours++;
         
@@ -258,7 +264,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
         k_SetTime(&Time) ; 
         WM_SendMessageNoPara (pMsg->hWin, TIME_UPDATE);
       }
-      else if(Id == 1) //min
+      else if(Id == TIME_MIN_TIMER_ID) //min
       {
         Time.Minutes++;
         if(Time.Minutes >= 60)
@@ -271,7 +277,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
         WM_SendMessageNoPara (pMsg->hWin, TIME_UPDATE);
       } 
     }
-    else if (Id == 3)
+    else if (Id == WIFI_CONNECTING_TIMER_ID)
     {
       hItem = WM_GetDialogItem(pMsg->hWin, ID_WIFI);
       if(WM_IsVisible(hItem))
@@ -281,7 +287,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
       WM_RestartTimer(pMsg->Data.v, WIFI_REFRESH_PERIOD);
     }
     
-    else if (Id == 4)
+    else if (Id == GUI_TIMER_ID)
     {            
       WM_SendMessageNoPara (pMsg->hWin, ENV_UPDATE);
       WM_SendMessageNoPara (pMsg->hWin, TIME_UPDATE);
@@ -310,11 +316,11 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
       Id    = WM_GetId(pMsg->hWinSrc);    /* Id of widget */
       if((Id == ID_TIME_HOUR) && (enable_setting))
       {
-        if(!hTimer) hTimer = WM_CreateTimer(pMsg->hWin, 0, TIME_REFRESH_PERIOD, 0);         
+        if(!hTimer) hTimer = WM_CreateTimer(pMsg->hWin, TIME_HOUR_TIMER_ID, TIME_REFRESH_PERIOD, 0);         
       }
       if((Id == ID_TIME_MIN) && (enable_setting))
       {
-        if(!mTimer) mTimer = WM_CreateTimer(pMsg->hWin, 1, TIME_REFRESH_PERIOD, 0);           
+        if(!mTimer) mTimer = WM_CreateTimer(pMsg->hWin, TIME_MIN_TIMER_ID, TIME_REFRESH_PERIOD, 0);           
       }      
     }
     
