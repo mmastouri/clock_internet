@@ -1,0 +1,16 @@
+GUIConf.pbi: \
+  D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Projects\STM32F769I-Discovery\oscilloscope\Oscilloscope\Gui\Target\GUIConf.c \
+  D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Projects\STM32F769I-Discovery\oscilloscope\Oscilloscope\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\GUI.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stddef.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\ycheck.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\yvals.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\DLib_Defaults.h \
+  C:\\Program\ Files\ (x86)\\IAR\ Systems\\Embedded\ Workbench\ 8.3\\arm\\inc\\c\\DLib_Config_Full.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\DLib_Product.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\ysizet.h \
+  D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Projects\STM32F769I-Discovery\oscilloscope\Oscilloscope\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/GUI_ConfDefaults.h \
+  D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Projects\STM32F769I-Discovery\oscilloscope\Oscilloscope\Gui\Target\GUIConf.h \
+  D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Projects\STM32F769I-Discovery\oscilloscope\Oscilloscope\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/GUI_Type.h \
+  D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Projects\STM32F769I-Discovery\oscilloscope\Oscilloscope\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/LCD.h \
+  D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Projects\STM32F769I-Discovery\oscilloscope\Oscilloscope\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/Global.h \
+  D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Projects\STM32F769I-Discovery\oscilloscope\Oscilloscope\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/GUI_Version.h
