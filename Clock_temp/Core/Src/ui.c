@@ -44,6 +44,8 @@
 #define ID_HEADER_0                 (GUI_ID_USER + 0x10)
 #define ID_HEADER_1                 (GUI_ID_USER + 0x11)
 #define ID_WIFI                     (GUI_ID_USER + 0x12)
+#define ID_INTERNET                 (GUI_ID_USER + 0x13)
+#define ID_INDOOR                   (GUI_ID_USER + 0x14)
 
 #define TIME_REFRESH_PERIOD        100
 #define WIFI_REFRESH_PERIOD        500
@@ -58,6 +60,7 @@
 #define WIFI_CONNECTING           (WM_USER + 0x00)
 #define WIFI_CONNECTED            (WM_USER + 0x01)
 #define WIFI_DISCONNECTED         (WM_USER + 0x02)
+#define INTERNET_AVAILABLE        (WM_USER + 0x03)
 
 #define TIME_SET                  (WM_USER + 0x10)
 #define TIME_ENTER_SETTING_MODE   (WM_USER + 0x11)
@@ -79,6 +82,8 @@ uint32_t enable_setting = 0;
 extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigital_Font;
 extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigita_Clock;
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_wifi;
+extern GUI_CONST_STORAGE GUI_BITMAP bmicon_indoor;
+extern GUI_CONST_STORAGE GUI_BITMAP bmicon_internet;
 /*********************************************************************
 *
 *       Static code
@@ -116,7 +121,9 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
   { TEXT_CreateIndirect, "00 %", ID_HUMIDITY, 480, 360, 680, 120, 0, 0x65, 0 },  
   { HEADER_CreateIndirect, "Header", ID_HEADER_1, 20, 50, 760, 5, 0, 0x0, 0 }, 
   { HEADER_CreateIndirect, "Header", ID_HEADER_0, 20, 300, 760, 5, 0, 0x0, 0 }, 
-  { IMAGE_CreateIndirect, "Image", ID_WIFI, 740, 7, 50, 50, 0, 0, 0 },  
+  { IMAGE_CreateIndirect, "Image", ID_WIFI, 740, 7, 50, 50, 0, 0, 0 }, 
+  { IMAGE_CreateIndirect, "Image", ID_INTERNET, 690, 7, 50, 50, 0, 0, 0 },      
+  { IMAGE_CreateIndirect, "Image", ID_INDOOR, 30, 7, 50, 50, 0, 0, 0 },    
 
 };
 
@@ -179,6 +186,13 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     IMAGE_SetBitmap(hItem, &bmicon_wifi);
     WM_HideWin(hItem);
     
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_INDOOR);
+    IMAGE_SetBitmap(hItem, &bmicon_indoor);
+
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_INTERNET);
+    IMAGE_SetBitmap(hItem, &bmicon_internet);   
+    WM_HideWin(hItem);
+    
     if(!GuiRefreshTimer) GuiRefreshTimer = WM_CreateTimer(pMsg->hWin, GUI_TIMER_ID, GUI_REFRESH_PERIOD, 0);   
     WM_SendMessageNoPara (pMsg->hWin, TIME_UPDATE);
     WM_SendMessageNoPara (pMsg->hWin, ENV_UPDATE);
@@ -198,6 +212,11 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     
   case WIFI_CONNECTING: 
       if(!wifiTimer) wifiTimer = WM_CreateTimer(pMsg->hWin, WIFI_CONNECTING_TIMER_ID, WIFI_REFRESH_PERIOD, 0);       
+    break;
+    
+  case INTERNET_AVAILABLE:
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_INTERNET);
+    WM_ShowWin(hItem);    
     break;
     
   case ENV_UPDATE:
@@ -390,6 +409,15 @@ void UI_SetWifiConnected(void)
 void UI_SetWifiConnecting(void)
 {
   WM_SendMessageNoPara (hWin, WIFI_CONNECTING); 
+}
+
+/*********************************************************************
+*
+*       UI_SetWifiConnecting
+*/
+void UI_SetInternetAvailable(void)
+{
+  WM_SendMessageNoPara (hWin, INTERNET_AVAILABLE); 
 }
 
 /*********************************************************************

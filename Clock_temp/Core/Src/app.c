@@ -123,6 +123,7 @@ void wifi_task (ESP_WIFI_Object_t * pxObj){
       
       if(xRet == ESP_WIFI_STATUS_OK)
       {
+        UI_SetInternetAvailable();
         if((xRet = ESP_WIFI_Send( pxObj, &xConn , (uint8_t *)http_request, 
                                  strlen(http_request), &usSentBytes, pdMS_TO_TICKS(200))) == ESP_WIFI_STATUS_OK)
         {
@@ -140,7 +141,7 @@ void wifi_task (ESP_WIFI_Object_t * pxObj){
             day = year = hour = min = sec = 0;
             dateStr = strstr(rxBuffer, "Date: ");
             int count = sscanf(dateStr, "%s %s %d %s %d %02d:%02d:%02d ", prefix, dow, &day, month, &year, &hour, &min, &sec); 
-            sTime.Hours = hour;
+            sTime.Hours = hour + 1;
             sTime.Minutes = min;
             sTime.Seconds = sec;
             sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;

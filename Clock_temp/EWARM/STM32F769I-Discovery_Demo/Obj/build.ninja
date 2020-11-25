@@ -29,6 +29,8 @@ build stm32f7xx_hal_timebase_tim.pbi : index stm32f7xx_hal_timebase_tim.xcl
 build stm32f7xx_it.pbi : index stm32f7xx_it.xcl
 build Digita_Clock.pbi : index Digita_Clock.xcl
 build Digital_Font.pbi : index Digital_Font.xcl
+build icon_indoor.pbi : index icon_indoor.xcl
+build icon_internet.pbi : index icon_internet.xcl
 build icon_wifi.pbi : index icon_wifi.xcl
 build esp8266_wifi.pbi : index esp8266_wifi.xcl
 build ft6x06.pbi : index ft6x06.xcl
@@ -123,17 +125,17 @@ build timers.pbi : index timers.xcl
 build GUI_X_OS.pbi : index GUI_X_OS.xcl
 build GUIConf.pbi : index GUIConf.xcl
 build LCDConf_CmdMode_TE.pbi : index LCDConf_CmdMode_TE.xcl
-build Project_part0.pbi : link app.pbi bsp.pbi main.pbi rtc.pbi ui.pbi stm32f7xx_hal_timebase_tim.pbi stm32f7xx_it.pbi Digita_Clock.pbi Digital_Font.pbi icon_wifi.pbi
-build Project_part1.pbi : link esp8266_wifi.pbi ft6x06.pbi hts221.pbi hts221_reg.pbi lps22hh.pbi lps22hh_reg.pbi otm8009a.pbi stts751.pbi stts751_reg.pbi iks01a3_env_sensors.pbi
-build Project_part2.pbi : link iks01a3_env_sensors_ex.pbi stm32f769i_discovery.pbi stm32f769i_discovery_qspi.pbi stm32f769i_discovery_sdram.pbi stm32f769i_discovery_ts.pbi system_stm32f7xx.pbi stm32f7xx_hal.pbi stm32f7xx_hal_adc.pbi stm32f7xx_hal_adc_ex.pbi stm32f7xx_hal_can.pbi
-build Project_part3.pbi : link stm32f7xx_hal_cec.pbi stm32f7xx_hal_cortex.pbi stm32f7xx_hal_crc.pbi stm32f7xx_hal_crc_ex.pbi stm32f7xx_hal_cryp.pbi stm32f7xx_hal_cryp_ex.pbi stm32f7xx_hal_dac.pbi stm32f7xx_hal_dac_ex.pbi stm32f7xx_hal_dcmi.pbi stm32f7xx_hal_dcmi_ex.pbi
-build Project_part4.pbi : link stm32f7xx_hal_dfsdm.pbi stm32f7xx_hal_dma.pbi stm32f7xx_hal_dma2d.pbi stm32f7xx_hal_dma_ex.pbi stm32f7xx_hal_dsi.pbi stm32f7xx_hal_eth.pbi stm32f7xx_hal_flash.pbi stm32f7xx_hal_flash_ex.pbi stm32f7xx_hal_gpio.pbi stm32f7xx_hal_hash.pbi
-build Project_part5.pbi : link stm32f7xx_hal_hash_ex.pbi stm32f7xx_hal_hcd.pbi stm32f7xx_hal_i2c.pbi stm32f7xx_hal_i2c_ex.pbi stm32f7xx_hal_i2s.pbi stm32f7xx_hal_irda.pbi stm32f7xx_hal_iwdg.pbi stm32f7xx_hal_jpeg.pbi stm32f7xx_hal_lptim.pbi stm32f7xx_hal_ltdc.pbi
-build Project_part6.pbi : link stm32f7xx_hal_ltdc_ex.pbi stm32f7xx_hal_mdios.pbi stm32f7xx_hal_nand.pbi stm32f7xx_hal_nor.pbi stm32f7xx_hal_pcd.pbi stm32f7xx_hal_pcd_ex.pbi stm32f7xx_hal_pwr.pbi stm32f7xx_hal_pwr_ex.pbi stm32f7xx_hal_qspi.pbi stm32f7xx_hal_rcc.pbi
-build Project_part7.pbi : link stm32f7xx_hal_rcc_ex.pbi stm32f7xx_hal_rng.pbi stm32f7xx_hal_rtc.pbi stm32f7xx_hal_rtc_ex.pbi stm32f7xx_hal_sai.pbi stm32f7xx_hal_sai_ex.pbi stm32f7xx_hal_sd.pbi stm32f7xx_hal_sdram.pbi stm32f7xx_hal_smartcard.pbi stm32f7xx_hal_smartcard_ex.pbi
-build Project_part8.pbi : link stm32f7xx_hal_spdifrx.pbi stm32f7xx_hal_spi.pbi stm32f7xx_hal_sram.pbi stm32f7xx_hal_tim.pbi stm32f7xx_hal_tim_ex.pbi stm32f7xx_hal_uart.pbi stm32f7xx_hal_usart.pbi stm32f7xx_hal_wwdg.pbi stm32f7xx_ll_fmc.pbi stm32f7xx_ll_sdmmc.pbi
-build Project_part9.pbi : link stm32f7xx_ll_usb.pbi cmsis_os.pbi heap_4.pbi port.pbi croutine.pbi event_groups.pbi list.pbi queue.pbi tasks.pbi timers.pbi
-build Project_part10.pbi : link GUI_X_OS.pbi GUIConf.pbi LCDConf_CmdMode_TE.pbi
+build Project_part0.pbi : link app.pbi bsp.pbi main.pbi rtc.pbi ui.pbi stm32f7xx_hal_timebase_tim.pbi stm32f7xx_it.pbi Digita_Clock.pbi Digital_Font.pbi icon_indoor.pbi
+build Project_part1.pbi : link icon_internet.pbi icon_wifi.pbi esp8266_wifi.pbi ft6x06.pbi hts221.pbi hts221_reg.pbi lps22hh.pbi lps22hh_reg.pbi otm8009a.pbi stts751.pbi
+build Project_part2.pbi : link stts751_reg.pbi iks01a3_env_sensors.pbi iks01a3_env_sensors_ex.pbi stm32f769i_discovery.pbi stm32f769i_discovery_qspi.pbi stm32f769i_discovery_sdram.pbi stm32f769i_discovery_ts.pbi system_stm32f7xx.pbi stm32f7xx_hal.pbi stm32f7xx_hal_adc.pbi
+build Project_part3.pbi : link stm32f7xx_hal_adc_ex.pbi stm32f7xx_hal_can.pbi stm32f7xx_hal_cec.pbi stm32f7xx_hal_cortex.pbi stm32f7xx_hal_crc.pbi stm32f7xx_hal_crc_ex.pbi stm32f7xx_hal_cryp.pbi stm32f7xx_hal_cryp_ex.pbi stm32f7xx_hal_dac.pbi stm32f7xx_hal_dac_ex.pbi
+build Project_part4.pbi : link stm32f7xx_hal_dcmi.pbi stm32f7xx_hal_dcmi_ex.pbi stm32f7xx_hal_dfsdm.pbi stm32f7xx_hal_dma.pbi stm32f7xx_hal_dma2d.pbi stm32f7xx_hal_dma_ex.pbi stm32f7xx_hal_dsi.pbi stm32f7xx_hal_eth.pbi stm32f7xx_hal_flash.pbi stm32f7xx_hal_flash_ex.pbi
+build Project_part5.pbi : link stm32f7xx_hal_gpio.pbi stm32f7xx_hal_hash.pbi stm32f7xx_hal_hash_ex.pbi stm32f7xx_hal_hcd.pbi stm32f7xx_hal_i2c.pbi stm32f7xx_hal_i2c_ex.pbi stm32f7xx_hal_i2s.pbi stm32f7xx_hal_irda.pbi stm32f7xx_hal_iwdg.pbi stm32f7xx_hal_jpeg.pbi
+build Project_part6.pbi : link stm32f7xx_hal_lptim.pbi stm32f7xx_hal_ltdc.pbi stm32f7xx_hal_ltdc_ex.pbi stm32f7xx_hal_mdios.pbi stm32f7xx_hal_nand.pbi stm32f7xx_hal_nor.pbi stm32f7xx_hal_pcd.pbi stm32f7xx_hal_pcd_ex.pbi stm32f7xx_hal_pwr.pbi stm32f7xx_hal_pwr_ex.pbi
+build Project_part7.pbi : link stm32f7xx_hal_qspi.pbi stm32f7xx_hal_rcc.pbi stm32f7xx_hal_rcc_ex.pbi stm32f7xx_hal_rng.pbi stm32f7xx_hal_rtc.pbi stm32f7xx_hal_rtc_ex.pbi stm32f7xx_hal_sai.pbi stm32f7xx_hal_sai_ex.pbi stm32f7xx_hal_sd.pbi stm32f7xx_hal_sdram.pbi
+build Project_part8.pbi : link stm32f7xx_hal_smartcard.pbi stm32f7xx_hal_smartcard_ex.pbi stm32f7xx_hal_spdifrx.pbi stm32f7xx_hal_spi.pbi stm32f7xx_hal_sram.pbi stm32f7xx_hal_tim.pbi stm32f7xx_hal_tim_ex.pbi stm32f7xx_hal_uart.pbi stm32f7xx_hal_usart.pbi stm32f7xx_hal_wwdg.pbi
+build Project_part9.pbi : link stm32f7xx_ll_fmc.pbi stm32f7xx_ll_sdmmc.pbi stm32f7xx_ll_usb.pbi cmsis_os.pbi heap_4.pbi port.pbi croutine.pbi event_groups.pbi list.pbi queue.pbi
+build Project_part10.pbi : link tasks.pbi timers.pbi GUI_X_OS.pbi GUIConf.pbi LCDConf_CmdMode_TE.pbi
 build Project.pbd : link Project_part0.pbi Project_part1.pbi Project_part2.pbi Project_part3.pbi Project_part4.pbi Project_part5.pbi Project_part6.pbi Project_part7.pbi Project_part8.pbi Project_part9.pbi Project_part10.pbi
 build Project.pbw : browsedata Project.pbd
 

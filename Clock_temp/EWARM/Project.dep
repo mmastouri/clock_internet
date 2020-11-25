@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
     <fileVersion>4</fileVersion>
-    <fileChecksum>450294065</fileChecksum>
+    <fileChecksum>3666383562</fileChecksum>
     <configuration>
         <name>STM32F769I-Discovery_Demo</name>
         <outputs>
@@ -514,6 +514,12 @@
             <file>$PROJ_DIR$\STM32F769I-Discovery_Demo\List\STM32F769I-DISCO_Demo.map</file>
             <file>$PROJ_DIR$\stm32f769xx.icf</file>
             <file>$TOOLKIT_DIR$\lib\dl7M_tlf.a</file>
+            <file>$PROJ_DIR$\STM32F769I-Discovery_Demo\Obj\icon_indoor.o</file>
+            <file>$PROJ_DIR$\STM32F769I-Discovery_Demo\Obj\icon_internet.o</file>
+            <file>$PROJ_DIR$\STM32F769I-Discovery_Demo\Obj\icon_internet.xcl</file>
+            <file>$PROJ_DIR$\STM32F769I-Discovery_Demo\Obj\icon_indoor.xcl</file>
+            <file>$PROJ_DIR$\..\Core\Src\icon_internet.c</file>
+            <file>$PROJ_DIR$\..\Core\Src\icon_indoor.c</file>
         </outputs>
         <file>
             <name>[ROOT_NODE]</name>
@@ -2516,7 +2522,45 @@
             <inputs>
                 <tool>
                     <name>ILINK</name>
-                    <file> 507 207 213 123 103 205 200 194 126 195 120 119 122 196 208 63 212 210 211 107 118 198 199 202 209 116 111 100 203 125 217 216 14 15 30 0 20 21 16 29 2 22 7 11 18 13 6 17 27 19 12 23 8 24 28 3 25 4 5 9 10 26 83 72 91 67 76 90 75 80 89 81 71 84 92 97 68 73 74 77 79 78 69 93 94 82 85 86 87 88 95 96 98 70 104 193 108 115 128 197 102 129 99 201 206 1 124 101 204 505 504 503 508</file>
+                    <file> 507 207 213 123 103 205 200 194 126 195 120 119 122 196 208 63 509 510 212 210 211 107 118 198 199 202 209 116 111 100 203 125 217 216 14 15 30 0 20 21 16 29 2 22 7 11 18 13 6 17 27 19 12 23 8 24 28 3 25 4 5 9 10 26 83 72 91 67 76 90 75 80 89 81 71 84 92 97 68 73 74 77 79 78 69 93 94 82 85 86 87 88 95 96 98 70 104 193 108 115 128 197 102 129 99 201 206 1 124 101 204 505 504 503 508</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Core\Src\icon_internet.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 510</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 511</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 354 303 306 308 295 318 302 367 432 314 420 434 413 426 408 409</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\Core\Src\icon_indoor.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 509</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 512</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 354 303 306 308 295 318 302 367 432 314 420 434 413 426 408 409</file>
                 </tool>
             </inputs>
         </file>
