@@ -51,16 +51,18 @@
 #include "arm_common_tables.h"
 #include "bsp.h"   
 #include "ui.h"      
+#include "esp8266_wifi.h"       
 
 typedef struct {
 	TaskHandle_t guiTaskId;
 	TaskHandle_t WIFITaskId;        
 	TimerHandle_t touchPanelTimer;    
 	int32_t	touchPanelTimerId;
+        ESP_WIFI_Object_t EspObj;
 } AppGlobals_s;
 
 void App_task (void);
-   
+void wifi_task (void);   
 #ifdef __cplusplus
 }
 #endif

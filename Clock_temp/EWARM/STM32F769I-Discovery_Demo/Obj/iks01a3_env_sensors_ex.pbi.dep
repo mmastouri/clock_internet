@@ -149,6 +149,10 @@ iks01a3_env_sensors_ex.pbi: \
   D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Core\Inc/bsp.h \
   D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Core\Inc/ui.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\CMSIS\Core\Include\cmsis_compiler.h \
+  D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\WiFi\esp8266_wifi.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stdio.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stdlib.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\DLib_Product_stdlib.h \
   D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\Components\Common\env_sensor.h \
   D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\Components\hts221\hts221.h \
   D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\Components\hts221/hts221_reg.h \

@@ -33,8 +33,8 @@ static void WIFI_Task(void const *argument);
 static void TouchPanel_TimerCallback(TimerHandle_t pxTimer);
 
 static void SystemClock_Config(void);
-static AppGlobals_s appGlobals;
-
+AppGlobals_s appGlobals;
+static ESP_Scan_t scan[10];
 /**
   * @brief  Main program
   * @param  None
@@ -74,7 +74,6 @@ void GUI_Task(void const *arg) {
  GUI_Clear();   
  
  CreateWindow();
- UI_SetWifiConnecting();
  xTimerStart(appGlobals.touchPanelTimer, 0);
  
  for (;;) {
@@ -88,6 +87,33 @@ void GUI_Task(void const *arg) {
   * @retval None
   */
 void WIFI_Task(void const *arg) {
+ 
+  
+  appGlobals.EspObj.Timeout = 20000;
+  appGlobals.EspObj.IsMultiConn = pdFALSE;
+  appGlobals.EspObj.ActiveCmd = CMD_NONE;
+  
+  if(ESP_WIFI_Init( &appGlobals.EspObj) == ESP_WIFI_STATUS_OK)
+  {
+    UI_SetWifiConnecting();
+    if(ESP_WIFI_Scan(&appGlobals.EspObj, scan, 10) == ESP_WIFI_STATUS_OK)
+    {
+      if(ESP_WIFI_Connect( &appGlobals.EspObj, "MASTER_EXT","OSMNL7182oo21") == ESP_WIFI_STATUS_OK)
+      {
+        UI_SetWifiConnected();
+        wifi_task();
+        
+      }
+      else
+      {
+        UI_SetWifiDisconnected();
+      }
+    }
+    else
+    {
+      UI_SetWifiDisconnected();
+    }
+  }
   
   for (;;) {
     osDelay(100);

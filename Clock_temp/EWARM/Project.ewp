@@ -1094,6 +1094,9 @@
                     <name>$PROJ_DIR$\..\Core\Src\app.c</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\Core\Src\bsp.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\Core\Src\main.c</name>
                 </file>
                 <file>
@@ -1105,9 +1108,6 @@
             </group>
             <group>
                 <name>Core</name>
-                <file>
-                    <name>$PROJ_DIR$\..\Core\Src\bsp.c</name>
-                </file>
                 <file>
                     <name>$PROJ_DIR$\..\Core\Src\stm32f7xx_hal_timebase_tim.c</name>
                 </file>
@@ -1125,6 +1125,15 @@
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\Core\Src\icon_wifi.c</name>
+                </file>
+            </group>
+            <group>
+                <name>WiFi</name>
+                <file>
+                    <name>$PROJ_DIR$\..\WiFi\esp8266_wifi.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\WiFi\esp8266_wifi.h</name>
                 </file>
             </group>
         </group>

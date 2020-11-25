@@ -185,6 +185,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     break;
     
   case WIFI_DISCONNECTED:
+     if(wifiTimer) WM_DeleteTimer(wifiTimer);     
     hItem = WM_GetDialogItem(pMsg->hWin, ID_WIFI);
     WM_HideWin(hItem);    
     break;

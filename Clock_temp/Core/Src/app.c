@@ -29,10 +29,25 @@
 #include "ui.h"
 #include "rtc.h"
 
-  
-uint32_t enable_time_count = 0;
-uint32_t  enable_time_setting = 0;
+/* Private typedef -----------------------------------------------------------*/
+#define TIME_SOURCE_HTTP_HOST   "www.st.com"
+#define TIME_SOURCE_HTTP_PORT   80
+#define TIME_SOURCE_HTTP_PROTO  ESP_WIFI_TCP
 
+/** Maximum number of DNS lookup or connection trials */
+#define TIME_NET_MAX_RETRY  4
+
+/** Size of the HTTP read buffer.
+ *  Should be large enough to contain a complete HTTP response header. */
+#define NET_BUF_SIZE  1000
+
+
+
+/* Private variables ---------------------------------------------------------*/
+static const char http_request[] = "HEAD / HTTP/1.1\r\nHost: "TIME_SOURCE_HTTP_HOST"\r\n\r\n";
+uint32_t enable_time_count = 0;
+uint32_t enable_time_setting = 0;
+uint8_t  IPAddr[4];
 
  void App_task (void){
      
@@ -48,8 +63,17 @@ uint32_t  enable_time_setting = 0;
   else
   {
     enable_time_count = 0;
-    
   }
        
+}
+
+extern AppGlobals_s appGlobals;
+void wifi_task (void){
+  
+  if(ESP_WIFI_GetHostIP( &appGlobals.EspObj,TIME_SOURCE_HTTP_HOST , IPAddr ) == ESP_WIFI_STATUS_OK)
+  {
+    BSP_LED_On(LED_GREEN);
+  }
+  
 }
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
