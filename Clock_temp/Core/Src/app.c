@@ -128,7 +128,7 @@ void wifi_task (ESP_WIFI_Object_t * pxObj){
                                  strlen(http_request), &usSentBytes, pdMS_TO_TICKS(200))) == ESP_WIFI_STATUS_OK)
         {
           
-          if((xRet = ESP_WIFI_Recv( pxObj, &xConn , (uint8_t*)rxBuffer, NET_BUF_SIZE,&usRecvBytes, pdMS_TO_TICKS(200) )) == ESP_WIFI_STATUS_OK)
+          if((xRet = ESP_WIFI_Recv( pxObj, &xConn , (uint8_t*)rxBuffer, NET_BUF_SIZE,&usRecvBytes, pdMS_TO_TICKS(1000) )) == ESP_WIFI_STATUS_OK)
           {
             BSP_LED_On(LED_GREEN);
             char *dateStr = NULL;
