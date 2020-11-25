@@ -127,11 +127,23 @@ void wifi_task (ESP_WIFI_Object_t * pxObj){
         if((xRet = ESP_WIFI_Send( pxObj, &xConn , (uint8_t *)http_request, 
                                  strlen(http_request), &usSentBytes, pdMS_TO_TICKS(200))) == ESP_WIFI_STATUS_OK)
         {
-          
-          if((xRet = ESP_WIFI_Recv( pxObj, &xConn , (uint8_t*)rxBuffer, NET_BUF_SIZE,&usRecvBytes, pdMS_TO_TICKS(1000) )) == ESP_WIFI_STATUS_OK)
+
+          char *dateStr = NULL;
+          int read = 0;
+          do {
+              xRet = ESP_WIFI_Recv( pxObj, &xConn , (uint8_t*)(rxBuffer + read), NET_BUF_SIZE - read,&usRecvBytes, pdMS_TO_TICKS(1000) );
+              if (usRecvBytes > 0)
+              {
+                read += usRecvBytes;
+                dateStr = strstr(rxBuffer, "Date: ");
+              }  
+          }
+          while ( (dateStr == NULL) && ((usRecvBytes > 0) || (xRet == ESP_WIFI_STATUS_TIMEOUT)) && (read < NET_BUF_SIZE));
+            
+          if(xRet == ESP_WIFI_STATUS_OK)
           {
             BSP_LED_On(LED_GREEN);
-            char *dateStr = NULL;
+ 
             char prefix[8], dow[8], month[4];
             int day, year, hour, min, sec;
             RTC_TimeTypeDef sTime;
@@ -139,7 +151,7 @@ void wifi_task (ESP_WIFI_Object_t * pxObj){
             memset(dow, 0, sizeof(dow));
             memset(month, 0, sizeof(month));
             day = year = hour = min = sec = 0;
-            dateStr = strstr(rxBuffer, "Date: ");
+
             int count = sscanf(dateStr, "%s %s %d %s %d %02d:%02d:%02d ", prefix, dow, &day, month, &year, &hour, &min, &sec); 
             sTime.Hours = hour + 1;
             sTime.Minutes = min;
