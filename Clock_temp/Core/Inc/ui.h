@@ -48,6 +48,7 @@ void ui_set_setting_mode (uint32_t enable);
 void UI_SetWifiDisconnected(void);
 void UI_SetWifiConnected(void);
 void UI_SetWifiConnecting(void);
+void UI_ForceUpdateTime(void);
 
 #ifdef __cplusplus
 }

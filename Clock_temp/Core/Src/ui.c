@@ -394,6 +394,14 @@ void UI_SetWifiConnecting(void)
 
 /*********************************************************************
 *
+*       UI_SetWifiConnecting
+*/
+void UI_ForceUpdateTime(void)
+{
+  WM_SendMessageNoPara (hWin, TIME_UPDATE);
+}
+/*********************************************************************
+*
 *       CreateWindow
 */
 

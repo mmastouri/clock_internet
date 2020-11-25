@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
     <fileVersion>4</fileVersion>
-    <fileChecksum>1109361081</fileChecksum>
+    <fileChecksum>450294065</fileChecksum>
     <configuration>
         <name>STM32F769I-Discovery_Demo</name>
         <outputs>

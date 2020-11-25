@@ -62,7 +62,8 @@ typedef struct {
 } AppGlobals_s;
 
 void App_task (void);
-void wifi_task (void);   
+void wifi_task (ESP_WIFI_Object_t * pxObj);
+
 #ifdef __cplusplus
 }
 #endif

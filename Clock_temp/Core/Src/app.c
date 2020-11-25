@@ -30,7 +30,7 @@
 #include "rtc.h"
 
 /* Private typedef -----------------------------------------------------------*/
-#define TIME_SOURCE_HTTP_HOST   "www.st.com"
+#define TIME_SOURCE_HTTP_HOST   "www.google.com"
 #define TIME_SOURCE_HTTP_PORT   80
 #define TIME_SOURCE_HTTP_PROTO  ESP_WIFI_TCP
 
@@ -47,7 +47,6 @@
 static const char http_request[] = "HEAD / HTTP/1.1\r\nHost: "TIME_SOURCE_HTTP_HOST"\r\n\r\n";
 uint32_t enable_time_count = 0;
 uint32_t enable_time_setting = 0;
-uint8_t  IPAddr[4];
 
  void App_task (void){
      
@@ -67,13 +66,96 @@ uint8_t  IPAddr[4];
        
 }
 
-extern AppGlobals_s appGlobals;
-void wifi_task (void){
+void wifi_task (ESP_WIFI_Object_t * pxObj){
+  ESP_WIFI_Conn_t xConn;
+  uint8_t  IPAddr[4];
+  uint32_t count;
+  ESP_WIFI_Status_t xRet;
+  uint16_t usSentBytes;
+  uint16_t usRecvBytes;  
+  char rxBuffer[NET_BUF_SIZE + 1];
+  pxObj->Timeout = 20000;
+  pxObj->IsMultiConn = pdFALSE;
+  pxObj->ActiveCmd = CMD_NONE;
   
-  if(ESP_WIFI_GetHostIP( &appGlobals.EspObj,TIME_SOURCE_HTTP_HOST , IPAddr ) == ESP_WIFI_STATUS_OK)
-  {
-    BSP_LED_On(LED_GREEN);
+  xRet = ESP_WIFI_Init( pxObj);
+  
+  if(xRet == ESP_WIFI_STATUS_OK)
+  {  
+    UI_SetWifiConnecting();
+    
+    count = 10;
+    while(((xRet = ESP_WIFI_Connect( pxObj, "Android","12345678")) != ESP_WIFI_STATUS_OK)&& (count-- > 0) )
+    {
+      HAL_Delay(1000);
+    }
+    
+    if(xRet == ESP_WIFI_STATUS_OK)
+    {    
+      UI_SetWifiConnected();
+    }
+    else
+    {
+      UI_SetWifiDisconnected();
+    }
+    
+    if(xRet == ESP_WIFI_STATUS_OK)
+    {       
+      count = 10;  
+      while(((xRet = ESP_WIFI_GetHostIP( pxObj, TIME_SOURCE_HTTP_HOST , IPAddr )) != ESP_WIFI_STATUS_OK) && (count-- > 0) )
+      {
+        HAL_Delay(1000);
+      }
+      
+      if(xRet == ESP_WIFI_STATUS_OK)
+      {
+        xConn.RemotePort = TIME_SOURCE_HTTP_PORT;
+        memcpy(xConn.RemoteIP , IPAddr, sizeof(uint32_t));
+        xConn.Type = TIME_SOURCE_HTTP_PROTO;
+        xConn.TcpKeepAlive = 0;
+        xConn.LinkID       = 0;
+        count = 10;
+        while(((xRet = ESP_WIFI_StartClient( pxObj, &xConn ))!= ESP_WIFI_STATUS_OK) && (count-- > 0) )
+        {
+          HAL_Delay(1000);
+        }
+      }
+      
+      if(xRet == ESP_WIFI_STATUS_OK)
+      {
+        if((xRet = ESP_WIFI_Send( pxObj, &xConn , (uint8_t *)http_request, 
+                                 strlen(http_request), &usSentBytes, pdMS_TO_TICKS(200))) == ESP_WIFI_STATUS_OK)
+        {
+          
+          if((xRet = ESP_WIFI_Recv( pxObj, &xConn , (uint8_t*)rxBuffer, NET_BUF_SIZE,&usRecvBytes, pdMS_TO_TICKS(200) )) == ESP_WIFI_STATUS_OK)
+          {
+            BSP_LED_On(LED_GREEN);
+            char *dateStr = NULL;
+            char prefix[8], dow[8], month[4];
+            int day, year, hour, min, sec;
+            RTC_TimeTypeDef sTime;
+            
+            memset(dow, 0, sizeof(dow));
+            memset(month, 0, sizeof(month));
+            day = year = hour = min = sec = 0;
+            dateStr = strstr(rxBuffer, "Date: ");
+            int count = sscanf(dateStr, "%s %s %d %s %d %02d:%02d:%02d ", prefix, dow, &day, month, &year, &hour, &min, &sec); 
+            sTime.Hours = hour;
+            sTime.Minutes = min;
+            sTime.Seconds = sec;
+            sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+            sTime.StoreOperation = RTC_STOREOPERATION_RESET;
+            k_SetTime(&sTime) ;
+            UI_ForceUpdateTime();
+          }
+        }
+      }
+    }
   }
-  
+
+  if(xRet != ESP_WIFI_STATUS_OK)
+  {
+    BSP_LED_On(LED_RED);
+  }
 }
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

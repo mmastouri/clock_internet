@@ -283,11 +283,11 @@ uint16_t ESP_IO_Send( ESP_WIFI_Object_t * pxObj, uint8_t pucTxBuf[], uint16_t us
   
   if (HAL_UART_Transmit(&WiFiUartHandle, (uint8_t*)pucTxBuf, usWriteBytes, 3000) != HAL_OK)
   {
-    return pdFALSE;
+    return 0;
   }
   else
   {
-    return pdTRUE;
+    return usWriteBytes;
   }
 }
 
