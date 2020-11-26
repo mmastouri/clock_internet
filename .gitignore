@@ -1,9 +1,10 @@
 *.o
-*.ko
+*.xcl
 *.obj
 *.elf
 *.map
 *.pbi
 *.dep
-bin
-obj
+Obj/
+Exe/
+settings/

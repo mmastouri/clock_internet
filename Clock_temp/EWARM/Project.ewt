@@ -1237,6 +1237,12 @@
                     <name>$PROJ_DIR$\..\Core\Src\icon_internet.c</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\Core\Src\icon_menu.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\Core\Src\icon_outdoor.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\Core\Src\icon_wifi.c</name>
                 </file>
             </group>

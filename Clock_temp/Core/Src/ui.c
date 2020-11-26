@@ -46,6 +46,7 @@
 #define ID_WIFI                     (GUI_ID_USER + 0x12)
 #define ID_INTERNET                 (GUI_ID_USER + 0x13)
 #define ID_INDOOR                   (GUI_ID_USER + 0x14)
+#define ID_MENU                     (GUI_ID_USER + 0x15)
 
 #define TIME_REFRESH_PERIOD        100
 #define WIFI_REFRESH_PERIOD        500
@@ -84,6 +85,8 @@ extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigita_Clock;
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_wifi;
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_indoor;
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_internet;
+extern GUI_CONST_STORAGE GUI_BITMAP bmicon_menu;
+extern GUI_CONST_STORAGE GUI_BITMAP bmicon_outdoor;
 /*********************************************************************
 *
 *       Static code
@@ -120,10 +123,11 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
   { TEXT_CreateIndirect, "00.0 °C", ID_TEMPERATURE, 20, 360, 720, 120, 0, 0x64, 0 },
   { TEXT_CreateIndirect, "00 %", ID_HUMIDITY, 480, 360, 680, 120, 0, 0x65, 0 },  
   { HEADER_CreateIndirect, "Header", ID_HEADER_1, 20, 50, 760, 5, 0, 0x0, 0 }, 
-  { HEADER_CreateIndirect, "Header", ID_HEADER_0, 20, 300, 760, 5, 0, 0x0, 0 }, 
+  { HEADER_CreateIndirect, "Header", ID_HEADER_0, 20, 290, 760, 5, 0, 0x0, 0 }, 
   { IMAGE_CreateIndirect, "Image", ID_WIFI, 730, 7, 50, 50, 0, 0, 0 }, 
   { IMAGE_CreateIndirect, "Image", ID_INTERNET, 680, 7, 50, 50, 0, 0, 0 },      
-  { IMAGE_CreateIndirect, "Image", ID_INDOOR, 30, 7, 50, 50, 0, 0, 0 },    
+  { IMAGE_CreateIndirect, "Image", ID_INDOOR, 30, 307, 50, 50, 0, 0, 0 },    
+  { IMAGE_CreateIndirect, "Image", ID_MENU, 30, 7, 50, 50, 0, 0, 0 },    
 
 };
 
@@ -144,6 +148,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
   
   char temp[20];
   static uint32_t toggle =0;  
+  static uint8_t place_toggle = 0;
   
   float Temperature;
   float Humidity;
@@ -189,6 +194,9 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     hItem = WM_GetDialogItem(pMsg->hWin, ID_INDOOR);
     IMAGE_SetBitmap(hItem, &bmicon_indoor);
 
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_MENU);
+    IMAGE_SetBitmap(hItem, &bmicon_menu);   
+    
     hItem = WM_GetDialogItem(pMsg->hWin, ID_INTERNET);
     IMAGE_SetBitmap(hItem, &bmicon_internet);   
     WM_HideWin(hItem);
@@ -225,6 +233,9 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     break;
     
   case ENV_UPDATE:
+    
+    if(place_toggle == 0) //Indoor
+    {
       Temperature = bsp_get_temp();
       floatToInt(Temperature, &out_value, 1);
       
@@ -238,6 +249,20 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
       hItem = WM_GetDialogItem(pMsg->hWin, ID_HUMIDITY);
       snprintf(temp, sizeof(temp), "%d %%", out_value.out_int);
       TEXT_SetText(hItem, temp); 
+    }
+    else
+    {
+      hItem = WM_GetDialogItem(pMsg->hWin, ID_TEMPERATURE);
+      snprintf(temp, sizeof(temp), "%d.%d C",20, 0);
+      TEXT_SetText(hItem, temp);      
+      
+      Humidity = bsp_get_humidity(); 
+      floatToInt(Humidity, &out_value, 0);
+      
+      hItem = WM_GetDialogItem(pMsg->hWin, ID_HUMIDITY);
+      snprintf(temp, sizeof(temp), "%d %%", 50);
+      TEXT_SetText(hItem, temp);  
+    }
     break;    
     
   case TIME_UPDATE:
@@ -335,7 +360,19 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
       if((Id == ID_TIME_MIN) && (enable_setting))
       {
         if(!mTimer) mTimer = WM_CreateTimer(pMsg->hWin, TIME_MIN_TIMER_ID, TIME_REFRESH_PERIOD, 0);           
-      }      
+      } 
+      
+      if(Id == ID_INDOOR)
+      {        
+        hItem = WM_GetDialogItem(pMsg->hWin, ID_INDOOR);
+        if (place_toggle)
+            IMAGE_SetBitmap(hItem, &bmicon_indoor);
+        else
+            IMAGE_SetBitmap(hItem, &bmicon_outdoor);
+        
+        place_toggle = 1- place_toggle;
+        
+      }
     }
     
     if(Node == WM_NOTIFICATION_RELEASED)

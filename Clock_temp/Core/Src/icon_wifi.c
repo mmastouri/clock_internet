@@ -45,11 +45,10 @@ extern GUI_CONST_STORAGE GUI_BITMAP bmicon_wifi;
 */
 static GUI_CONST_STORAGE GUI_COLOR _Colorsicon_wifi[] = {
 #if (GUI_USE_ARGB == 0)
-  0xFFFFFF, 0x000000
+  0xCECECE, 0x000000
 #else
-  0xFFFFFFFF, 0xFF000000
+  0xFFCECECE,0xFF000000
 #endif
-
 };
 
 static GUI_CONST_STORAGE GUI_LOGPALETTE _Palicon_wifi = {
