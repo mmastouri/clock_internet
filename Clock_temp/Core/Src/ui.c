@@ -121,8 +121,8 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
   { TEXT_CreateIndirect, "00 %", ID_HUMIDITY, 480, 360, 680, 120, 0, 0x65, 0 },  
   { HEADER_CreateIndirect, "Header", ID_HEADER_1, 20, 50, 760, 5, 0, 0x0, 0 }, 
   { HEADER_CreateIndirect, "Header", ID_HEADER_0, 20, 300, 760, 5, 0, 0x0, 0 }, 
-  { IMAGE_CreateIndirect, "Image", ID_WIFI, 740, 7, 50, 50, 0, 0, 0 }, 
-  { IMAGE_CreateIndirect, "Image", ID_INTERNET, 690, 7, 50, 50, 0, 0, 0 },      
+  { IMAGE_CreateIndirect, "Image", ID_WIFI, 730, 7, 50, 50, 0, 0, 0 }, 
+  { IMAGE_CreateIndirect, "Image", ID_INTERNET, 680, 7, 50, 50, 0, 0, 0 },      
   { IMAGE_CreateIndirect, "Image", ID_INDOOR, 30, 7, 50, 50, 0, 0, 0 },    
 
 };
@@ -199,13 +199,18 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     break;
     
   case WIFI_DISCONNECTED:
-     if(wifiTimer) WM_DeleteTimer(wifiTimer);     
+    if(wifiTimer) WM_DeleteTimer(wifiTimer);
+    wifiTimer = 0;
     hItem = WM_GetDialogItem(pMsg->hWin, ID_WIFI);
-    WM_HideWin(hItem);    
+    WM_HideWin(hItem); 
+    
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_INTERNET);
+    WM_HideWin(hItem);        
     break;
     
   case WIFI_CONNECTED:
-     if(wifiTimer) WM_DeleteTimer(wifiTimer); 
+    if(wifiTimer) WM_DeleteTimer(wifiTimer); 
+    wifiTimer = 0;
     hItem = WM_GetDialogItem(pMsg->hWin, ID_WIFI);
     WM_ShowWin(hItem);    
     break;

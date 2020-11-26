@@ -115,6 +115,12 @@ typedef struct
     uint8_t ucHidden;                           
 } ESP_Scan_t;
 
+typedef struct
+{
+    char    SSID           [ ESP_MAX_SSID_LEN + 1 ];   
+    char    PWD            [ ESP_MAX_SSID_LEN ];                        
+} ESP_AvHotspot_t;
+
 /* Exported functions */
 ESP_WIFI_Status_t ESP_WIFI_Init( ESP_WIFI_Object_t * pxObj );
 ESP_WIFI_Status_t ESP_WIFI_Connect( ESP_WIFI_Object_t * pxObj, const char * SSID, const char * Password );

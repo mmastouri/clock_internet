@@ -39,7 +39,7 @@ static AppGlobals_s appGlobals;
   * @brief  Main program
   * @param  None
   * @retval None
-  */
+    */
 int main(void)
 {
   HAL_Init();
@@ -88,10 +88,19 @@ void GUI_Task(void const *arg) {
   */
 void WIFI_Task(void const *arg) {
   
-  wifi_task(&appGlobals.EspObj);
-  
+  if(WIFI_Start(&appGlobals.EspObj) == ESP_WIFI_STATUS_OK)
+  {
+    if(WIFI_SyncClock (&appGlobals.EspObj) == ESP_WIFI_STATUS_OK)
+    {
+      BSP_LED_On(LED_GREEN);
+    }
+    else
+    {
+      BSP_LED_On(LED_RED);
+    }      
+  }
   for (;;) {
-    osDelay(100);
+   osDelay(1000);    
   }  
 }
 /**
