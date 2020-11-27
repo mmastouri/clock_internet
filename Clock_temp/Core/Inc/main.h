@@ -54,10 +54,12 @@
 #include "esp8266_wifi.h"       
 
 typedef struct {
-	TaskHandle_t guiTaskId;
-	TaskHandle_t WIFITaskId;        
-	TimerHandle_t touchPanelTimer;    
-	int32_t	touchPanelTimerId;
+	TaskHandle_t      guiTaskId;
+	TaskHandle_t      WIFITaskId;        
+	TimerHandle_t     touchPanelTimer;  
+        int32_t           touchPanelTimerId;
+	TimerHandle_t     WifiTimer;          
+	int32_t	          WifiTimerId;
         ESP_WIFI_Object_t EspObj;
 } AppGlobals_s;
 

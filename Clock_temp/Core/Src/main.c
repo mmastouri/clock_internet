@@ -31,7 +31,7 @@
 static void GUI_Task(void const *argument);
 static void WIFI_Task(void const *argument);
 static void TouchPanel_TimerCallback(TimerHandle_t pxTimer);
-
+static void Wifi_TimerCallback(TimerHandle_t pxTimer);
 static void SystemClock_Config(void);
 static AppGlobals_s appGlobals;
 
@@ -47,9 +47,14 @@ int main(void)
   k_BspInit(); 
   k_rtc_init();  
   
+  appGlobals.touchPanelTimerId = 1;
+  appGlobals.WifiTimerId = 2;
+  
   xTaskCreate((TaskFunction_t)GUI_Task, "GUI_Task", 1024, NULL, 1, &appGlobals.guiTaskId);
   xTaskCreate((TaskFunction_t)WIFI_Task, "WIFI_Task", 1024, NULL, 1, &appGlobals.WIFITaskId);  
+  
   appGlobals.touchPanelTimer = xTimerCreate ("Touch Screen", pdMS_TO_TICKS(100), pdTRUE, &appGlobals.touchPanelTimerId, TouchPanel_TimerCallback );
+  appGlobals.WifiTimer = xTimerCreate ("WifiBackgroundSynck", 60 * 60 * pdMS_TO_TICKS(1000), pdTRUE, &appGlobals.WifiTimerId, Wifi_TimerCallback );  
   
   vTaskStartScheduler();
   
@@ -90,20 +95,47 @@ void WIFI_Task(void const *arg) {
   
   if(WIFI_Start(&appGlobals.EspObj) == ESP_WIFI_STATUS_OK)
   {
-    if(WIFI_SyncClock (&appGlobals.EspObj) == ESP_WIFI_STATUS_OK)
-    {
-      BSP_LED_On(LED_GREEN);
-    }
-    
-    if(WIFI_SyncEnvData (&appGlobals.EspObj) == ESP_WIFI_STATUS_OK)
-    {
-       BSP_LED_On(LED_RED);
-    }
+    WIFI_SyncClock (&appGlobals.EspObj);
+    WIFI_SyncEnvData (&appGlobals.EspObj);
+    xTimerStart(appGlobals.WifiTimer, 0);
   }
   for (;;) {
    osDelay(1000);    
   }  
 }
+
+
+/**
+  * @brief  vApplicationTickHook
+  * @param  None
+  * @retval None
+  */
+void vApplicationTickHook( void )
+{
+    HAL_IncTick();
+}
+
+/**
+  * @brief  TouchPanel_TimerCallback
+  * @param  TimerID
+  * @retval None
+  */
+static void TouchPanel_TimerCallback(TimerHandle_t pxTimer) {
+  
+  k_TouchUpdate();
+
+  App_task();
+}
+
+/**
+  * @brief  Wifi_TimerCallback
+  * @param  Timer ID
+  * @retval None
+  */
+void Wifi_TimerCallback(TimerHandle_t pxTimer) {
+  WIFI_SyncEnvData (&appGlobals.EspObj);
+}
+
 /**
   * @brief  System Clock Configuration
   *         The system Clock is configured as follow : 
@@ -189,25 +221,4 @@ void assert_failed(uint8_t* file, uint32_t line)
 }
 #endif
 
-/**
-  * @brief  vApplicationTickHook
-  * @param  None
-  * @retval None
-  */
-void vApplicationTickHook( void )
-{
-    HAL_IncTick();
-}
-
-/**
-  * @brief  TouchPanel_TimerCallback
-  * @param  None
-  * @retval None
-  */
-static void TouchPanel_TimerCallback(TimerHandle_t pxTimer) {
-  
-  k_TouchUpdate();
-
-  App_task();
-}
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
