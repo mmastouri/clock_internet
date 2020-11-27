@@ -66,6 +66,25 @@ int main(void)
   * @param  GUI Task args
   * @retval None
   */
+/**
+  * @brief  Callback routine of desktop window.
+  * @param  pMsg: pointer to data structure of type WM_MESSAGE
+  * @retval None
+  */
+extern GUI_CONST_STORAGE GUI_BITMAP bmbackground;
+static void _cbBk(WM_MESSAGE * pMsg) {
+  
+  switch (pMsg->MsgId) 
+  {
+  case WM_PAINT:
+    GUI_DrawBitmap (&bmbackground, 0, 0);
+    break;
+
+  default:
+    WM_DefaultProc(pMsg);
+  }
+}
+
 void GUI_Task(void const *arg) {
   
   /* Enable CRC to Unlock GUI */
@@ -76,8 +95,10 @@ void GUI_Task(void const *arg) {
  GUI_Init(); 
  WM_SetCreateFlags(WM_CF_MEMDEV | WM_CF_MEMDEV_ON_REDRAW);
  WM_MULTIBUF_Enable(1);
- GUI_Clear();   
- 
+ WM_SetCallback(WM_GetDesktopWindowEx(0), _cbBk);
+
+// GUI_Clear();   
+ GUI_SelectLayer(1);
  CreateWindow();
  xTimerStart(appGlobals.touchPanelTimer, 0);
  

@@ -1225,6 +1225,9 @@
             <group>
                 <name>GUI</name>
                 <file>
+                    <name>$PROJ_DIR$\..\Core\Src\background.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\Core\Src\Digita_Clock.c</name>
                 </file>
                 <file>

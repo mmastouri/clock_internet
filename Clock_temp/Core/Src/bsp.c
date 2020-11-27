@@ -115,6 +115,8 @@ void k_TouchUpdate(void)
   __disable_irq();
   BSP_TS_GetState((TS_StateTypeDef *)&ts);
   __enable_irq();
+  
+  TS_State.Layer = 1;
   if((ts.touchX[0] >= LCD_GetXSize()) ||(ts.touchY[0] >= LCD_GetYSize()) ) 
   {
     ts.touchX[0] = 0;

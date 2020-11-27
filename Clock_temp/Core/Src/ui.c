@@ -118,7 +118,7 @@ static void floatToInt(float in, displayFloatToInt_t *out_value, int32_t dec_pre
 */
 
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
-  { WINDOW_CreateIndirect, "Window", ID_WINDOW, -2, -2, 800, 480, 0, 0x0, 0 },
+  { WINDOW_CreateIndirect, "Window", ID_WINDOW, 0, 0, 800, 480, 0, 0x0, 0 },
   { TEXT_CreateIndirect, "00", ID_TIME_HOUR, 30, 100, 770, 220, 0, 0x66, 0 },  
   { TEXT_CreateIndirect, "00", ID_TIME_MIN, 430, 100, 770, 220, 0, 0x66, 0 },   
   { TEXT_CreateIndirect, ":", ID_DOT, 370, 100, 120, 220, 0, 0x66, 0 },    
@@ -137,7 +137,7 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
 *
 *       _cbDialog
 */
-
+//extern GUI_CONST_STORAGE GUI_BITMAP bmbackground;
 static void _cbDialog(WM_MESSAGE * pMsg) {
   WM_HWIN hItem;
   static WM_HTIMER   hTimer = 0;  
@@ -160,7 +160,9 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
   case WM_INIT_DIALOG:
 
     hItem = pMsg->hWin;
-    WINDOW_SetBkColor(hItem, GUI_MAKE_COLOR(0x00000000));
+// GUI_SetBkColor(GUI_TRANSPARENT);
+    WINDOW_SetBkColor(hItem, GUI_MAKE_COLOR(GUI_TRANSPARENT));
+//    GUI_DrawBitmap (&bmbackground, 0, 0);
     //
     // Initialization of 'Text'
     //
