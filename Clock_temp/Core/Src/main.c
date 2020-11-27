@@ -94,10 +94,11 @@ void WIFI_Task(void const *arg) {
     {
       BSP_LED_On(LED_GREEN);
     }
-    else
+    
+    if(WIFI_SyncEnvData (&appGlobals.EspObj) == ESP_WIFI_STATUS_OK)
     {
-      BSP_LED_On(LED_RED);
-    }      
+       BSP_LED_On(LED_RED);
+    }
   }
   for (;;) {
    osDelay(1000);    

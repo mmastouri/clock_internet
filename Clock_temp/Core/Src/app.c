@@ -34,6 +34,11 @@
 #define TIME_SOURCE_HTTP_PORT   80
 #define TIME_SOURCE_HTTP_PROTO  ESP_WIFI_TCP
 
+#define ENV_SOURCE_HTTP_HOST    "api.openweathermap.org"
+//http://api.openweathermap.org/data/2.5/weather?q=Tunis&appid=5a3687f4840a2a222036e33a28eb8298"
+#define ENV_SOURCE_HTTP_PORT    80
+#define ENV_SOURCE_HTTP_PROTO   ESP_WIFI_TCP
+
 /** Maximum number of DNS lookup or connection trials */
 #define TIME_NET_MAX_RETRY     4
 
@@ -43,14 +48,28 @@
 
 /* Private variables ---------------------------------------------------------*/
 static const char http_request[] = "HEAD / HTTP/1.1\r\nHost: "TIME_SOURCE_HTTP_HOST"\r\n\r\n";
+static const char weather_request[] = "GET /data/2.5/weather?q=Tunis"\
+                                      "&appid=5a3687f4840a2a222036e33a28eb8298"\
+                                      " HTTP/1.1\r\n"\
+                                      "Host: api.openweathermap.org\r\n"\
+                                      "Connection: keep-alive\r\n"\
+                                      "Accept: *" "/" "*\r\n\r\n";
+
 static uint32_t enable_time_count = 0;
 static uint32_t enable_time_setting = 0;
 static char rxBuffer[NET_BUF_SIZE + 1];
+
 static ESP_AvHotspot_t Hotspot ={
    .SSID = "Android" ,  
    .PWD  = "12345678"
 };
-    
+
+float itemperature = 25;
+float ihumidity    = 50;
+/*********************************************************************
+*
+*       App_task
+*/
  void App_task (void){
      
   if(BSP_PB_GetState (BUTTON_USER))
@@ -68,6 +87,10 @@ static ESP_AvHotspot_t Hotspot ={
   }  
 }
 
+/*********************************************************************
+*
+*       WIFI_Start
+*/
 ESP_WIFI_Status_t WIFI_Start (ESP_WIFI_Object_t * pxObj){
 
   ESP_WIFI_Status_t xRet;
@@ -112,6 +135,10 @@ ESP_WIFI_Status_t WIFI_Start (ESP_WIFI_Object_t * pxObj){
   return xRet;
 }
 
+/*********************************************************************
+*
+*       WIFI_SyncClock
+*/
 ESP_WIFI_Status_t WIFI_SyncClock (ESP_WIFI_Object_t * pxObj){
   ESP_WIFI_Conn_t xConn;
   uint8_t  IPAddr[4];
@@ -184,4 +211,69 @@ ESP_WIFI_Status_t WIFI_SyncClock (ESP_WIFI_Object_t * pxObj){
   return xRet;
 }
 
+
+/*********************************************************************
+*
+*       WIFI_SyncEnvData
+*/
+ESP_WIFI_Status_t WIFI_SyncEnvData (ESP_WIFI_Object_t * pxObj){
+  ESP_WIFI_Conn_t xConn;
+  uint8_t  IPAddr[4];
+  uint32_t count;
+  ESP_WIFI_Status_t xRet;
+  uint16_t usSentBytes;
+  uint16_t usRecvBytes;  
+  
+  count = 10;
+  while(((xRet = ESP_WIFI_GetHostIP( pxObj, ENV_SOURCE_HTTP_HOST , IPAddr )) != ESP_WIFI_STATUS_OK) && (count-- > 0) )
+  {
+    HAL_Delay(1000);
+  } 
+  
+  if(xRet == ESP_WIFI_STATUS_OK)
+  {          
+    xConn.RemotePort = ENV_SOURCE_HTTP_PORT;
+    memcpy(xConn.RemoteIP , IPAddr, sizeof(uint32_t));
+    xConn.Type = ENV_SOURCE_HTTP_PROTO;
+    xConn.TcpKeepAlive = 0;
+    xConn.LinkID       = 0;
+    count = 10;
+    while(((xRet = ESP_WIFI_StartClient( pxObj, &xConn ))!= ESP_WIFI_STATUS_OK) && (count-- > 0) )
+    {
+      HAL_Delay(1000);
+    }
+    
+    if(xRet == ESP_WIFI_STATUS_OK)
+    {
+      if((xRet = ESP_WIFI_Send( pxObj, &xConn , (uint8_t *)weather_request, 
+                               strlen(weather_request), &usSentBytes, pdMS_TO_TICKS(200))) == ESP_WIFI_STATUS_OK)
+      {
+        
+        char *weatherStr = NULL;
+        int read = 0;
+        do {
+          xRet = ESP_WIFI_Recv( pxObj, &xConn , (uint8_t*)(rxBuffer + read), NET_BUF_SIZE - read,&usRecvBytes, pdMS_TO_TICKS(1000) );
+          if (usRecvBytes > 0)
+          {
+            read += usRecvBytes;
+            weatherStr = strstr(rxBuffer,  "\"temp\":");
+          }  
+        }
+        while ( (weatherStr == NULL) && ((usRecvBytes > 0) || (xRet == ESP_WIFI_STATUS_TIMEOUT)) && (read < NET_BUF_SIZE));
+        
+        if (weatherStr != NULL)
+        {
+          xRet = ESP_WIFI_STATUS_OK;
+          
+          sscanf(weatherStr, "\"temp\":%f", &itemperature); 
+          itemperature -= 273.15;
+          weatherStr = strstr(rxBuffer,  "\"humidity\":");
+          sscanf(weatherStr, "\"humidity\":%f", &ihumidity);                             
+        }
+      }
+      ESP_WIFI_StopClient( pxObj, &xConn ); 
+    }
+  }
+  return xRet;
+}
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

@@ -87,6 +87,8 @@ extern GUI_CONST_STORAGE GUI_BITMAP bmicon_indoor;
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_internet;
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_menu;
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_outdoor;
+extern float itemperature;
+extern float ihumidity;
 /*********************************************************************
 *
 *       Static code
@@ -150,8 +152,8 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
   static uint32_t toggle =0;  
   static uint8_t place_toggle = 0;
   
-  float Temperature;
-  float Humidity;
+  static float Temperature = 25;
+  static float Humidity = 50;
   displayFloatToInt_t out_value;    
   
   switch (pMsg->MsgId) {
@@ -233,37 +235,28 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     break;
     
   case ENV_UPDATE:
-    
+
     if(place_toggle == 0) //Indoor
     {
-      Temperature = bsp_get_temp();
-      floatToInt(Temperature, &out_value, 1);
-      
-      hItem = WM_GetDialogItem(pMsg->hWin, ID_TEMPERATURE);
-      snprintf(temp, sizeof(temp), "%d.%d C", out_value.out_int, out_value.out_dec);
-      TEXT_SetText(hItem, temp);      
-      
+      Temperature = bsp_get_temp();      
       Humidity = bsp_get_humidity(); 
-      floatToInt(Humidity, &out_value, 0);
-      
-      hItem = WM_GetDialogItem(pMsg->hWin, ID_HUMIDITY);
-      snprintf(temp, sizeof(temp), "%d %%", out_value.out_int);
-      TEXT_SetText(hItem, temp); 
     }
     else
     {
-      hItem = WM_GetDialogItem(pMsg->hWin, ID_TEMPERATURE);
-      snprintf(temp, sizeof(temp), "%d.%d C",20, 0);
-      TEXT_SetText(hItem, temp);      
-      
-      Humidity = bsp_get_humidity(); 
-      floatToInt(Humidity, &out_value, 0);
-      
-      hItem = WM_GetDialogItem(pMsg->hWin, ID_HUMIDITY);
-      snprintf(temp, sizeof(temp), "%d %%", 50);
-      TEXT_SetText(hItem, temp);  
+      Temperature = itemperature;      
+      Humidity = ihumidity; 
     }
-    break;    
+    
+    floatToInt(Temperature, &out_value, 1);
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEMPERATURE);
+    snprintf(temp, sizeof(temp), "%d.%d C", out_value.out_int, out_value.out_dec);
+    TEXT_SetText(hItem, temp);      
+    
+    floatToInt(Humidity, &out_value, 0);
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_HUMIDITY);
+    snprintf(temp, sizeof(temp), "%d %%", out_value.out_int);
+    TEXT_SetText(hItem, temp); 
+    break;
     
   case TIME_UPDATE:
       
@@ -327,7 +320,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     }
     
     else if (Id == GUI_TIMER_ID)
-    {            
+    {  
       WM_SendMessageNoPara (pMsg->hWin, ENV_UPDATE);
       WM_SendMessageNoPara (pMsg->hWin, TIME_UPDATE);
       
@@ -362,7 +355,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
         if(!mTimer) mTimer = WM_CreateTimer(pMsg->hWin, TIME_MIN_TIMER_ID, TIME_REFRESH_PERIOD, 0);           
       } 
       
-      if(Id == ID_INDOOR)
+      if((Id == ID_TEMPERATURE)||(Id == ID_HUMIDITY))
       {        
         hItem = WM_GetDialogItem(pMsg->hWin, ID_INDOOR);
         if (place_toggle)
@@ -371,8 +364,8 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
             IMAGE_SetBitmap(hItem, &bmicon_outdoor);
         
         place_toggle = 1- place_toggle;
-        
       }
+      WM_SendMessageNoPara (pMsg->hWin, ENV_UPDATE);
     }
     
     if(Node == WM_NOTIFICATION_RELEASED)
