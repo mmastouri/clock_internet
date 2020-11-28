@@ -2,7 +2,7 @@
 
 "C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.3\arm\bin\armstlink2.dll" 
 
-"D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\STM32F769I-Discovery_Demo\Exe\STM32F769I-DISCO_Demo.out" 
+"D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\STM32F769I-Discovery_Demo\Exe\STM32F769I-DISCO_Demo.out" 
 
 --plugin="C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.3\arm\bin\armbat.dll" 
 

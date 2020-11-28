@@ -25,7 +25,7 @@ if not "%~1" == "" goto debugFile
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.3\common\bin\cspybat" -f "D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\settings\Project.STM32F769I-Discovery_Demo.general.xcl" --backend -f "D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\settings\Project.STM32F769I-Discovery_Demo.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.3\common\bin\cspybat" -f "D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\settings\Project.STM32F769I-Discovery_Demo.general.xcl" --backend -f "D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\settings\Project.STM32F769I-Discovery_Demo.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.3\common\bin\cspybat" -f "D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\settings\Project.STM32F769I-Discovery_Demo.general.xcl" "--debug_file=%~1" --backend -f "D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\settings\Project.STM32F769I-Discovery_Demo.driver.xcl" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.3\common\bin\cspybat" -f "D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\settings\Project.STM32F769I-Discovery_Demo.general.xcl" "--debug_file=%~1" --backend -f "D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\settings\Project.STM32F769I-Discovery_Demo.driver.xcl" 
 
 @echo off 
 :end

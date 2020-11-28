@@ -1,7 +1,6 @@
-hts221.pbi: \
-  D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Drivers\BSP\Components\hts221\hts221.c \
-  D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Drivers\BSP\Components\hts221/hts221.h \
-  D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Drivers\BSP\Components\hts221/hts221_reg.h \
+hts221.pbi: D:\F7Disco\Drivers\BSP\Components\hts221\hts221.c \
+  D:\F7Disco\Drivers\BSP\Components\hts221/hts221.h \
+  D:\F7Disco\Drivers\BSP\Components\hts221/hts221_reg.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stdint.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\ycheck.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\yvals.h \

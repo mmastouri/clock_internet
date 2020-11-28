@@ -1,6 +1,5 @@
-otm8009a.pbi: \
-  D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Drivers\BSP\Components\otm8009a\otm8009a.c \
-  D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Drivers\BSP\Components\otm8009a/otm8009a.h \
+otm8009a.pbi: D:\F7Disco\Drivers\BSP\Components\otm8009a\otm8009a.c \
+  D:\F7Disco\Drivers\BSP\Components\otm8009a/otm8009a.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stdint.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\ycheck.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\yvals.h \

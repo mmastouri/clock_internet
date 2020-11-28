@@ -64,7 +64,7 @@ typedef struct {
 } AppGlobals_s;
 
 void App_task (void);
-
+void UI_Init(void);
 ESP_WIFI_Status_t WIFI_Start (ESP_WIFI_Object_t * pxObj);
 ESP_WIFI_Status_t WIFI_SyncClock (ESP_WIFI_Object_t * pxObj);
 ESP_WIFI_Status_t WIFI_SyncEnvData (ESP_WIFI_Object_t * pxObj);

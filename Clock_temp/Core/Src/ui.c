@@ -93,6 +93,7 @@ extern GUI_CONST_STORAGE GUI_BITMAP bmicon_indoor;
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_internet;
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_menu;
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_outdoor;
+extern GUI_CONST_STORAGE GUI_BITMAP bmbackground;
 extern float itemperature;
 extern float ihumidity;
 /*********************************************************************
@@ -160,7 +161,8 @@ static void _cbMenu(WM_MESSAGE * pMsg) {
   switch (pMsg->MsgId) {
   case WM_INIT_DIALOG:
     hItem = pMsg->hWin;
-    WINDOW_SetBkColor(hItem, GUI_BLACK);  
+    WINDOW_SetBkColor(hItem, GUI_BLACK); 
+    
     hItem = WM_GetDialogItem(pMsg->hWin, ID_MENU_TITLE);
     TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0x008080FF));
     TEXT_SetFont(hItem, &GUI_FontDigital_Font);
@@ -526,5 +528,44 @@ WM_HWIN CreateWindow(void) {
 
   hWin = GUI_CreateDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), _cbDialog, WM_HBKWIN, 0, 0);
   return hWin;
+}
+
+/**
+  * @brief  Callback routine of desktop window.
+  * @param  pMsg: pointer to data structure of type WM_MESSAGE
+  * @retval None
+  */
+static void _cbBk(WM_MESSAGE * pMsg) {
+  
+  switch (pMsg->MsgId) 
+  {
+  case WM_PAINT:
+    GUI_DrawBitmap (&bmbackground, 0, 0);
+    break;
+
+  default:
+    WM_DefaultProc(pMsg);
+  }
+}
+
+/*********************************************************************
+*
+*       CreateWindow
+*/
+
+void UI_Init(void) {
+  /* Enable CRC to Unlock GUI */
+ __HAL_RCC_CRC_CLK_ENABLE();
+ 
+  /* Initialize the SDRAM */
+ BSP_SDRAM_Init();
+ GUI_Init(); 
+ WM_SetCreateFlags(WM_CF_MEMDEV | WM_CF_MEMDEV_ON_REDRAW);
+ WM_MULTIBUF_Enable(1);
+ WM_SetCallback(WM_GetDesktopWindowEx(0), _cbBk);
+
+// GUI_Clear();   
+ GUI_SelectLayer(1);
+ CreateWindow();
 }
 /*************************** End of file ****************************/

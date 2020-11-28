@@ -1,7 +1,6 @@
-lps22hh.pbi: \
-  D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Drivers\BSP\Components\lps22hh\lps22hh.c \
-  D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Drivers\BSP\Components\lps22hh/lps22hh.h \
-  D:\MySTM32_Projects\STM32Cube_FW_F7_V1.16.0\Drivers\BSP\Components\lps22hh/lps22hh_reg.h \
+lps22hh.pbi: D:\F7Disco\Drivers\BSP\Components\lps22hh\lps22hh.c \
+  D:\F7Disco\Drivers\BSP\Components\lps22hh/lps22hh.h \
+  D:\F7Disco\Drivers\BSP\Components\lps22hh/lps22hh_reg.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stdint.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\ycheck.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\yvals.h \
