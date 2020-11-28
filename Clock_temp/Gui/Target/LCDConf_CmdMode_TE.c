@@ -365,11 +365,11 @@ static void LCD_LL_Init(void)
 #else
   /* LCD clock configuration */
   /* PLLSAI_VCO Input = HSE_VALUE/PLL_M = 1 Mhz */
-  /* PLLSAI_VCO Output = PLLSAI_VCO Input * PLLSAIN = 280 Mhz */
-  /* PLLLCDCLK = PLLSAI_VCO Output/PLLSAIR = 280 MHz / 7 = 40 MHz */
-  /* LTDC clock frequency = PLLLCDCLK / LTDC_PLLSAI_DIVR_2 = 40 MHz / 2 = 20 MHz */
+  /* PLLSAI_VCO Output = PLLSAI_VCO Input * PLLSAIN = 300 Mhz */
+  /* PLLLCDCLK = PLLSAI_VCO Output/PLLSAIR = 280 MHz / 6 = 50 MHz */
+  /* LTDC clock frequency = PLLLCDCLK / LTDC_PLLSAI_DIVR_2 = 50 MHz / 2 = 25 MHz */
   PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_LTDC;
-  PeriphClkInitStruct.PLLSAI.PLLSAIN = 280;
+  PeriphClkInitStruct.PLLSAI.PLLSAIN = 300;
   PeriphClkInitStruct.PLLSAI.PLLSAIR = 6;
   PeriphClkInitStruct.PLLSAIDivR = RCC_PLLSAIDIVR_2;  
 #endif  
