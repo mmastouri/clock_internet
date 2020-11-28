@@ -86,7 +86,7 @@
 **********************************************************************
 */
 
-WM_HWIN hWin, hWinMenu;
+WM_HWIN hMainFrame, hWinMenu;
 uint32_t enable_setting = 0;
 extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigital_Font;
 extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigita_Clock;
@@ -421,7 +421,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
       { 
         if(!WM_IsVisible(hWinMenu))
         {
-          hWinMenu = GUI_CreateDialogBox(_aMenuCreate, GUI_COUNTOF(_aMenuCreate), _cbMenu, hWin, 0, 0);
+          hWinMenu = GUI_CreateDialogBox(_aMenuCreate, GUI_COUNTOF(_aMenuCreate), _cbMenu, pMsg->hWin, 0, 0);
         }
         else
         {
@@ -467,20 +467,20 @@ void ui_set_setting_mode (uint32_t enable)
   
   if(enable)
   {
-    hItem = WM_GetDialogItem(hWin, ID_TIME_HOUR);
+    hItem = WM_GetDialogItem(hMainFrame, ID_TIME_HOUR);
     TEXT_SetTextColor(hItem, SETTINGS_COLOR);
-    hItem = WM_GetDialogItem(hWin, ID_TIME_MIN);
+    hItem = WM_GetDialogItem(hMainFrame, ID_TIME_MIN);
     TEXT_SetTextColor(hItem, SETTINGS_COLOR);
-    hItem = WM_GetDialogItem(hWin, ID_DOT);
+    hItem = WM_GetDialogItem(hMainFrame, ID_DOT);
     TEXT_SetTextColor(hItem, SETTINGS_COLOR);    
   }
   else
   {
-    hItem = WM_GetDialogItem(hWin, ID_TIME_HOUR);
+    hItem = WM_GetDialogItem(hMainFrame, ID_TIME_HOUR);
     TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0x00FFFF00));
-    hItem = WM_GetDialogItem(hWin, ID_TIME_MIN);
+    hItem = WM_GetDialogItem(hMainFrame, ID_TIME_MIN);
     TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0x00FFFF00));
-    hItem = WM_GetDialogItem(hWin, ID_DOT);
+    hItem = WM_GetDialogItem(hMainFrame, ID_DOT);
     TEXT_SetTextColor(hItem, 0x00FFFF00);     
   }
 }
@@ -491,7 +491,7 @@ void ui_set_setting_mode (uint32_t enable)
 */
 void UI_SetWifiDisconnected(void)
 {  
-  WM_SendMessageNoPara (hWin, WIFI_DISCONNECTED);   
+  WM_SendMessageNoPara (hMainFrame, WIFI_DISCONNECTED);   
 }
 
 /*********************************************************************
@@ -500,7 +500,7 @@ void UI_SetWifiDisconnected(void)
 */
 void UI_SetWifiConnected(void)
 {
-  WM_SendMessageNoPara (hWin, WIFI_CONNECTED);     
+  WM_SendMessageNoPara (hMainFrame, WIFI_CONNECTED);     
 }
 /*********************************************************************
 *
@@ -508,7 +508,7 @@ void UI_SetWifiConnected(void)
 */
 void UI_SetWifiConnecting(void)
 {
-  WM_SendMessageNoPara (hWin, WIFI_CONNECTING); 
+  WM_SendMessageNoPara (hMainFrame, WIFI_CONNECTING); 
 }
 
 /*********************************************************************
@@ -517,7 +517,7 @@ void UI_SetWifiConnecting(void)
 */
 void UI_SetInternetAvailable(void)
 {
-  WM_SendMessageNoPara (hWin, INTERNET_AVAILABLE); 
+  WM_SendMessageNoPara (hMainFrame, INTERNET_AVAILABLE); 
 }
 
 /*********************************************************************
@@ -526,18 +526,18 @@ void UI_SetInternetAvailable(void)
 */
 void UI_ForceUpdateTime(void)
 {
-  WM_SendMessageNoPara (hWin, TIME_UPDATE);
+  WM_SendMessageNoPara (hMainFrame, TIME_UPDATE);
 }
 /*********************************************************************
 *
-*       CreateWindow
+*       UI_CreateMainFame
 */
 
-static WM_HWIN CreateWindow(void) {
+static WM_HWIN UI_CreateMainFame(void) {
 
 
-  hWin = GUI_CreateDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), _cbDialog, WM_HBKWIN, 0, 0);
-  return hWin;
+  hMainFrame = GUI_CreateDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), _cbDialog, WM_HBKWIN, 0, 0);
+  return hMainFrame;
 }
 
 /**
@@ -560,7 +560,7 @@ static void _cbBk(WM_MESSAGE * pMsg) {
 
 /*********************************************************************
 *
-*       CreateWindow
+*       UI_CreateMainFame
 */
 
 void UI_Init(void) {
@@ -573,9 +573,8 @@ void UI_Init(void) {
  WM_SetCreateFlags(WM_CF_MEMDEV | WM_CF_MEMDEV_ON_REDRAW);
  WM_MULTIBUF_Enable(1);
  WM_SetCallback(WM_GetDesktopWindowEx(0), _cbBk);
-
-// GUI_Clear();   
+  
  GUI_SelectLayer(1);
- CreateWindow();
+ UI_CreateMainFame();
 }
 /*************************** End of file ****************************/

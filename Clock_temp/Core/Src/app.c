@@ -205,7 +205,7 @@ ESP_WIFI_Status_t WIFI_SyncClock (ESP_WIFI_Object_t * pxObj){
                
         sTime.Hours = (hour + 1) % 24;
         sTime.Minutes = min;
-        sTime.Seconds = (sec + 2) % 60;
+        sTime.Seconds = (sec + 1) % 60;
         sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
         sTime.StoreOperation = RTC_STOREOPERATION_RESET;
         k_SetTime(&sTime) ;
