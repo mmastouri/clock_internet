@@ -24,10 +24,8 @@
   *
   ******************************************************************************
   */
-
 #include "app.h"
-#include "ui.h"
-#include "rtc.h"
+
 
 /* Private typedef -----------------------------------------------------------*/
 #define TIME_SOURCE_HTTP_HOST   "www.google.com"

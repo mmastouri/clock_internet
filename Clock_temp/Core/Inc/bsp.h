@@ -53,7 +53,12 @@
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "main.h"
+#include "stm32f7xx_hal.h"
+#include "stm32f769i_discovery.h"
+#include "stm32f769i_discovery_sdram.h"
+#include "stm32f769i_discovery_ts.h"
+#include "stm32f769i_discovery_qspi.h"  
+#include "iks01a3_env_sensors.h"
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/

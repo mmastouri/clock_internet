@@ -35,6 +35,10 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "cmsis_compiler.h"   
+#include "GUI.h"
+#include "WM.h"
+#include "GRAPH.h"
+#include "DIALOG.h"
 
 typedef struct 
 {

@@ -21,8 +21,6 @@
 // USER START (Optionally insert additional includes)
 // USER END
 
-#include "DIALOG.h"
-#include <stdio.h>
 #include "ui.h"
 #include "rtc.h"
 

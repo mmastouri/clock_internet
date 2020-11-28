@@ -34,16 +34,6 @@
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f7xx_hal.h"
-#include "stm32f769i_discovery.h"
-#include "stm32f769i_discovery_sdram.h"
-#include "stm32f769i_discovery_ts.h"
-#include "stm32f769i_discovery_qspi.h"  
-#include "iks01a3_env_sensors.h"
-#include "GUI.h"
-#include "WM.h"
-#include "GRAPH.h"
-#include "mtouch.h"
 #include "FreeRTOS.h"
 #include "timers.h"
 #include "cmsis_os.h"

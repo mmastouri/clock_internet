@@ -32,9 +32,13 @@
 #ifdef __cplusplus
  extern "C" {
 #endif
+   
+#include "bsp.h"
+#include "ui.h"
+#include "rtc.h"   
 #include "esp8266_wifi.h"  
 /* Includes ------------------------------------------------------------------*/
-#include "main.h"   
+
 void App_task (void);
 ESP_WIFI_Status_t WIFI_Start (ESP_WIFI_Object_t * pxObj);
 ESP_WIFI_Status_t WIFI_SyncClock (ESP_WIFI_Object_t * pxObj);
