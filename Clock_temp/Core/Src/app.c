@@ -209,7 +209,6 @@ static ESP_WIFI_Status_t WIFI_SyncData (ESP_WIFI_Object_t * pxObj,  const char *
 ESP_WIFI_Status_t WIFI_SyncClock (ESP_WIFI_Object_t * pxObj){
   
   ESP_WIFI_Status_t xRet;  
-  ESP_WIFI_Conn_t xConn;
   char *dateStr = NULL;
   
   if((xRet = WIFI_SyncData (pxObj, TIME_SOURCE_HTTP_HOST, http_request, sizeof(http_request),
@@ -233,8 +232,6 @@ ESP_WIFI_Status_t WIFI_SyncClock (ESP_WIFI_Object_t * pxObj){
     sTime.StoreOperation = RTC_STOREOPERATION_RESET;
     k_SetTime(&sTime) ;
     UI_ForceUpdateTime();
-    
-    ESP_WIFI_StopClient( pxObj, &xConn ); 
   }
   return xRet;
 }
@@ -245,7 +242,6 @@ ESP_WIFI_Status_t WIFI_SyncClock (ESP_WIFI_Object_t * pxObj){
 *       WIFI_SyncEnvData
 */
 ESP_WIFI_Status_t WIFI_SyncEnvData (ESP_WIFI_Object_t * pxObj){
-  ESP_WIFI_Conn_t xConn;
   ESP_WIFI_Status_t xRet;
   char *weatherStr = NULL;
   
@@ -257,8 +253,6 @@ ESP_WIFI_Status_t WIFI_SyncEnvData (ESP_WIFI_Object_t * pxObj){
     itemperature -= 273.15;
     weatherStr = strstr(rxBuffer,  "\"humidity\":");
     sscanf(weatherStr, "\"humidity\":%f", &ihumidity);                             
-    
-    ESP_WIFI_StopClient( pxObj, &xConn ); 
   }
   return xRet;
 }
