@@ -370,7 +370,7 @@ static void LCD_LL_Init(void)
   /* LTDC clock frequency = PLLLCDCLK / LTDC_PLLSAI_DIVR_2 = 40 MHz / 2 = 20 MHz */
   PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_LTDC;
   PeriphClkInitStruct.PLLSAI.PLLSAIN = 280;
-  PeriphClkInitStruct.PLLSAI.PLLSAIR = 7;
+  PeriphClkInitStruct.PLLSAI.PLLSAIR = 6;
   PeriphClkInitStruct.PLLSAIDivR = RCC_PLLSAIDIVR_2;  
 #endif  
   HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct);

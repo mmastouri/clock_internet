@@ -54,15 +54,17 @@
 #define ID_MENU_HEADER              (GUI_ID_USER + 0x32)
 
 
-#define TIME_REFRESH_PERIOD        100
-#define WIFI_REFRESH_PERIOD        500
-#define GUI_REFRESH_PERIOD         1000
-#define SETTINGS_COLOR             GUI_ORANGE
+#define TIME_SETTING_REFRESH_PERIOD 100
+#define WIFI_REFRESH_PERIOD         500
+#define TIME_REFRESH_PERIOD         500
+#define ENV_REFRESH_PERIOD          5000
+#define SETTINGS_COLOR              GUI_ORANGE
 
 #define TIME_HOUR_TIMER_ID         0X01
 #define TIME_MIN_TIMER_ID          0X02
 #define WIFI_CONNECTING_TIMER_ID   0X03
-#define GUI_TIMER_ID               0x04
+#define GUI_TIME_REFRESH_ID        0x04
+#define GUI_ENV_REFRESH_ID         0x05
 
 #define WIFI_CONNECTING           (WM_USER + 0x00)
 #define WIFI_CONNECTED            (WM_USER + 0x01)
@@ -72,7 +74,7 @@
 #define TIME_SET                  (WM_USER + 0x10)
 #define TIME_ENTER_SETTING_MODE   (WM_USER + 0x11)
 #define TEMPERATURE_SET           (WM_USER + 0x20)
-#define HUMIDITY_SET              (WM_USER + 0x30)
+#define HUMIDITY_SET              (WM_USER + 0x30) 
 
 #define ENV_UPDATE                (WM_USER + 0x40)
 #define TIME_UPDATE               (WM_USER + 0x50)
@@ -126,8 +128,8 @@ static void floatToInt(float in, displayFloatToInt_t *out_value, int32_t dec_pre
 
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
   { WINDOW_CreateIndirect, "Window", ID_WINDOW, 0, 0, 800, 480, 0, 0x0, 0 },
-  { TEXT_CreateIndirect, "00", ID_TIME_HOUR, 30, 100, 770, 220, 0, 0x66, 0 },  
-  { TEXT_CreateIndirect, "00", ID_TIME_MIN, 430, 100, 770, 220, 0, 0x66, 0 },   
+  { TEXT_CreateIndirect, "00", ID_TIME_HOUR, 10, 100, 360, 220, TEXT_CF_HCENTER, 0, 0 },  
+  { TEXT_CreateIndirect, "00", ID_TIME_MIN, 430, 100, 360, 220, TEXT_CF_HCENTER, 0, 0 },   
   { TEXT_CreateIndirect, ":", ID_DOT, 370, 100, 120, 220, 0, 0x66, 0 },    
   { TEXT_CreateIndirect, "00.0 °C", ID_TEMPERATURE, 20, 360, 720, 120, 0, 0x64, 0 },
   { TEXT_CreateIndirect, "00 %", ID_HUMIDITY, 480, 360, 680, 120, 0, 0x65, 0 },  
@@ -182,7 +184,8 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
   static WM_HTIMER   hTimer = 0;  
   static WM_HTIMER   mTimer = 0;    
   static WM_HTIMER   wifiTimer = 0;  
-  static WM_HTIMER   GuiRefreshTimer = 0;      
+  static WM_HTIMER   TimeRefreshTimer = 0;    
+  static WM_HTIMER   EnvRefreshTimer = 0;      
   int Id, Node;
   RTC_TimeTypeDef Time;  
   RTC_DateTypeDef Date; 
@@ -240,7 +243,8 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     IMAGE_SetBitmap(hItem, &bmicon_internet);   
     WM_HideWin(hItem);
     
-    if(!GuiRefreshTimer) GuiRefreshTimer = WM_CreateTimer(pMsg->hWin, GUI_TIMER_ID, GUI_REFRESH_PERIOD, 0);   
+    if(!TimeRefreshTimer) TimeRefreshTimer = WM_CreateTimer(pMsg->hWin, GUI_TIME_REFRESH_ID, TIME_REFRESH_PERIOD, 0);   
+    if(!EnvRefreshTimer) EnvRefreshTimer = WM_CreateTimer(pMsg->hWin, GUI_ENV_REFRESH_ID, ENV_REFRESH_PERIOD, 0);     
     WM_SendMessageNoPara (pMsg->hWin, TIME_UPDATE);
     WM_SendMessageNoPara (pMsg->hWin, ENV_UPDATE);
     break;
@@ -317,7 +321,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     
     if((Id == TIME_HOUR_TIMER_ID) || (Id == TIME_MIN_TIMER_ID))
     {
-      WM_RestartTimer(pMsg->Data.v, TIME_REFRESH_PERIOD);
+      WM_RestartTimer(pMsg->Data.v, TIME_SETTING_REFRESH_PERIOD);
       k_GetTime(&Time) ; 
       k_GetDate(&Date) ;    
       
@@ -356,9 +360,9 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
       WM_RestartTimer(pMsg->Data.v, WIFI_REFRESH_PERIOD);
     }
     
-    else if (Id == GUI_TIMER_ID)
+    else if (Id == GUI_TIME_REFRESH_ID)
     {  
-      WM_SendMessageNoPara (pMsg->hWin, ENV_UPDATE);
+
       WM_SendMessageNoPara (pMsg->hWin, TIME_UPDATE);
       
       hItem = WM_GetDialogItem(pMsg->hWin, ID_DOT); 
@@ -369,8 +373,14 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
       else
         TEXT_SetText(hItem, " ");     
       
-      WM_RestartTimer(pMsg->Data.v, GUI_REFRESH_PERIOD);
+      WM_RestartTimer(pMsg->Data.v, TIME_REFRESH_PERIOD);
     }
+    
+    else if (Id == GUI_ENV_REFRESH_ID)
+    {
+      WM_SendMessageNoPara (pMsg->hWin, ENV_UPDATE);
+      WM_RestartTimer(pMsg->Data.v, ENV_REFRESH_PERIOD);      
+    }  
     
     break;  
       
@@ -388,11 +398,11 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
       {
         if(Id == ID_TIME_HOUR)
         {
-          if(!hTimer) hTimer = WM_CreateTimer(pMsg->hWin, TIME_HOUR_TIMER_ID, TIME_REFRESH_PERIOD, 0);         
+          if(!hTimer) hTimer = WM_CreateTimer(pMsg->hWin, TIME_HOUR_TIMER_ID, TIME_SETTING_REFRESH_PERIOD, 0);         
         }
         if(Id == ID_TIME_MIN)
         {
-          if(!mTimer) mTimer = WM_CreateTimer(pMsg->hWin, TIME_MIN_TIMER_ID, TIME_REFRESH_PERIOD, 0);           
+          if(!mTimer) mTimer = WM_CreateTimer(pMsg->hWin, TIME_MIN_TIMER_ID, TIME_SETTING_REFRESH_PERIOD, 0);           
         } 
       }
       
@@ -523,7 +533,7 @@ void UI_ForceUpdateTime(void)
 *       CreateWindow
 */
 
-WM_HWIN CreateWindow(void) {
+static WM_HWIN CreateWindow(void) {
 
 
   hWin = GUI_CreateDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), _cbDialog, WM_HBKWIN, 0, 0);
