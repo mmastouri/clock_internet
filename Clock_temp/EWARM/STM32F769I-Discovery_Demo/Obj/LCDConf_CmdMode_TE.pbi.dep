@@ -156,6 +156,7 @@ LCDConf_CmdMode_TE.pbi: \
   D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Core\Inc/bsp.h \
   D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Core\Inc/ui.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\CMSIS\Core\Include\cmsis_compiler.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Core\Inc/app.h \
   D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\WiFi\esp8266_wifi.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stdio.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stdlib.h \

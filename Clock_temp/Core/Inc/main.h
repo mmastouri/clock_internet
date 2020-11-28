@@ -51,6 +51,7 @@
 #include "arm_common_tables.h"
 #include "bsp.h"   
 #include "ui.h"      
+#include "app.h"      
 #include "esp8266_wifi.h"       
 
 typedef struct {
@@ -62,11 +63,6 @@ typedef struct {
 	int32_t	          WifiTimerId;
         ESP_WIFI_Object_t EspObj;
 } AppGlobals_s;
-
-void App_task (void);
-ESP_WIFI_Status_t WIFI_Start (ESP_WIFI_Object_t * pxObj);
-ESP_WIFI_Status_t WIFI_SyncClock (ESP_WIFI_Object_t * pxObj);
-ESP_WIFI_Status_t WIFI_SyncEnvData (ESP_WIFI_Object_t * pxObj);
 
 #ifdef __cplusplus
 }

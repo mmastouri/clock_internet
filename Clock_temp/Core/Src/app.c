@@ -25,7 +25,7 @@
   ******************************************************************************
   */
 
-#include "main.h"
+#include "app.h"
 #include "ui.h"
 #include "rtc.h"
 
@@ -215,15 +215,11 @@ ESP_WIFI_Status_t WIFI_SyncClock (ESP_WIFI_Object_t * pxObj){
                             TIME_SOURCE_HTTP_PORT, TIME_SOURCE_HTTP_PROTO, "Date: ", &dateStr)) == ESP_WIFI_STATUS_OK)
   {
     
-    char prefix[8], dow[8], month[4];
+    char day_week[8], month[4];
     int day, year, hour, min, sec;
     RTC_TimeTypeDef sTime;
-                               
-    memset(dow, 0, sizeof(dow));
-    memset(month, 0, sizeof(month));
-    day = year = hour = min = sec = 0;
     
-    int count = sscanf(dateStr, "%s %s %d %s %d %02d:%02d:%02d ", prefix, dow, &day, month, &year, &hour, &min, &sec); 
+    int count = sscanf(dateStr, "Date: %s %d %s %d %02d:%02d:%02d ", day_week, &day, month, &year, &hour, &min, &sec); 
     
     sTime.Hours = (hour + 1) % 24;
     sTime.Minutes = min;

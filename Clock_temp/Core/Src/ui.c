@@ -22,10 +22,8 @@
 // USER END
 
 #include "DIALOG.h"
-#include "cmsis_compiler.h"
 #include <stdio.h>
 #include "ui.h"
-#include "main.h"
 #include "rtc.h"
 
 
