@@ -40,6 +40,8 @@
 
 /** Maximum number of DNS lookup or connection trials */
 #define TIME_NET_MAX_RETRY     4
+#define WIFI_DEFAULT_TIMEOUT   20000
+#define WIFI_TRIAL_TIMEOUT     1000
 
 /** Size of the HTTP read buffer.
  *  Should be large enough to contain a complete HTTP response header. */
@@ -103,7 +105,7 @@ ESP_WIFI_Status_t WIFI_Start (ESP_WIFI_Object_t * pxObj){
   uint8_t  IPAddr[4];
   uint32_t count;
   
-  pxObj->Timeout = 20000;
+  pxObj->Timeout = WIFI_DEFAULT_TIMEOUT;
   pxObj->IsMultiConn = pdFALSE;
   pxObj->ActiveCmd = CMD_NONE;
   
@@ -116,7 +118,7 @@ ESP_WIFI_Status_t WIFI_Start (ESP_WIFI_Object_t * pxObj){
     count = 10;
     while(((xRet = ESP_WIFI_Connect( pxObj, Hotspot.SSID,Hotspot.PWD)) != ESP_WIFI_STATUS_OK)&& (count-- > 0) )
     {
-      HAL_Delay(1000);
+      HAL_Delay(WIFI_TRIAL_TIMEOUT);
     }
     
     if(xRet == ESP_WIFI_STATUS_OK)
@@ -126,7 +128,7 @@ ESP_WIFI_Status_t WIFI_Start (ESP_WIFI_Object_t * pxObj){
       count = 10;  
       while(((xRet = ESP_WIFI_GetHostIP( pxObj, TIME_SOURCE_HTTP_HOST , IPAddr )) != ESP_WIFI_STATUS_OK) && (count-- > 0) )
       {
-        HAL_Delay(1000);
+        HAL_Delay(WIFI_TRIAL_TIMEOUT);
       } 
       if(xRet == ESP_WIFI_STATUS_OK)
       {
@@ -143,77 +145,96 @@ ESP_WIFI_Status_t WIFI_Start (ESP_WIFI_Object_t * pxObj){
 
 /*********************************************************************
 *
-*       WIFI_SyncClock
+*       WIFI_SyncData
 */
-ESP_WIFI_Status_t WIFI_SyncClock (ESP_WIFI_Object_t * pxObj){
+static ESP_WIFI_Status_t WIFI_SyncData (ESP_WIFI_Object_t * pxObj,  const char *host, const char *request, uint16_t request_len, 
+                                        uint16_t Port, ESP_WIFI_ConnType_t type, const char *filter, char ** pDataStr){
+    
   ESP_WIFI_Conn_t xConn;
-  uint8_t  IPAddr[4];
+  uint8_t  IPAddr[4];                                              
   uint32_t count;
   ESP_WIFI_Status_t xRet;
   uint16_t usSentBytes;
   uint16_t usRecvBytes;  
   
   count = 10;
-  while(((xRet = ESP_WIFI_GetHostIP( pxObj, TIME_SOURCE_HTTP_HOST , IPAddr )) != ESP_WIFI_STATUS_OK) && (count-- > 0) )
+  while(((xRet = ESP_WIFI_GetHostIP( pxObj, (char *)host , IPAddr )) != ESP_WIFI_STATUS_OK) && (count-- > 0) )
   {
-    HAL_Delay(1000);
+    HAL_Delay(WIFI_TRIAL_TIMEOUT);
   } 
   
   if(xRet == ESP_WIFI_STATUS_OK)
   {          
-    xConn.RemotePort = TIME_SOURCE_HTTP_PORT;
+    xConn.RemotePort = Port;
     memcpy(xConn.RemoteIP , IPAddr, sizeof(uint32_t));
-    xConn.Type = TIME_SOURCE_HTTP_PROTO;
+    xConn.Type = type;
     xConn.TcpKeepAlive = 0;
     xConn.LinkID       = 0;
     count = 10;
     while(((xRet = ESP_WIFI_StartClient( pxObj, &xConn ))!= ESP_WIFI_STATUS_OK) && (count-- > 0) )
     {
-      HAL_Delay(1000);
+      HAL_Delay(WIFI_TRIAL_TIMEOUT);
     }
-       
-  if(xRet == ESP_WIFI_STATUS_OK)
-  {
-    if((xRet = ESP_WIFI_Send( pxObj, &xConn , (uint8_t *)http_request, 
-                             strlen(http_request), &usSentBytes, pdMS_TO_TICKS(200))) == ESP_WIFI_STATUS_OK)
+    
+    if(xRet == ESP_WIFI_STATUS_OK)
     {
-      
-      char *dateStr = NULL;
-      int read = 0;
-      do {
-        xRet = ESP_WIFI_Recv( pxObj, &xConn , (uint8_t*)(rxBuffer + read), NET_BUF_SIZE - read,&usRecvBytes, pdMS_TO_TICKS(1000) );
-        if (usRecvBytes > 0)
-        {
-          read += usRecvBytes;
-          dateStr = strstr(rxBuffer, "Date: ");
-        }  
-      }
-      while ( (dateStr == NULL) && ((usRecvBytes > 0) || (xRet == ESP_WIFI_STATUS_TIMEOUT)) && (read < NET_BUF_SIZE));
-      
-      if (dateStr != NULL)
+      if((xRet = ESP_WIFI_Send( pxObj, &xConn , (uint8_t *)request, 
+                               request_len, &usSentBytes, pdMS_TO_TICKS(200))) == ESP_WIFI_STATUS_OK)
       {
-        xRet = ESP_WIFI_STATUS_OK;
-        char prefix[8], dow[8], month[4];
-        int day, year, hour, min, sec;
-        RTC_TimeTypeDef sTime;
+        int read = 0;
+        do {
+          xRet = ESP_WIFI_Recv( pxObj, &xConn , (uint8_t*)(rxBuffer + read), NET_BUF_SIZE - read,&usRecvBytes, pdMS_TO_TICKS(1000) );
+          if (usRecvBytes > 0)
+          {
+            read += usRecvBytes;
+            *pDataStr = strstr(rxBuffer, filter);
+          }  
+        }
+        while ( (pDataStr == NULL) && ((usRecvBytes > 0) || (xRet == ESP_WIFI_STATUS_TIMEOUT)) && (read < NET_BUF_SIZE));
         
-        memset(dow, 0, sizeof(dow));
-        memset(month, 0, sizeof(month));
-        day = year = hour = min = sec = 0;
-        
-        int count = sscanf(dateStr, "%s %s %d %s %d %02d:%02d:%02d ", prefix, dow, &day, month, &year, &hour, &min, &sec); 
-               
-        sTime.Hours = (hour + 1) % 24;
-        sTime.Minutes = min;
-        sTime.Seconds = (sec + 1) % 60;
-        sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
-        sTime.StoreOperation = RTC_STOREOPERATION_RESET;
-        k_SetTime(&sTime) ;
-        UI_ForceUpdateTime();
+        if (pDataStr != NULL)
+        {
+          xRet = ESP_WIFI_STATUS_OK;
+        }
       }
+      ESP_WIFI_StopClient( pxObj, &xConn ); 
     }
-    ESP_WIFI_StopClient( pxObj, &xConn ); 
   }
+  return xRet;
+}
+/*********************************************************************
+*
+*       WIFI_SyncClock
+*/
+ESP_WIFI_Status_t WIFI_SyncClock (ESP_WIFI_Object_t * pxObj){
+  
+  ESP_WIFI_Status_t xRet;  
+  ESP_WIFI_Conn_t xConn;
+  char *dateStr = NULL;
+  
+  if((xRet = WIFI_SyncData (pxObj, TIME_SOURCE_HTTP_HOST, http_request, sizeof(http_request),
+                            TIME_SOURCE_HTTP_PORT, TIME_SOURCE_HTTP_PROTO, "Date: ", &dateStr)) == ESP_WIFI_STATUS_OK)
+  {
+    
+    char prefix[8], dow[8], month[4];
+    int day, year, hour, min, sec;
+    RTC_TimeTypeDef sTime;
+                               
+    memset(dow, 0, sizeof(dow));
+    memset(month, 0, sizeof(month));
+    day = year = hour = min = sec = 0;
+    
+    int count = sscanf(dateStr, "%s %s %d %s %d %02d:%02d:%02d ", prefix, dow, &day, month, &year, &hour, &min, &sec); 
+    
+    sTime.Hours = (hour + 1) % 24;
+    sTime.Minutes = min;
+    sTime.Seconds = (sec + 1) % 60;
+    sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+    sTime.StoreOperation = RTC_STOREOPERATION_RESET;
+    k_SetTime(&sTime) ;
+    UI_ForceUpdateTime();
+    
+    ESP_WIFI_StopClient( pxObj, &xConn ); 
   }
   return xRet;
 }
@@ -225,61 +246,19 @@ ESP_WIFI_Status_t WIFI_SyncClock (ESP_WIFI_Object_t * pxObj){
 */
 ESP_WIFI_Status_t WIFI_SyncEnvData (ESP_WIFI_Object_t * pxObj){
   ESP_WIFI_Conn_t xConn;
-  uint8_t  IPAddr[4];
-  uint32_t count;
   ESP_WIFI_Status_t xRet;
-  uint16_t usSentBytes;
-  uint16_t usRecvBytes;  
+  char *weatherStr = NULL;
   
-  count = 10;
-  while(((xRet = ESP_WIFI_GetHostIP( pxObj, ENV_SOURCE_HTTP_HOST , IPAddr )) != ESP_WIFI_STATUS_OK) && (count-- > 0) )
-  {
-    HAL_Delay(1000);
-  } 
-  
-  if(xRet == ESP_WIFI_STATUS_OK)
-  {          
-    xConn.RemotePort = ENV_SOURCE_HTTP_PORT;
-    memcpy(xConn.RemoteIP , IPAddr, sizeof(uint32_t));
-    xConn.Type = ENV_SOURCE_HTTP_PROTO;
-    xConn.TcpKeepAlive = 0;
-    xConn.LinkID       = 0;
-    count = 10;
-    while(((xRet = ESP_WIFI_StartClient( pxObj, &xConn ))!= ESP_WIFI_STATUS_OK) && (count-- > 0) )
-    {
-      HAL_Delay(1000);
-    }
+  if((xRet = WIFI_SyncData (pxObj, ENV_SOURCE_HTTP_HOST, weather_request, sizeof(weather_request),
+                            ENV_SOURCE_HTTP_PORT, ENV_SOURCE_HTTP_PROTO, "\"temp\":", &weatherStr)) == ESP_WIFI_STATUS_OK)
+  {  
     
-    if(xRet == ESP_WIFI_STATUS_OK)
-    {
-      if((xRet = ESP_WIFI_Send( pxObj, &xConn , (uint8_t *)weather_request, 
-                               strlen(weather_request), &usSentBytes, pdMS_TO_TICKS(200))) == ESP_WIFI_STATUS_OK)
-      {
-        
-        char *weatherStr = NULL;
-        int read = 0;
-        do {
-          xRet = ESP_WIFI_Recv( pxObj, &xConn , (uint8_t*)(rxBuffer + read), NET_BUF_SIZE - read,&usRecvBytes, pdMS_TO_TICKS(1000) );
-          if (usRecvBytes > 0)
-          {
-            read += usRecvBytes;
-            weatherStr = strstr(rxBuffer,  "\"temp\":");
-          }  
-        }
-        while ( (weatherStr == NULL) && ((usRecvBytes > 0) || (xRet == ESP_WIFI_STATUS_TIMEOUT)) && (read < NET_BUF_SIZE));
-        
-        if (weatherStr != NULL)
-        {
-          xRet = ESP_WIFI_STATUS_OK;
-          
-          sscanf(weatherStr, "\"temp\":%f", &itemperature); 
-          itemperature -= 273.15;
-          weatherStr = strstr(rxBuffer,  "\"humidity\":");
-          sscanf(weatherStr, "\"humidity\":%f", &ihumidity);                             
-        }
-      }
-      ESP_WIFI_StopClient( pxObj, &xConn ); 
-    }
+    sscanf(weatherStr, "\"temp\":%f", &itemperature); 
+    itemperature -= 273.15;
+    weatherStr = strstr(rxBuffer,  "\"humidity\":");
+    sscanf(weatherStr, "\"humidity\":%f", &ihumidity);                             
+    
+    ESP_WIFI_StopClient( pxObj, &xConn ); 
   }
   return xRet;
 }
