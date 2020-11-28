@@ -48,6 +48,12 @@
 #define ID_INDOOR                   (GUI_ID_USER + 0x14)
 #define ID_MENU                     (GUI_ID_USER + 0x15)
 
+
+#define ID_MENU_WINDOW              (GUI_ID_USER + 0x30)
+#define ID_MENU_TITLE               (GUI_ID_USER + 0x31)
+#define ID_MENU_HEADER              (GUI_ID_USER + 0x32)
+
+
 #define TIME_REFRESH_PERIOD        100
 #define WIFI_REFRESH_PERIOD        500
 #define GUI_REFRESH_PERIOD         1000
@@ -78,7 +84,7 @@
 **********************************************************************
 */
 
-WM_HWIN hWin;
+WM_HWIN hWin, hWinMenu;
 uint32_t enable_setting = 0;
 extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigital_Font;
 extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigita_Clock;
@@ -135,9 +141,40 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
 
 /*********************************************************************
 *
+*       _aDialogCreate
+*/
+
+static const GUI_WIDGET_CREATE_INFO _aMenuCreate[] = {
+  { WINDOW_CreateIndirect, "Window", ID_MENU_WINDOW, 100, 60, 600, 400, 0, 0x0, 0 },
+  { TEXT_CreateIndirect, "MENU", ID_MENU_TITLE, 100, 20, 500, 120, 0, 0x64, 0 },
+  { HEADER_CreateIndirect, "Header", ID_MENU_HEADER, 10, 120, 580, 5, 0, 0x66, 0 }, 
+
+};
+
+/*********************************************************************
+*
+*       _cbMenu
+*/
+static void _cbMenu(WM_MESSAGE * pMsg) {
+  WM_HWIN hItem;
+  switch (pMsg->MsgId) {
+  case WM_INIT_DIALOG:
+    hItem = pMsg->hWin;
+    WINDOW_SetBkColor(hItem, GUI_BLACK);  
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_MENU_TITLE);
+    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0x008080FF));
+    TEXT_SetFont(hItem, &GUI_FontDigital_Font);
+    TEXT_SetText(hItem, "MENU");    
+    break;
+  default:
+    WM_DefaultProc(pMsg);
+    break;
+  }
+}
+/*********************************************************************
+*
 *       _cbDialog
 */
-//extern GUI_CONST_STORAGE GUI_BITMAP bmbackground;
 static void _cbDialog(WM_MESSAGE * pMsg) {
   WM_HWIN hItem;
   static WM_HTIMER   hTimer = 0;  
@@ -160,12 +197,8 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
   case WM_INIT_DIALOG:
 
     hItem = pMsg->hWin;
-// GUI_SetBkColor(GUI_TRANSPARENT);
+
     WINDOW_SetBkColor(hItem, GUI_MAKE_COLOR(GUI_TRANSPARENT));
-//    GUI_DrawBitmap (&bmbackground, 0, 0);
-    //
-    // Initialization of 'Text'
-    //
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEMPERATURE);
     TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0x008080FF));
     TEXT_SetFont(hItem, &GUI_FontDigital_Font);
@@ -348,26 +381,43 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     {
       
       Id    = WM_GetId(pMsg->hWinSrc);    /* Id of widget */
-      if((Id == ID_TIME_HOUR) && (enable_setting))
+      
+      if(enable_setting)
       {
-        if(!hTimer) hTimer = WM_CreateTimer(pMsg->hWin, TIME_HOUR_TIMER_ID, TIME_REFRESH_PERIOD, 0);         
+        if(Id == ID_TIME_HOUR)
+        {
+          if(!hTimer) hTimer = WM_CreateTimer(pMsg->hWin, TIME_HOUR_TIMER_ID, TIME_REFRESH_PERIOD, 0);         
+        }
+        if(Id == ID_TIME_MIN)
+        {
+          if(!mTimer) mTimer = WM_CreateTimer(pMsg->hWin, TIME_MIN_TIMER_ID, TIME_REFRESH_PERIOD, 0);           
+        } 
       }
-      if((Id == ID_TIME_MIN) && (enable_setting))
-      {
-        if(!mTimer) mTimer = WM_CreateTimer(pMsg->hWin, TIME_MIN_TIMER_ID, TIME_REFRESH_PERIOD, 0);           
-      } 
       
       if((Id == ID_TEMPERATURE)||(Id == ID_HUMIDITY))
       {        
         hItem = WM_GetDialogItem(pMsg->hWin, ID_INDOOR);
         if (place_toggle)
-            IMAGE_SetBitmap(hItem, &bmicon_indoor);
+          IMAGE_SetBitmap(hItem, &bmicon_indoor);
         else
-            IMAGE_SetBitmap(hItem, &bmicon_outdoor);
+          IMAGE_SetBitmap(hItem, &bmicon_outdoor);
         
         place_toggle = 1- place_toggle;
+        WM_SendMessageNoPara (pMsg->hWin, ENV_UPDATE);
       }
-      WM_SendMessageNoPara (pMsg->hWin, ENV_UPDATE);
+      if(Id == ID_MENU)
+      { 
+        if(!WM_IsVisible(hWinMenu))
+        {
+          hWinMenu = GUI_CreateDialogBox(_aMenuCreate, GUI_COUNTOF(_aMenuCreate), _cbMenu, hWin, 0, 0);
+        }
+        else
+        {
+          if(hWinMenu) GUI_EndDialog(hWinMenu, 0);
+          hWinMenu = NULL;
+        }
+      }
+      
     }
     
     if(Node == WM_NOTIFICATION_RELEASED)
@@ -383,7 +433,8 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
       {
         WM_DeleteTimer(mTimer); 
         mTimer = 0;
-      }      
+      }
+    
     }
     break;
     

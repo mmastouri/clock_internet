@@ -35,7 +35,6 @@
 #define TIME_SOURCE_HTTP_PROTO  ESP_WIFI_TCP
 
 #define ENV_SOURCE_HTTP_HOST    "api.openweathermap.org"
-//http://api.openweathermap.org/data/2.5/weather?q=Tunis&appid=5a3687f4840a2a222036e33a28eb8298"
 #define ENV_SOURCE_HTTP_PORT    80
 #define ENV_SOURCE_HTTP_PROTO   ESP_WIFI_TCP
 
@@ -59,9 +58,16 @@ static uint32_t enable_time_count = 0;
 static uint32_t enable_time_setting = 0;
 static char rxBuffer[NET_BUF_SIZE + 1];
 
-static ESP_AvHotspot_t Hotspot ={
+#define USE_HOME_PW
+
+static const ESP_AvHotspot_t Hotspot ={
+#ifdef USE_HOME_PW
+   .SSID = "MASTER_EXT" ,  
+   .PWD  = "OSMNL7182oo21"
+#else
    .SSID = "Android" ,  
    .PWD  = "12345678"
+#endif     
 };
 
 float itemperature = 25;
@@ -196,9 +202,10 @@ ESP_WIFI_Status_t WIFI_SyncClock (ESP_WIFI_Object_t * pxObj){
         day = year = hour = min = sec = 0;
         
         int count = sscanf(dateStr, "%s %s %d %s %d %02d:%02d:%02d ", prefix, dow, &day, month, &year, &hour, &min, &sec); 
-        sTime.Hours = (hour + 1)%24;
+               
+        sTime.Hours = (hour + 1) % 24;
         sTime.Minutes = min;
-        sTime.Seconds = sec;
+        sTime.Seconds = (sec + 2) % 60;
         sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
         sTime.StoreOperation = RTC_STOREOPERATION_RESET;
         k_SetTime(&sTime) ;

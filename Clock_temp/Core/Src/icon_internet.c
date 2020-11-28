@@ -57,6 +57,11 @@ static GUI_CONST_STORAGE GUI_LOGPALETTE _Palicon_internet = {
   &_Colorsicon_internet[0]
 };
 
+#if defined ( __ICCARM__ )
+#pragma location="ExtQSPIFlashSection" 
+#else
+__attribute__((section(".ExtQSPIFlashSection")))  
+#endif
 static GUI_CONST_STORAGE unsigned char _acicon_internet[] = {
   XXXXXXXX, XXXXX___, ______XX, XXXXXXXX, XXX_____,
   XXXXXXXX, XX______, ________, _XXXXXXX, XXX_____,

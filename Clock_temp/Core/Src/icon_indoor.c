@@ -57,6 +57,11 @@ static GUI_CONST_STORAGE GUI_LOGPALETTE _Palicon_indoor = {
   &_Colorsicon_indoor[0]
 };
 
+#if defined ( __ICCARM__ )
+#pragma location="ExtQSPIFlashSection" 
+#else
+__attribute__((section(".ExtQSPIFlashSection")))  
+#endif
 static GUI_CONST_STORAGE unsigned char _acicon_indoor[] = {
   XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX,
   XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX,
