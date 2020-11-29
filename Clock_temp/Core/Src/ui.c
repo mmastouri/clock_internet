@@ -40,7 +40,7 @@
 #define ID_HEADER_1                 (GUI_ID_USER + 0x11)
 #define ID_WIFI                     (GUI_ID_USER + 0x12)
 #define ID_INTERNET                 (GUI_ID_USER + 0x13)
-#define ID_INDOOR                   (GUI_ID_USER + 0x14)
+#define ID_IN_OUTDOUR                   (GUI_ID_USER + 0x14)
 #define ID_MENU                     (GUI_ID_USER + 0x15)
 
 #define ID_DAYWEEK                  (GUI_ID_USER + 0x17)
@@ -57,6 +57,7 @@
 #define TIME_SETTING_REFRESH_PERIOD 100
 #define WIFI_REFRESH_PERIOD         500
 #define TIME_REFRESH_PERIOD         500
+#define CALENDAR_REFRESH_PERIOD     1000
 #define ENV_REFRESH_PERIOD          5000
 #define SETTINGS_COLOR              GUI_ORANGE
 
@@ -65,6 +66,7 @@
 #define WIFI_CONNECTING_TIMER_ID   0X03
 #define GUI_TIME_REFRESH_ID        0x04
 #define GUI_ENV_REFRESH_ID         0x05
+#define GUI_CALENDAR_REFRESH_ID    0x06
 
 #define WIFI_CONNECTING           (WM_USER + 0x00)
 #define WIFI_CONNECTED            (WM_USER + 0x01)
@@ -76,8 +78,9 @@
 #define TEMPERATURE_SET           (WM_USER + 0x20)
 #define HUMIDITY_SET              (WM_USER + 0x30) 
 
-#define TEMPERATURE_UPDATE                (WM_USER + 0x40)
+#define TEMPERATURE_UPDATE        (WM_USER + 0x40)
 #define TIME_UPDATE               (WM_USER + 0x50)
+#define CALENDAR_UPDATE           (WM_USER + 0x60)
 
 /*********************************************************************
 *
@@ -86,7 +89,7 @@
 **********************************************************************
 */
 
-static WM_HWIN hMainFrame;
+static WM_HWIN hMainFrame, hHomeFrame, hMenuFrame;
 static uint32_t ui_enable_timeh_setting = 0;
 const char *dayofweek[] = {"Mon.", "Tue.", "Wed.", "Thu.", "Fri", "Sat.", "Sun."}; 
       
@@ -151,52 +154,48 @@ int rtcCalcYearWeek(int iYear, int iMonth, int iDay, int iWeekDay)
 }
 /*********************************************************************
 *
-*       _aDialogCreate
+*       _aMainDialogCreate
 */
 
-static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
+static const GUI_WIDGET_CREATE_INFO _aMainDialogCreate[] = {  
   { WINDOW_CreateIndirect, "Window", ID_WINDOW, 0, 0, 800, 480, 0, 0x0, 0 },
+  { IMAGE_CreateIndirect, "Image", ID_WIFI, 730, 7, 50, 50, 0, 0, 0 }, 
+  { IMAGE_CreateIndirect, "Image", ID_INTERNET, 680, 7, 50, 50, 0, 0, 0 },     
+  { IMAGE_CreateIndirect, "Image", ID_MENU, 30, 7, 50, 50, 0, 0, 0 },   
   { TEXT_CreateIndirect, "00", ID_TIME_HOUR, 10, 100, 360, 220, TEXT_CF_HCENTER, 0, 0 },  
   { TEXT_CreateIndirect, "00", ID_TIME_MIN, 430, 100, 360, 220, TEXT_CF_HCENTER, 0, 0 },   
   { TEXT_CreateIndirect, ":", ID_DOT, 370, 100, 120, 220, 0, 0x66, 0 },    
-  { TEXT_CreateIndirect, "00.0 °C", ID_TEMPERATURE, 20, 360, 720, 120, 0, 0, 0 },
-  
-  { TEXT_CreateIndirect, "DayofWeek", ID_DAYWEEK, 460, 340, 680, 120, 0, 0, 0 }, 
-  { TEXT_CreateIndirect, "Week", ID_WEEK, 460, 410, 680, 120, 0, 0, 0 }, 
-  { TEXT_CreateIndirect, "Day", ID_DAY, 670, 340, 120, 120, TEXT_CF_HCENTER, 0, 0 },   
-  { TEXT_CreateIndirect, "Month", ID_MONTH, 670, 410, 120, 120, TEXT_CF_HCENTER, 0, 0 },     
-  
   { HEADER_CreateIndirect, "Header", ID_HEADER_1, 20, 50, 760, 5, 0, 0x0, 0 }, 
   { HEADER_CreateIndirect, "Header", ID_HEADER_0, 20, 290, 760, 5, 0, 0x0, 0 }, 
-  { IMAGE_CreateIndirect, "Image", ID_WIFI, 730, 7, 50, 50, 0, 0, 0 }, 
-  { IMAGE_CreateIndirect, "Image", ID_INTERNET, 680, 7, 50, 50, 0, 0, 0 },      
-  { IMAGE_CreateIndirect, "Image", ID_INDOOR, 30, 307, 50, 50, 0, 0, 0 },    
-  { IMAGE_CreateIndirect, "Image", ID_MENU, 30, 7, 50, 50, 0, 0, 0 },    
-
 };
+
+static const GUI_WIDGET_CREATE_INFO _aHomeDialogCreate[] = {
+  { WINDOW_CreateIndirect, "Window", ID_WINDOW, 0, 0, 800, 180, 0, 0x0, 0 },
+  { TEXT_CreateIndirect, "00.0 °C", ID_TEMPERATURE, 20, 60, 720, 120, 0, 0, 0 },    
+  { TEXT_CreateIndirect, "DayofWeek", ID_DAYWEEK, 460, 40, 680, 120, 0, 0, 0 }, 
+  { TEXT_CreateIndirect, "Week", ID_WEEK, 460, 110, 680, 120, 0, 0, 0 }, 
+  { TEXT_CreateIndirect, "Day", ID_DAY, 670, 40, 120, 120, TEXT_CF_HCENTER, 0, 0 },   
+  { TEXT_CreateIndirect, "Month", ID_MONTH, 670, 110, 120, 120, TEXT_CF_HCENTER, 0, 0 },     
+  { IMAGE_CreateIndirect, "Image", ID_IN_OUTDOUR, 30, 7, 50, 50, 0, 0, 0 },    
+};
+
 
 /*********************************************************************
 *
-*       _cbDialog
+*       _cbHomeDialog
 */
-static void _cbDialog(WM_MESSAGE * pMsg) {
-  WM_HWIN hItem;
-  static WM_HTIMER   hTimer = 0;  
-  static WM_HTIMER   mTimer = 0;    
-  static WM_HTIMER   wifiTimer = 0;  
-  static WM_HTIMER   TimeRefreshTimer = 0;    
+static void _cbHomeDialog(WM_MESSAGE * pMsg) {
+  WM_HWIN hItem; 
   static WM_HTIMER   EnvRefreshTimer = 0;   
+  static WM_HTIMER   CalendarRefreshTimer = 0;     
   
   int Id, Node, woy;
   RTC_TimeTypeDef Time;  
   RTC_DateTypeDef Date; 
   
   char temp[20];
-  static uint32_t toggle =0;  
   static uint8_t place_toggle = 0;
-  static uint8_t time_speed = 0;
   static float Temperature = 25;
-  static uint8_t menu_state = 0;
   displayFloatToInt_t out_value;    
   
   switch (pMsg->MsgId) {
@@ -229,6 +228,132 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xCECECE));
     TEXT_SetFont(hItem, &GUI_FontDigitGraphics60);
     TEXT_SetText(hItem, "11");      
+     
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_IN_OUTDOUR);
+    IMAGE_SetBitmap(hItem, &bmicon_indoor);
+    
+    if(!EnvRefreshTimer) EnvRefreshTimer = WM_CreateTimer(pMsg->hWin, GUI_ENV_REFRESH_ID, ENV_REFRESH_PERIOD, 0);     
+    WM_SendMessageNoPara (pMsg->hWin, TEMPERATURE_UPDATE);
+    
+    if(!CalendarRefreshTimer) CalendarRefreshTimer = WM_CreateTimer(pMsg->hWin, GUI_CALENDAR_REFRESH_ID, CALENDAR_REFRESH_PERIOD, 0);     
+    WM_SendMessageNoPara (pMsg->hWin, CALENDAR_UPDATE);
+    
+    break;
+ 
+  case TEMPERATURE_UPDATE:
+
+    if(place_toggle == 0) //Indoor
+    {
+      Temperature = bsp_get_temp();      
+    }
+    else
+    {
+      Temperature = itemperature;      
+    }
+    
+    floatToInt(Temperature, &out_value, 1);
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEMPERATURE);
+    snprintf(temp, sizeof(temp), "%d.%dC", out_value.out_int, out_value.out_dec);
+    TEXT_SetText(hItem, temp);      
+    
+    break;
+    
+  case CALENDAR_UPDATE:
+      
+      k_GetTime(&Time) ;
+      k_GetDate(&Date) ;   
+
+      hItem = WM_GetDialogItem(pMsg->hWin, ID_DAYWEEK);
+      snprintf(temp, 5, "%s", dayofweek[Date.WeekDay > 0 ? (Date.WeekDay) - 1 : 0]);            
+      TEXT_SetText(hItem, temp); 
+      
+      hItem = WM_GetDialogItem(pMsg->hWin, ID_DAY);
+      snprintf(temp, 5, "%02d", Date.Date);            
+      TEXT_SetText(hItem, temp);  
+      
+      hItem = WM_GetDialogItem(pMsg->hWin, ID_MONTH);
+      snprintf(temp, 5, "%02d", Date.Month);
+      TEXT_SetText(hItem, temp);  
+      
+      woy = rtcCalcYearWeek(Date.Year + 2000, Date.Month, Date.Date, Date.WeekDay > 0 ? (Date.WeekDay) - 1 : 0);
+      
+      hItem = WM_GetDialogItem(pMsg->hWin, ID_WEEK);
+      snprintf(temp, 5, "W%02d", woy);
+      TEXT_SetText(hItem, temp); 
+      
+    break;     
+    
+  case WM_TIMER:  
+    Id = WM_GetTimerId(pMsg->Data.v);
+    
+    if (Id == GUI_ENV_REFRESH_ID)
+    {
+      WM_SendMessageNoPara (pMsg->hWin, TEMPERATURE_UPDATE);
+      WM_RestartTimer(pMsg->Data.v, ENV_REFRESH_PERIOD);      
+    }
+    
+    if(Id == GUI_CALENDAR_REFRESH_ID) 
+    {        
+      WM_SendMessageNoPara (pMsg->hWin, CALENDAR_UPDATE);
+      WM_RestartTimer(pMsg->Data.v, CALENDAR_REFRESH_PERIOD);       
+    }
+    
+    break;  
+      
+  case WM_NOTIFY_PARENT:
+    Id    = WM_GetId(pMsg->hWinSrc);     
+    Node = pMsg->Data.v;  
+
+    
+    if(Node == WM_NOTIFICATION_CLICKED)
+    {
+      Id    = WM_GetId(pMsg->hWinSrc);    /* Id of widget */
+
+      if(Id == ID_TEMPERATURE)
+      {        
+        hItem = WM_GetDialogItem(pMsg->hWin, ID_IN_OUTDOUR);
+        if (place_toggle)
+          IMAGE_SetBitmap(hItem, &bmicon_indoor);
+        else
+          IMAGE_SetBitmap(hItem, &bmicon_outdoor);
+        
+        place_toggle = 1- place_toggle;
+        WM_SendMessageNoPara (pMsg->hWin, TEMPERATURE_UPDATE);
+      }      
+    }
+    break;
+    
+  default:
+    WM_DefaultProc(pMsg);
+    break;
+  }
+}
+/*********************************************************************
+*
+*       _cbMainDialog
+*/
+static void _cbMainDialog(WM_MESSAGE * pMsg) {
+  WM_HWIN hItem;
+  static WM_HTIMER   hTimer = 0;  
+  static WM_HTIMER   mTimer = 0;    
+  static WM_HTIMER   wifiTimer = 0;  
+  static WM_HTIMER   TimeRefreshTimer = 0;    
+  
+  int Id, Node;
+  RTC_TimeTypeDef Time;  
+  RTC_DateTypeDef Date; 
+  
+  char temp[20];
+  static uint32_t toggle =0;  
+  static uint8_t time_speed = 0;
+  static uint8_t menu_state = 0;
+  
+  switch (pMsg->MsgId) {
+  case WM_INIT_DIALOG:
+
+    hItem = pMsg->hWin;
+
+    WINDOW_SetBkColor(hItem, GUI_MAKE_COLOR(GUI_TRANSPARENT));    
     
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TIME_HOUR);
     TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0x00FFFF00));
@@ -249,9 +374,6 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     IMAGE_SetBitmap(hItem, &bmicon_wifi);
     WM_HideWin(hItem);
     
-    hItem = WM_GetDialogItem(pMsg->hWin, ID_INDOOR);
-    IMAGE_SetBitmap(hItem, &bmicon_indoor);
-
     hItem = WM_GetDialogItem(pMsg->hWin, ID_MENU);
     IMAGE_SetBitmap(hItem, &bmicon_menu);   
     
@@ -259,10 +381,10 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     IMAGE_SetBitmap(hItem, &bmicon_internet);   
     WM_HideWin(hItem);
     
-    if(!TimeRefreshTimer) TimeRefreshTimer = WM_CreateTimer(pMsg->hWin, GUI_TIME_REFRESH_ID, TIME_REFRESH_PERIOD, 0);   
-    if(!EnvRefreshTimer) EnvRefreshTimer = WM_CreateTimer(pMsg->hWin, GUI_ENV_REFRESH_ID, ENV_REFRESH_PERIOD, 0);     
+    hHomeFrame = GUI_CreateDialogBox(_aHomeDialogCreate, GUI_COUNTOF(_aHomeDialogCreate), _cbHomeDialog, hMainFrame, 0, 300);
+    
+    if(!TimeRefreshTimer) TimeRefreshTimer = WM_CreateTimer(pMsg->hWin, GUI_TIME_REFRESH_ID, TIME_REFRESH_PERIOD, 0);     
     WM_SendMessageNoPara (pMsg->hWin, TIME_UPDATE);
-    WM_SendMessageNoPara (pMsg->hWin, TEMPERATURE_UPDATE);
     break;
     
   case WIFI_DISCONNECTED:
@@ -290,25 +412,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     hItem = WM_GetDialogItem(pMsg->hWin, ID_INTERNET);
     WM_ShowWin(hItem);    
     break;
-    
-  case TEMPERATURE_UPDATE:
-
-    if(place_toggle == 0) //Indoor
-    {
-      Temperature = bsp_get_temp();      
-    }
-    else
-    {
-      Temperature = itemperature;      
-    }
-    
-    floatToInt(Temperature, &out_value, 1);
-    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEMPERATURE);
-    snprintf(temp, sizeof(temp), "%d.%dC", out_value.out_int, out_value.out_dec);
-    TEXT_SetText(hItem, temp);      
-    
-    break;
-    
+        
   case TIME_UPDATE:
       
       k_GetTime(&Time) ;
@@ -321,25 +425,6 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
       hItem = WM_GetDialogItem(pMsg->hWin, ID_TIME_MIN);
       snprintf(temp, sizeof(temp), "%02d", Time.Minutes);      
       TEXT_SetText(hItem, temp);  
-
-      hItem = WM_GetDialogItem(pMsg->hWin, ID_DAYWEEK);
-      snprintf(temp, 5, "%s", dayofweek[Date.WeekDay > 0 ? (Date.WeekDay) - 1 : 0]);            
-      TEXT_SetText(hItem, temp); 
-      
-      hItem = WM_GetDialogItem(pMsg->hWin, ID_DAY);
-      snprintf(temp, 5, "%02d", Date.Date);            
-      TEXT_SetText(hItem, temp);  
-      
-      hItem = WM_GetDialogItem(pMsg->hWin, ID_MONTH);
-      snprintf(temp, 5, "%02d", Date.Month);
-      TEXT_SetText(hItem, temp);  
-      
-      woy = rtcCalcYearWeek(Date.Year + 2000, Date.Month, Date.Date, Date.WeekDay > 0 ? (Date.WeekDay) - 1 : 0);
-      
-      hItem = WM_GetDialogItem(pMsg->hWin, ID_WEEK);
-      snprintf(temp, 5, "W%02d", woy);
-      TEXT_SetText(hItem, temp); 
-      
     break;     
     
   case WM_TIMER:  
@@ -413,13 +498,6 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
       
       WM_RestartTimer(pMsg->Data.v, TIME_REFRESH_PERIOD);
     }
-    
-    if (Id == GUI_ENV_REFRESH_ID)
-    {
-      WM_SendMessageNoPara (pMsg->hWin, TEMPERATURE_UPDATE);
-      WM_RestartTimer(pMsg->Data.v, ENV_REFRESH_PERIOD);      
-    }  
-    
     break;  
       
   case WM_NOTIFY_PARENT:
@@ -442,28 +520,19 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
         if(!mTimer) mTimer = WM_CreateTimer(pMsg->hWin, TIME_MIN_TIMER_ID, TIME_SETTING_REFRESH_PERIOD, 0);           
       } 
 
-      if(Id == ID_TEMPERATURE)
-      {        
-        hItem = WM_GetDialogItem(pMsg->hWin, ID_INDOOR);
-        if (place_toggle)
-          IMAGE_SetBitmap(hItem, &bmicon_indoor);
-        else
-          IMAGE_SetBitmap(hItem, &bmicon_outdoor);
-        
-        place_toggle = 1- place_toggle;
-        WM_SendMessageNoPara (pMsg->hWin, TEMPERATURE_UPDATE);
-      }
       if(Id == ID_MENU)
       { 
         if (menu_state)
         {
           hItem = WM_GetDialogItem(pMsg->hWin, ID_MENU);
-          IMAGE_SetBitmap(hItem, &bmicon_menu);  
+          IMAGE_SetBitmap(hItem, &bmicon_menu);
+          WM_ShowWin(hHomeFrame);
         }
         else
         {
           hItem = WM_GetDialogItem(pMsg->hWin, ID_MENU);
           IMAGE_SetBitmap(hItem, &bmicon_home);  
+          WM_HideWin(hHomeFrame);
         }
         menu_state = 1- menu_state;
       }
@@ -577,7 +646,7 @@ void UI_ForceUpdateTime(void)
 static WM_HWIN UI_CreateMainFame(void) {
 
 
-  hMainFrame = GUI_CreateDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), _cbDialog, WM_HBKWIN, 0, 0);
+  hMainFrame = GUI_CreateDialogBox(_aMainDialogCreate, GUI_COUNTOF(_aMainDialogCreate), _cbMainDialog, WM_HBKWIN, 0, 0);
   return hMainFrame;
 }
 
