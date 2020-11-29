@@ -181,7 +181,8 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
   static WM_HTIMER   mTimer = 0;    
   static WM_HTIMER   wifiTimer = 0;  
   static WM_HTIMER   TimeRefreshTimer = 0;    
-  static WM_HTIMER   EnvRefreshTimer = 0;      
+  static WM_HTIMER   EnvRefreshTimer = 0;   
+  
   int Id, Node;
   RTC_TimeTypeDef Time;  
   RTC_DateTypeDef Date; 
@@ -189,7 +190,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
   char temp[20];
   static uint32_t toggle =0;  
   static uint8_t place_toggle = 0;
-  
+  static uint8_t time_speed = 0;
   static float Temperature = 25;
   static float Humidity = 50;
   displayFloatToInt_t out_value;    
@@ -319,7 +320,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     {
       if((Id == TIME_HOUR_TIMER_ID) || (Id == TIME_MIN_TIMER_ID))
       {
-        WM_RestartTimer(pMsg->Data.v, TIME_SETTING_REFRESH_PERIOD);
+
         k_GetTime(&Time) ; 
         k_GetDate(&Date) ;    
         
@@ -347,6 +348,10 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
           k_SetTime(&Time) ; 
           WM_SendMessageNoPara (pMsg->hWin, TIME_UPDATE);
         } 
+        if(time_speed++ == 0)
+           WM_RestartTimer(pMsg->Data.v, 5 * TIME_SETTING_REFRESH_PERIOD);
+        else
+          WM_RestartTimer(pMsg->Data.v, TIME_SETTING_REFRESH_PERIOD);
       }
     }
     else
@@ -408,7 +413,6 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
         if(!mTimer) mTimer = WM_CreateTimer(pMsg->hWin, TIME_MIN_TIMER_ID, TIME_SETTING_REFRESH_PERIOD, 0);           
       } 
 
-      
       if((Id == ID_TEMPERATURE)||(Id == ID_HUMIDITY))
       {        
         hItem = WM_GetDialogItem(pMsg->hWin, ID_INDOOR);
@@ -450,6 +454,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
           WM_DeleteTimer(mTimer); 
           mTimer = 0;
         }
+        time_speed = 0;
       }
     
     }
