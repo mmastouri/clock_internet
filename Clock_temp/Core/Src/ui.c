@@ -36,13 +36,17 @@
 #define ID_TIME_MIN                 (GUI_ID_USER + 0x2D)
 #define ID_DOT                      (GUI_ID_USER + 0x1D)
 #define ID_TEMPERATURE              (GUI_ID_USER + 0x0E)
-#define ID_HUMIDITY                 (GUI_ID_USER + 0x0F)
 #define ID_HEADER_0                 (GUI_ID_USER + 0x10)
 #define ID_HEADER_1                 (GUI_ID_USER + 0x11)
 #define ID_WIFI                     (GUI_ID_USER + 0x12)
 #define ID_INTERNET                 (GUI_ID_USER + 0x13)
 #define ID_INDOOR                   (GUI_ID_USER + 0x14)
 #define ID_MENU                     (GUI_ID_USER + 0x15)
+
+#define ID_DAYWEEK                  (GUI_ID_USER + 0x17)
+#define ID_DAY                      (GUI_ID_USER + 0x18)
+#define ID_MONTH                    (GUI_ID_USER + 0x19)
+#define ID_WEEK                     (GUI_ID_USER + 0x1A)
 
 
 #define ID_MENU_WINDOW              (GUI_ID_USER + 0x30)
@@ -72,7 +76,7 @@
 #define TEMPERATURE_SET           (WM_USER + 0x20)
 #define HUMIDITY_SET              (WM_USER + 0x30) 
 
-#define ENV_UPDATE                (WM_USER + 0x40)
+#define TEMPERATURE_UPDATE                (WM_USER + 0x40)
 #define TIME_UPDATE               (WM_USER + 0x50)
 
 /*********************************************************************
@@ -82,16 +86,22 @@
 **********************************************************************
 */
 
-static WM_HWIN hMainFrame, hWinMenu;
+static WM_HWIN hMainFrame;
 static uint32_t ui_enable_timeh_setting = 0;
+const char *dayofweek[] = {"Mon.", "Tue.", "Wed.", "Thu.", "Fri", "Sat.", "Sun."}; 
+      
 extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigital_Font;
 extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigita_Clock;
+extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigitGraphics60;
+
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_wifi;
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_indoor;
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_internet;
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_menu;
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_outdoor;
 extern GUI_CONST_STORAGE GUI_BITMAP bmbackground;
+extern GUI_CONST_STORAGE GUI_BITMAP bmicon_home;
+
 extern float itemperature;
 extern float ihumidity;
 /*********************************************************************
@@ -119,6 +129,28 @@ static void floatToInt(float in, displayFloatToInt_t *out_value, int32_t dec_pre
 
 /*********************************************************************
 *
+*       rtcCalcYearWeek
+*/
+int rtcCalcYearWeek(int iYear, int iMonth, int iDay, int iWeekDay)
+{
+    int iLeap = 0;
+    static const int ppiYearDays[2][13] =
+    {
+         /* Normal year */
+         {0, 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334},
+         /* Leap year */
+         {0, 0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335}
+    };
+    /* Check for leap year */
+    if (((iYear % 4) == 0) && (((iYear % 100) != 0) || ((iYear % 400) == 0)))
+    {
+        iLeap = 1;
+    }
+    /* Calculate the year week */
+    return (((ppiYearDays[iLeap][iMonth] + iDay) - (iWeekDay + 7) % 7 + 7) / 7) + 1;
+}
+/*********************************************************************
+*
 *       _aDialogCreate
 */
 
@@ -128,7 +160,12 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
   { TEXT_CreateIndirect, "00", ID_TIME_MIN, 430, 100, 360, 220, TEXT_CF_HCENTER, 0, 0 },   
   { TEXT_CreateIndirect, ":", ID_DOT, 370, 100, 120, 220, 0, 0x66, 0 },    
   { TEXT_CreateIndirect, "00.0 °C", ID_TEMPERATURE, 20, 360, 720, 120, 0, 0, 0 },
-  { TEXT_CreateIndirect, "00 %", ID_HUMIDITY, 480, 360, 680, 120, 0, 0, 0 },  
+  
+  { TEXT_CreateIndirect, "DayofWeek", ID_DAYWEEK, 460, 340, 680, 120, 0, 0, 0 }, 
+  { TEXT_CreateIndirect, "Week", ID_WEEK, 460, 410, 680, 120, 0, 0, 0 }, 
+  { TEXT_CreateIndirect, "Day", ID_DAY, 670, 340, 120, 120, TEXT_CF_HCENTER, 0, 0 },   
+  { TEXT_CreateIndirect, "Month", ID_MONTH, 670, 410, 120, 120, TEXT_CF_HCENTER, 0, 0 },     
+  
   { HEADER_CreateIndirect, "Header", ID_HEADER_1, 20, 50, 760, 5, 0, 0x0, 0 }, 
   { HEADER_CreateIndirect, "Header", ID_HEADER_0, 20, 290, 760, 5, 0, 0x0, 0 }, 
   { IMAGE_CreateIndirect, "Image", ID_WIFI, 730, 7, 50, 50, 0, 0, 0 }, 
@@ -138,39 +175,6 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
 
 };
 
-/*********************************************************************
-*
-*       _aDialogCreate
-*/
-
-static const GUI_WIDGET_CREATE_INFO _aMenuCreate[] = {
-  { WINDOW_CreateIndirect, "Window", ID_MENU_WINDOW, 100, 60, 600, 400, 0, 0x0, 0 },
-  { TEXT_CreateIndirect, "MENU", ID_MENU_TITLE, 100, 20, 500, 120, 0, 0x64, 0 },
-  { HEADER_CreateIndirect, "Header", ID_MENU_HEADER, 10, 120, 580, 5, 0, 0x66, 0 }, 
-
-};
-
-/*********************************************************************
-*
-*       _cbMenu
-*/
-static void _cbMenu(WM_MESSAGE * pMsg) {
-  WM_HWIN hItem;
-  switch (pMsg->MsgId) {
-  case WM_INIT_DIALOG:
-    hItem = pMsg->hWin;
-    WINDOW_SetBkColor(hItem, GUI_BLACK); 
-    
-    hItem = WM_GetDialogItem(pMsg->hWin, ID_MENU_TITLE);
-    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0x008080FF));
-    TEXT_SetFont(hItem, &GUI_FontDigital_Font);
-    TEXT_SetText(hItem, "MENU");    
-    break;
-  default:
-    WM_DefaultProc(pMsg);
-    break;
-  }
-}
 /*********************************************************************
 *
 *       _cbDialog
@@ -183,7 +187,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
   static WM_HTIMER   TimeRefreshTimer = 0;    
   static WM_HTIMER   EnvRefreshTimer = 0;   
   
-  int Id, Node;
+  int Id, Node, woy;
   RTC_TimeTypeDef Time;  
   RTC_DateTypeDef Date; 
   
@@ -192,7 +196,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
   static uint8_t place_toggle = 0;
   static uint8_t time_speed = 0;
   static float Temperature = 25;
-  static float Humidity = 50;
+  static uint8_t menu_state = 0;
   displayFloatToInt_t out_value;    
   
   switch (pMsg->MsgId) {
@@ -204,12 +208,27 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEMPERATURE);
     TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0x008080FF));
     TEXT_SetFont(hItem, &GUI_FontDigital_Font);
-    TEXT_SetText(hItem, "--.- °C");
+    TEXT_SetText(hItem, "--.- °C"); 
     
-    hItem = WM_GetDialogItem(pMsg->hWin, ID_HUMIDITY);
-    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0x0000FFFF));
-    TEXT_SetFont(hItem, &GUI_FontDigital_Font);
-    TEXT_SetText(hItem, "-- %");
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_DAYWEEK);
+    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xCECECE));
+    TEXT_SetFont(hItem, &GUI_FontDigitGraphics60);
+    TEXT_SetText(hItem, "Sun."); 
+    
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_WEEK);
+    TEXT_SetTextColor(hItem, GUI_YELLOW);
+    TEXT_SetFont(hItem, &GUI_FontDigitGraphics60);
+    TEXT_SetText(hItem, "W48");    
+
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_DAY);
+    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xCECECE));
+    TEXT_SetFont(hItem, &GUI_FontDigitGraphics60);
+    TEXT_SetText(hItem, "29");     
+    
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_MONTH);
+    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xCECECE));
+    TEXT_SetFont(hItem, &GUI_FontDigitGraphics60);
+    TEXT_SetText(hItem, "11");      
     
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TIME_HOUR);
     TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0x00FFFF00));
@@ -243,7 +262,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     if(!TimeRefreshTimer) TimeRefreshTimer = WM_CreateTimer(pMsg->hWin, GUI_TIME_REFRESH_ID, TIME_REFRESH_PERIOD, 0);   
     if(!EnvRefreshTimer) EnvRefreshTimer = WM_CreateTimer(pMsg->hWin, GUI_ENV_REFRESH_ID, ENV_REFRESH_PERIOD, 0);     
     WM_SendMessageNoPara (pMsg->hWin, TIME_UPDATE);
-    WM_SendMessageNoPara (pMsg->hWin, ENV_UPDATE);
+    WM_SendMessageNoPara (pMsg->hWin, TEMPERATURE_UPDATE);
     break;
     
   case WIFI_DISCONNECTED:
@@ -272,28 +291,22 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     WM_ShowWin(hItem);    
     break;
     
-  case ENV_UPDATE:
+  case TEMPERATURE_UPDATE:
 
     if(place_toggle == 0) //Indoor
     {
       Temperature = bsp_get_temp();      
-      Humidity = bsp_get_humidity(); 
     }
     else
     {
       Temperature = itemperature;      
-      Humidity = ihumidity; 
     }
     
     floatToInt(Temperature, &out_value, 1);
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEMPERATURE);
-    snprintf(temp, sizeof(temp), "%d.%d C", out_value.out_int, out_value.out_dec);
+    snprintf(temp, sizeof(temp), "%d.%dC", out_value.out_int, out_value.out_dec);
     TEXT_SetText(hItem, temp);      
     
-    floatToInt(Humidity, &out_value, 0);
-    hItem = WM_GetDialogItem(pMsg->hWin, ID_HUMIDITY);
-    snprintf(temp, sizeof(temp), "%d %%", out_value.out_int);
-    TEXT_SetText(hItem, temp); 
     break;
     
   case TIME_UPDATE:
@@ -303,13 +316,29 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
       
       hItem = WM_GetDialogItem(pMsg->hWin, ID_TIME_HOUR);    
       snprintf(temp, sizeof(temp), "%02d", Time.Hours);
-      
       TEXT_SetText(hItem, temp);      
       
       hItem = WM_GetDialogItem(pMsg->hWin, ID_TIME_MIN);
-      snprintf(temp, sizeof(temp), "%02d", Time.Minutes);
-      
+      snprintf(temp, sizeof(temp), "%02d", Time.Minutes);      
       TEXT_SetText(hItem, temp);  
+
+      hItem = WM_GetDialogItem(pMsg->hWin, ID_DAYWEEK);
+      snprintf(temp, 5, "%s", dayofweek[Date.WeekDay > 0 ? (Date.WeekDay) - 1 : 0]);            
+      TEXT_SetText(hItem, temp); 
+      
+      hItem = WM_GetDialogItem(pMsg->hWin, ID_DAY);
+      snprintf(temp, 5, "%02d", Date.Date);            
+      TEXT_SetText(hItem, temp);  
+      
+      hItem = WM_GetDialogItem(pMsg->hWin, ID_MONTH);
+      snprintf(temp, 5, "%02d", Date.Month);
+      TEXT_SetText(hItem, temp);  
+      
+      woy = rtcCalcYearWeek(Date.Year + 2000, Date.Month, Date.Date, Date.WeekDay > 0 ? (Date.WeekDay) - 1 : 0);
+      
+      hItem = WM_GetDialogItem(pMsg->hWin, ID_WEEK);
+      snprintf(temp, 5, "W%02d", woy);
+      TEXT_SetText(hItem, temp); 
       
     break;     
     
@@ -387,7 +416,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     
     if (Id == GUI_ENV_REFRESH_ID)
     {
-      WM_SendMessageNoPara (pMsg->hWin, ENV_UPDATE);
+      WM_SendMessageNoPara (pMsg->hWin, TEMPERATURE_UPDATE);
       WM_RestartTimer(pMsg->Data.v, ENV_REFRESH_PERIOD);      
     }  
     
@@ -413,7 +442,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
         if(!mTimer) mTimer = WM_CreateTimer(pMsg->hWin, TIME_MIN_TIMER_ID, TIME_SETTING_REFRESH_PERIOD, 0);           
       } 
 
-      if((Id == ID_TEMPERATURE)||(Id == ID_HUMIDITY))
+      if(Id == ID_TEMPERATURE)
       {        
         hItem = WM_GetDialogItem(pMsg->hWin, ID_INDOOR);
         if (place_toggle)
@@ -422,19 +451,21 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
           IMAGE_SetBitmap(hItem, &bmicon_outdoor);
         
         place_toggle = 1- place_toggle;
-        WM_SendMessageNoPara (pMsg->hWin, ENV_UPDATE);
+        WM_SendMessageNoPara (pMsg->hWin, TEMPERATURE_UPDATE);
       }
       if(Id == ID_MENU)
       { 
-        if(!WM_IsVisible(hWinMenu))
+        if (menu_state)
         {
-          hWinMenu = GUI_CreateDialogBox(_aMenuCreate, GUI_COUNTOF(_aMenuCreate), _cbMenu, pMsg->hWin, 0, 0);
+          hItem = WM_GetDialogItem(pMsg->hWin, ID_MENU);
+          IMAGE_SetBitmap(hItem, &bmicon_menu);  
         }
         else
         {
-          if(hWinMenu) GUI_EndDialog(hWinMenu, 0);
-          hWinMenu = NULL;
+          hItem = WM_GetDialogItem(pMsg->hWin, ID_MENU);
+          IMAGE_SetBitmap(hItem, &bmicon_home);  
         }
+        menu_state = 1- menu_state;
       }
       
     }

@@ -14,7 +14,7 @@
 **********************************************************************
 *                                                                    *
 * Source file: icon_indoor                                           *
-* Dimensions:  40 * 40                                               *
+* Dimensions:  50 * 40                                               *
 * NumColors:   2                                                     *
 *                                                                    *
 **********************************************************************
@@ -47,8 +47,9 @@ static GUI_CONST_STORAGE GUI_COLOR _Colorsicon_indoor[] = {
 #if (GUI_USE_ARGB == 0)
   0xCECECE, 0x000000
 #else
-  0xFFCECECE,0xFF000000
+  0xFFCECECE, 0xFF000000
 #endif
+
 };
 
 static GUI_CONST_STORAGE GUI_LOGPALETTE _Palicon_indoor = {
@@ -56,59 +57,58 @@ static GUI_CONST_STORAGE GUI_LOGPALETTE _Palicon_indoor = {
   0,  // No transparency
   &_Colorsicon_indoor[0]
 };
-
 #if defined ( __ICCARM__ )
 #pragma location="ExtQSPIFlashSection" 
 #else
 __attribute__((section(".ExtQSPIFlashSection")))  
 #endif
 static GUI_CONST_STORAGE unsigned char _acicon_indoor[] = {
-  XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX,
-  XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX,
-  XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX,
-  XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX,
-  XXXXXXXX, XXXXXXXX, XX____XX, XXXX____, __XXXXXX,
-  XXXXXXXX, XXXXXXXX, X______X, XXXX____, __XXXXXX,
-  XXXXXXXX, XXXXXXXX, ________, XXXX____, __XXXXXX,
-  XXXXXXXX, XXXXXXX_, ________, _XXX____, __XXXXXX,
-  XXXXXXXX, XXXXXX__, ________, __XX____, __XXXXXX,
-  XXXXXXXX, XXXX____, ___XX___, ________, __XXXXXX,
-  XXXXXXXX, XXX_____, _XXXXXX_, ________, __XXXXXX,
-  XXXXXXXX, XX______, XXX__XXX, ________, __XXXXXX,
-  XXXXXXXX, X______X, XX____XX, X_______, __XXXXXX,
-  XXXXXXXX, ______XX, ________, XX______, __XXXXXX,
-  XXXXXX__, _____XX_, ________, _XX_____, __XXXXXX,
-  XXXXX___, ___XXX__, ________, __XXX___, ___XXXXX,
-  XXXX____, __XXX___, ________, ___XXX__, ____XXXX,
-  XXX_____, _XX_____, ________, _____XX_, _____XXX,
-  XX______, XX______, ________, ______XX, ______XX,
-  _______X, X_______, ________, _______X, X_______,
-  _____XXX, ________, ________, ________, XXX_____,
-  X___XXX_, ________, ________, ________, _XXX___X,
-  XX_XXX__, ________, ________, ________, __XXX_XX,
-  XXXXXX__, ________, ________, ________, __XXXXXX,
-  XXXXXX__, ________, ________, ________, __XXXXXX,
-  XXXXXX__, ________, ________, ________, __XXXXXX,
-  XXXXXX__, ________, _XXXXXX_, ________, __XXXXXX,
-  XXXXXX__, ________, _XXXXXX_, ________, __XXXXXX,
-  XXXXXX__, ________, _XXXXXX_, ________, __XXXXXX,
-  XXXXXX__, ________, _XXXXXX_, ________, __XXXXXX,
-  XXXXXX__, ________, _XXXXXX_, ________, __XXXXXX,
-  XXXXXX__, ________, _XXXXXX_, ________, __XXXXXX,
-  XXXXXX__, ________, _XXXXXX_, ________, __XXXXXX,
-  XXXXXX__, ________, _XXXXXX_, ________, __XXXXXX,
-  XXXXXX__, ________, _XXXXXX_, ________, __XXXXXX,
-  XXXXXX__, ________, _XXXXXX_, ________, __XXXXXX,
-  XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX,
-  XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX,
-  XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX,
-  XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX
+  XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XX______,
+  XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XX______,
+  XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XX______,
+  XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XX______,
+  XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XX______,
+  XXXXXXXX, XXXXXXXX, XXXXXXXX, __XXXXXX, XXXXXXXX, XXXXXXXX, XX______,
+  XXXXXXXX, XXXXXXXX, XXXXXX__, ___XXXXX, XXXXXXXX, XXXXXXXX, XX______,
+  XXXXXXXX, XXXXXXXX, XXXXX___, _____XXX, XXXXXXXX, XXXXXXXX, XX______,
+  XXXXXXXX, XXXXXXXX, XXXX____, ______XX, XX_____X, XXXXXXXX, XX______,
+  XXXXXXXX, XXXXXXXX, XXX_____, _______X, X______X, XXXXXXXX, XX______,
+  XXXXXXXX, XXXXXXXX, X_______, ________, X______X, XXXXXXXX, XX______,
+  XXXXXXXX, XXXXXXXX, ________, ________, _______X, XXXXXXXX, XX______,
+  XXXXXXXX, XXXXXXX_, ________, ________, _______X, XXXXXXXX, XX______,
+  XXXXXXXX, XXXXXX__, ________, ________, _______X, XXXXXXXX, XX______,
+  XXXXXXXX, XXXXX___, ________, ________, _______X, XXXXXXXX, XX______,
+  XXXXXXXX, XXX_____, ________, ________, _______X, XXXXXXXX, XX______,
+  XXXXXXXX, XX______, ______XX, XXX_____, _______X, XXXXXXXX, XX______,
+  XXXXXXXX, X_______, _____XXX, XXXX____, ________, XXXXXXXX, XX______,
+  XXXXXXXX, ________, _____XXX, __XXX___, ________, __XXXXXX, XX______,
+  XXXXXXX_, ________, _____XXX, __XXX___, ________, ___XXXXX, XX______,
+  XXXXXX__, ________, _____XXX, __XXX___, ________, ___XXXXX, XX______,
+  XXXXXXX_, ________, _____XXX, __XXX___, ________, ___XXXXX, XX______,
+  XXXXXXXX, XXXX____, _____XXX, __XXX___, ______XX, XXXXXXXX, XX______,
+  XXXXXXXX, XXXX____, _____XXX, X_XXX___, ______XX, XXXXXXXX, XX______,
+  XXXXXXXX, XXXX____, _____XXX, X_XXX___, ______XX, XXXXXXXX, XX______,
+  XXXXXXXX, XXXX____, _____XXX, X_XXX___, ______XX, XXXXXXXX, XX______,
+  XXXXXXXX, XXXX____, _____XXX, X_XXX___, ______XX, XXXXXXXX, XX______,
+  XXXXXXXX, XXXX____, _____XXX, X_XXX___, ______XX, XXXXXXXX, XX______,
+  XXXXXXXX, XXXX____, ____XXX_, XX_XXX__, ______XX, XXXXXXXX, XX______,
+  XXXXXXXX, XXXX____, ____XX_X, XXXXXX__, ______XX, XXXXXXXX, XX______,
+  XXXXXXXX, XXXX____, ____XX_X, XX_XXX__, ______XX, XXXXXXXX, XX______,
+  XXXXXXXX, XXXX____, ____XXXX, __XXX___, ______XX, XXXXXXXX, XX______,
+  XXXXXXXX, XXXX____, _____XXX, XXXXX___, ______XX, XXXXXXXX, XX______,
+  XXXXXXXX, XXXX____, _______X, XXX_____, _____XXX, XXXXXXXX, XX______,
+  XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XX______,
+  XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XX______,
+  XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XX______,
+  XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XX______,
+  XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XX______,
+  XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XX______
 };
 
 GUI_CONST_STORAGE GUI_BITMAP bmicon_indoor = {
-  40, // xSize
+  50, // xSize
   40, // ySize
-  5, // BytesPerLine
+  7, // BytesPerLine
   1, // BitsPerPixel
   _acicon_indoor,  // Pointer to picture data (indices)
   &_Palicon_indoor   // Pointer to palette

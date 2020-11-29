@@ -1127,6 +1127,12 @@
                     <name>$PROJ_DIR$\..\Core\Src\Digital_Font.c</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\Core\Src\DigitGraphics60.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\Core\Src\icon_home.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\Core\Src\icon_indoor.c</name>
                 </file>
                 <file>

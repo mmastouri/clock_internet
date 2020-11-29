@@ -213,11 +213,12 @@ ESP_WIFI_Status_t WIFI_SyncClock (ESP_WIFI_Object_t * pxObj){
                             TIME_SOURCE_HTTP_PORT, TIME_SOURCE_HTTP_PROTO, "Date: ", &dateStr)) == ESP_WIFI_STATUS_OK)
   {
     
-    char day_week[8], month[4];
+    char dow[8], month[4];
     int day, year, hour, min, sec;
     RTC_TimeTypeDef sTime;
+    RTC_DateTypeDef sDate;
     
-    int count = sscanf(dateStr, "Date: %s %d %s %d %02d:%02d:%02d ", day_week, &day, month, &year, &hour, &min, &sec); 
+    int count = sscanf(dateStr, "Date: %s %d %s %d %02d:%02d:%02d ", dow, &day, month, &year, &hour, &min, &sec); 
     
     sTime.Hours = (hour + 1) % 24;
     sTime.Minutes = min;
@@ -225,6 +226,31 @@ ESP_WIFI_Status_t WIFI_SyncClock (ESP_WIFI_Object_t * pxObj){
     sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
     sTime.StoreOperation = RTC_STOREOPERATION_RESET;
     k_SetTime(&sTime) ;
+    
+    if (strcmp(dow, "Mon,") == 0) { sDate.WeekDay = RTC_WEEKDAY_MONDAY; } else
+      if (strcmp(dow, "Tue,") == 0) { sDate.WeekDay = RTC_WEEKDAY_TUESDAY; } else
+        if (strcmp(dow, "Wed,") == 0) { sDate.WeekDay = RTC_WEEKDAY_WEDNESDAY; } else
+          if (strcmp(dow, "Thu,") == 0) { sDate.WeekDay = RTC_WEEKDAY_THURSDAY; } else
+            if (strcmp(dow, "Fri,") == 0) { sDate.WeekDay = RTC_WEEKDAY_FRIDAY; } else
+              if (strcmp(dow, "Sat,") == 0) { sDate.WeekDay = RTC_WEEKDAY_SATURDAY; } else
+                if (strcmp(dow, "Sun,") == 0) { sDate.WeekDay = RTC_WEEKDAY_SUNDAY; } 
+    
+    if (strcmp(month, "Jan") == 0) { sDate.Month = RTC_MONTH_JANUARY; } else
+      if (strcmp(month, "Feb") == 0) { sDate.Month = RTC_MONTH_FEBRUARY; } else
+        if (strcmp(month, "Mar") == 0) { sDate.Month = RTC_MONTH_MARCH; } else
+          if (strcmp(month, "Apr") == 0) { sDate.Month = RTC_MONTH_APRIL; } else
+            if (strcmp(month, "May") == 0) { sDate.Month = RTC_MONTH_MAY; } else
+              if (strcmp(month, "Jun") == 0) { sDate.Month = RTC_MONTH_JUNE; } else
+                if (strcmp(month, "Jul") == 0) { sDate.Month = RTC_MONTH_JULY; } else
+                  if (strcmp(month, "Aug") == 0) { sDate.Month = RTC_MONTH_AUGUST; } else
+                    if (strcmp(month, "Sep") == 0) { sDate.Month = RTC_MONTH_SEPTEMBER; } else
+                      if (strcmp(month, "Oct") == 0) { sDate.Month = RTC_MONTH_OCTOBER; } else
+                        if (strcmp(month, "Nov") == 0) { sDate.Month = RTC_MONTH_NOVEMBER; } else
+                          if (strcmp(month, "Dec") == 0) { sDate.Month = RTC_MONTH_DECEMBER; } 
+    
+    sDate.Date = day;
+    sDate.Year = year - 2000;
+    k_SetDate(&sDate) ;
     UI_ForceUpdateTime();
   }
   return xRet;
