@@ -1,11 +1,54 @@
 main.pbi: \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Core\Inc\rtc.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\DLib_Product_stdlib.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\ycheck.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stdlib.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stdio.h \
   D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\WiFi\esp8266_wifi.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Core\Inc\rtc.h \
   D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Core\Inc\app.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\KNOB.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\TREEVIEW.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\TEXT.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\SWIPELIST.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\SPINBOX.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\SLIDER.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\RADIO.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\PROGBAR.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\DIALOG.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\MULTIPAGE.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\MULTIEDIT.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\MENU.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\LISTWHEEL.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\LISTVIEW.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\IMAGE.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\ICONVIEW.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\HEADER.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\FRAMEWIN.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\EDIT.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\LISTBOX.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\DROPDOWN.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\CHOOSEFILE.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\CHOOSECOLOR.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\CHECKBOX.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\CALENDAR.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\BUTTON.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\WIDGET.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\SCROLLBAR.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\GUI_Debug.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\LCD_Protected.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\GUI_Private.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\WM_Intern.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\DIALOG_Intern.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\GRAPH.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\WM_GUI.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\WM.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\GUI_Version.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\Global.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\LCD.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\GUI_Type.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Gui\Target\GUIConf.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\GUI_ConfDefaults.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\GUI.h \
   D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Core\Inc\ui.h \
   D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\Components\stts751\stts751_reg.h \
   D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\Components\stts751\stts751.h \
@@ -124,29 +167,11 @@ main.pbi: \
   D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\portable.h \
   D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h \
   D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Config\FreeRTOSConfig.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stdint.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Core\Inc\mtouch.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\WIDGET.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\SCROLLBAR.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\GUI_Debug.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\LCD_Protected.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\GUI_Private.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\WM_Intern.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\DIALOG_Intern.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\GRAPH.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\WM_GUI.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\WM.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\GUI_Version.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\Global.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\LCD.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\GUI_Type.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Gui\Target\GUIConf.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\GUI_ConfDefaults.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\ysizet.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\DLib_Product.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\DLib_Defaults.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\yvals.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stddef.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\GUI.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
   D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\Core\Src\main.c

@@ -1041,7 +1041,7 @@ int LCD_X_DisplayDriver(unsigned LayerIndex, unsigned Cmd, void * pData)
   
   LCD_X_SHOWBUFFER_INFO * p;  
   switch (Cmd) 
-  {   
+  {      
   case LCD_X_SETORG: 
     addr = layer_prop[LayerIndex].address + ((LCD_X_SETORG_INFO *)pData)->yPos * layer_prop[LayerIndex].xSize * layer_prop[LayerIndex].BytesPerPixel;
     HAL_LTDC_SetAddress(&hltdc_disco, addr, LayerIndex);
@@ -1060,6 +1060,7 @@ int LCD_X_DisplayDriver(unsigned LayerIndex, unsigned Cmd, void * pData)
     break;
     
   case LCD_X_OFF: 
+
     __HAL_LTDC_DISABLE(&hltdc_disco);
     break;
     
@@ -1090,6 +1091,7 @@ int LCD_X_DisplayDriver(unsigned LayerIndex, unsigned Cmd, void * pData)
     break;
     
   case LCD_X_SETSIZE:
+  
     GUI_GetLayerPosEx(LayerIndex, &xPos, &yPos);
     layer_prop[LayerIndex].xSize = ((LCD_X_SETSIZE_INFO *)pData)->xSize;
     layer_prop[LayerIndex].ySize = ((LCD_X_SETSIZE_INFO *)pData)->ySize;

@@ -82,8 +82,8 @@
 **********************************************************************
 */
 
-WM_HWIN hMainFrame, hWinMenu;
-uint32_t enable_setting = 0;
+static WM_HWIN hMainFrame, hWinMenu;
+static uint32_t ui_enable_timeh_setting = 0;
 extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigital_Font;
 extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigita_Clock;
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_wifi;
@@ -315,38 +315,46 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
   case WM_TIMER:  
     Id = WM_GetTimerId(pMsg->Data.v);
     
-    if((Id == TIME_HOUR_TIMER_ID) || (Id == TIME_MIN_TIMER_ID))
+    if(ui_enable_timeh_setting)
     {
-      WM_RestartTimer(pMsg->Data.v, TIME_SETTING_REFRESH_PERIOD);
-      k_GetTime(&Time) ; 
-      k_GetDate(&Date) ;    
-      
-      
-      if(Id == TIME_HOUR_TIMER_ID) //hour
-      {        
-        Time.Hours++;
-        
-        if(Time.Hours >= 24)
-        {
-          Time.Hours = 0;
-        }        
-        k_SetTime(&Time) ; 
-        WM_SendMessageNoPara (pMsg->hWin, TIME_UPDATE);
-      }
-      else if(Id == TIME_MIN_TIMER_ID) //min
+      if((Id == TIME_HOUR_TIMER_ID) || (Id == TIME_MIN_TIMER_ID))
       {
-        Time.Minutes++;
-        if(Time.Minutes >= 60)
-        {
-          Time.Minutes = 0;
-          Time.Seconds = 0;          
-        }
+        WM_RestartTimer(pMsg->Data.v, TIME_SETTING_REFRESH_PERIOD);
+        k_GetTime(&Time) ; 
+        k_GetDate(&Date) ;    
         
-        k_SetTime(&Time) ; 
-        WM_SendMessageNoPara (pMsg->hWin, TIME_UPDATE);
-      } 
+        
+        if(Id == TIME_HOUR_TIMER_ID) //hour
+        {        
+          Time.Hours++;
+          
+          if(Time.Hours >= 24)
+          {
+            Time.Hours = 0;
+          }        
+          k_SetTime(&Time) ; 
+          WM_SendMessageNoPara (pMsg->hWin, TIME_UPDATE);
+        }
+        else if(Id == TIME_MIN_TIMER_ID) //min
+        {
+          Time.Minutes++;
+          if(Time.Minutes >= 60)
+          {
+            Time.Minutes = 0;
+            Time.Seconds = 0;          
+          }
+          
+          k_SetTime(&Time) ; 
+          WM_SendMessageNoPara (pMsg->hWin, TIME_UPDATE);
+        } 
+      }
     }
-    else if (Id == WIFI_CONNECTING_TIMER_ID)
+    else
+    {
+      //TODO : control on Touch
+    }
+    
+    if (Id == WIFI_CONNECTING_TIMER_ID)
     {
       hItem = WM_GetDialogItem(pMsg->hWin, ID_WIFI);
       if(WM_IsVisible(hItem))
@@ -356,9 +364,9 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
       WM_RestartTimer(pMsg->Data.v, WIFI_REFRESH_PERIOD);
     }
     
-    else if (Id == GUI_TIME_REFRESH_ID)
+    if (Id == GUI_TIME_REFRESH_ID)
     {  
-
+      
       WM_SendMessageNoPara (pMsg->hWin, TIME_UPDATE);
       
       hItem = WM_GetDialogItem(pMsg->hWin, ID_DOT); 
@@ -372,7 +380,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
       WM_RestartTimer(pMsg->Data.v, TIME_REFRESH_PERIOD);
     }
     
-    else if (Id == GUI_ENV_REFRESH_ID)
+    if (Id == GUI_ENV_REFRESH_ID)
     {
       WM_SendMessageNoPara (pMsg->hWin, ENV_UPDATE);
       WM_RestartTimer(pMsg->Data.v, ENV_REFRESH_PERIOD);      
@@ -390,17 +398,16 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
       
       Id    = WM_GetId(pMsg->hWinSrc);    /* Id of widget */
       
-      if(enable_setting)
+      
+      if(Id == ID_TIME_HOUR)
       {
-        if(Id == ID_TIME_HOUR)
-        {
-          if(!hTimer) hTimer = WM_CreateTimer(pMsg->hWin, TIME_HOUR_TIMER_ID, TIME_SETTING_REFRESH_PERIOD, 0);         
-        }
-        if(Id == ID_TIME_MIN)
-        {
-          if(!mTimer) mTimer = WM_CreateTimer(pMsg->hWin, TIME_MIN_TIMER_ID, TIME_SETTING_REFRESH_PERIOD, 0);           
-        } 
+        if(!hTimer) hTimer = WM_CreateTimer(pMsg->hWin, TIME_HOUR_TIMER_ID, TIME_SETTING_REFRESH_PERIOD, 0);         
       }
+      if(Id == ID_TIME_MIN)
+      {
+        if(!mTimer) mTimer = WM_CreateTimer(pMsg->hWin, TIME_MIN_TIMER_ID, TIME_SETTING_REFRESH_PERIOD, 0);           
+      } 
+
       
       if((Id == ID_TEMPERATURE)||(Id == ID_HUMIDITY))
       {        
@@ -430,17 +437,19 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     
     if(Node == WM_NOTIFICATION_RELEASED)
     {
-      
-      Id    = WM_GetId(pMsg->hWinSrc);    /* Id of widget */
-      if((Id == ID_TIME_HOUR) && (enable_setting))
+      if(ui_enable_timeh_setting)
       {
-        WM_DeleteTimer(hTimer); 
-        hTimer = 0;
-      }
-      if((Id == ID_TIME_MIN) && (enable_setting))
-      {
-        WM_DeleteTimer(mTimer); 
-        mTimer = 0;
+        Id    = WM_GetId(pMsg->hWinSrc);    /* Id of widget */
+        if(Id == ID_TIME_HOUR)
+        {
+          WM_DeleteTimer(hTimer); 
+          hTimer = 0;
+        }
+        if(Id == ID_TIME_MIN)
+        {
+          WM_DeleteTimer(mTimer); 
+          mTimer = 0;
+        }
       }
     
     }
@@ -459,7 +468,7 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
 void ui_set_setting_mode (uint32_t enable)
 {
   WM_HWIN hItem;  
-  enable_setting = enable;
+  ui_enable_timeh_setting = enable;
   
   if(enable)
   {
@@ -566,11 +575,16 @@ void UI_Init(void) {
   /* Initialize the SDRAM */
  BSP_SDRAM_Init();
  GUI_Init(); 
+ LCD_Off();
+ GUI_Clear();  
  WM_SetCreateFlags(WM_CF_MEMDEV | WM_CF_MEMDEV_ON_REDRAW);
  WM_MULTIBUF_Enable(1);
  WM_SetCallback(WM_GetDesktopWindowEx(0), _cbBk);
   
  GUI_SelectLayer(1);
+ GUI_Clear(); 
+ GUI_Exec(); 
  UI_CreateMainFame();
+ LCD_On();
 }
 /*************************** End of file ****************************/

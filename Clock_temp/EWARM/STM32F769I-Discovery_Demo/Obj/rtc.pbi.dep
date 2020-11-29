@@ -1,177 +1,190 @@
 rtc.pbi: \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\Components\stts751\stts751_reg.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\Components\stts751\stts751.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\Components\lps22hh\lps22hh_reg.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\Components\lps22hh\lps22hh.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\Components\hts221\hts221_reg.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\Components\hts221\hts221.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\Components\Common\env_sensor.h \
-  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\DLib_Product_stdlib.h \
-  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\ycheck.h \
-  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stdlib.h \
-  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stdio.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\WiFi\esp8266_wifi.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Core\Inc\app.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\KNOB.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\TREEVIEW.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\TEXT.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\SWIPELIST.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\SPINBOX.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\SLIDER.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\RADIO.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\PROGBAR.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\DIALOG.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\MULTIPAGE.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\MULTIEDIT.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\MENU.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\LISTWHEEL.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\LISTVIEW.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\IMAGE.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\ICONVIEW.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\HEADER.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\FRAMEWIN.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\EDIT.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\LISTBOX.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\DROPDOWN.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\CHOOSEFILE.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\CHOOSECOLOR.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\CHECKBOX.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\CALENDAR.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\BUTTON.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\WIDGET.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\SCROLLBAR.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\GUI_Debug.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\LCD_Protected.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\GUI_Private.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\WM_Intern.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\DIALOG_Intern.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\GRAPH.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\WM_GUI.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\WM.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\GUI_Version.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\Global.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\LCD.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\GUI_Type.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Gui\Target\GUIConf.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\GUI_ConfDefaults.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\GUI.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Core\Inc\ui.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Core\Inc\bsp.h \
-  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\CMSIS\DSP\Include\arm_common_tables.h \
-  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\DLib_float_setup.h \
-  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\math.h \
-  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\DLib_Product_string.h \
-  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\string.h \
-  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\CMSIS\Core\Include\core_cm7.h \
-  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\CMSIS\DSP\Include\arm_math.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\list.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\mpu_wrappers.h \
-  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\iar_intrinsics_common.h \
-  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\intrinsics.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM7\r0p1\portmacro.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\deprecated_definitions.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\portable.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\projdefs.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Config\FreeRTOSConfig.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Core\Inc\main.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Core\Inc\iks01a3_conf.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\IKS01A3\iks01a3_env_sensors.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\STM32F769I-Discovery\..\Components\mx25l512\mx25l512.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\STM32F769I-Discovery\stm32f769i_discovery_qspi.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\STM32F769I-Discovery\..\Components\ft6x06\..\Common\ts.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\STM32F769I-Discovery\..\Components\ft6x06\ft6x06.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\STM32F769I-Discovery\stm32f769i_discovery_ts.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\STM32F769I-Discovery\stm32f769i_discovery_sdram.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\STM32F769I-Discovery\stm32f769i_discovery.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_mdios.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_jpeg.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_dfsdm.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_hcd.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_pcd_ex.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_ll_usb.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_pcd.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_wwdg.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_smartcard_ex.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_smartcard.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_irda_ex.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_irda.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_usart_ex.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_usart.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_uart_ex.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_uart.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_tim_ex.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_tim.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_spi_ex.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_spi.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_spdifrx.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_ll_sdmmc.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_sd.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_sai.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_rtc_ex.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_rtc.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_rng.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_qspi.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_pwr_ex.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_pwr.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_dsi.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_ltdc_ex.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_ltdc.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_lptim.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_iwdg.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_i2s.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_i2c_ex.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_i2c.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_hash.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_sdram.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_nand.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_nor.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_ll_fmc.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_sram.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_flash_ex.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_flash.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_eth.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_dcmi.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_dac_ex.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_dac.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_dma2d.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_cryp.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_crc_ex.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_crc.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_cec.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_can.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_adc_ex.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_adc.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_cortex.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_dma_ex.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_dma.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_gpio_ex.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_gpio.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_rcc_ex.h \
-  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\ysizet.h \
-  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stddef.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\CMSIS\Device\ST\STM32F7xx\Include\system_stm32f7xx.h \
-  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\CMSIS\Core\Include\mpu_armv7.h \
-  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\iccarm_builtin.h \
-  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\CMSIS\Core\Include\cmsis_iccarm.h \
-  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\CMSIS\Core\Include\cmsis_compiler.h \
-  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\CMSIS\Core\Include\cmsis_version.h \
-  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\DLib_Product.h \
-  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\DLib_Defaults.h \
-  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\yvals.h \
-  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stdint.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\CMSIS\Device\ST\STM32F7xx\Include\stm32f769xx.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\CMSIS\Device\ST\STM32F7xx\Include\stm32f7xx.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_def.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_rcc.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Config\stm32f7xx_hal_conf.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\Core\Src\rtc.c \
   D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Core\Inc\rtc.h \
-  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\Core\Src\rtc.c
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Core\Inc/bsp.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Config\stm32f7xx_hal_conf.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_rcc.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc/stm32f7xx_hal_def.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\CMSIS\Device\ST\STM32F7xx\Include\stm32f7xx.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\CMSIS\Device\ST\STM32F7xx\Include/stm32f769xx.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\CMSIS\Core\Include\core_cm7.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stdint.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\ycheck.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\yvals.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\DLib_Defaults.h \
+  C:\\Program\ Files\ (x86)\\IAR\ Systems\\Embedded\ Workbench\ 8.3\\arm\\inc\\c\\DLib_Config_Full.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\DLib_Product.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\CMSIS\Core\Include/cmsis_version.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\CMSIS\Core\Include/cmsis_compiler.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\CMSIS\Core\Include\cmsis_iccarm.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\iccarm_builtin.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\CMSIS\Core\Include/mpu_armv7.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\CMSIS\Device\ST\STM32F7xx\Include/system_stm32f7xx.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc/Legacy/stm32_hal_legacy.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stddef.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\ysizet.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc/stm32f7xx_hal_rcc_ex.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_gpio.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc/stm32f7xx_hal_gpio_ex.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_dma.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc/stm32f7xx_hal_dma_ex.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_cortex.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_adc.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc/stm32f7xx_hal_adc_ex.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_can.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_cec.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_crc.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc/stm32f7xx_hal_crc_ex.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_cryp.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_dma2d.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_dac.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc/stm32f7xx_hal_dac_ex.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_dcmi.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_eth.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_flash.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc/stm32f7xx_hal_flash_ex.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_sram.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc/stm32f7xx_ll_fmc.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_nor.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_nand.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_sdram.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_hash.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_i2c.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc/stm32f7xx_hal_i2c_ex.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_i2s.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_iwdg.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_lptim.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_ltdc.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc/stm32f7xx_hal_ltdc_ex.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc/stm32f7xx_hal_dsi.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_pwr.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc/stm32f7xx_hal_pwr_ex.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_qspi.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_rng.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_rtc.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc/stm32f7xx_hal_rtc_ex.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_sai.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_sd.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc/stm32f7xx_ll_sdmmc.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_spdifrx.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_spi.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc/stm32f7xx_hal_spi_ex.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_tim.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc/stm32f7xx_hal_tim_ex.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_uart.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc/stm32f7xx_hal_uart_ex.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_usart.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc/stm32f7xx_hal_usart_ex.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_irda.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc/stm32f7xx_hal_irda_ex.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_smartcard.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc/stm32f7xx_hal_smartcard_ex.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_wwdg.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_pcd.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc/stm32f7xx_ll_usb.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc/stm32f7xx_hal_pcd_ex.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_hcd.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_dfsdm.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_dsi.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_jpeg.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal_mdios.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\STM32F769I-Discovery\stm32f769i_discovery.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\STM32F769I-Discovery\stm32f769i_discovery_sdram.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\STM32F769I-Discovery\stm32f769i_discovery_ts.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\STM32F769I-Discovery/stm32f769i_discovery.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\STM32F769I-Discovery/../Components/ft6x06/ft6x06.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\STM32F769I-Discovery/../Components/ft6x06/../Common/ts.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\STM32F769I-Discovery\stm32f769i_discovery_qspi.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\STM32F769I-Discovery/../Components/mx25l512/mx25l512.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\IKS01A3\iks01a3_env_sensors.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Core\Inc\iks01a3_conf.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Core\Inc/main.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\FreeRTOS.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Config\FreeRTOSConfig.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include/projdefs.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include/portable.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include/deprecated_definitions.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM7\r0p1\portmacro.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\intrinsics.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\iar_intrinsics_common.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include/mpu_wrappers.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\timers.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include/task.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include/list.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\task.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\queue.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\semphr.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include/queue.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include\event_groups.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\Third_Party\FreeRTOS\Source\include/timers.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\CMSIS\DSP\Include\arm_math.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\string.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\DLib_Product_string.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\math.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\DLib_float_setup.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\CMSIS\DSP\Include\arm_common_tables.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\CMSIS\DSP\Include/arm_math.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Core\Inc/ui.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\CMSIS\Core\Include\cmsis_compiler.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\GUI.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/GUI_ConfDefaults.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Gui\Target\GUIConf.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/GUI_Type.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/LCD.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/Global.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/GUI_Version.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\WM.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/WM_GUI.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/GUI.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\GRAPH.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/WM.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/DIALOG_Intern.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/WIDGET.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/WM_Intern.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/GUI_Private.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/LCD_Protected.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/GUI_Debug.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/SCROLLBAR.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc\DIALOG.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/BUTTON.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/CALENDAR.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/CHECKBOX.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/CHOOSECOLOR.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/CHOOSEFILE.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/DROPDOWN.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/LISTBOX.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/EDIT.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/FRAMEWIN.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/GRAPH.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/HEADER.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/ICONVIEW.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/IMAGE.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/LISTVIEW.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/LISTWHEEL.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/MENU.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/MULTIEDIT.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/MULTIPAGE.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/DIALOG.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/PROGBAR.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/RADIO.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/SLIDER.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/SPINBOX.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/SWIPELIST.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/TEXT.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/TREEVIEW.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/KNOB.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Core\Inc/app.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Core\Inc/rtc.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\WiFi\esp8266_wifi.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stdio.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stdlib.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\DLib_Product_stdlib.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\Components\Common\env_sensor.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\Components\hts221\hts221.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\Components\hts221/hts221_reg.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\Components\lps22hh\lps22hh.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\Components\lps22hh/lps22hh_reg.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\Components\stts751\stts751.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Drivers\BSP\Components\stts751/stts751_reg.h

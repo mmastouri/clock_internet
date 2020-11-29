@@ -176,6 +176,7 @@ iks01a3_env_sensors.pbi: \
   D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/TREEVIEW.h \
   D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\..\..\..\..\Middlewares\ST\STemWin\inc/KNOB.h \
   D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Core\Inc/app.h \
+  D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\Core\Inc/rtc.h \
   D:\F7Disco\Projects\STM32F769I-Discovery\misc\Clock_temp\EWARM\..\WiFi\esp8266_wifi.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stdio.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.3\arm\inc\c\stdlib.h \
