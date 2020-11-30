@@ -141,6 +141,30 @@ extern GUI_CONST_STORAGE GUI_BITMAP bmicon_home;
 
 extern float itemperature;
 extern float ihumidity;
+
+
+
+/*********************************************************************
+*
+*       _InitData
+*/
+static void _InitData(WINDOW_DATA * pData) {
+  int i, NumItems, xSizeScreen, xSize;
+
+  NumItems = GUI_COUNTOF(pData->aPara);
+  xSizeScreen = LCD_GetXSize();
+  xSize = xSizeScreen / NumItems;
+  for (i = 0; i < NumItems; i++) {
+    pData->aPara[i].xSizeScreen = xSizeScreen;
+    pData->aPara[i].xSize       = xSize;
+    pData->aPara[i].xPos        = (xSize * i) + xSize / 2;
+    pData->aPara[i].pData       = pData;
+    pData->aPara[i].Index       = i;
+  }
+}
+
+
+
 /*********************************************************************
 *
 *       Static code
@@ -191,7 +215,7 @@ int rtcCalcYearWeek(int iYear, int iMonth, int iDay, int iWeekDay)
 *       _aMainDialogCreate
 */
 static const GUI_WIDGET_CREATE_INFO _aMainDialogCreate[] = {  
-  { WINDOW_CreateIndirect, "Window", ID_WINDOW, 0, 0, 800, 480, (U16)(WM_CF_MOTION_X | WM_CF_SHOW), 0x0, sizeof(WINDOW_DATA *)},
+  { WINDOW_CreateIndirect, "Window", ID_WINDOW, 0, 0, 800, 480, 0, 0, 0 }, 
   { IMAGE_CreateIndirect, "Image", ID_WIFI, 730, 7, 50, 50, 0, 0, 0 }, 
   { IMAGE_CreateIndirect, "Image", ID_INTERNET, 680, 7, 50, 50, 0, 0, 0 },     
   { IMAGE_CreateIndirect, "Image", ID_MENU, 30, 7, 50, 50, 0, 0, 0 },   
@@ -203,7 +227,7 @@ static const GUI_WIDGET_CREATE_INFO _aMainDialogCreate[] = {
 };
 
 static const GUI_WIDGET_CREATE_INFO _aHomeDialogCreate[] = {
-  { WINDOW_CreateIndirect, "Window", ID_WINDOW, 0, 0, 800, 180, 0, 0x0, 0 },
+  { WINDOW_CreateIndirect, "Window", ID_WINDOW, 0, 0, 800, 180, (U16)(WM_CF_MOTION_X | WM_CF_SHOW), 0x0, sizeof(WINDOW_DATA *)},
   { TEXT_CreateIndirect, "00.0 °C", ID_TEMPERATURE, 20, 60, 720, 120, 0, 0, 0 },    
   { TEXT_CreateIndirect, "DayofWeek", ID_DAYWEEK, 460, 40, 680, 120, 0, 0, 0 }, 
   { TEXT_CreateIndirect, "Week", ID_WEEK, 460, 110, 680, 120, 0, 0, 0 }, 
@@ -414,8 +438,15 @@ static void _cbMainDialog(WM_MESSAGE * pMsg) {
     IMAGE_SetBitmap(hItem, &bmicon_internet);   
     WM_HideWin(hItem);
     
+    pData = &Data;
+    Data.xSize = LCD_GetXSize();
+    Data.ySize = LCD_GetYSize();
+    Data.TimeLastTouch = GUI_GetTime();
     hHomeFrame = GUI_CreateDialogBox(_aHomeDialogCreate, GUI_COUNTOF(_aHomeDialogCreate), _cbHomeDialog, hMainFrame, 0, 300);
-    
+    pData->hWin = hHomeFrame;
+    _InitData(pData);
+    WM_SetUserData(pData->hWin,  &pData, sizeof(WINDOW_DATA *));
+ 
     if(!TimeRefreshTimer) TimeRefreshTimer = WM_CreateTimer(pMsg->hWin, GUI_TIME_REFRESH_ID, TIME_REFRESH_PERIOD, 0);     
     WM_SendMessageNoPara (pMsg->hWin, TIME_UPDATE);
     break;
@@ -711,27 +742,6 @@ static void _cbBk(WM_MESSAGE * pMsg) {
   }
 }
 
-
-/*********************************************************************
-*
-*       _InitData
-*/
-static void _InitData(WINDOW_DATA * pData) {
-  int i, NumItems, xSizeScreen, xSize;
-
-  NumItems = GUI_COUNTOF(pData->aPara);
-  xSizeScreen = LCD_GetXSize();
-  xSize = xSizeScreen / NumItems;
-  for (i = 0; i < NumItems; i++) {
-    pData->aPara[i].xSizeScreen = xSizeScreen;
-    pData->aPara[i].xSize       = xSize;
-    pData->aPara[i].xPos        = (xSize * i) + xSize / 2;
-    pData->aPara[i].pData       = pData;
-    pData->aPara[i].Index       = i;
-  }
-}
-
-
 /*********************************************************************
 *
 *       UI_CreateMainFame
@@ -745,27 +755,20 @@ void UI_Init(void) {
   /* Initialize the SDRAM */
  BSP_SDRAM_Init();
  GUI_Init(); 
+ GUI_SelectLayer(0); 
  LCD_Off();
  GUI_Clear();  
+ GUI_Exec(); 
  WM_SetCreateFlags(WM_CF_MEMDEV | WM_CF_MEMDEV_ON_REDRAW);
  WM_MULTIBUF_Enable(1);
- 
- pData = &Data;
- Data.xSize = LCD_GetXSize();
- Data.ySize = LCD_GetYSize();
- Data.TimeLastTouch = GUI_GetTime();
- WM_SetSize(WM_HBKWIN, Data.xSize, Data.ySize);
- 
+
  WM_SetCallback(WM_GetDesktopWindowEx(0), _cbBk);
   
  GUI_SelectLayer(1);
  GUI_Clear(); 
- GUI_Exec(); 
- pData->hWin = UI_CreateMainFame();
- 
+
+ UI_CreateMainFame();
  WM_MOTION_Enable(1);
  LCD_On();
- _InitData(pData);
- WM_SetUserData(pData->hWin,  &pData, sizeof(WINDOW_DATA *));
 }
 /*************************** End of file ****************************/
