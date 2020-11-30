@@ -259,9 +259,9 @@ ESP_WIFI_Status_t WIFI_SyncClock (ESP_WIFI_Object_t * pxObj){
 
 /*********************************************************************
 *
-*       WIFI_SyncEnvData
+*       WIFI_SyncWeatherData
 */
-ESP_WIFI_Status_t WIFI_SyncEnvData (ESP_WIFI_Object_t * pxObj){
+ESP_WIFI_Status_t WIFI_SyncWeatherData (ESP_WIFI_Object_t * pxObj){
   ESP_WIFI_Status_t xRet;
   char *weatherStr = NULL;
   

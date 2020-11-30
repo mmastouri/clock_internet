@@ -86,7 +86,7 @@ void WIFI_Task(void const *arg) {
   if(WIFI_Start(&appGlobals.EspObj) == ESP_WIFI_STATUS_OK)
   {
     WIFI_SyncClock (&appGlobals.EspObj);
-    WIFI_SyncEnvData (&appGlobals.EspObj);
+    WIFI_SyncWeatherData (&appGlobals.EspObj);
     xTimerStart(appGlobals.WifiTimer, 0);
   }
   for (;;) {
@@ -123,7 +123,7 @@ static void TouchPanel_TimerCallback(TimerHandle_t pxTimer) {
   * @retval None
   */
 void Wifi_TimerCallback(TimerHandle_t pxTimer) {
-  WIFI_SyncEnvData (&appGlobals.EspObj);
+  WIFI_SyncWeatherData (&appGlobals.EspObj);
 }
 
 /**
