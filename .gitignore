@@ -9,4 +9,12 @@ Clock_temp/ewarm/STM32F769I-Discovery_Demo/Obj/
 Clock_temp/ewarm/STM32F769I-Discovery_Demo/Exe/
 Clock_temp/ewarm/settings
 Clock_temp/ewarm/*.dep
+Oscilloscope/ewarm/STM32F769I-Discovery_Demo/Obj/
+Oscilloscope/ewarm/STM32F769I-Discovery_Demo/Exe/
+Oscilloscope/ewarm/settings
+Oscilloscope/ewarm/*.dep
+sound analyzer/ewarm/STM32F769I-Discovery_Demo/Obj/
+sound analyzer/ewarm/STM32F769I-Discovery_Demo/Exe/
+sound analyzer/ewarm/settings
+sound analyzer/ewarm/*.dep
 
