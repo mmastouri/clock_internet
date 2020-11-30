@@ -7,4 +7,6 @@
 *.dep
 Clock_temp/ewarm/STM32F769I-Discovery_Demo/Obj/
 Clock_temp/ewarm/STM32F769I-Discovery_Demo/Exe/
+Clock_temp/ewarm/settings
+Clock_temp/ewarm/*.dep
 
