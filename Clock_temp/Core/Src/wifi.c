@@ -65,8 +65,23 @@ static const ESP_AvHotspot_t Hotspot ={
 #endif     
 };
 
-float itemperature = 25;
-float ihumidity    = 50;
+ weather_t weather = 
+ {
+  .temperature = 25,
+  .humidity    = 50,
+  .description  = "few", 
+  .feels_like  = 25,
+  .temp_min    = 10,
+  .temp_max    = 50,
+  .pressure    = 1023,
+  .visibility  = 16093,
+  .wind_speed  =  1.5,
+  .wind_deg    = 350,
+  .clouds_all  = 1,
+  .sunrise     = 1560343627,
+  .sunset      = 1560396563,
+  .updatetime  = 0,  
+};
 
 /*********************************************************************
 *
@@ -197,7 +212,7 @@ ESP_WIFI_Status_t WIFI_SyncClock (ESP_WIFI_Object_t * pxObj){
     
     sTime.Hours = (hour + 1) % 24;
     sTime.Minutes = min;
-    sTime.Seconds = (sec + 1) % 60;
+    sTime.Seconds = sec;
     sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
     sTime.StoreOperation = RTC_STOREOPERATION_RESET;
     k_SetTime(&sTime) ;
@@ -241,13 +256,56 @@ ESP_WIFI_Status_t WIFI_SyncWeatherData (ESP_WIFI_Object_t * pxObj){
   char *weatherStr = NULL;
   
   if((xRet = WIFI_SyncData (pxObj, WEATHER_SOURCE_HTTP_HOST, weather_request, sizeof(weather_request),
-                            WEATHER_SOURCE_HTTP_PORT, WEATHER_SOURCE_HTTP_PROTO, "\"temp\":", &weatherStr)) == ESP_WIFI_STATUS_OK)
+                            WEATHER_SOURCE_HTTP_PORT, WEATHER_SOURCE_HTTP_PROTO, "\"weather\":", &weatherStr)) == ESP_WIFI_STATUS_OK)
   {  
     
-    sscanf(weatherStr, "\"temp\":%f", &itemperature); 
-    itemperature -= 273.15;
+    weatherStr = strstr(weatherStr, "\"description\":");
+    sscanf(weatherStr, "\"description\":%s", weather.description); 
+    
+    weatherStr = strstr(weatherStr, "\"temp\":");
+    sscanf(weatherStr, "\"temp\":%f", &weather.temperature); 
+    weather.temperature -= 273.15;
+    
+    weatherStr = strstr(rxBuffer,  "\"feels_like\":");
+    sscanf(weatherStr, "\"feels_like\":%f", &weather.feels_like);
+    weather.feels_like -= 273.15;
+    
+    weatherStr = strstr(rxBuffer,  "\"temp_min\":");
+    sscanf(weatherStr, "\"temp_min\":%f", &weather.temp_min);     
+    weather.temp_min -= 273.15;
+    
+    weatherStr = strstr(rxBuffer,  "\"temp_max\":");
+    sscanf(weatherStr, "\"temp_max\":%f", &weather.temp_max);   
+    weather.temp_max -= 273.15;
+    
+    weatherStr = strstr(rxBuffer,  "\"pressure\":");
+    sscanf(weatherStr, "\"pressure\":%f", &weather.pressure);
+    
     weatherStr = strstr(rxBuffer,  "\"humidity\":");
-    sscanf(weatherStr, "\"humidity\":%f", &ihumidity);
+    sscanf(weatherStr, "\"humidity\":%f", &weather.humidity);
+    
+    weatherStr = strstr(rxBuffer,  "\"visibility\":");
+    sscanf(weatherStr, "\"visibility\":%f", &weather.visibility);  
+    
+    weatherStr = strstr(rxBuffer,  "\"speed\":");
+    sscanf(weatherStr, "\"speed\":%f", &weather.wind_speed);     
+    
+    weatherStr = strstr(rxBuffer,  "\"deg\":");
+    sscanf(weatherStr, "\"deg\":%f", &weather.wind_deg);
+    weather.wind_deg -= 273.15;    
+    
+    weatherStr = strstr(rxBuffer,  "\"all\":");
+    sscanf(weatherStr, "\"all\":%f", &weather.clouds_all);     
+    
+    weatherStr = strstr(rxBuffer,  "\"dt\":");
+    sscanf(weatherStr, "\"dt\":%f", &weather.updatetime); 
+    
+    weatherStr = strstr(rxBuffer,  "\"sunrise\":");
+    sscanf(weatherStr, "\"sunrise\":%f", &weather.sunrise);     
+    
+    weatherStr = strstr(rxBuffer,  "\"sunset\":");
+    sscanf(weatherStr, "\"sunset\":%f", &weather.sunset);     
+    
     UI_ForceUpdateWhether();
   }
   return xRet;

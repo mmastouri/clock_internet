@@ -139,10 +139,7 @@ extern GUI_CONST_STORAGE GUI_BITMAP bmicon_outdoor;
 extern GUI_CONST_STORAGE GUI_BITMAP bmbackground;
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_home;
 
-extern float itemperature;
-extern float ihumidity;
-
-
+extern  weather_t weather ;
 
 /*********************************************************************
 *
@@ -305,7 +302,7 @@ static void _cbHomeDialog(WM_MESSAGE * pMsg) {
     }
     else
     {
-      Temperature = itemperature;      
+      Temperature = weather.temperature;      
     }
     
     floatToInt(Temperature, &out_value, 1);
