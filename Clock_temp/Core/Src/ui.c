@@ -108,7 +108,6 @@ struct WINDOW_DATA {
   U8              Alpha;
   WM_HTIMER       hTimer;
   WM_HWIN         hWin;
-  WM_HWIN         hText;
   GUI_ANIM_HANDLE hAnimSymbol;
   GUI_ANIM_HANDLE hAnimBackground;
   PARA            aPara[5];
@@ -122,7 +121,9 @@ struct WINDOW_DATA {
   int             Diff;
 };
 
-static WM_HWIN hMainFrame, hHomeFrame, hMenuFrame;
+WINDOW_DATA * pData;
+static WINDOW_DATA Data;
+static WM_HWIN hMainFrame, hHomeFrame;//, hMenuFrame;
 static uint32_t ui_enable_timeh_setting = 0;
 const char *dayofweek[] = {"Mon.", "Tue.", "Wed.", "Thu.", "Fri", "Sat.", "Sun."}; 
       
@@ -189,9 +190,8 @@ int rtcCalcYearWeek(int iYear, int iMonth, int iDay, int iWeekDay)
 *
 *       _aMainDialogCreate
 */
-
 static const GUI_WIDGET_CREATE_INFO _aMainDialogCreate[] = {  
-  { WINDOW_CreateIndirect, "Window", ID_WINDOW, 0, 0, 800, 480, 0, 0x0, 0 },
+  { WINDOW_CreateIndirect, "Window", ID_WINDOW, 0, 0, 800, 480, (U16)(WM_CF_MOTION_X | WM_CF_SHOW), 0x0, sizeof(WINDOW_DATA *)},
   { IMAGE_CreateIndirect, "Image", ID_WIFI, 730, 7, 50, 50, 0, 0, 0 }, 
   { IMAGE_CreateIndirect, "Image", ID_INTERNET, 680, 7, 50, 50, 0, 0, 0 },     
   { IMAGE_CreateIndirect, "Image", ID_MENU, 30, 7, 50, 50, 0, 0, 0 },   
@@ -738,9 +738,7 @@ static void _InitData(WINDOW_DATA * pData) {
 */
 
 void UI_Init(void) {
-  WINDOW_DATA * pData;
-  static WINDOW_DATA Data;
-  
+ 
   /* Enable CRC to Unlock GUI */
   __HAL_RCC_CRC_CLK_ENABLE();
  
@@ -763,11 +761,11 @@ void UI_Init(void) {
  GUI_SelectLayer(1);
  GUI_Clear(); 
  GUI_Exec(); 
- UI_CreateMainFame();
+ pData->hWin = UI_CreateMainFame();
+ 
  WM_MOTION_Enable(1);
  LCD_On();
  _InitData(pData);
  WM_SetUserData(pData->hWin,  &pData, sizeof(WINDOW_DATA *));
- WM_SetUserData(pData->hText, &pData, sizeof(WINDOW_DATA *));
 }
 /*************************** End of file ****************************/
