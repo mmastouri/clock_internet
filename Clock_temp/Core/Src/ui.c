@@ -88,6 +88,39 @@
 *
 **********************************************************************
 */
+typedef struct PARA PARA;
+typedef struct WINDOW_DATA WINDOW_DATA;
+
+struct PARA {
+  int           xPos;
+  int           xSizeScreen;
+  int           xSize;
+  int           OldPos;
+  WINDOW_DATA * pData;
+  int           Index;
+};
+
+struct WINDOW_DATA {
+  int             xSize;
+  int             ySize;
+  int             xPos;
+  int             yOff;
+  U8              Alpha;
+  WM_HTIMER       hTimer;
+  WM_HWIN         hWin;
+  WM_HWIN         hText;
+  GUI_ANIM_HANDLE hAnimSymbol;
+  GUI_ANIM_HANDLE hAnimBackground;
+  PARA            aPara[5];
+  GUI_TIMER_TIME  TimeLastTouch;
+  int             Job;
+  int             LastJob;
+  int             IndexCity;
+  int             IndexAnimIn;
+  int             IndexAnimOut;
+  int             HasStopped;
+  int             Diff;
+};
 
 static WM_HWIN hMainFrame, hHomeFrame, hMenuFrame;
 static uint32_t ui_enable_timeh_setting = 0;
@@ -678,14 +711,38 @@ static void _cbBk(WM_MESSAGE * pMsg) {
   }
 }
 
+
+/*********************************************************************
+*
+*       _InitData
+*/
+static void _InitData(WINDOW_DATA * pData) {
+  int i, NumItems, xSizeScreen, xSize;
+
+  NumItems = GUI_COUNTOF(pData->aPara);
+  xSizeScreen = LCD_GetXSize();
+  xSize = xSizeScreen / NumItems;
+  for (i = 0; i < NumItems; i++) {
+    pData->aPara[i].xSizeScreen = xSizeScreen;
+    pData->aPara[i].xSize       = xSize;
+    pData->aPara[i].xPos        = (xSize * i) + xSize / 2;
+    pData->aPara[i].pData       = pData;
+    pData->aPara[i].Index       = i;
+  }
+}
+
+
 /*********************************************************************
 *
 *       UI_CreateMainFame
 */
 
 void UI_Init(void) {
+  WINDOW_DATA * pData;
+  static WINDOW_DATA Data;
+  
   /* Enable CRC to Unlock GUI */
- __HAL_RCC_CRC_CLK_ENABLE();
+  __HAL_RCC_CRC_CLK_ENABLE();
  
   /* Initialize the SDRAM */
  BSP_SDRAM_Init();
@@ -694,12 +751,23 @@ void UI_Init(void) {
  GUI_Clear();  
  WM_SetCreateFlags(WM_CF_MEMDEV | WM_CF_MEMDEV_ON_REDRAW);
  WM_MULTIBUF_Enable(1);
+ 
+ pData = &Data;
+ Data.xSize = LCD_GetXSize();
+ Data.ySize = LCD_GetYSize();
+ Data.TimeLastTouch = GUI_GetTime();
+ WM_SetSize(WM_HBKWIN, Data.xSize, Data.ySize);
+ 
  WM_SetCallback(WM_GetDesktopWindowEx(0), _cbBk);
   
  GUI_SelectLayer(1);
  GUI_Clear(); 
  GUI_Exec(); 
  UI_CreateMainFame();
+ WM_MOTION_Enable(1);
  LCD_On();
+ _InitData(pData);
+ WM_SetUserData(pData->hWin,  &pData, sizeof(WINDOW_DATA *));
+ WM_SetUserData(pData->hText, &pData, sizeof(WINDOW_DATA *));
 }
 /*************************** End of file ****************************/
