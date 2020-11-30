@@ -52,6 +52,7 @@ void UI_SetWifiDisconnected(void);
 void UI_SetWifiConnected(void);
 void UI_SetWifiConnecting(void);
 void UI_ForceUpdateTime(void);
+void UI_ForceUpdateWhether(void);
 void UI_SetInternetAvailable(void);
 void UI_Init(void);
 #ifdef __cplusplus

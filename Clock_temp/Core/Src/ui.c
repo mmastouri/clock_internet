@@ -623,7 +623,7 @@ void UI_SetWifiConnecting(void)
 
 /*********************************************************************
 *
-*       UI_SetWifiConnecting
+*       UI_SetInternetAvailable
 */
 void UI_SetInternetAvailable(void)
 {
@@ -632,11 +632,21 @@ void UI_SetInternetAvailable(void)
 
 /*********************************************************************
 *
-*       UI_SetWifiConnecting
+*       UI_ForceUpdateTime
 */
 void UI_ForceUpdateTime(void)
 {
   WM_SendMessageNoPara (hMainFrame, TIME_UPDATE);
+  WM_SendMessageNoPara (hHomeFrame, CALENDAR_UPDATE);  
+}
+
+/*********************************************************************
+*
+*       UI_SetWifiConnecting
+*/
+void UI_ForceUpdateWhether(void)
+{
+  WM_SendMessageNoPara (hHomeFrame, TEMPERATURE_UPDATE);  
 }
 /*********************************************************************
 *

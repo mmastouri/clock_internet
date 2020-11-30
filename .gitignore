@@ -5,8 +5,6 @@
 *.map
 *.pbi
 *.dep
-Obj/
-Exe/
-settings/
-32F769I-Discovery_Demo/
+Clock_temp/ewarm/STM32F769I-Discovery_Demo/Obj/
+Clock_temp/ewarm/STM32F769I-Discovery_Demo/Exe/
 

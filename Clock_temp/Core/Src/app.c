@@ -32,9 +32,9 @@
 #define TIME_SOURCE_HTTP_PORT   80
 #define TIME_SOURCE_HTTP_PROTO  ESP_WIFI_TCP
 
-#define ENV_SOURCE_HTTP_HOST    "api.openweathermap.org"
-#define ENV_SOURCE_HTTP_PORT    80
-#define ENV_SOURCE_HTTP_PROTO   ESP_WIFI_TCP
+#define WEATHER_SOURCE_HTTP_HOST    "api.openweathermap.org"
+#define WEATHER_SOURCE_HTTP_PORT    80
+#define WEATHER_SOURCE_HTTP_PROTO   ESP_WIFI_TCP
 
 /** Maximum number of DNS lookup or connection trials */
 #define TIME_NET_MAX_RETRY     4
@@ -58,7 +58,7 @@ static uint32_t enable_time_count = 0;
 static uint32_t enable_time_setting = 0;
 static char rxBuffer[NET_BUF_SIZE + 1];
 
-#define USE_HOME_PW
+//#define USE_HOME_PW
 
 static const ESP_AvHotspot_t Hotspot ={
 #ifdef USE_HOME_PW
@@ -265,14 +265,15 @@ ESP_WIFI_Status_t WIFI_SyncEnvData (ESP_WIFI_Object_t * pxObj){
   ESP_WIFI_Status_t xRet;
   char *weatherStr = NULL;
   
-  if((xRet = WIFI_SyncData (pxObj, ENV_SOURCE_HTTP_HOST, weather_request, sizeof(weather_request),
-                            ENV_SOURCE_HTTP_PORT, ENV_SOURCE_HTTP_PROTO, "\"temp\":", &weatherStr)) == ESP_WIFI_STATUS_OK)
+  if((xRet = WIFI_SyncData (pxObj, WEATHER_SOURCE_HTTP_HOST, weather_request, sizeof(weather_request),
+                            WEATHER_SOURCE_HTTP_PORT, WEATHER_SOURCE_HTTP_PROTO, "\"temp\":", &weatherStr)) == ESP_WIFI_STATUS_OK)
   {  
     
     sscanf(weatherStr, "\"temp\":%f", &itemperature); 
     itemperature -= 273.15;
     weatherStr = strstr(rxBuffer,  "\"humidity\":");
-    sscanf(weatherStr, "\"humidity\":%f", &ihumidity);                             
+    sscanf(weatherStr, "\"humidity\":%f", &ihumidity);
+    UI_ForceUpdateWhether();
   }
   return xRet;
 }
