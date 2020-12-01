@@ -1,10 +1,5 @@
   /******************************************************************************
-  * @file    FreeRTOS/FreeRTOS_DelayUntil/Inc/main.h
-  * @author  MCD Application Team
-  * @version V1.0.2
-  * @date    18-November-2015 
-  * @brief   This file contains all the functions prototypes for the main.c 
-  *          file.
+  * @file    wifi.h
   ******************************************************************************
   * @attention
   *
@@ -26,40 +21,44 @@
   */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __MAIN_H
-#define __MAIN_H
+#ifndef __WIFI_H__
+#define __WIFI_H__
 
 #ifdef __cplusplus
  extern "C" {
 #endif
 
-/* Includes ------------------------------------------------------------------*/
-#include "FreeRTOS.h"
-#include "timers.h"
-#include "cmsis_os.h"
-#include "arm_math.h"
-#include "arm_common_tables.h"
-#include "bsp.h"   
-#include "ui.h"      
-#include "app.h"      
-#include "wifi.h"    
-#include "esp8266_wifi.h"       
-
+#include "ui.h"
+#include "rtc.h"   
+#include "esp8266_wifi.h"  
+   
 typedef struct {
-	TaskHandle_t      guiTaskId;
-	TaskHandle_t      WIFITaskId;        
-	TimerHandle_t     touchPanelTimer;  
-        int32_t           touchPanelTimerId;
-	TimerHandle_t     WifiTimer;          
-	int32_t	          WifiTimerId;
-        ESP_WIFI_Object_t EspObj;
-} AppGlobals_s;
+  float temperature ;
+  float humidity    ;
+  char  description[16]  ;
+  float feels_like  ;
+  float temp_min    ;
+  float temp_max    ;
+  int   pressure    ;
+  int   visibility  ;
+  float wind_speed  ;
+  float wind_deg    ;
+  int   clouds_all  ;
+  int   sunrise     ;
+  int   sunset      ;
+  int   updatetime  ;
+}weather_t;
+
+/* Includes ------------------------------------------------------------------*/
+ESP_WIFI_Status_t WIFI_Start (ESP_WIFI_Object_t * pxObj);
+ESP_WIFI_Status_t WIFI_SyncClock (ESP_WIFI_Object_t * pxObj);
+ESP_WIFI_Status_t WIFI_SyncWeatherData (ESP_WIFI_Object_t * pxObj);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* __MAIN_H */
+#endif /* __WIFI_H__ */
 
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

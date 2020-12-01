@@ -1105,6 +1105,15 @@
                 <file>
                     <name>$PROJ_DIR$\..\Core\Src\ui.c</name>
                 </file>
+                <file>
+                    <name>$PROJ_DIR$\..\Core\Src\whether.c</name>
+                    <excluded>
+                        <configuration>STM32F769I-Discovery_Demo</configuration>
+                    </excluded>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\Core\Src\wifi.c</name>
+                </file>
             </group>
             <group>
                 <name>Core</name>

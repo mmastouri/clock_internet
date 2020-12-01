@@ -21,7 +21,7 @@
   ******************************************************************************
   */
 #include "wifi.h"
-
+#include <time.h>
 
 /* Private typedef -----------------------------------------------------------*/
 #define TIME_SOURCE_HTTP_HOST   "www.google.com"
@@ -279,32 +279,34 @@ ESP_WIFI_Status_t WIFI_SyncWeatherData (ESP_WIFI_Object_t * pxObj){
     weather.temp_max -= 273.15;
     
     weatherStr = strstr(rxBuffer,  "\"pressure\":");
-    sscanf(weatherStr, "\"pressure\":%f", &weather.pressure);
+    sscanf(weatherStr, "\"pressure\":%d", &weather.pressure);
     
     weatherStr = strstr(rxBuffer,  "\"humidity\":");
     sscanf(weatherStr, "\"humidity\":%f", &weather.humidity);
     
     weatherStr = strstr(rxBuffer,  "\"visibility\":");
-    sscanf(weatherStr, "\"visibility\":%f", &weather.visibility);  
+    sscanf(weatherStr, "\"visibility\":%d", &weather.visibility);  
+    weather.visibility = (weather.visibility / 1000);
     
     weatherStr = strstr(rxBuffer,  "\"speed\":");
     sscanf(weatherStr, "\"speed\":%f", &weather.wind_speed);     
+    weather.wind_speed = (weather.wind_speed * 1000) / 3600;
     
     weatherStr = strstr(rxBuffer,  "\"deg\":");
     sscanf(weatherStr, "\"deg\":%f", &weather.wind_deg);
     weather.wind_deg -= 273.15;    
     
     weatherStr = strstr(rxBuffer,  "\"all\":");
-    sscanf(weatherStr, "\"all\":%f", &weather.clouds_all);     
+    sscanf(weatherStr, "\"all\":%d", &weather.clouds_all);     
     
     weatherStr = strstr(rxBuffer,  "\"dt\":");
-    sscanf(weatherStr, "\"dt\":%f", &weather.updatetime); 
-    
+    sscanf(weatherStr, "\"dt\":%d", &weather.updatetime); 
+        
     weatherStr = strstr(rxBuffer,  "\"sunrise\":");
-    sscanf(weatherStr, "\"sunrise\":%f", &weather.sunrise);     
+    sscanf(weatherStr, "\"sunrise\":%d", &weather.sunrise);     
     
     weatherStr = strstr(rxBuffer,  "\"sunset\":");
-    sscanf(weatherStr, "\"sunset\":%f", &weather.sunset);     
+    sscanf(weatherStr, "\"sunset\":%d", &weather.sunset);     
     
     UI_ForceUpdateWhether();
   }
