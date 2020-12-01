@@ -21,7 +21,7 @@
   ******************************************************************************
   */
 #include "wifi.h"
-#include <time.h>
+
 
 /* Private typedef -----------------------------------------------------------*/
 #define TIME_SOURCE_HTTP_HOST   "www.google.com"
@@ -83,6 +83,39 @@ static const ESP_AvHotspot_t Hotspot ={
   .updatetime  = 0,  
 };
 
+static void Add1hour(uint8_t *hour,  uint8_t *day, uint8_t *month, uint8_t *year)
+{
+  uint32_t iLeap;
+  const uint8_t daysofmonth[2][12] = {{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31},
+  {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}};
+    
+  if (((*year % 4) == 0) && (((*year % 100) != 0) || ((*year % 400) == 0)))
+  {
+    iLeap = 1;
+  }
+  
+  
+  if((*month) > 10)  *month-= 6;
+  
+  *hour += 1;
+  if(*hour == 24)
+  {
+     *hour = 0;
+     (*day)++;
+     if(*day > daysofmonth[iLeap][*month])
+     {       
+       *day = 0;
+        (*month )++;
+        if(*month > 12)
+        {
+          *month = 0;
+          (*year)++;
+        }
+     }
+  }
+  if((*month) > 10)  *month+= 6;
+  
+}
 /*********************************************************************
 *
 *       WIFI_Start
@@ -210,12 +243,12 @@ ESP_WIFI_Status_t WIFI_SyncClock (ESP_WIFI_Object_t * pxObj){
     
     int count = sscanf(dateStr, "Date: %s %d %s %d %02d:%02d:%02d ", dow, &day, month, &year, &hour, &min, &sec); 
     
-    sTime.Hours = (hour + 1) % 24;
+    sTime.Hours   = hour;
     sTime.Minutes = min;
     sTime.Seconds = sec;
     sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
     sTime.StoreOperation = RTC_STOREOPERATION_RESET;
-    k_SetTime(&sTime) ;
+
     
     if (strcmp(dow, "Mon,") == 0) { sDate.WeekDay = RTC_WEEKDAY_MONDAY; } else
       if (strcmp(dow, "Tue,") == 0) { sDate.WeekDay = RTC_WEEKDAY_TUESDAY; } else
@@ -237,9 +270,13 @@ ESP_WIFI_Status_t WIFI_SyncClock (ESP_WIFI_Object_t * pxObj){
                       if (strcmp(month, "Oct") == 0) { sDate.Month = RTC_MONTH_OCTOBER; } else
                         if (strcmp(month, "Nov") == 0) { sDate.Month = RTC_MONTH_NOVEMBER; } else
                           if (strcmp(month, "Dec") == 0) { sDate.Month = RTC_MONTH_DECEMBER; } 
-    
+        
     sDate.Date = day;
     sDate.Year = year - 2000;
+    
+    Add1hour(&sTime.Hours, &sDate.Date,  &sDate.Month, &sDate.Year);
+    
+    k_SetTime(&sTime) ;
     k_SetDate(&sDate) ;
     UI_ForceUpdateTime();
   }
@@ -254,6 +291,7 @@ ESP_WIFI_Status_t WIFI_SyncClock (ESP_WIFI_Object_t * pxObj){
 ESP_WIFI_Status_t WIFI_SyncWeatherData (ESP_WIFI_Object_t * pxObj){
   ESP_WIFI_Status_t xRet;
   char *weatherStr = NULL;
+  uint32_t timestamp;
   
   if((xRet = WIFI_SyncData (pxObj, WEATHER_SOURCE_HTTP_HOST, weather_request, sizeof(weather_request),
                             WEATHER_SOURCE_HTTP_PORT, WEATHER_SOURCE_HTTP_PROTO, "\"weather\":", &weatherStr)) == ESP_WIFI_STATUS_OK)
@@ -300,13 +338,16 @@ ESP_WIFI_Status_t WIFI_SyncWeatherData (ESP_WIFI_Object_t * pxObj){
     sscanf(weatherStr, "\"all\":%d", &weather.clouds_all);     
     
     weatherStr = strstr(rxBuffer,  "\"dt\":");
-    sscanf(weatherStr, "\"dt\":%d", &weather.updatetime); 
-        
+    sscanf(weatherStr, "\"dt\":%d", &timestamp); 
+    SysTimeLocalTime(timestamp , &weather.updatetime);
+    
     weatherStr = strstr(rxBuffer,  "\"sunrise\":");
-    sscanf(weatherStr, "\"sunrise\":%d", &weather.sunrise);     
+    sscanf(weatherStr, "\"sunrise\":%d", &timestamp);     
+    SysTimeLocalTime(timestamp , &weather.sunrise);
     
     weatherStr = strstr(rxBuffer,  "\"sunset\":");
-    sscanf(weatherStr, "\"sunset\":%d", &weather.sunset);     
+    sscanf(weatherStr, "\"sunset\":%d", &timestamp);     
+    SysTimeLocalTime(timestamp , &weather.sunset);
     
     UI_ForceUpdateWhether();
   }

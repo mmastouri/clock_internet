@@ -1210,6 +1210,9 @@
                     <name>$PROJ_DIR$\..\Core\Src\rtc.c</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\Core\Src\systime.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\Core\Src\ui.c</name>
                 </file>
                 <file>

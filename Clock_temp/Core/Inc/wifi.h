@@ -28,6 +28,7 @@
  extern "C" {
 #endif
 
+#include "systime.h"
 #include "ui.h"
 #include "rtc.h"   
 #include "esp8266_wifi.h"  
@@ -44,9 +45,9 @@ typedef struct {
   float wind_speed  ;
   float wind_deg    ;
   int   clouds_all  ;
-  int   sunrise     ;
-  int   sunset      ;
-  int   updatetime  ;
+  struct tm   sunrise     ;
+  struct tm   sunset      ;
+  struct tm   updatetime  ;
 }weather_t;
 
 /* Includes ------------------------------------------------------------------*/
