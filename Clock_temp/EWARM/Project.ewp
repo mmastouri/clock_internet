@@ -1139,6 +1139,9 @@
                     <name>$PROJ_DIR$\..\Core\Src\Digital_Font.c</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\Core\Src\DigitGraphics40.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\Core\Src\DigitGraphics60.c</name>
                 </file>
                 <file>
@@ -1155,6 +1158,9 @@
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\Core\Src\icon_outdoor.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\Core\Src\icon_weather.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\Core\Src\icon_wifi.c</name>

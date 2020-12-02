@@ -40,7 +40,7 @@
 #define ID_HEADER_1                 (GUI_ID_USER + 0x11)
 #define ID_WIFI                     (GUI_ID_USER + 0x12)
 #define ID_INTERNET                 (GUI_ID_USER + 0x13)
-#define ID_IN_OUTDOUR                   (GUI_ID_USER + 0x14)
+#define ID_IN_OUTDOUR               (GUI_ID_USER + 0x14)
 #define ID_MENU                     (GUI_ID_USER + 0x15)
 
 #define ID_DAYWEEK                  (GUI_ID_USER + 0x17)
@@ -52,6 +52,8 @@
 #define ID_MENU_WINDOW              (GUI_ID_USER + 0x30)
 #define ID_MENU_TITLE               (GUI_ID_USER + 0x31)
 #define ID_MENU_HEADER              (GUI_ID_USER + 0x32)
+
+#define ID_WEATHER                  (GUI_ID_USER + 0x50)
 
 
 #define TIME_SETTING_REFRESH_PERIOD 100
@@ -123,13 +125,14 @@ struct WINDOW_DATA {
 
 WINDOW_DATA * pData;
 static WINDOW_DATA Data;
-static WM_HWIN hMainFrame, hHomeFrame;//, hMenuFrame;
+static WM_HWIN hMainFrame, hHomeFrame, hWeatherFrame;//, hMenuFrame;
 static uint32_t ui_enable_timeh_setting = 0;
 const char *dayofweek[] = {"Mon.", "Tue.", "Wed.", "Thu.", "Fri", "Sat.", "Sun."}; 
       
 extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigital_Font;
 extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigita_Clock;
 extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigitGraphics60;
+extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigitGraphics40;
 
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_wifi;
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_indoor;
@@ -138,6 +141,9 @@ extern GUI_CONST_STORAGE GUI_BITMAP bmicon_menu;
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_outdoor;
 extern GUI_CONST_STORAGE GUI_BITMAP bmbackground;
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_home;
+
+
+extern GUI_CONST_STORAGE GUI_BITMAP bmicon_weather;
 
 extern  weather_t weather ;
 
@@ -215,7 +221,7 @@ static const GUI_WIDGET_CREATE_INFO _aMainDialogCreate[] = {
   { WINDOW_CreateIndirect, "Window", ID_WINDOW, 0, 0, 800, 480, 0, 0, 0 }, 
   { IMAGE_CreateIndirect, "Image", ID_WIFI, 730, 7, 50, 50, 0, 0, 0 }, 
   { IMAGE_CreateIndirect, "Image", ID_INTERNET, 680, 7, 50, 50, 0, 0, 0 },     
-  { IMAGE_CreateIndirect, "Image", ID_MENU, 30, 7, 50, 50, 0, 0, 0 },   
+  { IMAGE_CreateIndirect, "Image", ID_MENU, 30, 7, 250, 250, 0, 0, 0 },   
   { TEXT_CreateIndirect, "00", ID_TIME_HOUR, 10, 100, 360, 220, TEXT_CF_HCENTER, 0, 0 },  
   { TEXT_CreateIndirect, "00", ID_TIME_MIN, 430, 100, 360, 220, TEXT_CF_HCENTER, 0, 0 },   
   { TEXT_CreateIndirect, ":", ID_DOT, 370, 100, 120, 220, 0, 0x66, 0 },    
@@ -233,6 +239,51 @@ static const GUI_WIDGET_CREATE_INFO _aHomeDialogCreate[] = {
   { IMAGE_CreateIndirect, "Image", ID_IN_OUTDOUR, 30, 7, 50, 50, 0, 0, 0 },    
 };
 
+
+static const GUI_WIDGET_CREATE_INFO _aWeatherDialogCreate[] = {
+  { WINDOW_CreateIndirect, "Window", ID_WINDOW, 0, 0, 800, 180, (U16)(WM_CF_MOTION_X | WM_CF_SHOW), 0x0, sizeof(WINDOW_DATA *)},
+  { TEXT_CreateIndirect, "condition", ID_TEMPERATURE, 5, 130, 260, 120, TEXT_CF_HCENTER, 0, 0 }, 
+  { IMAGE_CreateIndirect, "Image", ID_WEATHER, 80, 7, 150, 150, 0, 0, 0 },      
+};
+/*********************************************************************
+*
+*       _cbHomeDialog
+*/
+static void _cbWeatherDialog(WM_MESSAGE * pMsg) {
+  WM_HWIN hItem;  
+  int Id, Node;
+    
+  switch (pMsg->MsgId) {
+  case WM_INIT_DIALOG:
+
+    hItem = pMsg->hWin;
+
+    WINDOW_SetBkColor(hItem, GUI_MAKE_COLOR(GUI_TRANSPARENT));
+    
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEMPERATURE);
+    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xCECECE));
+    TEXT_SetFont(hItem, &GUI_FontDigitGraphics40);
+    TEXT_SetText(hItem, "Few Clouds"); 
+    
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_WEATHER);
+    IMAGE_SetBitmap(hItem, &bmicon_weather);
+      
+  case WM_NOTIFY_PARENT:
+    Id    = WM_GetId(pMsg->hWinSrc);     
+    Node = pMsg->Data.v;  
+
+    
+    if(Node == WM_NOTIFICATION_CLICKED)
+    {
+      Id    = WM_GetId(pMsg->hWinSrc);    /* Id of widget */   
+    }
+    break;
+    
+  default:
+    WM_DefaultProc(pMsg);
+    break;
+  }
+}
 
 /*********************************************************************
 *
@@ -410,17 +461,17 @@ static void _cbMainDialog(WM_MESSAGE * pMsg) {
     WINDOW_SetBkColor(hItem, GUI_MAKE_COLOR(GUI_TRANSPARENT));    
     
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TIME_HOUR);
-    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0x00FFFF00));
+    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xf7d4a3));
     TEXT_SetFont(hItem, &GUI_FontDigita_Clock);
     TEXT_SetText(hItem, "00");
     
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TIME_MIN);
-    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0x00FFFF00));
+    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xf7d4a3));
     TEXT_SetFont(hItem, &GUI_FontDigita_Clock);
     TEXT_SetText(hItem, "00");      
     
     hItem = WM_GetDialogItem(pMsg->hWin, ID_DOT);
-    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0x00FFFF00));
+    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xf7d4a3));
     TEXT_SetFont(hItem, &GUI_FontDigita_Clock);
     TEXT_SetText(hItem, ":");       
     
@@ -440,10 +491,8 @@ static void _cbMainDialog(WM_MESSAGE * pMsg) {
     Data.ySize = LCD_GetYSize();
     Data.TimeLastTouch = GUI_GetTime();
     hHomeFrame = GUI_CreateDialogBox(_aHomeDialogCreate, GUI_COUNTOF(_aHomeDialogCreate), _cbHomeDialog, hMainFrame, 0, 300);
-    pData->hWin = hHomeFrame;
-    _InitData(pData);
-    WM_SetUserData(pData->hWin,  &pData, sizeof(WINDOW_DATA *));
- 
+    hWeatherFrame = GUI_CreateDialogBox(_aWeatherDialogCreate, GUI_COUNTOF(_aWeatherDialogCreate), _cbWeatherDialog, hMainFrame, 0, 300);
+    WM_HideWindow(hWeatherFrame);
     if(!TimeRefreshTimer) TimeRefreshTimer = WM_CreateTimer(pMsg->hWin, GUI_TIME_REFRESH_ID, TIME_REFRESH_PERIOD, 0);     
     WM_SendMessageNoPara (pMsg->hWin, TIME_UPDATE);
     break;
@@ -587,6 +636,7 @@ static void _cbMainDialog(WM_MESSAGE * pMsg) {
         {
           hItem = WM_GetDialogItem(pMsg->hWin, ID_MENU);
           IMAGE_SetBitmap(hItem, &bmicon_menu);
+          WM_HideWin(hWeatherFrame);             
           WM_ShowWin(hHomeFrame);
         }
         else
@@ -594,6 +644,7 @@ static void _cbMainDialog(WM_MESSAGE * pMsg) {
           hItem = WM_GetDialogItem(pMsg->hWin, ID_MENU);
           IMAGE_SetBitmap(hItem, &bmicon_home);  
           WM_HideWin(hHomeFrame);
+          WM_ShowWin(hWeatherFrame);          
         }
         menu_state = 1- menu_state;
       }
@@ -648,11 +699,11 @@ void ui_set_setting_mode (uint32_t enable)
   else
   {
     hItem = WM_GetDialogItem(hMainFrame, ID_TIME_HOUR);
-    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0x00FFFF00));
+    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xf7d4a3));
     hItem = WM_GetDialogItem(hMainFrame, ID_TIME_MIN);
-    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0x00FFFF00));
+    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xf7d4a3));
     hItem = WM_GetDialogItem(hMainFrame, ID_DOT);
-    TEXT_SetTextColor(hItem, 0x00FFFF00);     
+    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xf7d4a3));     
   }
 }
 

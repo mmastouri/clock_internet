@@ -53,7 +53,7 @@ static const char weather_request[] = "GET /data/2.5/weather?q=Tunis"\
 
 static char rxBuffer[NET_BUF_SIZE + 1];
 
-//#define USE_HOME_PW
+#define USE_HOME_PW
 
 static const ESP_AvHotspot_t Hotspot ={
 #ifdef USE_HOME_PW
@@ -69,7 +69,7 @@ static const ESP_AvHotspot_t Hotspot ={
  {
   .temperature = 25,
   .humidity    = 50,
-  .description  = "few", 
+  .description  = "", 
   .feels_like  = 25,
   .temp_min    = 10,
   .temp_max    = 50,
