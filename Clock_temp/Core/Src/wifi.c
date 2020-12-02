@@ -69,6 +69,7 @@ static const ESP_AvHotspot_t Hotspot ={
  {
   .temperature = 25,
   .humidity    = 50,
+  .description ="Cloudy",   
   .desc_idx    = 0, 
   .feels_like  = 25,
   .temp_min    = 10,
@@ -302,28 +303,25 @@ ESP_WIFI_Status_t WIFI_SyncWeatherData (ESP_WIFI_Object_t * pxObj){
                             WEATHER_SOURCE_HTTP_PORT, WEATHER_SOURCE_HTTP_PROTO, "\"weather\":", &weatherStr)) == ESP_WIFI_STATUS_OK)
   {  
     
-    char condition[16];
     weatherStr = strstr(weatherStr, "\"main\":\"");
     
     weatherStr+= 8;
     int count = 0;
     do
     {
-      condition[count] = weatherStr[count];
+      weather.description[count] = weatherStr[count];
       count++;
     }
     while((weatherStr[count] != '"') && (count < 16));
     
-    condition[count] = 0;
-      
-    sscanf(weatherStr, "\"main\":%s ,\"description\"",condition); 
-    
-    if(strcmp(condition, "Thunderstorm\"") == 0) weather.desc_idx = 0;
-       else if(strcmp(condition, "Drizzle") == 0) weather.desc_idx = 1;
-          else if(strcmp(condition, "Rain") == 0)weather.desc_idx = 2;
-             else if(strcmp(condition, "Snow") == 0) weather.desc_idx = 3;
-                else if(strcmp(condition, "Clear") == 0) weather.desc_idx = 4;
-                   else if(strcmp(condition, "Clouds") == 0) weather.desc_idx = 5;
+     weather.description[count] = 0;
+         
+    if(strcmp( weather.description, "Thunderstorm\"") == 0) weather.desc_idx = 0;
+       else if(strcmp( weather.description, "Drizzle") == 0) weather.desc_idx = 1;
+          else if(strcmp( weather.description, "Rain") == 0)weather.desc_idx = 2;
+             else if(strcmp(weather.description, "Snow") == 0) weather.desc_idx = 3;
+                else if(strcmp( weather.description, "Clear") == 0) weather.desc_idx = 4;
+                   else if(strcmp(weather.description, "Clouds") == 0) weather.desc_idx = 5;
     
     weatherStr = strstr(weatherStr, "\"temp\":");
     sscanf(weatherStr, "\"temp\":%f", &weather.temperature); 

@@ -54,6 +54,7 @@
 #define ID_MENU_HEADER              (GUI_ID_USER + 0x32)
 
 #define ID_WEATHER                  (GUI_ID_USER + 0x50)
+#define ID_CONDITION                (GUI_ID_USER + 0x51)
 
 
 #define TIME_SETTING_REFRESH_PERIOD 100
@@ -259,7 +260,7 @@ static const GUI_WIDGET_CREATE_INFO _aHomeDialogCreate[] = {
 
 static const GUI_WIDGET_CREATE_INFO _aWeatherDialogCreate[] = {
   { WINDOW_CreateIndirect, "Window", ID_WINDOW, 0, 0, 800, 180, (U16)(WM_CF_MOTION_X | WM_CF_SHOW), 0x0, sizeof(WINDOW_DATA *)},
-  { TEXT_CreateIndirect, "condition", ID_TEMPERATURE, 5, 130, 260, 120, TEXT_CF_HCENTER, 0, 0 }, 
+  { TEXT_CreateIndirect, "condition", ID_CONDITION, 5, 130, 260, 120, TEXT_CF_HCENTER, 0, 0 }, 
   { IMAGE_CreateIndirect, "Image", ID_WEATHER, 80, 7, 150, 150, 0, 0, 0 },      
 };
 /*********************************************************************
@@ -277,7 +278,7 @@ static void _cbWeatherDialog(WM_MESSAGE * pMsg) {
 
     WINDOW_SetBkColor(hItem, GUI_MAKE_COLOR(GUI_TRANSPARENT));
     
-    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEMPERATURE);
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_CONDITION);
     TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xCECECE));
     TEXT_SetFont(hItem, &GUI_FontDigitGraphics40);
     TEXT_SetText(hItem, "Few Clouds"); 
@@ -288,7 +289,10 @@ static void _cbWeatherDialog(WM_MESSAGE * pMsg) {
       
   case WEATHER_UPDATE:
     hItem = WM_GetDialogItem(pMsg->hWin, ID_WEATHER);
-    IMAGE_SetBitmap(hItem, weather_condition_icon[weather.desc_idx]);    
+    IMAGE_SetBitmap(hItem, weather_condition_icon[weather.desc_idx]);  
+    
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_CONDITION);
+    TEXT_SetText(hItem, weather.description);      
     break;
     
     
@@ -778,7 +782,7 @@ void UI_ForceUpdateTime(void)
 */
 void UI_ForceUpdateWhether(void)
 {
-  WM_SendMessageNoPara (hHomeFrame, TEMPERATURE_UPDATE);  
+  WM_SendMessageNoPara (hHomeFrame, ID_CONDITION);  
   WM_SendMessageNoPara (hWeatherFrame, WEATHER_UPDATE);    
 }
 
