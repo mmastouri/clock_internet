@@ -1216,9 +1216,6 @@
                     <name>$PROJ_DIR$\..\Core\Src\ui.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\whether.c</name>
-                </file>
-                <file>
                     <name>$PROJ_DIR$\..\Core\Src\wifi.c</name>
                 </file>
             </group>

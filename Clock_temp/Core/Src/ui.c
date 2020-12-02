@@ -83,6 +83,7 @@
 #define TEMPERATURE_UPDATE        (WM_USER + 0x40)
 #define TIME_UPDATE               (WM_USER + 0x50)
 #define CALENDAR_UPDATE           (WM_USER + 0x60)
+#define WEATHER_UPDATE            (WM_USER + 0x70)
 
 /*********************************************************************
 *
@@ -123,8 +124,11 @@ struct WINDOW_DATA {
   int             Diff;
 };
 
-WINDOW_DATA * pData;
-static WINDOW_DATA Data;
+//WINDOW_DATA * pData;
+//static WINDOW_DATA Data;
+
+static RTC_TimeTypeDef Time;  
+static RTC_DateTypeDef Date; 
 static WM_HWIN hMainFrame, hHomeFrame, hWeatherFrame;//, hMenuFrame;
 static uint32_t ui_enable_timeh_setting = 0;
 const char *dayofweek[] = {"Mon.", "Tue.", "Wed.", "Thu.", "Fri", "Sat.", "Sun."}; 
@@ -147,24 +151,37 @@ extern GUI_CONST_STORAGE GUI_BITMAP bmicon_weather;
 
 extern  weather_t weather ;
 
-/*********************************************************************
-*
-*       _InitData
-*/
-static void _InitData(WINDOW_DATA * pData) {
-  int i, NumItems, xSizeScreen, xSize;
-
-  NumItems = GUI_COUNTOF(pData->aPara);
-  xSizeScreen = LCD_GetXSize();
-  xSize = xSizeScreen / NumItems;
-  for (i = 0; i < NumItems; i++) {
-    pData->aPara[i].xSizeScreen = xSizeScreen;
-    pData->aPara[i].xSize       = xSize;
-    pData->aPara[i].xPos        = (xSize * i) + xSize / 2;
-    pData->aPara[i].pData       = pData;
-    pData->aPara[i].Index       = i;
-  }
-}
+GUI_CONST_STORAGE GUI_BITMAP  *weather_condition_icon[] = 
+{
+&bmicon_weather,  //0  
+&bmicon_weather,  //1  
+&bmicon_weather,  //2  
+&bmicon_weather,  //3  
+&bmicon_weather,  //4  
+&bmicon_weather,  //5  
+&bmicon_weather,  //6  
+&bmicon_weather,  //7  
+&bmicon_weather,  //8  
+&bmicon_weather,  //9  
+};
+///*********************************************************************
+//*
+//*       _InitData
+//*/
+//static void _InitData(WINDOW_DATA * pData) {
+//  int i, NumItems, xSizeScreen, xSize;
+//
+//  NumItems = GUI_COUNTOF(pData->aPara);
+//  xSizeScreen = LCD_GetXSize();
+//  xSize = xSizeScreen / NumItems;
+//  for (i = 0; i < NumItems; i++) {
+//    pData->aPara[i].xSizeScreen = xSizeScreen;
+//    pData->aPara[i].xSize       = xSize;
+//    pData->aPara[i].xPos        = (xSize * i) + xSize / 2;
+//    pData->aPara[i].pData       = pData;
+//    pData->aPara[i].Index       = i;
+//  }
+//}
 
 
 
@@ -266,8 +283,15 @@ static void _cbWeatherDialog(WM_MESSAGE * pMsg) {
     TEXT_SetText(hItem, "Few Clouds"); 
     
     hItem = WM_GetDialogItem(pMsg->hWin, ID_WEATHER);
-    IMAGE_SetBitmap(hItem, &bmicon_weather);
+    IMAGE_SetBitmap(hItem, weather_condition_icon[0]);
+    break;
       
+  case WEATHER_UPDATE:
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_WEATHER);
+    IMAGE_SetBitmap(hItem, weather_condition_icon[weather.desc_idx]);    
+    break;
+    
+    
   case WM_NOTIFY_PARENT:
     Id    = WM_GetId(pMsg->hWinSrc);     
     Node = pMsg->Data.v;  
@@ -295,8 +319,6 @@ static void _cbHomeDialog(WM_MESSAGE * pMsg) {
   static WM_HTIMER   CalendarRefreshTimer = 0;     
   
   int Id, Node, woy;
-  RTC_TimeTypeDef Time;  
-  RTC_DateTypeDef Date; 
   
   char temp[20];
   static uint8_t place_toggle = 0;
@@ -445,8 +467,6 @@ static void _cbMainDialog(WM_MESSAGE * pMsg) {
   static WM_HTIMER   TimeRefreshTimer = 0;    
   
   int Id, Node;
-  RTC_TimeTypeDef Time;  
-  RTC_DateTypeDef Date; 
   
   char temp[20];
   static uint32_t toggle =0;  
@@ -486,10 +506,10 @@ static void _cbMainDialog(WM_MESSAGE * pMsg) {
     IMAGE_SetBitmap(hItem, &bmicon_internet);   
     WM_HideWin(hItem);
     
-    pData = &Data;
-    Data.xSize = LCD_GetXSize();
-    Data.ySize = LCD_GetYSize();
-    Data.TimeLastTouch = GUI_GetTime();
+//    pData = &Data;
+//    Data.xSize = LCD_GetXSize();
+//    Data.ySize = LCD_GetYSize();
+//    Data.TimeLastTouch = GUI_GetTime();
     hHomeFrame = GUI_CreateDialogBox(_aHomeDialogCreate, GUI_COUNTOF(_aHomeDialogCreate), _cbHomeDialog, hMainFrame, 0, 300);
     hWeatherFrame = GUI_CreateDialogBox(_aWeatherDialogCreate, GUI_COUNTOF(_aWeatherDialogCreate), _cbWeatherDialog, hMainFrame, 0, 300);
     WM_HideWindow(hWeatherFrame);
@@ -759,7 +779,9 @@ void UI_ForceUpdateTime(void)
 void UI_ForceUpdateWhether(void)
 {
   WM_SendMessageNoPara (hHomeFrame, TEMPERATURE_UPDATE);  
+  WM_SendMessageNoPara (hWeatherFrame, WEATHER_UPDATE);    
 }
+
 /*********************************************************************
 *
 *       UI_CreateMainFame

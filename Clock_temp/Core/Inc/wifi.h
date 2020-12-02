@@ -36,7 +36,7 @@
 typedef struct {
   float temperature ;
   float humidity    ;
-  char  description[64]  ;
+  int   desc_idx    ;
   float feels_like  ;
   float temp_min    ;
   float temp_max    ;

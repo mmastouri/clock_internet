@@ -69,7 +69,7 @@ static const ESP_AvHotspot_t Hotspot ={
  {
   .temperature = 25,
   .humidity    = 50,
-  .description  = "", 
+  .desc_idx    = 0, 
   .feels_like  = 25,
   .temp_min    = 10,
   .temp_max    = 50,
@@ -209,6 +209,7 @@ static ESP_WIFI_Status_t WIFI_SyncData (ESP_WIFI_Object_t * pxObj,  const char *
           {
             read += usRecvBytes;
             *pDataStr = strstr(rxBuffer, filter);
+            
           }  
         }
         while ( (pDataStr == NULL) && ((usRecvBytes > 0) || (xRet == ESP_WIFI_STATUS_TIMEOUT)) && (read < NET_BUF_SIZE));
@@ -216,6 +217,10 @@ static ESP_WIFI_Status_t WIFI_SyncData (ESP_WIFI_Object_t * pxObj,  const char *
         if (pDataStr != NULL)
         {
           xRet = ESP_WIFI_STATUS_OK;
+        }
+        else
+        {
+          xRet = ESP_WIFI_STATUS_ERROR;
         }
       }
       ESP_WIFI_StopClient( pxObj, &xConn ); 
@@ -291,14 +296,34 @@ ESP_WIFI_Status_t WIFI_SyncClock (ESP_WIFI_Object_t * pxObj){
 ESP_WIFI_Status_t WIFI_SyncWeatherData (ESP_WIFI_Object_t * pxObj){
   ESP_WIFI_Status_t xRet;
   char *weatherStr = NULL;
-  uint32_t timestamp;
+  uint32_t timestamp,sr, ss,cc;
   
   if((xRet = WIFI_SyncData (pxObj, WEATHER_SOURCE_HTTP_HOST, weather_request, sizeof(weather_request),
                             WEATHER_SOURCE_HTTP_PORT, WEATHER_SOURCE_HTTP_PROTO, "\"weather\":", &weatherStr)) == ESP_WIFI_STATUS_OK)
   {  
     
-    weatherStr = strstr(weatherStr, "\"description\":");
-    sscanf(weatherStr, "\"description\":%s", weather.description); 
+    char condition[16];
+    weatherStr = strstr(weatherStr, "\"main\":\"");
+    
+    weatherStr+= 8;
+    int count = 0;
+    do
+    {
+      condition[count] = weatherStr[count];
+      count++;
+    }
+    while((weatherStr[count] != '"') && (count < 16));
+    
+    condition[count] = 0;
+      
+    sscanf(weatherStr, "\"main\":%s ,\"description\"",condition); 
+    
+    if(strcmp(condition, "Thunderstorm\"") == 0) weather.desc_idx = 0;
+       else if(strcmp(condition, "Drizzle") == 0) weather.desc_idx = 1;
+          else if(strcmp(condition, "Rain") == 0)weather.desc_idx = 2;
+             else if(strcmp(condition, "Snow") == 0) weather.desc_idx = 3;
+                else if(strcmp(condition, "Clear") == 0) weather.desc_idx = 4;
+                   else if(strcmp(condition, "Clouds") == 0) weather.desc_idx = 5;
     
     weatherStr = strstr(weatherStr, "\"temp\":");
     sscanf(weatherStr, "\"temp\":%f", &weather.temperature); 
@@ -340,14 +365,20 @@ ESP_WIFI_Status_t WIFI_SyncWeatherData (ESP_WIFI_Object_t * pxObj){
     weatherStr = strstr(rxBuffer,  "\"dt\":");
     sscanf(weatherStr, "\"dt\":%d", &timestamp); 
     SysTimeLocalTime(timestamp , &weather.updatetime);
+    cc = timestamp;
     
     weatherStr = strstr(rxBuffer,  "\"sunrise\":");
     sscanf(weatherStr, "\"sunrise\":%d", &timestamp);     
     SysTimeLocalTime(timestamp , &weather.sunrise);
+    sr = timestamp;    
     
     weatherStr = strstr(rxBuffer,  "\"sunset\":");
     sscanf(weatherStr, "\"sunset\":%d", &timestamp);     
     SysTimeLocalTime(timestamp , &weather.sunset);
+    ss = timestamp;      
+    
+    if((cc < sr) || (cc > ss)) //night
+      weather.desc_idx += 5;
     
     UI_ForceUpdateWhether();
   }

@@ -50,7 +50,7 @@ int main(void)
   appGlobals.touchPanelTimerId = 1;
   appGlobals.WifiTimerId = 2;
   
-  xTaskCreate((TaskFunction_t)GUI_Task, "GUI_Task", 1024, NULL, 1, &appGlobals.guiTaskId);
+  xTaskCreate((TaskFunction_t)GUI_Task, "GUI_Task", 4096, NULL, 1, &appGlobals.guiTaskId);
   xTaskCreate((TaskFunction_t)WIFI_Task, "WIFI_Task", 1024, NULL, 1, &appGlobals.WIFITaskId);  
   
   appGlobals.touchPanelTimer = xTimerCreate ("Touch Screen", pdMS_TO_TICKS(100), pdTRUE, &appGlobals.touchPanelTimerId, TouchPanel_TimerCallback );
