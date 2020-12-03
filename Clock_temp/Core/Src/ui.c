@@ -54,10 +54,10 @@
 #define ID_MENU_HEADER              (GUI_ID_USER + 0x32)
 
 #define ID_WEATHER_ICON             (GUI_ID_USER + 0x50)
-#define ID_WEATHER_TEMPERATURE_ICON (GUI_ID_USER + 0x51)
-#define ID_WEATHER_PRESSURE_ICON    (GUI_ID_USER + 0x52)
-#define ID_WEATHER_HUMIDITY_ICON    (GUI_ID_USER + 0x53)
-#define ID_WEATHER_WIND_ICON        (GUI_ID_USER + 0x54)
+#define ID_TEMPERATURE_ICON         (GUI_ID_USER + 0x51)
+#define ID_PRESSURE_ICON            (GUI_ID_USER + 0x52)
+#define ID_HUMIDITY_ICON            (GUI_ID_USER + 0x53)
+#define ID_WIND_ICON                (GUI_ID_USER + 0x54)
 
 #define ID_CONDITION_TXT            (GUI_ID_USER + 0x70)
 #define ID_TEMPERATURE_TXT          (GUI_ID_USER + 0x71)
@@ -269,12 +269,17 @@ static const GUI_WIDGET_CREATE_INFO _aHomeDialogCreate[] = {
 
 static const GUI_WIDGET_CREATE_INFO _aWeatherDialogCreate[] = {
   { WINDOW_CreateIndirect, "Window", ID_WINDOW, 0, 0, 800, 180, (U16)(WM_CF_MOTION_X | WM_CF_SHOW), 0x0, sizeof(WINDOW_DATA *)},
-  { IMAGE_CreateIndirect, "Image", ID_WEATHER_ICON, 80, 7, 150, 150, 0, 0, 0 },       
-  { TEXT_CreateIndirect, "condition", ID_CONDITION_TXT, 5, 130, 260, 120, TEXT_CF_HCENTER, 0, 0 }, 
-  { TEXT_CreateIndirect, "Temperatute", ID_TEMPERATURE_TXT, 140, 130, 260, 120, TEXT_CF_HCENTER, 0, 0 }, 
-  { TEXT_CreateIndirect, "Pressure", ID_PRESSURE_TXT, 270, 130, 260, 120, TEXT_CF_HCENTER, 0, 0 }, 
-  { TEXT_CreateIndirect, "Humidity", ID_HUMIDITY_TXT, 400, 130, 260, 120, TEXT_CF_HCENTER, 0, 0 },  
-  { TEXT_CreateIndirect, "Wind", ID_WIND_TXT, 530, 130, 260, 120, TEXT_CF_HCENTER, 0, 0 },     
+  { IMAGE_CreateIndirect, "condition", ID_WEATHER_ICON, 80, 7, 150, 150, 0, 0, 0 }, 
+  { IMAGE_CreateIndirect, "Temperature", ID_TEMPERATURE_ICON, 245, 7, 150, 150, 0, 0, 0 }, 
+  { IMAGE_CreateIndirect, "Pressure", ID_PRESSURE_ICON, 375, 7, 150, 150, 0, 0, 0 }, 
+  { IMAGE_CreateIndirect, "Humidity", ID_HUMIDITY_ICON, 505, 7, 150, 150, 0, 0, 0 }, 
+  { IMAGE_CreateIndirect, "Wind", ID_WIND_ICON, 635, 7, 150, 150, 0, 0, 0 },   
+  
+  { TEXT_CreateIndirect, "condition", ID_CONDITION_TXT, 5, 130, 260, 120, TEXT_CF_HCENTER, 0, 0 },   
+  { TEXT_CreateIndirect, "Temperatute", ID_TEMPERATURE_TXT, 160, 130, 260, 120, TEXT_CF_HCENTER, 0, 0 }, 
+  { TEXT_CreateIndirect, "Pressure", ID_PRESSURE_TXT, 290, 130, 260, 120, TEXT_CF_HCENTER, 0, 0 }, 
+  { TEXT_CreateIndirect, "Humidity", ID_HUMIDITY_TXT, 420, 130, 260, 120, TEXT_CF_HCENTER, 0, 0 },  
+  { TEXT_CreateIndirect, "Wind", ID_WIND_TXT, 550, 130, 260, 120, TEXT_CF_HCENTER, 0, 0 },     
  
 };
 /*********************************************************************
@@ -321,6 +326,18 @@ static void _cbWeatherDialog(WM_MESSAGE * pMsg) {
     
     hItem = WM_GetDialogItem(pMsg->hWin, ID_WEATHER_ICON);
     IMAGE_SetBitmap(hItem, weather_condition_icon[0]);
+    
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEMPERATURE_ICON);
+    IMAGE_SetBitmap(hItem, weather_condition_icon[0]);
+
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_PRESSURE_ICON);
+    IMAGE_SetBitmap(hItem, weather_condition_icon[0]);
+
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_HUMIDITY_ICON);
+    IMAGE_SetBitmap(hItem, weather_condition_icon[0]);
+
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_WIND_ICON);
+    IMAGE_SetBitmap(hItem, weather_condition_icon[0]);    
     break;
       
   case WEATHER_UPDATE:
