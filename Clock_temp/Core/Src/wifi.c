@@ -357,7 +357,7 @@ ESP_WIFI_Status_t WIFI_SyncWeatherData (ESP_WIFI_Object_t * pxObj){
     
     weatherStr = strstr(rxBuffer,  "\"speed\":");
     sscanf(weatherStr, "\"speed\":%f", &weather.wind_speed);     
-    weather.wind_speed = (weather.wind_speed * 3600) / 1000;
+    weather.wind_speed  *= 3.6;
     
     weatherStr = strstr(rxBuffer,  "\"deg\":");
     sscanf(weatherStr, "\"deg\":%f", &weather.wind_deg);
