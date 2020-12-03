@@ -53,8 +53,17 @@
 #define ID_MENU_TITLE               (GUI_ID_USER + 0x31)
 #define ID_MENU_HEADER              (GUI_ID_USER + 0x32)
 
-#define ID_WEATHER                  (GUI_ID_USER + 0x50)
-#define ID_CONDITION                (GUI_ID_USER + 0x51)
+#define ID_WEATHER_ICON             (GUI_ID_USER + 0x50)
+#define ID_WEATHER_TEMPERATURE_ICON (GUI_ID_USER + 0x51)
+#define ID_WEATHER_PRESSURE_ICON    (GUI_ID_USER + 0x52)
+#define ID_WEATHER_HUMIDITY_ICON    (GUI_ID_USER + 0x53)
+#define ID_WEATHER_WIND_ICON        (GUI_ID_USER + 0x54)
+
+#define ID_CONDITION_TXT            (GUI_ID_USER + 0x70)
+#define ID_TEMPERATURE_TXT          (GUI_ID_USER + 0x71)
+#define ID_PRESSURE_TXT             (GUI_ID_USER + 0x72)
+#define ID_HUMIDITY_TXT             (GUI_ID_USER + 0x73)
+#define ID_WIND_TXT                 (GUI_ID_USER + 0x74)
 
 
 #define TIME_SETTING_REFRESH_PERIOD 100
@@ -260,8 +269,13 @@ static const GUI_WIDGET_CREATE_INFO _aHomeDialogCreate[] = {
 
 static const GUI_WIDGET_CREATE_INFO _aWeatherDialogCreate[] = {
   { WINDOW_CreateIndirect, "Window", ID_WINDOW, 0, 0, 800, 180, (U16)(WM_CF_MOTION_X | WM_CF_SHOW), 0x0, sizeof(WINDOW_DATA *)},
-  { TEXT_CreateIndirect, "condition", ID_CONDITION, 5, 130, 260, 120, TEXT_CF_HCENTER, 0, 0 }, 
-  { IMAGE_CreateIndirect, "Image", ID_WEATHER, 80, 7, 150, 150, 0, 0, 0 },      
+  { IMAGE_CreateIndirect, "Image", ID_WEATHER_ICON, 80, 7, 150, 150, 0, 0, 0 },       
+  { TEXT_CreateIndirect, "condition", ID_CONDITION_TXT, 5, 130, 260, 120, TEXT_CF_HCENTER, 0, 0 }, 
+  { TEXT_CreateIndirect, "Temperatute", ID_TEMPERATURE_TXT, 140, 130, 260, 120, TEXT_CF_HCENTER, 0, 0 }, 
+  { TEXT_CreateIndirect, "Pressure", ID_PRESSURE_TXT, 270, 130, 260, 120, TEXT_CF_HCENTER, 0, 0 }, 
+  { TEXT_CreateIndirect, "Humidity", ID_HUMIDITY_TXT, 400, 130, 260, 120, TEXT_CF_HCENTER, 0, 0 },  
+  { TEXT_CreateIndirect, "Wind", ID_WIND_TXT, 530, 130, 260, 120, TEXT_CF_HCENTER, 0, 0 },     
+ 
 };
 /*********************************************************************
 *
@@ -269,7 +283,9 @@ static const GUI_WIDGET_CREATE_INFO _aWeatherDialogCreate[] = {
 */
 static void _cbWeatherDialog(WM_MESSAGE * pMsg) {
   WM_HWIN hItem;  
+  displayFloatToInt_t out_value;      
   int Id, Node;
+  char temp[64];
     
   switch (pMsg->MsgId) {
   case WM_INIT_DIALOG:
@@ -278,21 +294,62 @@ static void _cbWeatherDialog(WM_MESSAGE * pMsg) {
 
     WINDOW_SetBkColor(hItem, GUI_MAKE_COLOR(GUI_TRANSPARENT));
     
-    hItem = WM_GetDialogItem(pMsg->hWin, ID_CONDITION);
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_CONDITION_TXT);
     TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xCECECE));
     TEXT_SetFont(hItem, &GUI_FontDigitGraphics40);
     TEXT_SetText(hItem, "Few Clouds"); 
     
-    hItem = WM_GetDialogItem(pMsg->hWin, ID_WEATHER);
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEMPERATURE_TXT);
+    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xCECECE));
+    TEXT_SetFont(hItem, &GUI_FontDigitGraphics40);
+    TEXT_SetText(hItem, "15 C"); 
+
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_HUMIDITY_TXT);
+    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xCECECE));
+    TEXT_SetFont(hItem, &GUI_FontDigitGraphics40);
+    TEXT_SetText(hItem, "50 %"); 
+
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_PRESSURE_TXT);
+    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xCECECE));
+    TEXT_SetFont(hItem, &GUI_FontDigitGraphics40);
+    TEXT_SetText(hItem, "1000 Pa"); 
+
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_WIND_TXT);
+    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xCECECE));
+    TEXT_SetFont(hItem, &GUI_FontDigitGraphics40);
+    TEXT_SetText(hItem, "10 Km/h");     
+    
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_WEATHER_ICON);
     IMAGE_SetBitmap(hItem, weather_condition_icon[0]);
     break;
       
   case WEATHER_UPDATE:
-    hItem = WM_GetDialogItem(pMsg->hWin, ID_WEATHER);
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_WEATHER_ICON);
     IMAGE_SetBitmap(hItem, weather_condition_icon[weather.desc_idx]);  
     
-    hItem = WM_GetDialogItem(pMsg->hWin, ID_CONDITION);
-    TEXT_SetText(hItem, weather.description);      
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_CONDITION_TXT);
+    TEXT_SetText(hItem, weather.description);    
+    
+    floatToInt(weather.temperature, &out_value, 1);
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEMPERATURE_TXT);
+    snprintf(temp, sizeof(temp), "%d.%dC", out_value.out_int, out_value.out_dec);
+    TEXT_SetText(hItem, temp); 
+
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_HUMIDITY_TXT);
+    floatToInt(weather.humidity, &out_value, 1);
+    snprintf(temp, sizeof(temp), "%d %%", out_value.out_int);    
+    TEXT_SetText(hItem, temp); 
+
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_PRESSURE_TXT);
+    snprintf(temp, sizeof(temp), "%d Pa", weather.pressure);
+    TEXT_SetText(hItem, temp); 
+
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_WIND_TXT);
+    floatToInt(weather.wind_speed, &out_value, 1);    
+    snprintf(temp, sizeof(temp), "%d.%d km/h", out_value.out_int, out_value.out_dec);
+    TEXT_SetText(hItem, temp);    
+
+    
     break;
     
     
@@ -782,7 +839,7 @@ void UI_ForceUpdateTime(void)
 */
 void UI_ForceUpdateWhether(void)
 {
-  WM_SendMessageNoPara (hHomeFrame, ID_CONDITION);  
+  WM_SendMessageNoPara (hHomeFrame, ID_CONDITION_TXT);  
   WM_SendMessageNoPara (hWeatherFrame, WEATHER_UPDATE);    
 }
 

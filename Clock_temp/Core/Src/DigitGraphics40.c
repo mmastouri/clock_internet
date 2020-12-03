@@ -15,11 +15,11 @@
 *                                                                    *
 * Source file: DigitGraphics40.c                                     *
 * Font:        01 DigitGraphics                                      *
-* Height:      32                                                    *
+* Height:      20                                                    *
 *                                                                    *
 **********************************************************************
 *                                                                    *
-* Initial font height:  32                                           *
+* Initial font height:  20                                           *
 *                                                                    *
 **********************************************************************
 */
@@ -39,2188 +39,1432 @@ extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigitGraphics40;
 GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0020[  1] = { /* code 0020, SPACE */
   ________};
 
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0021[ 24] = { /* code 0021, EXCLAMATION MARK */
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0021[ 15] = { /* code 0021, EXCLAMATION MARK */
+  XXX_____,
+  XXX_____,
+  XXX_____,
+  XXX_____,
+  XXX_____,
+  XXX_____,
+  XXX_____,
+  XXX_____,
+  XXX_____,
+  XXX_____,
+  XXX_____,
+  XXX_____,
+  ________,
+  XXX_____,
+  XXX_____};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0022[  6] = { /* code 0022, QUOTATION MARK */
+  XXX__XXX,
+  XXX__XXX,
+  XXX__XXX,
+  XXX__XXX,
+  XXX__XXX,
+  XXX__XXX};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0023[ 30] = { /* code 0023, NUMBER SIGN */
+  ___XXX__,XXX_____,
+  ___XXX__,XXX_____,
+  ___XXX__,XXX_____,
+  XXXXXXXX,XXXXXX__,
+  XXXXXXXX,XXXXXX__,
+  XXXXXXXX,XXXXXX__,
+  ___XXX__,XXX_____,
+  ___XXX__,XXX_____,
+  ___XXX__,XXX_____,
+  XXXXXXXX,XXXXXX__,
+  XXXXXXXX,XXXXXX__,
+  XXXXXXXX,XXXXXX__,
+  ___XXX__,XXX_____,
+  ___XXX__,XXX_____,
+  ___XXX__,XXX_____};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0024[ 30] = { /* code 0024, DOLLAR SIGN */
+  ______XX,X_______,
+  ___XXXXX,XXXXXXX_,
+  _XXXXXXX,XXXXXXX_,
+  _XXXXXXX,XXXXXXX_,
+  XXX___XX,X_______,
+  XXX___XX,X_______,
+  _XXXXXXX,XXXXX___,
+  _XXXXXXX,XXXXXX__,
+  ___XXXXX,XXXXXXX_,
+  ______XX,X___XXX_,
+  ______XX,X___XXX_,
+  XXXXXXXX,XXXXXXX_,
+  XXXXXXXX,XXXXXX__,
+  XXXXXXXX,XXXXX___,
+  ______XX,X_______};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0025[ 30] = { /* code 0025, PERCENT SIGN */
+  ________,____XX__,
+  __XX____,___XXX__,
+  _XXXX___,__XXXX__,
+  _XXXX___,_XXXX___,
+  __XX____,XXXX____,
+  _______X,XXX_____,
+  ______XX,XX______,
+  _____XXX,X_______,
+  ____XXXX,________,
+  ___XXXX_,________,
+  __XXXX__,__XX____,
+  _XXXX___,_XXXX___,
+  XXXX____,_XXXX___,
+  XXX_____,__XX____,
+  XX______,________};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0026[ 26] = { /* code 0026, AMPERSAND */
+  __XXXXXX,X_______,
+  XXXXXXXX,XX______,
+  XX______,XX______,
+  XX______,_X______,
+  XXX_____,________,
+  XXXX____,________,
+  _XXXXX__,________,
+  XXXXXXX_,__XX____,
+  XXX_XXXX,X_XX____,
+  XX____XX,XXXX____,
+  XX_____X,XXXX____,
+  _XXXXXXX,XXXX____,
+  __XXXXXX,XXXX____};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0027[  6] = { /* code 0027, APOSTROPHE */
+  XXX_____,
+  XXX_____,
+  XXX_____,
+  XXX_____,
+  XXX_____,
+  XXX_____};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0028[ 15] = { /* code 0028, LEFT PARENTHESIS */
+  ___XX___,
+  _XXXX___,
+  XXXX____,
+  XXX_____,
+  XXX_____,
+  XXX_____,
+  XXX_____,
+  XXX_____,
+  XXX_____,
+  XXX_____,
+  XXX_____,
+  XXX_____,
+  XXXX____,
+  _XXXX___,
+  ___XX___};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0029[ 15] = { /* code 0029, RIGHT PARENTHESIS */
+  XX______,
+  XXXX____,
+  _XXXX___,
+  __XXX___,
+  __XXX___,
+  __XXX___,
+  __XXX___,
+  __XXX___,
+  __XXX___,
+  __XXX___,
+  __XXX___,
+  __XXX___,
+  _XXXX___,
+  XXXX____,
+  XX______};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_002A[ 30] = { /* code 002A, ASTERISK */
+  ______XX,X_______,
+  ______XX,X_______,
+  ______XX,X_______,
+  XXX___XX,X____XX_,
+  _XXXX_XX,X__XXXX_,
+  __XXXXXX,XXXXXX__,
+  ____XXXX,XXXX____,
+  _____XXX,XX______,
+  ___XXXXX,XXX_____,
+  _XXXXXXX,XXXXX___,
+  XXXX__XX,X_XXXX__,
+  XX____XX,X___XXX_,
+  ______XX,X____X__,
+  ______XX,X_______,
+  ______XX,X_______};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_002B[ 30] = { /* code 002B, PLUS SIGN */
+  ______XX,X_______,
+  ______XX,X_______,
+  ______XX,X_______,
+  ______XX,X_______,
+  ______XX,X_______,
+  ______XX,X_______,
+  XXXXXXXX,XXXXXXX_,
+  XXXXXXXX,XXXXXXX_,
+  XXXXXXXX,XXXXXXX_,
+  ______XX,X_______,
+  ______XX,X_______,
+  ______XX,X_______,
+  ______XX,X_______,
+  ______XX,X_______,
+  ______XX,X_______};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_002C[  5] = { /* code 002C, COMMA */
+  __XX____,
+  _XXX____,
+  XXXX____,
+  XXX_____,
+  XX______};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_002D[  4] = { /* code 002D, HYPHEN-MINUS */
+  XXXXXXXX,________,
+  XXXXXXXX,________};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_002E[  4] = { /* code 002E, FULL STOP */
   _XX_____,
   XXXX____,
   XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  _XX_____,
+  _XX_____};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_002F[ 26] = { /* code 002F, SOLIDUS */
+  ________,__XX____,
+  ________,_XXX____,
+  ________,XXXX____,
+  _______X,XXX_____,
+  ______XX,XX______,
+  ______XX,X_______,
+  _____XXX,________,
+  ____XXX_,________,
+  ___XXX__,________,
+  __XXX___,________,
+  _XXX____,________,
+  XXX_____,________,
+  XX______,________};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0030[ 30] = { /* code 0030, DIGIT ZERO */
+  ___XXXXX,XXXXX___,
+  _XXXXXXX,XXXXXXX_,
+  _XXXXXXX,XXXXXXX_,
+  XXXX____,____XXXX,
+  XXX_____,____XXXX,
+  XXX_____,__XXXXXX,
+  XXX_____,XXXXXXXX,
+  XXX___XX,XXX__XXX,
+  XXX_XXXX,_____XXX,
+  XXXXXX__,_____XXX,
+  XXXX____,_____XXX,
+  XXXX____,____XXXX,
+  _XXXXXXX,XXXXXXX_,
+  _XXXXXXX,XXXXXXX_,
+  ___XXXXX,XXXXX___};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0031[ 30] = { /* code 0031, DIGIT ONE */
+  ____XXX_,________,
+  ___XXXX_,________,
+  __XXXXX_,________,
+  _XXXXXX_,________,
+  _XXXXXX_,________,
+  ____XXX_,________,
+  ____XXX_,________,
+  ____XXX_,________,
+  ____XXX_,________,
+  ____XXX_,________,
+  ____XXX_,________,
+  ____XXX_,________,
+  _XXXXXXX,XXX_____,
+  XXXXXXXX,XXX_____,
+  _XXXXXXX,XXX_____};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0032[ 30] = { /* code 0032, DIGIT TWO */
+  XXXXXXXX,XXXX____,
+  XXXXXXXX,XXXXX___,
+  XXXXXXXX,XXXXXX__,
+  ________,___XXX__,
+  ________,____XX__,
+  ________,___XXX__,
+  __XXXXXX,XXXXXX__,
+  _XXXXXXX,XXXXX___,
+  XXXXXXXX,XXXX____,
+  XXX_____,________,
+  XX______,________,
+  XXX_____,________,
+  XXXXXXXX,XXXXXX__,
+  _XXXXXXX,XXXXXX__,
+  __XXXXXX,XXXXXX__};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0033[ 30] = { /* code 0033, DIGIT THREE */
+  XXXXXXXX,XXXX____,
+  XXXXXXXX,XXXXXX__,
+  XXXXXXXX,XXXXXX__,
+  ________,___XXXX_,
+  ________,____XXX_,
+  ________,____XXX_,
+  __XXXXXX,XXXXXXX_,
+  __XXXXXX,XXXXXXX_,
+  __XXXXXX,XXXXXXX_,
+  ________,____XXX_,
+  ________,____XXX_,
+  ________,___XXXX_,
+  XXXXXXXX,XXXXXX__,
+  XXXXXXXX,XXXXXX__,
+  XXXXXXXX,XXXX____};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0034[ 30] = { /* code 0034, DIGIT FOUR */
+  XXX_____,_XXX____,
+  XXX_____,_XXX____,
+  XXX_____,_XXX____,
+  XXX_____,_XXX____,
+  XXX_____,_XXX____,
+  XXX_____,_XXX____,
+  XXX_____,_XXX____,
+  XXXX____,_XXX____,
+  _XXXXXXX,XXXXXXX_,
+  _XXXXXXX,XXXXXXXX,
+  ___XXXXX,XXXXXXX_,
+  ________,_XXX____,
+  ________,_XXX____,
+  ________,_XXX____,
+  ________,_XXX____};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0035[ 30] = { /* code 0035, DIGIT FIVE */
+  _XXXXXXX,XXXXXXX_,
+  XXXXXXXX,XXXXXXX_,
+  XXXXXXXX,XXXXXXX_,
+  XXX_____,________,
+  XXX_____,________,
+  XXX_____,________,
+  XXXXXXXX,XXXXX___,
+  XXXXXXXX,XXXXXX__,
+  _XXXXXXX,XXXXXXX_,
+  ________,____XXX_,
+  ________,____XXX_,
+  ________,____XXX_,
+  XXXXXXXX,XXXXXXX_,
+  XXXXXXXX,XXXXXX__,
+  XXXXXXXX,XXXXX___};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0036[ 30] = { /* code 0036, DIGIT SIX */
+  __XXXXXX,XXXX____,
+  _XXXXXXX,XXXXXX__,
+  XXXXXXXX,XXXXXX__,
+  XXXX____,____XXX_,
+  XXX_____,____XXX_,
+  XXX_____,________,
+  XXXXXXXX,XXXXX___,
+  XXXXXXXX,XXXXXX__,
+  XXXXXXXX,XXXXXXX_,
+  XXX_____,____XXX_,
+  XXX_____,____XXX_,
+  XXXX____,____XXX_,
+  XXXXXXXX,XXXXXXX_,
+  _XXXXXXX,XXXXXX__,
+  __XXXXXX,XXXXX___};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0037[ 30] = { /* code 0037, DIGIT SEVEN */
+  XXXXXXXX,XXXX____,
+  XXXXXXXX,XXXXX___,
+  XXXXXXXX,XXXXXX__,
+  ________,___XXX__,
+  ________,____XX__,
+  ________,XXXXXX__,
+  _______X,XXXXX___,
+  ______XX,XXXX____,
+  ______XX,X_______,
+  ______XX,________,
+  _____XXX,________,
+  _____XXX,________,
+  _____XX_,________,
+  _____XX_,________,
+  _____XX_,________};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0038[ 30] = { /* code 0038, DIGIT EIGHT */
+  ___XXXXX,XXXXX___,
+  _XXXXXXX,XXXXXXX_,
+  _XXXXXXX,XXXXXXX_,
+  XXXX____,____XXXX,
+  XXX_____,_____XXX,
+  XXXX____,____XXXX,
+  _XXXXXXX,XXXXXXX_,
+  _XXXXXXX,XXXXXXX_,
+  _XXXXXXX,XXXXXXX_,
+  XXXX____,____XXXX,
+  XXX_____,_____XXX,
+  XXXX____,____XXXX,
+  _XXXXXXX,XXXXXXX_,
+  _XXXXXXX,XXXXXXX_,
+  ___XXXXX,XXXXX___};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0039[ 30] = { /* code 0039, DIGIT NINE */
+  __XXXXXX,XXXX____,
+  _XXXXXXX,XXXXXX__,
+  XXXXXXXX,XXXXXX__,
+  XXX_____,___XXXX_,
+  XX______,____XXX_,
+  XXX_____,____XXX_,
+  XXXXXXXX,XXXXXXX_,
+  _XXXXXXX,XXXXXXX_,
+  __XXXXXX,XXXXXXX_,
+  ________,____XXX_,
+  XX______,____XXX_,
+  XXX_____,___XXXX_,
+  XXXXXXXX,XXXXXX__,
+  _XXXXXXX,XXXXXX__,
+  __XXXXXX,XXXX____};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_003A[ 10] = { /* code 003A, COLON */
+  _X______,
+  XXX_____,
+  XXX_____,
+  XXX_____,
   ________,
   ________,
-  _XX_____,
-  XXXX____,
-  XXXX____,
-  _XX_____};
+  _X______,
+  XXX_____,
+  XXX_____,
+  XX______};
 
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0022[ 18] = { /* code 0022, QUOTATION MARK */
-  _XX_____,_XX_____,
-  XXXX____,XXXX____,
-  XXXX____,XXXX____,
-  XXXX____,XXXX____,
-  XXXX____,XXXX____,
-  XXXX____,XXXX____,
-  XXXX____,XXXX____,
-  XXXX____,XXXX____,
-  _XX_____,_XX_____};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0023[100] = { /* code 0023, NUMBER SIGN */
-  _______X,X_______,XX______,________,
-  ______XX,XX_____X,XXX_____,________,
-  ______XX,XX_____X,XXX_____,________,
-  ______XX,XX_____X,XXX_____,________,
-  ______XX,XX_____X,XXX_____,________,
-  ______XX,XX_____X,XXX_____,________,
-  _XXXXXXX,XXXXXXXX,XXXXXXXX,________,
-  XXXXXXXX,XXXXXXXX,XXXXXXXX,X_______,
-  XXXXXXXX,XXXXXXXX,XXXXXXXX,X_______,
-  _XXXXXXX,XXXXXXXX,XXXXXXXX,________,
-  ______XX,XX_____X,XXX_____,________,
-  ______XX,XX_____X,XXX_____,________,
-  ______XX,XX_____X,XXX_____,________,
-  ______XX,XX_____X,XXX_____,________,
-  ______XX,XX_____X,XXX_____,________,
-  _XXXXXXX,XXXXXXXX,XXXXXXXX,________,
-  XXXXXXXX,XXXXXXXX,XXXXXXXX,X_______,
-  XXXXXXXX,XXXXXXXX,XXXXXXXX,X_______,
-  _XXXXXXX,XXXXXXXX,XXXXXXXX,________,
-  ______XX,XX_____X,XXX_____,________,
-  ______XX,XX_____X,XXX_____,________,
-  ______XX,XX_____X,XXX_____,________,
-  ______XX,XX_____X,XXX_____,________,
-  ______XX,XX_____X,XXX_____,________,
-  _______X,X_______,XX______,________};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0024[ 72] = { /* code 0024, DOLLAR SIGN */
-  ________,___XX___,________,
-  ________,__XXXX__,________,
-  ____XXXX,XXXXXXXX,XXXXXXX_,
-  ___XXXXX,XXXXXXXX,XXXXXXXX,
-  _XXXXXXX,XXXXXXXX,XXXXXXXX,
-  _XXXXXXX,XXXXXXXX,XXXXXXX_,
-  XXXXX___,__XXXX__,________,
-  XXXX____,__XXXX__,________,
-  XXXX____,__XXXX__,________,
-  XXXXXX__,__XXXX__,________,
-  _XXXXXXX,XXXXXXXX,XXX_____,
-  _XXXXXXX,XXXXXXXX,XXXXX___,
-  ___XXXXX,XXXXXXXX,XXXXXXX_,
-  _____XXX,XXXXXXXX,XXXXXXX_,
-  ________,__XXXX__,___XXXXX,
-  ________,__XXXX__,____XXXX,
-  ________,__XXXX__,____XXXX,
-  ________,__XXXX__,___XXXXX,
-  _XXXXXXX,XXXXXXXX,XXXXXXX_,
-  XXXXXXXX,XXXXXXXX,XXXXXXX_,
-  XXXXXXXX,XXXXXXXX,XXXXXX__,
-  _XXXXXXX,XXXXXXXX,XXXX____,
-  ________,__XXXX__,________,
-  ________,___XX___,________};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0025[ 75] = { /* code 0025, PERCENT SIGN */
-  ________,________,_____XX_,
-  ________,________,____XXXX,
-  ________,________,___XXXXX,
-  ___XXXX_,________,__XXXXXX,
-  __XXXXXX,________,_XXXXXX_,
-  __XXXXXX,________,XXXXXX__,
-  __XXXXXX,_______X,XXXXX___,
-  __XXXXXX,______XX,XXXX____,
-  ___XXXX_,_____XXX,XXX_____,
-  ________,____XXXX,XX______,
-  ________,___XXXXX,X_______,
-  ________,__XXXXXX,________,
-  ________,_XXXXXX_,________,
-  ________,XXXXXX__,________,
-  _______X,XXXXX___,________,
-  ______XX,XXXX____,________,
-  _____XXX,XXX_____,________,
-  ____XXXX,XX______,_XXXX___,
-  ___XXXXX,X_______,XXXXXX__,
-  __XXXXXX,________,XXXXXX__,
-  _XXXXXX_,________,XXXXXX__,
-  XXXXXX__,________,XXXXXX__,
-  XXXXX___,________,_XXXX___,
-  XXXX____,________,________,
-  _XX_____,________,________};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0026[ 66] = { /* code 0026, AMPERSAND */
-  ____XXXX,XXXXXX__,________,
-  __XXXXXX,XXXXXXX_,________,
-  _XXXXXXX,XXXXXXXX,________,
-  _XXXXXXX,XXXXXXXX,X_______,
-  XXXXX___,_____XXX,XX______,
-  XXXX____,______XX,XX______,
-  XXXX____,_______X,X_______,
-  XXXXX___,________,________,
-  _XXXXX__,________,________,
-  _XXXXXX_,________,________,
-  ___XXXXX,X_______,________,
-  __XXXXXX,XX______,________,
-  _XXXXXXX,XXXX____,__XXX___,
-  XXXXX__X,XXXXX___,_XXXX___,
-  XXXX____,XXXXXXX_,_XXXX___,
-  XXXX____,__XXXXXX,_XXXX___,
-  XXXX____,___XXXXX,XXXXX___,
-  XXXXX___,_____XXX,XXXXX___,
-  _XXXXXXX,XXXXXXXX,XXXX____,
-  _XXXXXXX,XXXXXXXX,XXXXX___,
-  __XXXXXX,XXXXXXXX,XXXXX___,
-  ____XXXX,XXXXXXXX,X_XXX___};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0027[  9] = { /* code 0027, APOSTROPHE */
-  _XX_____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  _XX_____};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0028[ 25] = { /* code 0028, LEFT PARENTHESIS */
-  ____XX__,
-  ___XXXX_,
-  __XXXXX_,
-  _XXXXXX_,
-  XXXXXX__,
-  XXXXX___,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXXX___,
-  XXXXXX__,
-  _XXXXXX_,
-  __XXXXX_,
-  ___XXXX_,
-  ____XX__};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0029[ 25] = { /* code 0029, RIGHT PARENTHESIS */
-  _XX_____,
-  XXXX____,
-  XXXXX___,
-  XXXXXX__,
-  _XXXXXX_,
-  __XXXXX_,
-  ___XXXX_,
-  ___XXXX_,
-  ___XXXX_,
-  ___XXXX_,
-  ___XXXX_,
-  ___XXXX_,
-  ___XXXX_,
-  ___XXXX_,
-  ___XXXX_,
-  ___XXXX_,
-  ___XXXX_,
-  ___XXXX_,
-  ___XXXX_,
-  __XXXXX_,
-  _XXXXXX_,
-  XXXXXX__,
-  XXXXX___,
-  XXXX____,
-  _XX_____};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_002A[ 75] = { /* code 002A, ASTERISK */
-  ________,___XX___,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  _XXX____,__XXXX__,________,
-  _XXXX___,__XXXX__,_____XX_,
-  _XXXXXX_,__XXXX__,___XXXXX,
-  _XXXXXXX,__XXXX__,_XXXXXXX,
-  ___XXXXX,XXXXXX_X,XXXXXXX_,
-  ____XXXX,XXXXXXXX,XXXXX___,
-  ______XX,XXXXXXXX,XXX_____,
-  _______X,XXXXXXXX,XX______,
-  ________,XXXXXXXX,________,
-  ______XX,XXXXXXXX,X_______,
-  _____XXX,XXXXXXXX,XX______,
-  ___XXXXX,XXXXXXXX,XXXX____,
-  _XXXXXXX,X_XXXXXX,XXXXX___,
-  XXXXXXX_,__XXXX__,XXXXXXX_,
-  XXXXX___,__XXXX__,_XXXXXX_,
-  _XX_____,__XXXX__,___XXXX_,
-  ________,__XXXX__,____XXX_,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,___XX___,________};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_002B[ 75] = { /* code 002B, PLUS SIGN */
-  ________,___XX___,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  _XXXXXXX,XXXXXXXX,XXXXXXX_,
-  XXXXXXXX,XXXXXXXX,XXXXXXXX,
-  XXXXXXXX,XXXXXXXX,XXXXXXXX,
-  _XXXXXXX,XXXXXXXX,XXXXXXX_,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,___XX___,________};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_002C[  8] = { /* code 002C, COMMA */
-  ____XXX_,
-  ___XXXXX,
-  __XXXXXX,
-  _XXXXXX_,
-  XXXXXX__,
-  XXXXX___,
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_003B[ 11] = { /* code 003B, SEMICOLON */
+  __XX____,
+  _XXXX___,
+  _XXXX___,
+  __XX____,
+  ________,
+  ________,
+  ________,
+  __XXX___,
+  _XXXX___,
   XXXX____,
   XXX_____};
 
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_002D[  8] = { /* code 002D, HYPHEN-MINUS */
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_003C[ 10] = { /* code 003C, LESS-THAN SIGN */
+  ____XX__,
+  ___XXX__,
+  __XXXX__,
+  _XXXX___,
+  XXXX____,
+  XXXX____,
+  _XXXX___,
+  __XXXX__,
+  ___XXX__,
+  ____XX__};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_003D[  9] = { /* code 003D, EQUALS SIGN */
+  XXXXXXXX,
+  XXXXXXXX,
+  XXXXXXXX,
+  ________,
+  ________,
+  ________,
+  XXXXXXXX,
+  XXXXXXXX,
+  XXXXXXXX};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_003E[ 10] = { /* code 003E, GREATER-THAN SIGN */
+  XX______,
+  XXX_____,
+  XXXX____,
+  _XXXXX__,
+  __XXXX__,
+  __XXXX__,
+  _XXXX___,
+  XXXX____,
+  XXX_____,
+  XX______};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_003F[ 30] = { /* code 003F, QUESTION MARK */
+  ___XXXXX,XXXXX___,
+  _XXXXXXX,XXXXXXX_,
+  _XXXXXXX,XXXXXXXX,
+  XXXX____,_____XXX,
+  XXX_____,_____XXX,
+  XXX_____,_____XXX,
+  _X______,____XXXX,
+  _______X,XXXXXXX_,
+  _______X,XXXXXX__,
+  _______X,XXXXX___,
+  ________,________,
+  _______X,X_______,
+  ______XX,XX______,
+  ______XX,XX______,
+  _______X,X_______};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0040[ 30] = { /* code 0040, COMMERCIAL AT */
+  __XXXXXX,XXXX____,
+  _XXXXXXX,XXXXX___,
   XXXXXXXX,XXXXXX__,
+  XX______,___XXX__,
+  X____XXX,XX__XX__,
+  X___XXXX,XX__XX__,
+  X__XXX_X,XX__XX__,
+  X__XX__X,XX__XX__,
+  X__XXX_X,XX_XXX__,
+  X__XXXXX,XXXXXX__,
+  X___XXXX,XXXXX___,
+  XX___XXX,XXXXXX__,
+  XXXXXXXX,XXXXXX__,
+  _XXXXXXX,XXXXX___,
+  __XXXXXX,XXXX____};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0041[ 30] = { /* code 0041, LATIN CAPITAL LETTER A */
+  ____XXXX,XXX_____,
+  ___XXXXX,XXX_____,
+  ___XX___,_XXX____,
+  __XXX___,_XXX____,
+  __XXX___,__XX____,
+  __XX____,__XX____,
+  __XX____,__XXX___,
+  _XXXXXXX,XXXXX___,
+  _XXXXXXX,XXXXX___,
+  _XXXXXXX,XXXXX___,
+  XXX_____,___XXX__,
+  XXX_____,___XXX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  ________,________};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0042[ 30] = { /* code 0042, LATIN CAPITAL LETTER B */
+  XXXXXXXX,XXX_____,
+  XXXXXXXX,XXXXX___,
+  XXXXXXXX,XXXXXX__,
+  XX______,___XXX__,
+  XX______,___XXX__,
+  XX______,___XXX__,
+  XXXXXXXX,XXXXX___,
+  XXXXXXXX,XXXXX___,
+  XXXXXXXX,XXXXXX__,
+  XX______,___XXX__,
+  XX______,___XXX__,
+  XX______,___XXX__,
+  XXXXXXXX,XXXXXX__,
+  XXXXXXXX,XXXXX___,
+  XXXXXXXX,XXXX____};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0043[ 28] = { /* code 0043, LATIN CAPITAL LETTER C */
+  __XXXXXX,XXXX____,
+  _XXXXXXX,XXXXX___,
+  XXX_____,___XXX__,
+  XX______,____XX__,
+  XX______,________,
+  XX______,________,
+  XX______,________,
+  XX______,________,
+  XX______,________,
+  XX______,________,
+  XX______,____XX__,
+  XXX_____,___XXX__,
+  _XXXXXXX,XXXXX___,
+  __XXXXXX,XXXX____};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0044[ 30] = { /* code 0044, LATIN CAPITAL LETTER D */
+  XXXXXXXX,XXXX____,
+  XXXXXXXX,XXXXX___,
+  _XXXXXXX,XXXXXX__,
+  __XXX___,___XXX__,
+  __XXX___,____XX__,
+  __XXX___,____XX__,
+  __XXX___,____XX__,
+  __XXX___,____XX__,
+  __XXX___,____XX__,
+  __XXX___,____XX__,
+  __XXX___,____XX__,
+  __XXX___,____XX__,
+  __XXX___,___XXX__,
+  XXXXXXXX,XXXXX___,
+  XXXXXXXX,XXXX____};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0045[ 28] = { /* code 0045, LATIN CAPITAL LETTER E */
+  __XXXXXX,XXXXXX__,
+  _XXXXXXX,XXXXXX__,
+  XXX_____,________,
+  XX______,________,
+  XX______,________,
+  XXXXXXXX,XXXX____,
+  XXXXXXXX,XXXX____,
+  XXXXXXXX,XXXX____,
+  XX______,________,
+  XX______,________,
+  XXX_____,________,
+  XXXXXXXX,XXXXXX__,
+  _XXXXXXX,XXXXXX__,
+  __XXXXXX,XXXXXX__};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0046[ 30] = { /* code 0046, LATIN CAPITAL LETTER F */
+  __XXXXXX,XXXXXX__,
+  _XXXXXXX,XXXXXX__,
+  XXXXXXXX,XXXXXX__,
+  XXX_____,________,
+  XX______,________,
+  XX______,________,
+  XXXXXXXX,________,
+  XXXXXXXX,________,
+  XXXXXXXX,________,
+  XX______,________,
+  XX______,________,
+  XX______,________,
+  XX______,________,
+  XX______,________,
+  XX______,________};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0047[ 28] = { /* code 0047, LATIN CAPITAL LETTER G */
+  __XXXXXX,XXXX____,
+  _XXXXXXX,XXXXX___,
+  _XXX____,____XX__,
+  XXX_____,____XX__,
+  XXX_____,____XX__,
+  XXX_____,________,
+  XXX___XX,XXXXXX__,
+  XXX__XXX,XXXXXX__,
+  XXX___XX,XXXXXX__,
+  XXX_____,____XX__,
+  XXX_____,____XX__,
+  XXXX____,____XX__,
+  _XXXXXXX,XXXXXX__,
+  __XXXXXX,XXXXX___};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0048[ 30] = { /* code 0048, LATIN CAPITAL LETTER H */
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XXXXXXXX,XXXXXX__,
+  XXXXXXXX,XXXXXX__,
+  XXXXXXXX,XXXXXX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0049[ 15] = { /* code 0049, LATIN CAPITAL LETTER I */
+  XX______,
+  XX______,
+  XX______,
+  XX______,
+  XX______,
+  XX______,
+  XX______,
+  XX______,
+  XX______,
+  XX______,
+  XX______,
+  XX______,
+  XX______,
+  XX______,
+  XX______};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_004A[ 28] = { /* code 004A, LATIN CAPITAL LETTER J */
+  XXXXXXXX,XXXXXXX_,
+  XXXXXXXX,XXXXXXX_,
+  ________,__XXX___,
+  ________,__XXX___,
+  ________,__XXX___,
+  ________,__XXX___,
+  ________,__XXX___,
+  ________,__XXX___,
+  XX______,__XXX___,
+  XX______,__XXX___,
+  XX______,__XXX___,
+  XXX_____,_XXXX___,
+  _XXXXXXX,XXXX____,
+  __XXXXXX,XXX_____};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_004B[ 30] = { /* code 004B, LATIN CAPITAL LETTER K */
+  XX______,__XXXX__,
+  XX______,XXXXXX__,
+  XX____XX,XXXXXX__,
+  XX___XXX,XX______,
+  XX_XXXXX,X_______,
+  XXXXXXX_,________,
+  XXXXXXX_,________,
+  XXXX_XXX,________,
+  XX___XXX,X_______,
+  XX____XX,X_______,
+  XX_____X,XX______,
+  XX______,XXX_____,
+  XX______,XXXX____,
+  XX______,_XXXXX__,
+  XX______,__XXXX__};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_004C[ 30] = { /* code 004C, LATIN CAPITAL LETTER L */
+  XX______,________,
+  XX______,________,
+  XX______,________,
+  XX______,________,
+  XX______,________,
+  XX______,________,
+  XX______,________,
+  XX______,________,
+  XX______,________,
+  XX______,________,
+  XX______,________,
+  XX______,________,
+  XXX_____,________,
+  _XXXXXXX,XXXXXX__,
+  __XXXXXX,XXXXXX__};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_004D[ 42] = { /* code 004D, LATIN CAPITAL LETTER M */
+  __XXXXXX,XXXXXXXX,________,
+  _XXXXXXX,XXXXXXXX,X_______,
+  XXXX____,XXX____X,XX______,
+  XXX_____,XXX_____,XX______,
+  XXX_____,XXX_____,XX______,
+  XXX_____,XXX_____,XX______,
+  XXX_____,XXX_____,XX______,
+  XXX_____,XXX_____,XX______,
+  XXX_____,XXX_____,XX______,
+  XXX_____,XXX_____,XX______,
+  XXX_____,XXX_____,XX______,
+  XXX_____,XXX_____,XX______,
+  XXX_____,________,XX______,
+  XXX_____,________,XX______};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_004E[ 30] = { /* code 004E, LATIN CAPITAL LETTER N */
+  XXXXXXXX,XXX_____,
+  XXXXXXXX,XXXXX___,
+  XXXXXXXX,XXXXX___,
+  XX______,___XXX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_004F[ 28] = { /* code 004F, LATIN CAPITAL LETTER O */
+  __XXXXXX,XXXX____,
+  _XXXXXXX,XXXXX___,
+  XXX_____,___XXX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XXX_____,___XXX__,
+  XXXXXXXX,XXXXXX__,
+  _XXXXXXX,XXXXX___,
+  __XXXXXX,XXXX____};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0050[ 30] = { /* code 0050, LATIN CAPITAL LETTER P */
+  _XXXXXXX,XXXX____,
+  XXXXXXXX,XXXXX___,
+  XX______,___XXX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,___XXX__,
+  XXXXXXXX,XXXXXX__,
+  XXXXXXXX,XXXXX___,
+  XXXXXXXX,XXXX____,
+  XX______,________,
+  XX______,________,
+  XX______,________,
+  XX______,________,
+  ________,________};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0051[ 28] = { /* code 0051, LATIN CAPITAL LETTER Q */
+  __XXXXXX,XXXXX___,
+  _XXXXXXX,XXXXXX__,
+  XXX_____,___XXXX_,
+  XX______,____XXX_,
+  XX______,____XXX_,
+  XX____XX,X___XXX_,
+  XX____XX,XX__XXX_,
+  XX____XX,XXX_XXX_,
+  XX______,XXXXXXX_,
+  XX______,_XXXXXX_,
+  XXX_____,__XXXXX_,
+  XXXXXXXX,XXXXXXX_,
+  _XXXXXXX,XXXXXXX_,
+  __XXXXXX,XXXXXXX_};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0052[ 30] = { /* code 0052, LATIN CAPITAL LETTER R */
+  _XXXXXXX,XXXX____,
+  XXXXXXXX,XXXXX___,
+  XX______,___XXX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,___XXX__,
+  XX______,___XXX__,
+  XXXXXXXX,XXXXXX__,
+  XXXXXXXX,XXXXX___,
+  XXXXXXXX,XXXX____,
+  XX______,XXXX____,
+  XX______,_XXXX___,
+  XX______,__XXXX__,
+  XX______,___XXX__,
+  ________,____X___};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0053[ 28] = { /* code 0053, LATIN CAPITAL LETTER S */
+  ___XXXXX,XXXXX___,
+  _XXXXXXX,XXXXXX__,
+  _XXX____,____XXX_,
+  XXX_____,_____XX_,
+  XXX_____,________,
+  _XXX____,________,
+  _XXXXXXX,XXXXX___,
+  ___XXXXX,XXXXXX__,
+  ________,____XXX_,
+  ________,____XXX_,
+  _X______,____XXX_,
+  XXX_____,____XXX_,
+  _XXXXXXX,XXXXXX__,
+  __XXXXXX,XXXXX___};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0054[ 28] = { /* code 0054, LATIN CAPITAL LETTER T */
+  XXXXXXXX,XXXXXXX_,
+  XXXXXXXX,XXXXXXX_,
+  ______XX,X_______,
+  ______XX,X_______,
+  ______XX,X_______,
+  ______XX,X_______,
+  ______XX,X_______,
+  ______XX,X_______,
+  ______XX,X_______,
+  ______XX,X_______,
+  ______XX,X_______,
+  ______XX,X_______,
+  ______XX,X_______,
+  ______XX,X_______};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0055[ 30] = { /* code 0055, LATIN CAPITAL LETTER U */
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XX______,____XX__,
+  XXX_____,___XXX__,
+  _XXXXXXX,XXXXX___,
+  __XXXXXX,XXXX____};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0056[ 28] = { /* code 0056, LATIN CAPITAL LETTER V */
+  XX______,____XX__,
+  XX______,____XX__,
+  XXX_____,___XXX__,
+  XXX_____,___XXX__,
+  _XX_____,___XX___,
+  _XXX____,__XXX___,
+  _XXX____,__XXX___,
+  __XX____,__XX____,
+  __XXX___,_XXX____,
+  __XXX___,_XXX____,
+  __XXX___,_XX_____,
+  ___XXX__,XXX_____,
+  ___XXXXX,XXX_____,
+  ____XXXX,XX______};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0057[ 42] = { /* code 0057, LATIN CAPITAL LETTER W */
+  XX______,_______X,XX______,
+  XX______,_______X,XX______,
+  XX_____X,XX_____X,XX______,
+  XX_____X,XX_____X,XX______,
+  XX_____X,XX_____X,XX______,
+  XX_____X,XX_____X,XX______,
+  XX_____X,XX_____X,XX______,
+  XX_____X,XX_____X,XX______,
+  XX_____X,XX_____X,XX______,
+  XX_____X,XX_____X,XX______,
+  XX_____X,XX_____X,XX______,
+  XXX____X,XX____XX,XX______,
+  _XXXXXXX,XXXXXXXX,X_______,
+  __XXXXXX,XXXXXXXX,________};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0058[ 28] = { /* code 0058, LATIN CAPITAL LETTER X */
+  XXXX____,__XXXXX_,
+  XXXXX___,__XXXXX_,
+  _XXXXX__,_XXX____,
+  ___XXX__,XXX_____,
+  ____XXXX,XXX_____,
+  _____XXX,XX______,
+  _____XXX,X_______,
+  _____XXX,X_______,
+  _____XXX,XX______,
+  ____XXX_,XX______,
+  ___XXX__,XXX_____,
+  ___XX___,_XXX____,
+  XXXXX___,__XXXXX_,
+  XXXX____,___XXXX_};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0059[ 30] = { /* code 0059, LATIN CAPITAL LETTER Y */
+  ________,____X___,
+  XX______,___XXX__,
+  XX______,___XXX__,
+  XX______,___XXX__,
+  XX______,___XXX__,
+  XX______,___XXX__,
+  XXX_____,__XXXX__,
+  _XXXXXXX,XXXXX___,
+  __XXXXXX,XXXX____,
+  _____XXX,________,
+  _____XXX,________,
+  _____XXX,________,
+  _____XXX,________,
+  _____XXX,________,
+  _____XXX,________};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_005A[ 30] = { /* code 005A, LATIN CAPITAL LETTER Z */
+  XXXXXXXX,XXXX____,
+  XXXXXXXX,XXXXX___,
+  XXXXXXXX,XXXXXX__,
+  ________,___XXX__,
+  ________,__XXX___,
+  ________,XXXX____,
+  _______X,XXX_____,
+  _____XXX,X_______,
+  ____XXXX,________,
+  ___XXX__,________,
+  _XXXX___,________,
+  XXX_____,________,
+  XXXXXXXX,XXXXXX__,
+  XXXXXXXX,XXXXXX__,
+  _XXXXXXX,XXXXXX__};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_005B[ 15] = { /* code 005B, LEFT SQUARE BRACKET */
+  XXXXXX__,
+  XXXXXX__,
+  XXXXXX__,
+  XXX_____,
+  XXX_____,
+  XXX_____,
+  XXX_____,
+  XXX_____,
+  XXX_____,
+  XXX_____,
+  XXX_____,
+  XXX_____,
+  XXXXXX__,
+  XXXXXX__,
+  XXXXXX__};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_005C[ 26] = { /* code 005C, REVERSE SOLIDUS */
+  XX______,________,
+  XXX_____,________,
+  _XXX____,________,
+  __XXX___,________,
+  ___XXX__,________,
+  ____XXX_,________,
+  _____XXX,________,
+  ______XX,X_______,
+  _______X,XX______,
+  ________,XXX_____,
+  ________,_XXX____,
+  ________,__XX____,
+  ________,___X____};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_005D[ 15] = { /* code 005D, RIGHT SQUARE BRACKET */
+  XXXXXX__,
+  XXXXXX__,
+  XXXXXX__,
+  ___XXX__,
+  ___XXX__,
+  ___XXX__,
+  ___XXX__,
+  ___XXX__,
+  ___XXX__,
+  ___XXX__,
+  ___XXX__,
+  ___XXX__,
+  XXXXXX__,
+  XXXXXX__,
+  XXXXXX__};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_005E[ 14] = { /* code 005E, CIRCUMFLEX ACCENT */
+  ____XX__,________,
+  ___XXXX_,________,
+  __XXXXXX,________,
+  _XXXXXXX,X_______,
+  XXXX__XX,XX______,
+  XXX____X,XXX_____,
+  XX______,XX______};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_005F[  6] = { /* code 005F, LOW LINE */
   XXXXXXXX,XXXXXX__,
   XXXXXXXX,XXXXXX__,
   XXXXXXXX,XXXXXX__};
 
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_002E[  6] = { /* code 002E, FULL STOP */
-  _XXXX___,
-  XXXXXX__,
-  XXXXXX__,
-  XXXXXX__,
-  XXXXXX__,
-  _XXXX___};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_002F[ 63] = { /* code 002F, SOLIDUS */
-  ________,________,__XXX___,
-  ________,________,_XXXX___,
-  ________,________,XXXXX___,
-  ________,_______X,XXXX____,
-  ________,______XX,XXX_____,
-  ________,_____XXX,XX______,
-  ________,____XXXX,X_______,
-  ________,___XXXXX,________,
-  ________,__XXXXX_,________,
-  ________,_XXXXX__,________,
-  ________,XXXXX___,________,
-  _______X,XXXX____,________,
-  ______XX,XXX_____,________,
-  _____XXX,XX______,________,
-  ____XXXX,X_______,________,
-  ___XXXXX,________,________,
-  __XXXXX_,________,________,
-  _XXXXX__,________,________,
-  XXXXX___,________,________,
-  XXXX____,________,________,
-  XXX_____,________,________};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0030[ 72] = { /* code 0030, DIGIT ZERO */
-  _____XXX,XXXXXXXX,XXX_____,
-  ___XXXXX,XXXXXXXX,XXXXX___,
-  __XXXXXX,XXXXXXXX,XXXXXX__,
-  _XXXXXXX,XXXXXXXX,XXXXXXX_,
-  _XXXX___,________,___XXXX_,
-  XXXX____,________,____XXXX,
-  XXXX____,________,___XXXXX,
-  XXXX____,________,_XXXXXXX,
-  XXXX____,_______X,XXXXXXXX,
-  XXXX____,_____XXX,XXXXXXXX,
-  XXXX____,___XXXXX,XXXXXXXX,
-  XXXX____,_XXXXXXX,XX__XXXX,
-  XXXX__XX,XXXXXXXX,____XXXX,
-  XXXXXXXX,XXXXXX__,____XXXX,
-  XXXXXXXX,XXXX____,____XXXX,
-  XXXXXXXX,XX______,____XXXX,
-  XXXXXXXX,________,____XXXX,
-  XXXXXX__,________,____XXXX,
-  XXXX____,________,____XXXX,
-  _XXXX___,________,___XXXX_,
-  _XXXXXXX,XXXXXXXX,XXXXXXX_,
-  __XXXXXX,XXXXXXXX,XXXXXX__,
-  ___XXXXX,XXXXXXXX,XXXXX___,
-  _____XXX,XXXXXXXX,XXX_____};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0031[ 72] = { /* code 0031, DIGIT ONE */
-  _______X,X_______,________,
-  ______XX,XX______,________,
-  _____XXX,XX______,________,
-  ____XXXX,XX______,________,
-  ___XXXXX,XX______,________,
-  __XXXXXX,XX______,________,
-  _XXXXXXX,XX______,________,
-  _XXXXXXX,XX______,________,
-  __XXX_XX,XX______,________,
-  ______XX,XX______,________,
-  ______XX,XX______,________,
-  ______XX,XX______,________,
-  ______XX,XX______,________,
-  ______XX,XX______,________,
-  ______XX,XX______,________,
-  ______XX,XX______,________,
-  ______XX,XX______,________,
-  ______XX,XX______,________,
-  ______XX,XX______,________,
-  ______XX,XX______,________,
-  XXXXXXXX,XXXXXXXX,________,
-  XXXXXXXX,XXXXXXXX,X_______,
-  XXXXXXXX,XXXXXXXX,X_______,
-  XXXXXXXX,XXXXXXXX,________};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0032[ 75] = { /* code 0032, DIGIT TWO */
-  _XXXXXXX,XX______,________,
-  XXXXXXXX,XXXXXXXX,XXXX____,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  XXXXXXXX,XXXXXXXX,XXXXXX__,
-  _XXXXXXX,XXXXXXXX,XXXXXXX_,
-  ________,________,___XXXXX,
-  ________,________,____XXXX,
-  ________,________,____XXXX,
-  ________,________,____XXXX,
-  ________,________,____XXXX,
-  ________,________,___XXXXX,
-  _____XXX,XXXXXXXX,XXXXXXX_,
-  ___XXXXX,XXXXXXXX,XXXXXXX_,
-  __XXXXXX,XXXXXXXX,XXXXXX__,
-  _XXXXXXX,XXXXXXXX,XXXX____,
-  XXXXXX__,________,________,
-  XXXXX___,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXXX___,________,________,
-  XXXXX___,________,________,
-  _XXXXXXX,XXXXXXXX,XXXXXXXX,
-  __XXXXXX,XXXXXXXX,XXXXXXXX,
-  ___XXXXX,XXXXXXXX,XXXXXXXX,
-  _____XXX,XXXXXXXX,XXXXXXXX};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0033[ 72] = { /* code 0033, DIGIT THREE */
-  XXXXXXXX,XXXXXXXX,XXXX____,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  XXXXXXXX,XXXXXXXX,XXXXXX__,
-  XXXXXXXX,XXXXXXXX,XXXXXXX_,
-  ________,________,___XXXX_,
-  ________,________,____XXXX,
-  ________,________,____XXXX,
-  ________,________,____XXXX,
-  ________,________,____XXXX,
-  ________,________,____XXXX,
-  ____XXXX,XXXXXXXX,XXXXXXXX,
-  ___XXXXX,XXXXXXXX,XXXXXXXX,
-  ___XXXXX,XXXXXXXX,XXXXXXXX,
-  ____XXXX,XXXXXXXX,XXXXXXXX,
-  ________,________,____XXXX,
-  ________,________,____XXXX,
-  ________,________,____XXXX,
-  ________,________,____XXXX,
-  ________,________,____XXXX,
-  ________,________,___XXXX_,
-  XXXXXXXX,XXXXXXXX,XXXXXXX_,
-  XXXXXXXX,XXXXXXXX,XXXXXX__,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  XXXXXXXX,XXXXXXXX,XXXX____};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0034[ 75] = { /* code 0034, DIGIT FOUR */
-  _XX_____,_______X,X_______,
-  XXXX____,______XX,XX______,
-  XXXX____,______XX,XX______,
-  XXXX____,______XX,XX______,
-  XXXX____,______XX,XX______,
-  XXXX____,______XX,XX______,
-  XXXX____,______XX,XX______,
-  XXXX____,______XX,XX______,
-  XXXX____,______XX,XX______,
-  XXXX____,______XX,XX______,
-  XXXX____,______XX,XX______,
-  XXXX____,______XX,XX______,
-  XXXX____,______XX,XX______,
-  _XXXX___,______XX,XX______,
-  _XXXXXXX,XXXXXXXX,XXXXXXX_,
-  __XXXXXX,XXXXXXXX,XXXXXXXX,
-  ___XXXXX,XXXXXXXX,XXXXXXXX,
-  _____XXX,XXXXXXXX,XXXXXXX_,
-  ________,______XX,XX______,
-  ________,______XX,XX______,
-  ________,______XX,XX______,
-  ________,______XX,XX______,
-  ________,______XX,XX______,
-  ________,______XX,XX______,
-  ________,_______X,X_______};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0035[ 72] = { /* code 0035, DIGIT FIVE */
-  __XXXXXX,XXXXXXXX,XXXXXXXX,
-  _XXXXXXX,XXXXXXXX,XXXXXXXX,
-  XXXXXXXX,XXXXXXXX,XXXXXXXX,
-  XXXXXXXX,XXXXXXXX,XXXXXXXX,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXXXXXX,XXXXXXXX,XXXX____,
-  XXXXXXXX,XXXXXXXX,XXXXXX__,
-  _XXXXXXX,XXXXXXXX,XXXXXXX_,
-  __XXXXXX,XXXXXXXX,XXXXXXX_,
-  ________,________,___XXXXX,
-  ________,________,____XXXX,
-  ________,________,____XXXX,
-  ________,________,____XXXX,
-  ________,________,____XXXX,
-  ________,________,___XXXXX,
-  _XXXXXXX,XXXXXXXX,XXXXXXX_,
-  XXXXXXXX,XXXXXXXX,XXXXXX__,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  _XXXXXXX,XXXXXXXX,XXXX____};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0036[100] = { /* code 0036, DIGIT SIX */
-  _____XXX,XXXXX___,________,________,
-  ___XXXXX,XXXXXXXX,XXXX____,________,
-  __XXXXXX,XXXXXXXX,XXXXXX__,________,
-  _XXXXXXX,XXXXXXXX,XXXXXXX_,________,
-  _XXXXXXX,XXXXXXXX,XXXXXXXX,________,
-  XXXXX___,________,___XXXXX,X_______,
-  XXXX____,________,____XXXX,X_______,
-  XXXX____,________,_____XXX,X_______,
-  XXXX____,________,______XX,________,
-  XXXX____,________,________,________,
-  XXXX____,________,________,________,
-  XXXXXXXX,XXXXXXXX,XXXX____,________,
-  XXXXXXXX,XXXXXXXX,XXXXXX__,________,
-  XXXXXXXX,XXXXXXXX,XXXXXXX_,________,
-  XXXXXXXX,XXXXXXXX,XXXXXXXX,________,
-  XXXX____,________,___XXXXX,________,
-  XXXX____,________,____XXXX,X_______,
-  XXXX____,________,_____XXX,X_______,
-  XXXX____,________,_____XXX,X_______,
-  XXXX____,________,_____XXX,X_______,
-  _XXXXX__,________,____XXXX,X_______,
-  _XXXXXXX,XXXXXXXX,XXXXXXXX,________,
-  __XXXXXX,XXXXXXXX,XXXXXXX_,________,
-  ___XXXXX,XXXXXXXX,XXXXXX__,________,
-  _____XXX,XXXXXXXX,XXXX____,________};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0037[ 78] = { /* code 0037, DIGIT SEVEN */
-  _XXXXXXX,XX______,________,
-  XXXXXXXX,XXXXXXXX,XXXX____,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  XXXXXXXX,XXXXXXXX,XXXXXX__,
-  _XXXXXXX,XXXXXXXX,XXXXXXX_,
-  ________,________,___XXXXX,
-  ________,________,____XXXX,
-  ________,________,____XXXX,
-  ________,________,____XXXX,
-  ________,________,___XXXXX,
-  ________,_______X,XXXXXXXX,
-  ________,_____XXX,XXXXXXX_,
-  ________,____XXXX,XXXXXX__,
-  ________,___XXXXX,XXXX____,
-  ________,__XXXXXX,________,
-  ________,__XXXXX_,________,
-  ________,__XXXX__,________,
-  ________,_XXXXX__,________,
-  ________,_XXXX___,________,
-  ________,_XXXX___,________,
-  ________,_XXXX___,________,
-  ________,XXXXX___,________,
-  ________,XXXXX___,________,
-  ________,XXXX____,________,
-  ________,XXXX____,________,
-  ________,________,________};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0038[ 72] = { /* code 0038, DIGIT EIGHT */
-  _____XXX,XXXXXXXX,XXX_____,
-  ___XXXXX,XXXXXXXX,XXXXX___,
-  __XXXXXX,XXXXXXXX,XXXXXX__,
-  _XXXXXXX,XXXXXXXX,XXXXXXX_,
-  _XXXX___,________,__XXXXX_,
-  XXXX____,________,___XXXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  _XXXX___,________,___XXXX_,
-  _XXXXXXX,XXXXXXXX,XXXXXXX_,
-  __XXXXXX,XXXXXXXX,XXXXXX__,
-  __XXXXXX,XXXXXXXX,XXXXXX__,
-  _XXXXXXX,XXXXXXXX,XXXXXXX_,
-  _XXXX___,________,___XXXX_,
-  XXXX____,________,___XXXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  _XXXX___,________,___XXXX_,
-  _XXXXXXX,XXXXXXXX,XXXXXXX_,
-  __XXXXXX,XXXXXXXX,XXXXXX__,
-  ___XXXXX,XXXXXXXX,XXXXX___,
-  _____XXX,XXXXXXXX,XXX_____};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0039[ 72] = { /* code 0039, DIGIT NINE */
-  ____XXXX,XXXXXXXX,XXX_____,
-  ___XXXXX,XXXXXXXX,XXXXX___,
-  __XXXXXX,XXXXXXXX,XXXXXX__,
-  _XXXXXXX,XXXXXXXX,XXXXXXX_,
-  XXXXX___,________,__XXXXX_,
-  XXXX____,________,___XXXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXXX___,________,____XXXX,
-  _XXXXXXX,XXXXXXXX,XXXXXXXX,
-  __XXXXXX,XXXXXXXX,XXXXXXXX,
-  ___XXXXX,XXXXXXXX,XXXXXXXX,
-  ____XXXX,XXXXXXXX,XXXXXXXX,
-  ________,________,____XXXX,
-  ________,________,____XXXX,
-  ________,________,____XXXX,
-  XXX_____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXXX___,________,___XXXX_,
-  XXXXXXXX,XXXXXXXX,XXXXXXX_,
-  _XXXXXXX,XXXXXXXX,XXXXXX__,
-  ___XXXXX,XXXXXXXX,XXXXX___,
-  ____XXXX,XXXXXXXX,XXXX____};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_003A[ 16] = { /* code 003A, COLON */
-  _XXX____,
-  XXXXX___,
-  XXXXXX__,
-  XXXXXX__,
-  XXXXX___,
-  _XXX____,
-  ________,
-  ________,
-  ________,
-  ________,
-  __X_____,
-  XXXXX___,
-  XXXXXX__,
-  XXXXXX__,
-  XXXXX___,
-  _XXXX___};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_003B[ 18] = { /* code 003B, SEMICOLON */
-  ___XXXX_,
-  __XXXXXX,
-  __XXXXXX,
-  __XXXXXX,
-  __XXXXXX,
-  ___XXXX_,
-  ________,
-  ________,
-  ________,
-  ________,
-  ____XXXX,
-  ___XXXXX,
-  __XXXXXX,
-  _XXXXXX_,
-  XXXXXX__,
-  XXXXX___,
-  XXXX____,
-  _XX_____};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_003C[ 34] = { /* code 003C, LESS-THAN SIGN */
-  _______X,XX______,
-  ______XX,XXX_____,
-  _____XXX,XXX_____,
-  ____XXXX,XXX_____,
-  ___XXXXX,XX______,
-  __XXXXXX,X_______,
-  _XXXXXXX,________,
-  XXXXXXX_,________,
-  XXXXXX__,________,
-  XXXXXXX_,________,
-  _XXXXXXX,________,
-  __XXXXXX,X_______,
-  ___XXXXX,XX______,
-  ____XXXX,XXX_____,
-  _____XXX,XXX_____,
-  ______XX,XXX_____,
-  _______X,XX______};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_003D[ 24] = { /* code 003D, EQUALS SIGN */
-  XXXXXXXX,XXXXX___,
-  XXXXXXXX,XXXXX___,
-  XXXXXXXX,XXXXX___,
-  XXXXXXXX,XXXXX___,
-  ________,________,
-  ________,________,
-  ________,________,
-  ________,________,
-  XXXXXXXX,XXXXX___,
-  XXXXXXXX,XXXXX___,
-  XXXXXXXX,XXXXX___,
-  XXXXXXXX,XXXXX___};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_003E[ 34] = { /* code 003E, GREATER-THAN SIGN */
-  _XXX____,________,
-  XXXXX___,________,
-  XXXXXX__,________,
-  XXXXXXX_,________,
-  _XXXXXXX,________,
-  __XXXXXX,X_______,
-  ___XXXXX,XX______,
-  ____XXXX,XXX_____,
-  _____XXX,XXX_____,
-  ____XXXX,XXX_____,
-  ___XXXXX,XX______,
-  __XXXXXX,X_______,
-  _XXXXXXX,________,
-  XXXXXXX_,________,
-  XXXXXX__,________,
-  XXXXX___,________,
-  _XXX____,________};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_003F[ 72] = { /* code 003F, QUESTION MARK */
-  ____XXXX,XXXXXXXX,XXXX____,
-  ___XXXXX,XXXXXXXX,XXXXX___,
-  __XXXXXX,XXXXXXXX,XXXXXX__,
-  _XXXXXXX,XXXXXXXX,XXXXXXX_,
-  XXXXX___,________,___XXXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,___XXXXX,
-  ________,__XXXXXX,XXXXXXX_,
-  ________,__XXXXXX,XXXXXX__,
-  ________,__XXXXXX,XXXXX___,
-  ________,__XXXXXX,XXXX____,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,________,________,
-  ________,________,________,
-  ________,__XXXX__,________,
-  ________,_XXXXXX_,________,
-  ________,_XXXXXX_,________,
-  ________,_XXXXXX_,________,
-  ________,_XXXXXX_,________,
-  ________,__XXXX__,________};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0040[ 75] = { /* code 0040, COMMERCIAL AT */
-  ____XXXX,XXXXXXXX,XXXX____,
-  ___XXXXX,XXXXXXXX,XXXXX___,
-  __XXXXXX,XXXXXXXX,XXXXXX__,
-  _XXXXXXX,XXXXXXXX,XXXXXXX_,
-  XXXXXXXX,XXXXXXXX,XXXXXXXX,
-  XXXXX___,________,___XXXXX,
-  XXXX____,___XXXXX,X___XXXX,
-  XXXX____,_XXXXXXX,X___XXXX,
-  XXXX____,XXXXXXXX,X___XXXX,
-  XXXX___X,XXXXXXXX,X___XXXX,
-  XXXX__XX,XXXXXXXX,X___XXXX,
-  XXXX__XX,XXX__XXX,X___XXXX,
-  XXXX__XX,XX___XXX,X___XXXX,
-  XXXX__XX,XX___XXX,X___XXXX,
-  XXXX__XX,XXX__XXX,X__XXXXX,
-  XXXX__XX,XXXX_XXX,X_XXXXXX,
-  XXXX___X,XXXXXXXX,XXXXXXX_,
-  XXXX____,XXXXXXXX,XXXXXX__,
-  XXXX____,_XXXXXXX,XXXXXXXX,
-  XXXXX___,___XXXXX,XXXXXXXX,
-  XXXXXX__,________,__XXXXXX,
-  _XXXXXXX,XXXXXXXX,XXXXXXX_,
-  __XXXXXX,XXXXXXXX,XXXXXX__,
-  ___XXXXX,XXXXXXXX,XXXXX___,
-  ____XXXX,XXXXXXXX,XXXX____};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0041[ 72] = { /* code 0041, LATIN CAPITAL LETTER A */
-  _______X,XXXXXXXX,XX______,
-  ______XX,XXXXXXXX,XXX_____,
-  _____XXX,XXXXXXXX,XXX_____,
-  _____XXX,XXXXXXXX,XXX_____,
-  _____XXX,X______X,XXXX____,
-  ____XXXX,X_______,XXXX____,
-  ____XXXX,________,XXXX____,
-  ____XXXX,________,XXXXX___,
-  ___XXXXX,________,XXXXX___,
-  ___XXXX_,________,_XXXX___,
-  ___XXXX_,________,_XXXX___,
-  ___XXXX_,________,_XXXXX__,
-  __XXXXXX,XXXXXXXX,XXXXXX__,
-  __XXXXXX,XXXXXXXX,XXXXXX__,
-  __XXXXXX,XXXXXXXX,XXXXXX__,
-  _XXXXXXX,XXXXXXXX,XXXXXXX_,
-  _XXXX___,________,___XXXX_,
-  _XXXX___,________,___XXXX_,
-  XXXXX___,________,___XXXX_,
-  XXXXX___,________,___XXXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  ________,________,______X_};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0042[ 72] = { /* code 0042, LATIN CAPITAL LETTER B */
-  XXXXXXXX,XXXXXXXX,XXXX____,
-  XXXXXXXX,XXXXXXXX,XXXXXX__,
-  XXXXXXXX,XXXXXXXX,XXXXXX__,
-  XXXXXXXX,XXXXXXXX,XXXXXXX_,
-  XXXX____,________,___XXXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,___XXXXX,
-  XXXXXXXX,XXXXXXXX,XXXXXXX_,
-  XXXXXXXX,XXXXXXXX,XXXXXX__,
-  XXXXXXXX,XXXXXXXX,XXXXXX__,
-  XXXXXXXX,XXXXXXXX,XXXXXXX_,
-  XXXX____,________,___XXXXX,
-  XXXX____,________,___XXXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,___XXXXX,
-  XXXXXXXX,XXXXXXXX,XXXXXXX_,
-  XXXXXXXX,XXXXXXXX,XXXXXX__,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  XXXXXXXX,XXXXXXXX,XXX_____};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0043[100] = { /* code 0043, LATIN CAPITAL LETTER C */
-  _____XXX,XXXXXXXX,XXXXX___,________,
-  ____XXXX,XXXXXXXX,XXXXXX__,________,
-  ___XXXXX,XXXXXXXX,XXXXXXXX,________,
-  __XXXXXX,XXXXXXXX,XXXXXXXX,________,
-  _XXXXX__,________,___XXXXX,X_______,
-  _XXXX___,________,____XXXX,X_______,
-  _XXXX___,________,_____XXX,X_______,
-  _XXXX___,________,________,________,
-  _XXXX___,________,________,________,
-  _XXXX___,________,________,________,
-  _XXXX___,________,________,________,
-  _XXXX___,________,________,________,
-  _XXXX___,________,________,________,
-  _XXXX___,________,________,________,
-  _XXXX___,________,________,________,
-  _XXXX___,________,________,________,
-  _XXXX___,________,________,________,
-  _XXXX___,________,_____XXX,X_______,
-  _XXXXX__,________,____XXXX,X_______,
-  _XXXXXX_,________,___XXXXX,X_______,
-  __XXXXXX,XXXXXXXX,XXXXXXXX,________,
-  ___XXXXX,XXXXXXXX,XXXXXXXX,________,
-  ____XXXX,XXXXXXXX,XXXXXX__,________,
-  _____XXX,XXXXXXXX,XXXXX___,________,
-  ________,________,________,________};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0044[ 72] = { /* code 0044, LATIN CAPITAL LETTER D */
-  _XXXXXXX,XXXXXXXX,XXXX____,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  XXXXXXXX,XXXXXXXX,XXXXXX__,
-  _XXXXXXX,XXXXXXXX,XXXXXXX_,
-  ___XXXX_,________,___XXXXX,
-  ___XXXX_,________,____XXXX,
-  ___XXXX_,________,____XXXX,
-  ___XXXX_,________,____XXXX,
-  ___XXXX_,________,____XXXX,
-  ___XXXX_,________,____XXXX,
-  ___XXXX_,________,____XXXX,
-  ___XXXX_,________,____XXXX,
-  ___XXXX_,________,____XXXX,
-  ___XXXX_,________,____XXXX,
-  ___XXXX_,________,____XXXX,
-  ___XXXX_,________,____XXXX,
-  ___XXXX_,________,____XXXX,
-  ___XXXX_,________,____XXXX,
-  ___XXXX_,________,___XXXXX,
-  ___XXXX_,________,__XXXXXX,
-  _XXXXXXX,XXXXXXXX,XXXXXXX_,
-  XXXXXXXX,XXXXXXXX,XXXXXX__,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  XXXXXXXX,XXXXXXXX,XXXX____};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0045[ 72] = { /* code 0045, LATIN CAPITAL LETTER E */
-  ____XXXX,XXXXXXXX,XXXXXXXX,
-  __XXXXXX,XXXXXXXX,XXXXXXXX,
-  _XXXXXXX,XXXXXXXX,XXXXXXXX,
-  _XXXXXXX,XXXXXXXX,XXXXXXXX,
-  XXXXXX__,________,________,
-  XXXXX___,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  XXXXXXXX,XXXXXXXX,XXXX____,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXXX___,________,________,
-  XXXXXX__,________,________,
-  _XXXXXXX,XXXXXXXX,XXXXXXXX,
-  __XXXXXX,XXXXXXXX,XXXXXXXX,
-  ___XXXXX,XXXXXXXX,XXXXXXXX,
-  ____XXXX,XXXXXXXX,XXXXXXXX};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0046[ 72] = { /* code 0046, LATIN CAPITAL LETTER F */
-  _____XXX,XXXXXXXX,XXXXXXXX,
-  ___XXXXX,XXXXXXXX,XXXXXXXX,
-  __XXXXXX,XXXXXXXX,XXXXXXXX,
-  _XXXXXXX,XXXXXXXX,XXXXXXXX,
-  XXXXXX__,________,________,
-  XXXXX___,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXXXXXX,XXXXX___,________,
-  XXXXXXXX,XXXXXX__,________,
-  XXXXXXXX,XXXXXX__,________,
-  XXXXXXXX,XXXXXX__,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0047[ 96] = { /* code 0047, LATIN CAPITAL LETTER G */
-  ______XX,XXXXXXXX,XXXXX___,________,
-  ____XXXX,XXXXXXXX,XXXXXXX_,________,
-  ___XXXXX,XXXXXXXX,XXXXXXXX,________,
-  __XXXXXX,XXXXXXXX,XXXXXXXX,________,
-  __XXXXX_,________,____XXXX,X_______,
-  _XXXXX__,________,_____XXX,X_______,
-  _XXXX___,________,_____XXX,X_______,
-  _XXXX___,________,_____XXX,X_______,
-  _XXXX___,________,______XX,________,
-  _XXXX___,________,________,________,
-  _XXXX___,__XXXXXX,XXXXXXXX,X_______,
-  _XXXX___,__XXXXXX,XXXXXXXX,X_______,
-  _XXXX___,__XXXXXX,XXXXXXXX,X_______,
-  _XXXX___,__XXXXXX,XXXXXXXX,X_______,
-  _XXXX___,________,_____XXX,X_______,
-  _XXXX___,________,_____XXX,X_______,
-  _XXXX___,________,_____XXX,X_______,
-  _XXXX___,________,_____XXX,X_______,
-  _XXXX___,________,_____XXX,X_______,
-  _XXXXX__,________,_____XXX,X_______,
-  __XXXXXX,XXXXXXXX,XXXXXXXX,X_______,
-  ___XXXXX,XXXXXXXX,XXXXXXXX,X_______,
-  ____XXXX,XXXXXXXX,XXXXXXXX,________,
-  _____XXX,XXXXXXXX,XXXXXXX_,________};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0048[ 75] = { /* code 0048, LATIN CAPITAL LETTER H */
-  _XX_____,________,________,
-  XXXX____,________,_____XX_,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXXXXXX,XXXXXXXX,XXXXXXXX,
-  XXXXXXXX,XXXXXXXX,XXXXXXXX,
-  XXXXXXXX,XXXXXXXX,XXXXXXXX,
-  XXXXXXXX,XXXXXXXX,XXXXXXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  _XXX____,________,____XXXX};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0049[ 25] = { /* code 0049, LATIN CAPITAL LETTER I */
-  __X_____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  _XXX____};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_004A[ 96] = { /* code 004A, LATIN CAPITAL LETTER J */
-  _XXXXXXX,XXXXXXXX,XXXXXXXX,________,
-  XXXXXXXX,XXXXXXXX,XXXXXXXX,X_______,
-  XXXXXXXX,XXXXXXXX,XXXXXXXX,X_______,
-  _XXXXXXX,XXXXXXXX,XXXXXXXX,X_______,
-  ________,________,_XXXX___,________,
-  ________,________,_XXXX___,________,
-  ________,________,_XXXX___,________,
-  ________,________,_XXXX___,________,
-  ________,________,_XXXX___,________,
-  ________,________,_XXXX___,________,
-  ________,________,_XXXX___,________,
-  ________,________,_XXXX___,________,
-  ________,________,_XXXX___,________,
-  ________,________,_XXXX___,________,
-  XXXX____,________,_XXXX___,________,
-  XXXX____,________,_XXXX___,________,
-  XXXX____,________,_XXXX___,________,
-  XXXX____,________,_XXXX___,________,
-  XXXXX___,________,_XXXX___,________,
-  XXXXXX__,_______X,XXXXX___,________,
-  _XXXXXXX,XXXXXXXX,XXXXX___,________,
-  _XXXXXXX,XXXXXXXX,XXXX____,________,
-  __XXXXXX,XXXXXXXX,XXX_____,________,
-  ____XXXX,XXXXXXXX,XX______,________};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_004B[ 72] = { /* code 004B, LATIN CAPITAL LETTER K */
-  XXX_____,________,__XXXXXX,
-  XXXX____,________,XXXXXXXX,
-  XXXX____,______XX,XXXXXXXX,
-  XXXX____,____XXXX,XXXXXXXX,
-  XXXX____,___XXXXX,XXX_____,
-  XXXX____,_XXXXXXX,X_______,
-  XXXX___X,XXXXXXX_,________,
-  XXXX__XX,XXXXXX__,________,
-  XXXXXXXX,XXXX____,________,
-  XXXXXXXX,XXXX____,________,
-  XXXXXXXX,XXXXX___,________,
-  XXXXXXX_,XXXXXX__,________,
-  XXXXX___,_XXXXX__,________,
-  XXXX____,__XXXXX_,________,
-  XXXX____,___XXXXX,________,
-  XXXX____,___XXXXX,X_______,
-  XXXX____,____XXXX,X_______,
-  XXXX____,_____XXX,XX______,
-  XXXX____,______XX,XXX_____,
-  XXXX____,______XX,XXXX____,
-  XXXX____,_______X,XXXXXXX_,
-  XXXX____,________,XXXXXXXX,
-  XXXX____,________,_XXXXXXX,
-  XXXX____,________,_XXXXXX_};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_004C[ 72] = { /* code 004C, LATIN CAPITAL LETTER L */
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXXX___,________,________,
-  XXXXX___,________,________,
-  _XXXXXXX,XXXXXXXX,XXXXXXXX,
-  _XXXXXXX,XXXXXXXX,XXXXXXXX,
-  __XXXXXX,XXXXXXXX,XXXXXXXX,
-  ____XXXX,XXXXXXXX,XXXXXXXX};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_004D[ 96] = { /* code 004D, LATIN CAPITAL LETTER M */
-  ____XXXX,XXXXXXXX,XXXXXXXX,X_______,
-  ___XXXXX,XXXXXXXX,XXXXXXXX,XXXX____,
-  __XXXXXX,XXXXXXXX,XXXXXXXX,XXXXX___,
-  _XXXXXXX,XXXXXXXX,XXXXXXXX,XXXXX___,
-  XXXXXX__,_____XXX,X_______,XXXXXX__,
-  XXXXX___,_____XXX,X_______,_XXXXX__,
-  XXXX____,_____XXX,X_______,__XXXX__,
-  XXXX____,_____XXX,X_______,__XXXX__,
-  XXXX____,_____XXX,X_______,__XXXX__,
-  XXXX____,_____XXX,X_______,__XXXX__,
-  XXXX____,_____XXX,X_______,__XXXX__,
-  XXXX____,_____XXX,X_______,__XXXX__,
-  XXXX____,_____XXX,X_______,__XXXX__,
-  XXXX____,_____XXX,X_______,__XXXX__,
-  XXXX____,_____XXX,X_______,__XXXX__,
-  XXXX____,_____XXX,X_______,__XXXX__,
-  XXXX____,_____XXX,X_______,__XXXX__,
-  XXXX____,_____XXX,X_______,__XXXX__,
-  XXXX____,_____XXX,X_______,__XXXX__,
-  XXXX____,_____XXX,X_______,__XXXX__,
-  XXXX____,______XX,X_______,__XXXX__,
-  XXXX____,________,________,__XXXX__,
-  XXXX____,________,________,__XXXX__,
-  XXXX____,________,________,__XXXX__};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_004E[ 72] = { /* code 004E, LATIN CAPITAL LETTER N */
-  XXXXXXXX,XXXXXXXX,XXX_____,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  XXXXXXXX,XXXXXXXX,XXXXXX__,
-  XXXXXXXX,XXXXXXXX,XXXXXXX_,
-  XXXX____,________,___XXXXX,
-  XXXX____,________,___XXXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_004F[ 96] = { /* code 004F, LATIN CAPITAL LETTER O */
-  ______XX,XXXXXXXX,XXXXXX__,________,
-  ____XXXX,XXXXXXXX,XXXXXXXX,________,
-  ___XXXXX,XXXXXXXX,XXXXXXXX,________,
-  __XXXXXX,XXXXXXXX,XXXXXXXX,X_______,
-  _XXXXXX_,________,_____XXX,XX______,
-  _XXXXX__,________,______XX,XX______,
-  _XXXX___,________,______XX,XX______,
-  _XXXX___,________,______XX,XX______,
-  _XXXX___,________,______XX,XX______,
-  _XXXX___,________,______XX,XX______,
-  _XXXX___,________,______XX,XX______,
-  _XXXX___,________,______XX,XX______,
-  _XXXX___,________,______XX,XX______,
-  _XXXX___,________,______XX,XX______,
-  _XXXX___,________,______XX,XX______,
-  _XXXX___,________,______XX,XX______,
-  _XXXX___,________,______XX,XX______,
-  _XXXX___,________,______XX,XX______,
-  _XXXX___,________,______XX,XX______,
-  __XXXX__,________,____XXXX,XX______,
-  __XXXXXX,XXXXXXXX,XXXXXXXX,X_______,
-  ___XXXXX,XXXXXXXX,XXXXXXXX,________,
-  ____XXXX,XXXXXXXX,XXXXXXX_,________,
-  ______XX,XXXXXXXX,XXXXX___,________};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0050[104] = { /* code 0050, LATIN CAPITAL LETTER P */
-  __XXXXXX,XXXXXXXX,XXXX____,________,
-  XXXXXXXX,XXXXXXXX,XXXXX___,________,
-  XXXXXXXX,XXXXXXXX,XXXXXX__,________,
-  XXXXXXXX,XXXXXXXX,XXXXXXX_,________,
-  XXXX____,________,__XXXXXX,________,
-  XXXX____,________,___XXXXX,________,
-  XXXX____,________,____XXXX,________,
-  XXXX____,________,____XXXX,________,
-  XXXX____,________,____XXXX,________,
-  XXXX____,________,____XXXX,________,
-  XXXX____,________,____XXXX,________,
-  XXXX____,________,___XXXXX,________,
-  XXXX____,________,___XXXXX,________,
-  XXXXXXXX,XXXXXXXX,XXXXXXX_,________,
-  XXXXXXXX,XXXXXXXX,XXXXXX__,________,
-  XXXXXXXX,XXXXXXXX,XXXXX___,________,
-  XXXXXXXX,XXXXXXXX,XXXX____,________,
-  XXXX____,________,________,________,
-  XXXX____,________,________,________,
-  XXXX____,________,________,________,
-  XXXX____,________,________,________,
-  XXXX____,________,________,________,
-  XXXX____,________,________,________,
-  XXXX____,________,________,________,
-  ________,________,________,________,
-  ________,________,________,________};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0051[100] = { /* code 0051, LATIN CAPITAL LETTER Q */
-  _____XXX,XXXXXXXX,XXXXX___,________,
-  ____XXXX,XXXXXXXX,XXXXXX__,________,
-  ___XXXXX,XXXXXXXX,XXXXXXX_,________,
-  __XXXXXX,XXXXXXXX,XXXXXXXX,________,
-  _XXXXX__,________,____XXXX,________,
-  _XXXX___,________,_____XXX,X_______,
-  _XXXX___,________,_____XXX,X_______,
-  _XXXX___,________,_____XXX,X_______,
-  _XXXX___,________,_____XXX,X_______,
-  _XXXX___,________,_____XXX,X_______,
-  _XXXX___,___XXXX_,_____XXX,X_______,
-  _XXXX___,__XXXXXX,_____XXX,X_______,
-  _XXXX___,__XXXXXX,X____XXX,X_______,
-  _XXXX___,___XXXXX,XX___XXX,X_______,
-  _XXXX___,____XXXX,XXX__XXX,X_______,
-  _XXXX___,_____XXX,XXXX_XXX,X_______,
-  _XXXX___,______XX,XXXXXXXX,X_______,
-  _XXXX___,_______X,XXXXXXXX,X_______,
-  _XXXXX__,________,XXXXXXXX,X_______,
-  _XXXXXX_,________,_XXXXXXX,________,
-  __XXXXXX,XXXXXXXX,XXXXXXXX,X_______,
-  ___XXXXX,XXXXXXXX,XXXXXXXX,X_______,
-  ____XXXX,XXXXXXXX,XXXXXXXX,X_______,
-  _____XXX,XXXXXXXX,XXXXXXXX,X_______,
-  ________,________,________,________};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0052[ 96] = { /* code 0052, LATIN CAPITAL LETTER R */
-  __XXXXXX,XXXXXXXX,XXXX____,________,
-  XXXXXXXX,XXXXXXXX,XXXXXX__,________,
-  XXXXXXXX,XXXXXXXX,XXXXXXX_,________,
-  XXXXXXXX,XXXXXXXX,XXXXXXX_,________,
-  XXXX____,________,__XXXXXX,________,
-  XXXX____,________,___XXXXX,________,
-  XXXX____,________,____XXXX,________,
-  XXXX____,________,____XXXX,________,
-  XXXX____,________,____XXXX,________,
-  XXXX____,________,____XXXX,________,
-  XXXX____,________,___XXXXX,________,
-  XXXX____,________,__XXXXXX,________,
-  XXXXXXXX,XXXXXXXX,XXXXXXX_,________,
-  XXXXXXXX,XXXXXXXX,XXXXXX__,________,
-  XXXXXXXX,XXXXXXXX,XXXXX___,________,
-  XXXXXXXX,XXXXXXXX,XXX_____,________,
-  XXXX____,______XX,XXXX____,________,
-  XXXX____,_______X,XXXXX___,________,
-  XXXX____,________,XXXXXX__,________,
-  XXXX____,________,_XXXXXX_,________,
-  XXXX____,________,__XXXXXX,________,
-  XXXX____,________,___XXXXX,________,
-  XXXX____,________,____XXXX,________,
-  ________,________,________,________};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0053[ 96] = { /* code 0053, LATIN CAPITAL LETTER S */
-  ______XX,XXXXXXXX,XXXXX___,________,
-  ____XXXX,XXXXXXXX,XXXXXX__,________,
-  ___XXXXX,XXXXXXXX,XXXXXXXX,________,
-  __XXXXXX,XXXXXXXX,XXXXXXXX,X_______,
-  _XXXXXX_,________,____XXXX,X_______,
-  _XXXXX__,________,_____XXX,XX______,
-  _XXXX___,________,______XX,X_______,
-  _XXXX___,________,________,________,
-  _XXXXX__,________,________,________,
-  _XXXXXX_,________,________,________,
-  __XXXXXX,XXXXXXXX,XXXXX___,________,
-  ___XXXXX,XXXXXXXX,XXXXXXX_,________,
-  ____XXXX,XXXXXXXX,XXXXXXXX,________,
-  _____XXX,XXXXXXXX,XXXXXXXX,________,
-  ________,________,___XXXXX,X_______,
-  ________,________,____XXXX,X_______,
-  ________,________,_____XXX,X_______,
-  _XXX____,________,_____XXX,X_______,
-  _XXXX___,________,_____XXX,X_______,
-  _XXXXXX_,________,____XXXX,X_______,
-  _XXXXXXX,XXXXXXXX,XXXXXXXX,X_______,
-  __XXXXXX,XXXXXXXX,XXXXXXXX,________,
-  ____XXXX,XXXXXXXX,XXXXXXX_,________,
-  _____XXX,XXXXXXXX,XXXXX___,________};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0054[ 72] = { /* code 0054, LATIN CAPITAL LETTER T */
-  XXXXXXXX,XXXXXXXX,XXXXXXX_,
-  XXXXXXXX,XXXXXXXX,XXXXXXXX,
-  XXXXXXXX,XXXXXXXX,XXXXXXXX,
-  XXXXXXXX,XXXXXXXX,XXXXXXX_,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,___XXX__,________};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0055[ 75] = { /* code 0055, LATIN CAPITAL LETTER U */
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXXX___,________,___XXXXX,
-  XXXXXX__,________,__XXXXXX,
-  _XXXXXXX,XXXXXXXX,XXXXXXX_,
-  __XXXXXX,XXXXXXXX,XXXXXX__,
-  ___XXXXX,XXXXXXXX,XXXXX___,
-  ____XXXX,XXXXXXXX,XXX_____,
-  ________,________,________};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0056[ 75] = { /* code 0056, LATIN CAPITAL LETTER V */
-  ________,________,________,
-  XXX_____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXXX___,________,___XXXXX,
-  _XXXX___,________,___XXXXX,
-  _XXXX___,________,___XXXX_,
-  _XXXXX__,________,__XXXXX_,
-  _XXXXX__,________,__XXXXX_,
-  __XXXX__,________,__XXXX__,
-  __XXXX__,________,_XXXXX__,
-  __XXXXX_,________,_XXXXX__,
-  ___XXXX_,________,_XXXX___,
-  ___XXXX_,________,XXXXX___,
-  ___XXXXX,________,XXXXX___,
-  ____XXXX,________,XXXX____,
-  ____XXXX,________,XXXX____,
-  ____XXXX,X______X,XXXX____,
-  ____XXXX,X______X,XXX_____,
-  _____XXX,X______X,XXX_____,
-  _____XXX,XX____XX,XXX_____,
-  _____XXX,XXXXXXXX,XXX_____,
-  ______XX,XXXXXXXX,XX______,
-  ______XX,XXXXXXXX,XX______,
-  ________,XXXXXXXX,X_______};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0057[ 96] = { /* code 0057, LATIN CAPITAL LETTER W */
-  XXXX____,________,________,__XXXX__,
-  XXXX____,________,________,__XXXX__,
-  XXXX____,________,________,__XXXX__,
-  XXXX____,_____XXX,________,__XXXX__,
-  XXXX____,_____XXX,X_______,__XXXX__,
-  XXXX____,_____XXX,X_______,__XXXX__,
-  XXXX____,_____XXX,X_______,__XXXX__,
-  XXXX____,_____XXX,X_______,__XXXX__,
-  XXXX____,_____XXX,X_______,__XXXX__,
-  XXXX____,_____XXX,X_______,__XXXX__,
-  XXXX____,_____XXX,X_______,__XXXX__,
-  XXXX____,_____XXX,X_______,__XXXX__,
-  XXXX____,_____XXX,X_______,__XXXX__,
-  XXXX____,_____XXX,X_______,__XXXX__,
-  XXXX____,_____XXX,X_______,__XXXX__,
-  XXXX____,_____XXX,X_______,__XXXX__,
-  XXXX____,_____XXX,X_______,__XXXX__,
-  XXXX____,_____XXX,X_______,__XXXX__,
-  XXXXX___,_____XXX,X_______,_XXXXX__,
-  XXXXXX__,_____XXX,X_______,XXXXXX__,
-  _XXXXXXX,XXXXXXXX,XXXXXXXX,XXXXX___,
-  _XXXXXXX,XXXXXXXX,XXXXXXXX,XXXX____,
-  __XXXXXX,XXXXXXXX,XXXXXXXX,XXX_____,
-  _____XXX,XXXXXXXX,XXXXXXXX,XX______};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0058[ 96] = { /* code 0058, LATIN CAPITAL LETTER X */
-  _XXXXXX_,________,__XXXXXX,X_______,
-  XXXXXXXX,________,_XXXXXXX,X_______,
-  XXXXXXXX,________,XXXXXXXX,X_______,
-  _XXXXXXX,X_______,XXXXXXXX,________,
-  _____XXX,XX_____X,XXXX____,________,
-  _____XXX,XXX___XX,XXX_____,________,
-  ______XX,XXX___XX,XXX_____,________,
-  _______X,XXXX_XXX,XX______,________,
-  _______X,XXXXXXXX,X_______,________,
-  ________,XXXXXXXX,X_______,________,
-  ________,_XXXXXXX,________,________,
-  ________,_XXXXXX_,________,________,
-  ________,_XXXXXX_,________,________,
-  ________,_XXXXXXX,________,________,
-  ________,XXXXXXXX,X_______,________,
-  _______X,XXXXXXXX,X_______,________,
-  _______X,XXXX_XXX,XX______,________,
-  ______XX,XXX___XX,XXX_____,________,
-  _____XXX,XX____XX,XXX_____,________,
-  _____XXX,XX_____X,XXXX____,________,
-  _XXXXXXX,X_______,XXXXXXXX,________,
-  XXXXXXXX,________,_XXXXXXX,X_______,
-  XXXXXXX_,________,_XXXXXXX,X_______,
-  XXXXXX__,________,__XXXXXX,X_______};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0059[ 75] = { /* code 0059, LATIN CAPITAL LETTER Y */
-  ________,________,________,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXX____,________,____XXXX,
-  XXXXX___,________,___XXXXX,
-  XXXXXX__,________,__XXXXX_,
-  _XXXXXXX,XXXXXXXX,XXXXXXX_,
-  __XXXXXX,XXXXXXXX,XXXXXX__,
-  ___XXXXX,XXXXXXXX,XXXXX___,
-  ____XXXX,XXXXXXXX,XXX_____,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,__XXXX__,________,
-  ________,___XX___,________};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_005A[ 96] = { /* code 005A, LATIN CAPITAL LETTER Z */
-  _XXXXXXX,XXXXXXXX,XXXX____,________,
-  XXXXXXXX,XXXXXXXX,XXXXXX__,________,
-  XXXXXXXX,XXXXXXXX,XXXXXXX_,________,
-  _XXXXXXX,XXXXXXXX,XXXXXXX_,________,
-  ________,________,___XXXXX,________,
-  ________,________,__XXXXXX,________,
-  ________,________,_XXXXXX_,________,
-  ________,_______X,XXXXXXX_,________,
-  ________,______XX,XXXXX___,________,
-  ________,____XXXX,XXXX____,________,
-  ________,___XXXXX,XX______,________,
-  ________,_XXXXXXX,X_______,________,
-  ________,XXXXXXXX,________,________,
-  _______X,XXXXXX__,________,________,
-  _____XXX,XXXXX___,________,________,
-  ____XXXX,XXX_____,________,________,
-  __XXXXXX,XX______,________,________,
-  _XXXXXXX,________,________,________,
-  XXXXXXX_,________,________,________,
-  XXXXXX__,________,________,________,
-  XXXXXXXX,XXXXXXXX,XXXXXXXX,________,
-  _XXXXXXX,XXXXXXXX,XXXXXXXX,________,
-  _XXXXXXX,XXXXXXXX,XXXXXXXX,________,
-  ___XXXXX,XXXXXXXX,XXXXXXXX,________};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_005B[ 48] = { /* code 005B, LEFT SQUARE BRACKET */
-  XXXXXXXX,________,
-  XXXXXXXX,X_______,
-  XXXXXXXX,X_______,
-  XXXXXXXX,________,
-  XXXX____,________,
-  XXXX____,________,
-  XXXX____,________,
-  XXXX____,________,
-  XXXX____,________,
-  XXXX____,________,
-  XXXX____,________,
-  XXXX____,________,
-  XXXX____,________,
-  XXXX____,________,
-  XXXX____,________,
-  XXXX____,________,
-  XXXX____,________,
-  XXXX____,________,
-  XXXX____,________,
-  XXXX____,________,
-  XXXXXXXX,________,
-  XXXXXXXX,X_______,
-  XXXXXXXX,X_______,
-  XXXXXXXX,________};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_005C[ 63] = { /* code 005C, REVERSE SOLIDUS */
-  XXX_____,________,________,
-  XXXX____,________,________,
-  XXXXX___,________,________,
-  _XXXXX__,________,________,
-  __XXXXX_,________,________,
-  ___XXXXX,________,________,
-  ____XXXX,X_______,________,
-  _____XXX,XX______,________,
-  ______XX,XXX_____,________,
-  _______X,XXXX____,________,
-  ________,XXXXX___,________,
-  ________,_XXXXX__,________,
-  ________,__XXXXX_,________,
-  ________,___XXXXX,________,
-  ________,____XXXX,X_______,
-  ________,_____XXX,XX______,
-  ________,______XX,XXX_____,
-  ________,_______X,XXXX____,
-  ________,________,XXXXX___,
-  ________,________,_XXXX___,
-  ________,________,__XXX___};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_005D[ 48] = { /* code 005D, RIGHT SQUARE BRACKET */
-  _XXXXXXX,X_______,
-  XXXXXXXX,X_______,
-  XXXXXXXX,X_______,
-  _XXXXXXX,X_______,
-  _____XXX,X_______,
-  _____XXX,X_______,
-  _____XXX,X_______,
-  _____XXX,X_______,
-  _____XXX,X_______,
-  _____XXX,X_______,
-  _____XXX,X_______,
-  _____XXX,X_______,
-  _____XXX,X_______,
-  _____XXX,X_______,
-  _____XXX,X_______,
-  _____XXX,X_______,
-  _____XXX,X_______,
-  _____XXX,X_______,
-  _____XXX,X_______,
-  _____XXX,X_______,
-  _XXXXXXX,X_______,
-  XXXXXXXX,X_______,
-  XXXXXXXX,X_______,
-  _XXXXXXX,X_______};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_005E[ 36] = { /* code 005E, CIRCUMFLEX ACCENT */
-  ________,XX______,________,
-  _______X,XXX_____,________,
-  ______XX,XXXX____,________,
-  _____XXX,XXXXX___,________,
-  ____XXXX,XXXXXX__,________,
-  ___XXXXX,XXXXXXX_,________,
-  __XXXXXX,__XXXXXX,________,
-  _XXXXXX_,___XXXXX,X_______,
-  XXXXXX__,____XXXX,XX______,
-  XXXXX___,_____XXX,XX______,
-  XXXX____,______XX,XX______,
-  _XX_____,_______X,X_______};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_005F[ 12] = { /* code 005F, LOW LINE */
-  XXXXXXXX,XXXXXXXX,XXXXXXXX,
-  XXXXXXXX,XXXXXXXX,XXXXXXXX,
-  XXXXXXXX,XXXXXXXX,XXXXXXXX,
-  _XXXXXXX,XXXXXXXX,XXXXXXXX};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0060[  8] = { /* code 0060, GRAVE ACCENT */
-  _XX_____,
-  XXXX____,
-  XXXXX___,
-  XXXXXX__,
-  _XXXXXX_,
-  __XXXXXX,
-  ____XXXX,
-  _____XX_};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0061[ 48] = { /* code 0061, LATIN SMALL LETTER A */
-  ____XXXX,XXXXXXXX,X_______,
-  __XXXXXX,XXXXXXXX,XX______,
-  _XXXXXXX,XXXXXXXX,XXXX____,
-  _XXXXXXX,XXXXXXXX,XXXXX___,
-  _XXXX___,________,XXXXX___,
-  __X_____,________,_XXXX___,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  XXX_____,________,_XXXX___,
-  XXXXX___,________,XXXXX___,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  _XXXXXXX,XXXXXXXX,XXXXX___,
-  ___XXXXX,XXXXXXXX,XXXXX___,
-  ____XXXX,XXXXXXXX,X_XXX___};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0062[ 63] = { /* code 0062, LATIN SMALL LETTER B */
-  _XX_____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXXXXXX,XXXXXXXX,X_______,
-  XXXXXXXX,XXXXXXXX,XX______,
-  XXXXXXXX,XXXXXXXX,XXX_____,
-  XXXXXXXX,XXXXXXXX,XXXX____,
-  XXXX____,_______X,XXXXX___,
-  XXXX____,________,XXXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXXX___,________,XXXXX___,
-  XXXXXX__,_______X,XXXXX___,
-  _XXXXXXX,XXXXXXXX,XXXX____,
-  __XXXXXX,XXXXXXXX,XXX_____,
-  ___XXXXX,XXXXXXXX,XX______,
-  ____XXXX,XXXXXXXX,X_______};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0063[ 48] = { /* code 0063, LATIN SMALL LETTER C */
-  ____XXXX,XXXXXXXX,X_______,
-  ___XXXXX,XXXXXXXX,XXX_____,
-  __XXXXXX,XXXXXXXX,XXXX____,
-  _XXXXXXX,XXXXXXXX,XXXX____,
-  XXXXXX__,________,XXXXX___,
-  XXXXX___,________,_XXXXX__,
-  XXXX____,________,__XXX___,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,__XXX___,
-  XXXXX___,________,_XXXXX__,
-  XXXXXX__,________,XXXXX___,
-  _XXXXXXX,XXXXXXXX,XXXX____,
-  __XXXXXX,XXXXXXXX,XXXX____,
-  ___XXXXX,XXXXXXXX,XXX_____,
-  ____XXXX,XXXXXXXX,X_______};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0064[ 63] = { /* code 0064, LATIN SMALL LETTER D */
-  ________,________,__XX____,
-  ________,________,_XXXX___,
-  ________,________,_XXXX___,
-  ________,________,_XXXX___,
-  ________,________,_XXXX___,
-  ____XXXX,XXXXXXXX,XXXXX___,
-  ___XXXXX,XXXXXXXX,XXXXX___,
-  __XXXXXX,XXXXXXXX,XXXXX___,
-  _XXXXXXX,XXXXXXXX,XXXXX___,
-  XXXXXX__,________,_XXXX___,
-  XXXXX___,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXXX___,________,XXXXX___,
-  XXXXXX__,_______X,XXXXX___,
-  _XXXXXXX,XXXXXXXX,XXXX____,
-  __XXXXXX,XXXXXXXX,XXX_____,
-  ___XXXXX,XXXXXXXX,XX______,
-  ____XXXX,XXXXXXXX,X_______};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0065[ 48] = { /* code 0065, LATIN SMALL LETTER E */
-  ____XXXX,XXXXXXXX,X_______,
-  __XXXXXX,XXXXXXXX,XX______,
-  _XXXXXXX,XXXXXXXX,XXX_____,
-  XXXXXXXX,XXXXXXXX,XXXX____,
-  XXXXX___,________,XXXXX___,
-  XXX_____,________,_XXXX___,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  XXX_____,________,_XX_____,
-  XXXXX___,________,XXXX____,
-  XXXXXXXX,XXXXXXXX,XXXX____,
-  _XXXXXXX,XXXXXXXX,XXXX____,
-  __XXXXXX,XXXXXXXX,XX______,
-  ____XXXX,XXXXXXXX,X_______};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0066[ 63] = { /* code 0066, LATIN SMALL LETTER F */
-  ________,_XXXXXXX,X_______,
-  ________,XXXXXXXX,X_______,
-  ______XX,XXXXXXXX,X_______,
-  _____XXX,XXXXXXXX,X_______,
-  _____XXX,XX______,________,
-  _____XXX,X_______,________,
-  _XXXXXXX,XXXXX___,________,
-  XXXXXXXX,XXXXXX__,________,
-  XXXXXXXX,XXXXXX__,________,
-  _XXXXXXX,XXXXX___,________,
-  _____XXX,X_______,________,
-  _____XXX,X_______,________,
-  _____XXX,X_______,________,
-  _____XXX,X_______,________,
-  _____XXX,X_______,________,
-  _____XXX,X_______,________,
-  _____XXX,X_______,________,
-  _____XXX,X_______,________,
-  _____XXX,X_______,________,
-  _____XXX,X_______,________,
-  ______XX,________,________};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0067[ 66] = { /* code 0067, LATIN SMALL LETTER G */
-  ____XXXX,XXXXXXXX,X_______,
-  ___XXXXX,XXXXXXXX,XX______,
-  _XXXXXXX,XXXXXXXX,XXX_____,
-  _XXXXXXX,XXXXXXXX,XXXX____,
-  XXXXX___,________,XXXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXXX___,________,XXXXX___,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  _XXXXXXX,XXXXXXXX,XXXXX___,
-  ___XXXXX,XXXXXXXX,XXXXX___,
-  ____XXXX,XXXXXXXX,XXXXX___,
-  ________,________,XXXXX___,
-  ________,________,XXXXX___,
-  __XXXXXX,XXXXXXXX,XXXX____,
-  __XXXXXX,XXXXXXXX,XXX_____,
-  __XXXXXX,XXXXXXXX,XX______,
-  __XXXXXX,XXXXXXXX,X_______};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0068[ 63] = { /* code 0068, LATIN SMALL LETTER H */
-  _XX_____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXXXXXX,XXXXXXXX,X_______,
-  XXXXXXXX,XXXXXXXX,XX______,
-  XXXXXXXX,XXXXXXXX,XXX_____,
-  XXXXXXXX,XXXXXXXX,XXXX____,
-  XXXXXX__,_______X,XXXXX___,
-  XXXXX___,________,XXXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  _XX_____,________,__XX____};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0069[ 22] = { /* code 0069, LATIN SMALL LETTER I */
-  _XX_____,
-  XXXX____,
-  XXXX____,
-  _XX_____,
-  ________,
-  ________,
-  _XX_____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  XXXX____,
-  _XX_____};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_006A[ 52] = { /* code 006A, LATIN SMALL LETTER J */
-  _______X,X_______,
-  ______XX,XX______,
-  ______XX,XX______,
-  _______X,X_______,
-  ________,________,
-  ________,________,
-  ______XX,XX______,
-  ______XX,XX______,
-  ______XX,XX______,
-  ______XX,XX______,
-  ______XX,XX______,
-  ______XX,XX______,
-  ______XX,XX______,
-  ______XX,XX______,
-  ______XX,XX______,
-  ______XX,XX______,
-  ______XX,XX______,
-  ______XX,XX______,
-  ______XX,XX______,
-  ______XX,XX______,
-  ______XX,XX______,
-  _____XXX,XX______,
-  _XXXXXXX,X_______,
-  _XXXXXXX,X_______,
-  _XXXXXXX,________,
-  _XXXXX__,________};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_006B[ 63] = { /* code 006B, LATIN SMALL LETTER K */
-  _XX_____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,_______X,XXXXX___,
-  XXXX____,____XXXX,XXXXXX__,
-  XXXX____,__XXXXXX,XXXXXX__,
-  XXXX___X,XXXXXXXX,XXXXX___,
-  XXXXXXXX,XXXXXXX_,________,
-  XXXXXXXX,XXXXX___,________,
-  XXXXXXXX,XXX_____,________,
-  XXXXXXXX,XXXX____,________,
-  XXXXX___,XXXXX___,________,
-  XXXX____,_XXXXX__,________,
-  XXXX____,__XXXXX_,________,
-  XXXX____,___XXXXX,X_______,
-  XXXX____,____XXXX,XXXXX___,
-  XXXX____,_____XXX,XXXXXX__,
-  XXXX____,______XX,XXXXXX__,
-  _XX_____,_______X,XXXXX___};
-
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_006C[ 21] = { /* code 006C, LATIN SMALL LETTER L */
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0060[  5] = { /* code 0060, GRAVE ACCENT */
+  XX______,
   XXX_____,
   XXXX____,
+  _XXXX___,
+  __XX____};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0061[ 18] = { /* code 0061, LATIN SMALL LETTER A */
+  __XXXXXX,XX______,
+  XXXXXXXX,XXXX____,
+  XX______,__XX____,
+  XXXXXXXX,XXXX____,
+  XXXXXXXX,XXXX____,
+  XX______,__XX____,
+  XXX_____,_XXX____,
+  _XXXXXXX,XXXX____,
+  __XXXXXX,XXXX____};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0062[ 26] = { /* code 0062, LATIN SMALL LETTER B */
+  XX______,________,
+  XX______,________,
+  XX______,________,
+  XX______,________,
+  XXXXXXXX,XX______,
+  XXXXXXXX,XXX_____,
+  XX______,_XXX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XXX_____,_XXX____,
+  _XXXXXXX,XXX_____,
+  __XXXXXX,XX______};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0063[ 18] = { /* code 0063, LATIN SMALL LETTER C */
+  __XXXXXX,XX______,
+  _XXXXXXX,XXXX____,
+  XXX_____,__XXX___,
+  XX______,___X____,
+  XX______,________,
+  XX______,___X____,
+  XXX_____,__XXX___,
+  _XXXXXXX,XXXX____,
+  __XXXXXX,XX______};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0064[ 26] = { /* code 0064, LATIN SMALL LETTER D */
+  ________,__XX____,
+  ________,__XX____,
+  ________,__XX____,
+  ________,__XX____,
+  __XXXXXX,XXXX____,
+  _XXXXXXX,XXXX____,
+  XXX_____,__XX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XXX_____,_XXX____,
+  _XXXXXXX,XXX_____,
+  __XXXXXX,XX______};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0065[ 18] = { /* code 0065, LATIN SMALL LETTER E */
+  __XXXXXX,XX______,
+  XXXXXXXX,XXXX____,
+  XX______,__XX____,
+  XXXXXXXX,XXXX____,
+  XXXXXXXX,XXXX____,
+  XX______,________,
+  XXX_____,__XX____,
+  XXXXXXXX,XXXX____,
+  __XXXXXX,XX______};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0066[ 26] = { /* code 0066, LATIN SMALL LETTER F */
+  _____XXX,XX______,
+  ____XXXX,XX______,
+  ___XXX__,________,
+  ___XX___,________,
+  XXXXXXXX,________,
+  XXXXXXXX,________,
+  ___XX___,________,
+  ___XX___,________,
+  ___XX___,________,
+  ___XX___,________,
+  ___XX___,________,
+  ___XX___,________,
+  ___XX___,________};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0067[ 24] = { /* code 0067, LATIN SMALL LETTER G */
+  __XXXXXX,XX______,
+  _XXXXXXX,XXX_____,
+  XXX_____,_XXX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XXX_____,_XXX____,
+  _XXXXXXX,XXXX____,
+  __XXXXXX,XXXX____,
+  ________,_XXX____,
+  _XXXXXXX,XXX_____,
+  _XXXXXXX,XX______};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0068[ 26] = { /* code 0068, LATIN SMALL LETTER H */
+  XX______,________,
+  XX______,________,
+  XX______,________,
+  XX______,________,
+  XXXXXXXX,XX______,
+  XXXXXXXX,XXX_____,
+  XXX_____,_XXX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XX______,__XX____};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0069[ 13] = { /* code 0069, LATIN SMALL LETTER I */
+  XX______,
+  XXX_____,
+  XX______,
+  ________,
+  XX______,
+  XX______,
+  XX______,
+  XX______,
+  XX______,
+  XX______,
+  XX______,
+  XX______,
+  XX______};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_006A[ 16] = { /* code 006A, LATIN SMALL LETTER J */
+  ____XX__,
+  ___XXX__,
+  ____XX__,
+  ________,
+  ___XX___,
+  ___XX___,
+  ___XX___,
+  ___XX___,
+  ___XX___,
+  ___XX___,
+  ___XX___,
+  ___XX___,
+  ___XX___,
+  ___XX___,
   XXXXX___,
-  _XXXXX__,
-  __XXXXX_,
-  ___XXXX_,
-  ___XXXX_,
-  ___XXXX_,
-  ___XXXX_,
-  ___XXXX_,
-  ___XXXX_,
-  ___XXXX_,
-  ___XXXX_,
-  ___XXXX_,
-  ___XXXX_,
-  ___XXXX_,
-  ___XXXX_,
-  ___XXXX_,
-  ___XXXX_,
-  ___XXXX_,
-  ____XX__};
+  XXXX____};
 
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_006D[ 64] = { /* code 006D, LATIN SMALL LETTER M */
-  _XX_____,________,________,________,
-  XXXXXXXX,XXXXX_XX,XXXXXXXX,X_______,
-  XXXXXXXX,XXXXXXXX,XXXXXXXX,XXX_____,
-  XXXXXXXX,XXXXXXXX,XXXXXXXX,XXX_____,
-  XXXXXXXX,XXXXXXXX,XXXXXXXX,XXXX____,
-  XXXX____,____XXXX,________,XXXX____,
-  XXXX____,____XXXX,________,XXXX____,
-  XXXX____,____XXXX,________,XXXX____,
-  XXXX____,____XXXX,________,XXXX____,
-  XXXX____,____XXXX,________,XXXX____,
-  XXXX____,____XXXX,________,XXXX____,
-  XXXX____,____XXXX,________,XXXX____,
-  XXXX____,____XXXX,________,XXXX____,
-  XXXX____,____XXXX,________,XXXX____,
-  XXXX____,____XXXX,________,XXXX____,
-  _XX_____,_____XX_,________,_XX_____};
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_006B[ 26] = { /* code 006B, LATIN SMALL LETTER K */
+  XX______,________,
+  XX______,________,
+  XX______,________,
+  XX______,________,
+  XX______,XXXX____,
+  XX___XXX,XXXX____,
+  XX_XXXXX,________,
+  XXXXXX__,________,
+  XX__XXX_,________,
+  XX___XXX,________,
+  XX____XX,X_______,
+  XX_____X,XXXX____,
+  XX______,_XXX____};
 
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_006E[ 48] = { /* code 006E, LATIN SMALL LETTER N */
-  _XX_____,________,________,
-  XXXXXXXX,XXXXXXXX,XX______,
-  XXXXXXXX,XXXXXXXX,XXXX____,
-  XXXXXXXX,XXXXXXXX,XXXX____,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  _XX_____,________,__XX____};
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_006C[ 13] = { /* code 006C, LATIN SMALL LETTER L */
+  XX______,
+  XXX_____,
+  _XXX____,
+  __XX____,
+  __XX____,
+  __XX____,
+  __XX____,
+  __XX____,
+  __XX____,
+  __XX____,
+  __XX____,
+  __XX____,
+  __XX____};
 
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_006F[ 48] = { /* code 006F, LATIN SMALL LETTER O */
-  ____XXXX,XXXXXXXX,X_______,
-  ___XXXXX,XXXXXXXX,XX______,
-  _XXXXXXX,XXXXXXXX,XXX_____,
-  _XXXXXXX,XXXXXXXX,XXXX____,
-  XXXXX___,________,XXXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXXX___,________,XXXXX___,
-  _XXXXXXX,XXXXXXXX,XXXX____,
-  _XXXXXXX,XXXXXXXX,XXX_____,
-  ___XXXXX,XXXXXXXX,XX______,
-  ____XXXX,XXXXXXXX,X_______};
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_006D[ 18] = { /* code 006D, LATIN SMALL LETTER M */
+  XXXXXXXX,XXXXXXX_,
+  XXXXXXXX,XXXXXXXX,
+  XX_____X,X_____XX,
+  XX_____X,X_____XX,
+  XX_____X,X_____XX,
+  XX_____X,X_____XX,
+  XX_____X,X_____XX,
+  XX_____X,X_____XX,
+  XX_____X,X_____XX};
 
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0070[ 63] = { /* code 0070, LATIN SMALL LETTER P */
-  ____XXXX,XXXXXXXX,X_______,
-  __XXXXXX,XXXXXXXX,XX______,
-  _XXXXXXX,XXXXXXXX,XXXX____,
-  XXXXXXXX,XXXXXXXX,XXXX____,
-  XXXXX___,________,XXXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXXX___,________,XXXXX___,
-  XXXXXXXX,XXXXXXXX,XXXX____,
-  XXXXXXXX,XXXXXXXX,XXXX____,
-  XXXXXXXX,XXXXXXXX,XX______,
-  XXXXXXXX,XXXXXXXX,X_______,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  _XX_____,________,________};
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_006E[ 18] = { /* code 006E, LATIN SMALL LETTER N */
+  XXXXXXXX,XXX_____,
+  XXXXXXXX,XXXX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XX______,__XX____};
 
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0071[ 63] = { /* code 0071, LATIN SMALL LETTER Q */
-  ____XXXX,XXXXXXXX,X_______,
-  ___XXXXX,XXXXXXXX,XXX_____,
-  _XXXXXXX,XXXXXXXX,XXXX____,
-  _XXXXXXX,XXXXXXXX,XXXXX___,
-  XXXXX___,________,XXXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXXX___,________,XXXXX___,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  _XXXXXXX,XXXXXXXX,XXXXX___,
-  __XXXXXX,XXXXXXXX,XXXXX___,
-  ____XXXX,XXXXXXXX,XXXXX___,
-  ________,________,_XXXX___,
-  ________,________,_XXXX___,
-  ________,________,_XXXX___,
-  ________,________,_XXXX___,
-  ________,________,__XX____};
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_006F[ 18] = { /* code 006F, LATIN SMALL LETTER O */
+  __XXXXXX,XX______,
+  _XXXXXXX,XXX_____,
+  XXX_____,_XXX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XXX_____,_XXX____,
+  _XXXXXXX,XXX_____,
+  __XXXXXX,XX______};
 
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0072[ 48] = { /* code 0072, LATIN SMALL LETTER R */
-  _XXXXXXX,XXXXXXXX,XXX_____,
-  XXXXXXXX,XXXXXXXX,XXXX____,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  XXXX____,________,__XXXX__,
-  XXXX____,________,__XXX___,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  XXXX____,________,________,
-  _XX_____,________,________};
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0070[ 24] = { /* code 0070, LATIN SMALL LETTER P */
+  __XXXXXX,XX______,
+  _XXXXXXX,XXX_____,
+  XXX_____,_XXX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XXX_____,_XXX____,
+  XXXXXXXX,XXX_____,
+  XXXXXXXX,XX______,
+  XX______,________,
+  XX______,________,
+  XX______,________};
 
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0073[ 48] = { /* code 0073, LATIN SMALL LETTER S */
-  ____XXXX,XXXXXXXX,X_______,
-  ___XXXXX,XXXXXXXX,XX______,
-  _XXXXXXX,XXXXXXXX,XXX_____,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  XXXXX___,________,XXXXX___,
-  XXXX____,________,_XXXX___,
-  XXXXXXXX,XXXXXXXX,XXXX____,
-  XXXXXXXX,XXXXXXXX,XXXX____,
-  _XXXXXXX,XXXXXXXX,XXXXX___,
-  _XXXXXXX,XXXXXXXX,XXXXX___,
-  XXXX____,________,__XXX___,
-  XXXXX___,________,XXXXX___,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  __XXXXXX,XXXXXXXX,XXXX____,
-  ___XXXXX,XXXXXXXX,XXX_____,
-  ____XXXX,XXXXXXXX,X_______};
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0071[ 24] = { /* code 0071, LATIN SMALL LETTER Q */
+  __XXXXXX,XX______,
+  _XXXXXXX,XXX_____,
+  XXX_____,_XXX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XXX_____,_XXX____,
+  _XXXXXXX,XXXX____,
+  __XXXXXX,XXXX____,
+  ________,__XX____,
+  ________,__XX____,
+  ________,__XX____};
 
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0074[ 63] = { /* code 0074, LATIN SMALL LETTER T */
-  ______XX,________,________,
-  _____XXX,X_______,________,
-  _____XXX,X_______,________,
-  _____XXX,X_______,________,
-  _____XXX,X_______,________,
-  _____XXX,X_______,________,
-  _____XXX,X_______,________,
-  _XXXXXXX,XXXXX___,________,
-  XXXXXXXX,XXXXXX__,________,
-  XXXXXXXX,XXXXXX__,________,
-  _XXXXXXX,XXXXX___,________,
-  _____XXX,X_______,________,
-  _____XXX,X_______,________,
-  _____XXX,X_______,________,
-  _____XXX,X_______,________,
-  _____XXX,X_______,________,
-  _____XXX,XX______,________,
-  _____XXX,XXXXXXXX,X_______,
-  ______XX,XXXXXXXX,X_______,
-  ________,XXXXXXXX,X_______,
-  ________,_XXXXXXX,X_______};
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0072[ 20] = { /* code 0072, LATIN SMALL LETTER R */
+  X_______,________,
+  XXXXXXXX,XXX_____,
+  XXXXXXXX,XXXX____,
+  XX______,__XXX___,
+  XX______,________,
+  XX______,________,
+  XX______,________,
+  XX______,________,
+  XX______,________,
+  XX______,________};
 
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0075[ 48] = { /* code 0075, LATIN SMALL LETTER U */
-  _XX_____,________,__XX____,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXXX___,________,XXXXX___,
-  XXXXXX__,_______X,XXXXX___,
-  _XXXXXXX,XXXXXXXX,XXXX____,
-  __XXXXXX,XXXXXXXX,XXX_____,
-  ___XXXXX,XXXXXXXX,XX______,
-  ____XXXX,XXXXXXXX,X_______};
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0073[ 18] = { /* code 0073, LATIN SMALL LETTER S */
+  __XXXXXX,XX______,
+  XXXXXXXX,XXXX____,
+  XX______,__XX____,
+  XXXXXXXX,XXXX____,
+  _XXXXXXX,XXXX____,
+  X_______,__XX____,
+  XXX_____,_XXX____,
+  XXXXXXXX,XXXX____,
+  __XXXXXX,XX______};
 
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0076[ 48] = { /* code 0076, LATIN SMALL LETTER V */
-  _XX_____,________,__XX____,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXXX___,________,XXXXX___,
-  _XXXXX__,_______X,XXXX____,
-  __XXXXX_,______XX,XXX_____,
-  ___XXXXX,_____XXX,XX______,
-  ____XXXX,XXXXXXXX,X_______,
-  ____XXXX,XXXXXXXX,________,
-  _____XXX,XXXXXXXX,________,
-  _______X,XXXXXX__,________};
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0074[ 26] = { /* code 0074, LATIN SMALL LETTER T */
+  ___XX___,________,
+  ___XX___,________,
+  ___XX___,________,
+  ___XX___,________,
+  ___XX___,________,
+  XXXXXXXX,________,
+  XXXXXXXX,________,
+  ___XX___,________,
+  ___XX___,________,
+  ___XX___,________,
+  ___XXX__,________,
+  ____XXXX,XX______,
+  _____XXX,XX______};
 
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0077[ 64] = { /* code 0077, LATIN SMALL LETTER W */
-  _XX_____,_____XX_,________,_XX_____,
-  XXXX____,____XXXX,________,XXXX____,
-  XXXX____,____XXXX,________,XXXX____,
-  XXXX____,____XXXX,________,XXXX____,
-  XXXX____,____XXXX,________,XXXX____,
-  XXXX____,____XXXX,________,XXXX____,
-  XXXX____,____XXXX,________,XXXX____,
-  XXXX____,____XXXX,________,XXXX____,
-  XXXX____,____XXXX,________,XXXX____,
-  XXXX____,____XXXX,________,XXXX____,
-  XXXXX___,____XXXX,_______X,XXXX____,
-  XXXXXX__,____XXXX,______XX,XXXX____,
-  _XXXXXXX,XXXXXXXX,XXXXXXXX,XXX_____,
-  __XXXXXX,XXXXXXXX,XXXXXXXX,XX______,
-  ___XXXXX,XXXXXXXX,XXXXXXXX,X_______,
-  ____XXXX,XXXXXXXX,XXXXXXXX,________};
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0075[ 20] = { /* code 0075, LATIN SMALL LETTER U */
+  XX______,__XX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XXX_____,_XXX____,
+  _XXXXXXX,XXX_____,
+  __XXXXXX,XX______};
 
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0078[ 48] = { /* code 0078, LATIN SMALL LETTER X */
-  XXXXX___,_______X,XXXXX___,
-  XXXXXXX_,______XX,XXXXX___,
-  XXXXXXXX,_____XXX,XXXXX___,
-  XXXXXXXX,X___XXXX,XXXXX___,
-  ____XXXX,XX_XXXXX,X_______,
-  _____XXX,XXXXXXXX,________,
-  ______XX,XXXXXXX_,________,
-  _______X,XXXXXX__,________,
-  _______X,XXXXXX__,________,
-  ______XX,XXXXXXX_,________,
-  _____XXX,XXXXXXXX,________,
-  ____XXXX,XX_XXXXX,X_______,
-  XXXXXXXX,X___XXXX,XXXX____,
-  XXXXXXXX,_____XXX,XXXXX___,
-  XXXXXXX_,______XX,XXXXX___,
-  XXXXX___,_______X,XXXXX___};
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0076[ 18] = { /* code 0076, LATIN SMALL LETTER V */
+  XX______,__XX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  _XX_____,_XX_____,
+  __XX____,XX______,
+  __XXXXXX,XX______,
+  ___XXXXX,X_______};
 
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0079[ 63] = { /* code 0079, LATIN SMALL LETTER Y */
-  _XX_____,________,__XX____,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXX____,________,_XXXX___,
-  XXXXX___,________,XXXXX___,
-  _XXXXXXX,XXXXXXXX,XXXX____,
-  _XXXXXXX,XXXXXXXX,XXX_____,
-  __XXXXXX,XXXXXXXX,XX______,
-  ____XXXX,XXXXXXXX,X_______,
-  ________,XXXX____,________,
-  ________,XXXX____,________,
-  ________,XXXX____,________,
-  ________,XXXX____,________,
-  ________,_XX_____,________};
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0077[ 18] = { /* code 0077, LATIN SMALL LETTER W */
+  XX____XX,____XX__,
+  XX____XX,____XX__,
+  XX____XX,____XX__,
+  XX____XX,____XX__,
+  XX____XX,____XX__,
+  XX____XX,____XX__,
+  XXX___XX,___XXX__,
+  _XXXXXXX,XXXXX___,
+  __XXXXXX,XXXX____};
 
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_007A[ 48] = { /* code 007A, LATIN SMALL LETTER Z */
-  XXXXXXXX,XXXXXXXX,X_______,
-  XXXXXXXX,XXXXXXXX,XX______,
-  XXXXXXXX,XXXXXXXX,XXX_____,
-  XXXXXXXX,XXXXXXXX,XXXX____,
-  ________,________,XXXXX___,
-  ________,_____XXX,XXXXX___,
-  ________,__XXXXXX,XXXX____,
-  _______X,XXXXXXXX,XX______,
-  ___XXXXX,XXXXXX__,________,
-  _XXXXXXX,XXX_____,________,
-  XXXXXXXX,________,________,
-  XXXXX___,________,________,
-  _XXXXXXX,XXXXXXXX,XXXX____,
-  __XXXXXX,XXXXXXXX,XXXXX___,
-  ___XXXXX,XXXXXXXX,XXXXX___,
-  ____XXXX,XXXXXXXX,XXXXX___};
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0078[ 18] = { /* code 0078, LATIN SMALL LETTER X */
+  XXX_____,_XXX____,
+  XXXX____,XXXX____,
+  __XXX__X,XX______,
+  ___XXXXX,X_______,
+  ____XXXX,________,
+  ___XXXXX,X_______,
+  ___XX__X,XX______,
+  XXXX____,XXXX____,
+  XXX_____,_XXX____};
 
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_007E[ 21] = { /* code 007E, TILDE */
-  ___XXXXX,XXX_____,__XXX___,
-  __XXXXXX,XXXX____,_XXXXX__,
-  _XXXXXXX,XXXXX___,XXXXXX__,
-  XXXXXXXX,XXXXXXXX,XXXXX___,
-  XXXXX___,_XXXXXXX,XXXX____,
-  XXXX____,__XXXXXX,XXX_____,
-  _XX_____,___XXXXX,XX______};
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_0079[ 24] = { /* code 0079, LATIN SMALL LETTER Y */
+  XX______,__XX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XX______,__XX____,
+  XXX_____,_XXX____,
+  _XXXXXXX,XXX_____,
+  __XXXXXX,XX______,
+  _____XX_,________,
+  _____XX_,________,
+  _____XX_,________};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_007A[ 18] = { /* code 007A, LATIN SMALL LETTER Z */
+  XXXXXXXX,XX______,
+  XXXXXXXX,XXX_____,
+  ________,_XXX____,
+  ______XX,XXXX____,
+  __XXXXXX,XX______,
+  XXXXXXX_,________,
+  XXX_____,________,
+  _XXXXXXX,XXXX____,
+  __XXXXXX,XXXX____};
+
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_007E[  8] = { /* code 007E, TILDE */
+  _XXXXXX_,__XXX___,
+  XXXXXXXX,_XXXX___,
+  XXX__XXX,XXXX____,
+  XX____XX,XXX_____};
 
 /* Start of unicode area <Latin-1 Supplement> */
 GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_00A0[  1] = { /* code 00A0, NO-BREAK SPACE */
   ________};
 
 /* Start of unicode area <Special> */
-GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_FFFF[ 78] = { /* code FFFF */
-  XXXXXXXX,XXXXXXXX,XX______,
-  XXXXXXXX,XXXXXXXX,XX______,
-  XXXXXXXX,XXXXXXXX,XX______,
-  XXX_____,_______X,XX______,
-  XXX_____,_______X,XX______,
-  XXX_____,_______X,XX______,
-  XXX_____,_______X,XX______,
-  XXX_____,_______X,XX______,
-  XXX_____,_______X,XX______,
-  XXX_____,_______X,XX______,
-  XXX_____,_______X,XX______,
-  XXX_____,_______X,XX______,
-  XXX_____,_______X,XX______,
-  XXX_____,_______X,XX______,
-  XXX_____,_______X,XX______,
-  XXX_____,_______X,XX______,
-  XXX_____,_______X,XX______,
-  XXX_____,_______X,XX______,
-  XXX_____,_______X,XX______,
-  XXX_____,_______X,XX______,
-  XXX_____,_______X,XX______,
-  XXX_____,_______X,XX______,
-  XXX_____,_______X,XX______,
-  XXX_____,_______X,XX______,
-  XXX_____,_______X,XX______,
-  XXX_____,_______X,XX______};
+GUI_CONST_STORAGE unsigned char acGUI_FontDigitGraphics40_FFFF[ 32] = { /* code FFFF */
+  XXXXXXXX,XXX_____,
+  XXXXXXXX,XXX_____,
+  XX______,_XX_____,
+  XX______,_XX_____,
+  XX______,_XX_____,
+  XX______,_XX_____,
+  XX______,_XX_____,
+  XX______,_XX_____,
+  XX______,_XX_____,
+  XX______,_XX_____,
+  XX______,_XX_____,
+  XX______,_XX_____,
+  XX______,_XX_____,
+  XX______,_XX_____,
+  XX______,_XX_____,
+  XX______,_XX_____};
 
 GUI_CONST_STORAGE GUI_CHARINFO_EXT GUI_FontDigitGraphics40_CharInfo[94] = {
-   {   1,   1,   0,  26,   4, acGUI_FontDigitGraphics40_0020 } /* code 0020, SPACE */
-  ,{   4,  24,   3,   2,   8, acGUI_FontDigitGraphics40_0021 } /* code 0021, EXCLAMATION MARK */
-  ,{  12,   9,   3,   3,  16, acGUI_FontDigitGraphics40_0022 } /* code 0022, QUOTATION MARK */
-  ,{  25,  25,   3,   1,  29, acGUI_FontDigitGraphics40_0023 } /* code 0023, NUMBER SIGN */
-  ,{  24,  24,   3,   2,  29, acGUI_FontDigitGraphics40_0024 } /* code 0024, DOLLAR SIGN */
-  ,{  24,  25,   3,   1,  29, acGUI_FontDigitGraphics40_0025 } /* code 0025, PERCENT SIGN */
-  ,{  21,  22,   3,   4,  26, acGUI_FontDigitGraphics40_0026 } /* code 0026, AMPERSAND */
-  ,{   4,   9,   3,   3,   8, acGUI_FontDigitGraphics40_0027 } /* code 0027, APOSTROPHE */
-  ,{   7,  25,   3,   1,  12, acGUI_FontDigitGraphics40_0028 } /* code 0028, LEFT PARENTHESIS */
-  ,{   7,  25,   3,   1,  12, acGUI_FontDigitGraphics40_0029 } /* code 0029, RIGHT PARENTHESIS */
-  ,{  24,  25,   3,   1,  28, acGUI_FontDigitGraphics40_002A } /* code 002A, ASTERISK */
-  ,{  24,  25,   3,   1,  29, acGUI_FontDigitGraphics40_002B } /* code 002B, PLUS SIGN */
-  ,{   8,   8,   3,  19,  12, acGUI_FontDigitGraphics40_002C } /* code 002C, COMMA */
-  ,{  15,   4,   3,  14,  19, acGUI_FontDigitGraphics40_002D } /* code 002D, HYPHEN-MINUS */
-  ,{   6,   6,   3,  19,  10, acGUI_FontDigitGraphics40_002E } /* code 002E, FULL STOP */
-  ,{  21,  21,   3,   4,  26, acGUI_FontDigitGraphics40_002F } /* code 002F, SOLIDUS */
-  ,{  24,  24,   3,   2,  29, acGUI_FontDigitGraphics40_0030 } /* code 0030, DIGIT ZERO */
-  ,{  17,  24,   3,   2,  22, acGUI_FontDigitGraphics40_0031 } /* code 0031, DIGIT ONE */
-  ,{  24,  25,   3,   1,  29, acGUI_FontDigitGraphics40_0032 } /* code 0032, DIGIT TWO */
-  ,{  24,  24,   3,   2,  29, acGUI_FontDigitGraphics40_0033 } /* code 0033, DIGIT THREE */
-  ,{  24,  25,   3,   1,  29, acGUI_FontDigitGraphics40_0034 } /* code 0034, DIGIT FOUR */
-  ,{  24,  24,   3,   2,  29, acGUI_FontDigitGraphics40_0035 } /* code 0035, DIGIT FIVE */
-  ,{  25,  25,   3,   1,  29, acGUI_FontDigitGraphics40_0036 } /* code 0036, DIGIT SIX */
-  ,{  24,  26,   3,   1,  29, acGUI_FontDigitGraphics40_0037 } /* code 0037, DIGIT SEVEN */
-  ,{  24,  24,   3,   2,  29, acGUI_FontDigitGraphics40_0038 } /* code 0038, DIGIT EIGHT */
-  ,{  24,  24,   3,   2,  29, acGUI_FontDigitGraphics40_0039 } /* code 0039, DIGIT NINE */
-  ,{   6,  16,   3,   6,  10, acGUI_FontDigitGraphics40_003A } /* code 003A, COLON */
-  ,{   8,  18,   3,   7,  12, acGUI_FontDigitGraphics40_003B } /* code 003B, SEMICOLON */
-  ,{  11,  17,   3,   6,  16, acGUI_FontDigitGraphics40_003C } /* code 003C, LESS-THAN SIGN */
-  ,{  13,  12,   3,   9,  17, acGUI_FontDigitGraphics40_003D } /* code 003D, EQUALS SIGN */
-  ,{  11,  17,   3,   6,  16, acGUI_FontDigitGraphics40_003E } /* code 003E, GREATER-THAN SIGN */
-  ,{  24,  24,   3,   2,  29, acGUI_FontDigitGraphics40_003F } /* code 003F, QUESTION MARK */
-  ,{  24,  25,   3,   1,  29, acGUI_FontDigitGraphics40_0040 } /* code 0040, COMMERCIAL AT */
-  ,{  24,  24,   3,   2,  28, acGUI_FontDigitGraphics40_0041 } /* code 0041, LATIN CAPITAL LETTER A */
-  ,{  24,  24,   3,   2,  29, acGUI_FontDigitGraphics40_0042 } /* code 0042, LATIN CAPITAL LETTER B */
-  ,{  25,  25,   2,   2,  29, acGUI_FontDigitGraphics40_0043 } /* code 0043, LATIN CAPITAL LETTER C */
-  ,{  24,  24,   3,   2,  29, acGUI_FontDigitGraphics40_0044 } /* code 0044, LATIN CAPITAL LETTER D */
-  ,{  24,  24,   3,   2,  29, acGUI_FontDigitGraphics40_0045 } /* code 0045, LATIN CAPITAL LETTER E */
-  ,{  24,  24,   3,   2,  29, acGUI_FontDigitGraphics40_0046 } /* code 0046, LATIN CAPITAL LETTER F */
-  ,{  25,  24,   2,   2,  29, acGUI_FontDigitGraphics40_0047 } /* code 0047, LATIN CAPITAL LETTER G */
-  ,{  24,  25,   3,   1,  29, acGUI_FontDigitGraphics40_0048 } /* code 0048, LATIN CAPITAL LETTER H */
-  ,{   4,  25,   3,   1,   8, acGUI_FontDigitGraphics40_0049 } /* code 0049, LATIN CAPITAL LETTER I */
-  ,{  25,  24,   3,   2,  30, acGUI_FontDigitGraphics40_004A } /* code 004A, LATIN CAPITAL LETTER J */
-  ,{  24,  24,   3,   2,  29, acGUI_FontDigitGraphics40_004B } /* code 004B, LATIN CAPITAL LETTER K */
-  ,{  24,  24,   3,   2,  28, acGUI_FontDigitGraphics40_004C } /* code 004C, LATIN CAPITAL LETTER L */
-  ,{  30,  24,   3,   2,  34, acGUI_FontDigitGraphics40_004D } /* code 004D, LATIN CAPITAL LETTER M */
-  ,{  24,  24,   3,   2,  28, acGUI_FontDigitGraphics40_004E } /* code 004E, LATIN CAPITAL LETTER N */
-  ,{  26,  24,   2,   2,  29, acGUI_FontDigitGraphics40_004F } /* code 004F, LATIN CAPITAL LETTER O */
-  ,{  25,  26,   3,   2,  29, acGUI_FontDigitGraphics40_0050 } /* code 0050, LATIN CAPITAL LETTER P */
-  ,{  26,  25,   3,   2,  30, acGUI_FontDigitGraphics40_0051 } /* code 0051, LATIN CAPITAL LETTER Q */
-  ,{  25,  24,   3,   2,  29, acGUI_FontDigitGraphics40_0052 } /* code 0052, LATIN CAPITAL LETTER R */
-  ,{  26,  24,   3,   2,  30, acGUI_FontDigitGraphics40_0053 } /* code 0053, LATIN CAPITAL LETTER S */
-  ,{  24,  24,   3,   2,  29, acGUI_FontDigitGraphics40_0054 } /* code 0054, LATIN CAPITAL LETTER T */
-  ,{  24,  25,   3,   2,  28, acGUI_FontDigitGraphics40_0055 } /* code 0055, LATIN CAPITAL LETTER U */
-  ,{  24,  25,   3,   1,  29, acGUI_FontDigitGraphics40_0056 } /* code 0056, LATIN CAPITAL LETTER V */
-  ,{  30,  24,   3,   2,  34, acGUI_FontDigitGraphics40_0057 } /* code 0057, LATIN CAPITAL LETTER W */
-  ,{  25,  24,   3,   2,  29, acGUI_FontDigitGraphics40_0058 } /* code 0058, LATIN CAPITAL LETTER X */
-  ,{  24,  25,   3,   1,  28, acGUI_FontDigitGraphics40_0059 } /* code 0059, LATIN CAPITAL LETTER Y */
-  ,{  25,  24,   3,   2,  30, acGUI_FontDigitGraphics40_005A } /* code 005A, LATIN CAPITAL LETTER Z */
-  ,{   9,  24,   3,   2,  13, acGUI_FontDigitGraphics40_005B } /* code 005B, LEFT SQUARE BRACKET */
-  ,{  21,  21,   3,   5,  26, acGUI_FontDigitGraphics40_005C } /* code 005C, REVERSE SOLIDUS */
-  ,{   9,  24,   3,   2,  13, acGUI_FontDigitGraphics40_005D } /* code 005D, RIGHT SQUARE BRACKET */
-  ,{  18,  12,   3,   3,  22, acGUI_FontDigitGraphics40_005E } /* code 005E, CIRCUMFLEX ACCENT */
-  ,{  24,   4,   3,  22,  29, acGUI_FontDigitGraphics40_005F } /* code 005F, LOW LINE */
-  ,{   8,   8,   3,   8,  12, acGUI_FontDigitGraphics40_0060 } /* code 0060, GRAVE ACCENT */
-  ,{  21,  16,   3,  10,  26, acGUI_FontDigitGraphics40_0061 } /* code 0061, LATIN SMALL LETTER A */
-  ,{  21,  21,   3,   5,  26, acGUI_FontDigitGraphics40_0062 } /* code 0062, LATIN SMALL LETTER B */
-  ,{  22,  16,   3,  10,  26, acGUI_FontDigitGraphics40_0063 } /* code 0063, LATIN SMALL LETTER C */
-  ,{  21,  21,   3,   5,  26, acGUI_FontDigitGraphics40_0064 } /* code 0064, LATIN SMALL LETTER D */
-  ,{  21,  16,   3,  10,  26, acGUI_FontDigitGraphics40_0065 } /* code 0065, LATIN SMALL LETTER E */
-  ,{  17,  21,   2,   5,  21, acGUI_FontDigitGraphics40_0066 } /* code 0066, LATIN SMALL LETTER F */
-  ,{  21,  22,   3,  10,  26, acGUI_FontDigitGraphics40_0067 } /* code 0067, LATIN SMALL LETTER G */
-  ,{  21,  21,   3,   5,  26, acGUI_FontDigitGraphics40_0068 } /* code 0068, LATIN SMALL LETTER H */
-  ,{   4,  22,   3,   4,   9, acGUI_FontDigitGraphics40_0069 } /* code 0069, LATIN SMALL LETTER I */
-  ,{  10,  26,   2,   5,  14, acGUI_FontDigitGraphics40_006A } /* code 006A, LATIN SMALL LETTER J */
-  ,{  22,  21,   3,   5,  26, acGUI_FontDigitGraphics40_006B } /* code 006B, LATIN SMALL LETTER K */
-  ,{   7,  21,   3,   5,  11, acGUI_FontDigitGraphics40_006C } /* code 006C, LATIN SMALL LETTER L */
-  ,{  28,  16,   3,  10,  32, acGUI_FontDigitGraphics40_006D } /* code 006D, LATIN SMALL LETTER M */
-  ,{  21,  16,   3,  10,  26, acGUI_FontDigitGraphics40_006E } /* code 006E, LATIN SMALL LETTER N */
-  ,{  21,  16,   3,  10,  26, acGUI_FontDigitGraphics40_006F } /* code 006F, LATIN SMALL LETTER O */
-  ,{  21,  21,   3,  10,  26, acGUI_FontDigitGraphics40_0070 } /* code 0070, LATIN SMALL LETTER P */
-  ,{  21,  21,   3,  10,  26, acGUI_FontDigitGraphics40_0071 } /* code 0071, LATIN SMALL LETTER Q */
-  ,{  22,  16,   3,  10,  26, acGUI_FontDigitGraphics40_0072 } /* code 0072, LATIN SMALL LETTER R */
-  ,{  21,  16,   3,  10,  26, acGUI_FontDigitGraphics40_0073 } /* code 0073, LATIN SMALL LETTER S */
-  ,{  17,  21,   2,   5,  21, acGUI_FontDigitGraphics40_0074 } /* code 0074, LATIN SMALL LETTER T */
-  ,{  21,  16,   3,  10,  26, acGUI_FontDigitGraphics40_0075 } /* code 0075, LATIN SMALL LETTER U */
-  ,{  21,  16,   3,  10,  26, acGUI_FontDigitGraphics40_0076 } /* code 0076, LATIN SMALL LETTER V */
-  ,{  28,  16,   3,  10,  31, acGUI_FontDigitGraphics40_0077 } /* code 0077, LATIN SMALL LETTER W */
-  ,{  21,  16,   3,  10,  26, acGUI_FontDigitGraphics40_0078 } /* code 0078, LATIN SMALL LETTER X */
-  ,{  21,  21,   3,  10,  26, acGUI_FontDigitGraphics40_0079 } /* code 0079, LATIN SMALL LETTER Y */
-  ,{  21,  16,   3,  10,  26, acGUI_FontDigitGraphics40_007A } /* code 007A, LATIN SMALL LETTER Z */
-  ,{  22,   7,   3,   6,  26, acGUI_FontDigitGraphics40_007E } /* code 007E, TILDE */
-  ,{   1,   1,   0,  26,   4, acGUI_FontDigitGraphics40_00A0 } /* code 00A0, NO-BREAK SPACE */
-  ,{  18,  26,   3,   0,  22, acGUI_FontDigitGraphics40_FFFF } /* code FFFF */
+   {   1,   1,   0,  16,   6, acGUI_FontDigitGraphics40_0020 } /* code 0020, SPACE */
+  ,{   3,  15,   1,   1,   5, acGUI_FontDigitGraphics40_0021 } /* code 0021, EXCLAMATION MARK */
+  ,{   8,   6,   1,   2,  11, acGUI_FontDigitGraphics40_0022 } /* code 0022, QUOTATION MARK */
+  ,{  14,  15,   2,   1,  17, acGUI_FontDigitGraphics40_0023 } /* code 0023, NUMBER SIGN */
+  ,{  15,  15,   2,   1,  16, acGUI_FontDigitGraphics40_0024 } /* code 0024, DOLLAR SIGN */
+  ,{  14,  15,   2,   1,  16, acGUI_FontDigitGraphics40_0025 } /* code 0025, PERCENT SIGN */
+  ,{  13,  13,   2,   3,  15, acGUI_FontDigitGraphics40_0026 } /* code 0026, AMPERSAND */
+  ,{   3,   6,   1,   2,   5, acGUI_FontDigitGraphics40_0027 } /* code 0027, APOSTROPHE */
+  ,{   5,  15,   1,   1,   7, acGUI_FontDigitGraphics40_0028 } /* code 0028, LEFT PARENTHESIS */
+  ,{   5,  15,   1,   1,   7, acGUI_FontDigitGraphics40_0029 } /* code 0029, RIGHT PARENTHESIS */
+  ,{  15,  15,   1,   1,  16, acGUI_FontDigitGraphics40_002A } /* code 002A, ASTERISK */
+  ,{  15,  15,   2,   1,  16, acGUI_FontDigitGraphics40_002B } /* code 002B, PLUS SIGN */
+  ,{   5,   5,   2,  12,   6, acGUI_FontDigitGraphics40_002C } /* code 002C, COMMA */
+  ,{   9,   2,   2,   9,  11, acGUI_FontDigitGraphics40_002D } /* code 002D, HYPHEN-MINUS */
+  ,{   4,   4,   1,  11,   5, acGUI_FontDigitGraphics40_002E } /* code 002E, FULL STOP */
+  ,{  12,  13,   2,   3,  15, acGUI_FontDigitGraphics40_002F } /* code 002F, SOLIDUS */
+  ,{  16,  15,   1,   1,  16, acGUI_FontDigitGraphics40_0030 } /* code 0030, DIGIT ZERO */
+  ,{  11,  15,   1,   1,  12, acGUI_FontDigitGraphics40_0031 } /* code 0031, DIGIT ONE */
+  ,{  14,  15,   2,   1,  16, acGUI_FontDigitGraphics40_0032 } /* code 0032, DIGIT TWO */
+  ,{  15,  15,   2,   1,  17, acGUI_FontDigitGraphics40_0033 } /* code 0033, DIGIT THREE */
+  ,{  16,  15,   1,   1,  16, acGUI_FontDigitGraphics40_0034 } /* code 0034, DIGIT FOUR */
+  ,{  15,  15,   1,   1,  16, acGUI_FontDigitGraphics40_0035 } /* code 0035, DIGIT FIVE */
+  ,{  15,  15,   1,   1,  16, acGUI_FontDigitGraphics40_0036 } /* code 0036, DIGIT SIX */
+  ,{  14,  15,   2,   1,  16, acGUI_FontDigitGraphics40_0037 } /* code 0037, DIGIT SEVEN */
+  ,{  16,  15,   1,   1,  16, acGUI_FontDigitGraphics40_0038 } /* code 0038, DIGIT EIGHT */
+  ,{  15,  15,   2,   1,  17, acGUI_FontDigitGraphics40_0039 } /* code 0039, DIGIT NINE */
+  ,{   3,  10,   2,   4,   5, acGUI_FontDigitGraphics40_003A } /* code 003A, COLON */
+  ,{   5,  11,   2,   4,   5, acGUI_FontDigitGraphics40_003B } /* code 003B, SEMICOLON */
+  ,{   7,  10,   2,   4,  11, acGUI_FontDigitGraphics40_003C } /* code 003C, LESS-THAN SIGN */
+  ,{   8,   9,   2,   5,  11, acGUI_FontDigitGraphics40_003D } /* code 003D, EQUALS SIGN */
+  ,{   7,  10,   2,   4,  11, acGUI_FontDigitGraphics40_003E } /* code 003E, GREATER-THAN SIGN */
+  ,{  16,  15,   1,   1,  16, acGUI_FontDigitGraphics40_003F } /* code 003F, QUESTION MARK */
+  ,{  14,  15,   2,   1,  16, acGUI_FontDigitGraphics40_0040 } /* code 0040, COMMERCIAL AT */
+  ,{  14,  15,   2,   2,  16, acGUI_FontDigitGraphics40_0041 } /* code 0041, LATIN CAPITAL LETTER A */
+  ,{  14,  15,   2,   1,  16, acGUI_FontDigitGraphics40_0042 } /* code 0042, LATIN CAPITAL LETTER B */
+  ,{  14,  14,   2,   2,  16, acGUI_FontDigitGraphics40_0043 } /* code 0043, LATIN CAPITAL LETTER C */
+  ,{  14,  15,   2,   1,  16, acGUI_FontDigitGraphics40_0044 } /* code 0044, LATIN CAPITAL LETTER D */
+  ,{  14,  14,   2,   2,  16, acGUI_FontDigitGraphics40_0045 } /* code 0045, LATIN CAPITAL LETTER E */
+  ,{  14,  15,   2,   1,  16, acGUI_FontDigitGraphics40_0046 } /* code 0046, LATIN CAPITAL LETTER F */
+  ,{  14,  14,   2,   2,  16, acGUI_FontDigitGraphics40_0047 } /* code 0047, LATIN CAPITAL LETTER G */
+  ,{  14,  15,   2,   1,  16, acGUI_FontDigitGraphics40_0048 } /* code 0048, LATIN CAPITAL LETTER H */
+  ,{   2,  15,   2,   1,   4, acGUI_FontDigitGraphics40_0049 } /* code 0049, LATIN CAPITAL LETTER I */
+  ,{  15,  14,   2,   2,  17, acGUI_FontDigitGraphics40_004A } /* code 004A, LATIN CAPITAL LETTER J */
+  ,{  14,  15,   2,   1,  16, acGUI_FontDigitGraphics40_004B } /* code 004B, LATIN CAPITAL LETTER K */
+  ,{  14,  15,   2,   1,  16, acGUI_FontDigitGraphics40_004C } /* code 004C, LATIN CAPITAL LETTER L */
+  ,{  18,  14,   1,   2,  20, acGUI_FontDigitGraphics40_004D } /* code 004D, LATIN CAPITAL LETTER M */
+  ,{  14,  15,   2,   1,  16, acGUI_FontDigitGraphics40_004E } /* code 004E, LATIN CAPITAL LETTER N */
+  ,{  14,  14,   2,   2,  16, acGUI_FontDigitGraphics40_004F } /* code 004F, LATIN CAPITAL LETTER O */
+  ,{  14,  15,   2,   2,  16, acGUI_FontDigitGraphics40_0050 } /* code 0050, LATIN CAPITAL LETTER P */
+  ,{  15,  14,   2,   2,  17, acGUI_FontDigitGraphics40_0051 } /* code 0051, LATIN CAPITAL LETTER Q */
+  ,{  15,  15,   2,   2,  16, acGUI_FontDigitGraphics40_0052 } /* code 0052, LATIN CAPITAL LETTER R */
+  ,{  15,  14,   2,   2,  17, acGUI_FontDigitGraphics40_0053 } /* code 0053, LATIN CAPITAL LETTER S */
+  ,{  15,  14,   2,   2,  16, acGUI_FontDigitGraphics40_0054 } /* code 0054, LATIN CAPITAL LETTER T */
+  ,{  14,  15,   2,   1,  16, acGUI_FontDigitGraphics40_0055 } /* code 0055, LATIN CAPITAL LETTER U */
+  ,{  14,  14,   2,   2,  16, acGUI_FontDigitGraphics40_0056 } /* code 0056, LATIN CAPITAL LETTER V */
+  ,{  18,  14,   2,   2,  20, acGUI_FontDigitGraphics40_0057 } /* code 0057, LATIN CAPITAL LETTER W */
+  ,{  15,  14,   2,   2,  17, acGUI_FontDigitGraphics40_0058 } /* code 0058, LATIN CAPITAL LETTER X */
+  ,{  14,  15,   2,   1,  17, acGUI_FontDigitGraphics40_0059 } /* code 0059, LATIN CAPITAL LETTER Y */
+  ,{  15,  15,   2,   1,  16, acGUI_FontDigitGraphics40_005A } /* code 005A, LATIN CAPITAL LETTER Z */
+  ,{   6,  15,   1,   1,   8, acGUI_FontDigitGraphics40_005B } /* code 005B, LEFT SQUARE BRACKET */
+  ,{  12,  13,   2,   3,  14, acGUI_FontDigitGraphics40_005C } /* code 005C, REVERSE SOLIDUS */
+  ,{   6,  15,   1,   1,   8, acGUI_FontDigitGraphics40_005D } /* code 005D, RIGHT SQUARE BRACKET */
+  ,{  11,   7,   2,   2,  13, acGUI_FontDigitGraphics40_005E } /* code 005E, CIRCUMFLEX ACCENT */
+  ,{  14,   3,   2,  13,  15, acGUI_FontDigitGraphics40_005F } /* code 005F, LOW LINE */
+  ,{   5,   5,   2,   5,   8, acGUI_FontDigitGraphics40_0060 } /* code 0060, GRAVE ACCENT */
+  ,{  12,   9,   2,   7,  14, acGUI_FontDigitGraphics40_0061 } /* code 0061, LATIN SMALL LETTER A */
+  ,{  12,  13,   2,   3,  14, acGUI_FontDigitGraphics40_0062 } /* code 0062, LATIN SMALL LETTER B */
+  ,{  13,   9,   2,   7,  14, acGUI_FontDigitGraphics40_0063 } /* code 0063, LATIN SMALL LETTER C */
+  ,{  12,  13,   2,   3,  14, acGUI_FontDigitGraphics40_0064 } /* code 0064, LATIN SMALL LETTER D */
+  ,{  12,   9,   2,   7,  14, acGUI_FontDigitGraphics40_0065 } /* code 0065, LATIN SMALL LETTER E */
+  ,{  10,  13,   2,   3,  11, acGUI_FontDigitGraphics40_0066 } /* code 0066, LATIN SMALL LETTER F */
+  ,{  12,  12,   2,   7,  14, acGUI_FontDigitGraphics40_0067 } /* code 0067, LATIN SMALL LETTER G */
+  ,{  12,  13,   2,   3,  14, acGUI_FontDigitGraphics40_0068 } /* code 0068, LATIN SMALL LETTER H */
+  ,{   3,  13,   2,   3,   4, acGUI_FontDigitGraphics40_0069 } /* code 0069, LATIN SMALL LETTER I */
+  ,{   6,  16,   2,   3,   9, acGUI_FontDigitGraphics40_006A } /* code 006A, LATIN SMALL LETTER J */
+  ,{  13,  13,   2,   3,  14, acGUI_FontDigitGraphics40_006B } /* code 006B, LATIN SMALL LETTER K */
+  ,{   4,  13,   2,   3,   6, acGUI_FontDigitGraphics40_006C } /* code 006C, LATIN SMALL LETTER L */
+  ,{  16,   9,   2,   7,  18, acGUI_FontDigitGraphics40_006D } /* code 006D, LATIN SMALL LETTER M */
+  ,{  12,   9,   2,   7,  14, acGUI_FontDigitGraphics40_006E } /* code 006E, LATIN SMALL LETTER N */
+  ,{  12,   9,   2,   7,  14, acGUI_FontDigitGraphics40_006F } /* code 006F, LATIN SMALL LETTER O */
+  ,{  12,  12,   2,   7,  14, acGUI_FontDigitGraphics40_0070 } /* code 0070, LATIN SMALL LETTER P */
+  ,{  12,  12,   2,   7,  14, acGUI_FontDigitGraphics40_0071 } /* code 0071, LATIN SMALL LETTER Q */
+  ,{  13,  10,   2,   6,  14, acGUI_FontDigitGraphics40_0072 } /* code 0072, LATIN SMALL LETTER R */
+  ,{  13,   9,   2,   7,  14, acGUI_FontDigitGraphics40_0073 } /* code 0073, LATIN SMALL LETTER S */
+  ,{  10,  13,   2,   3,  12, acGUI_FontDigitGraphics40_0074 } /* code 0074, LATIN SMALL LETTER T */
+  ,{  12,  10,   2,   6,  14, acGUI_FontDigitGraphics40_0075 } /* code 0075, LATIN SMALL LETTER U */
+  ,{  12,   9,   2,   7,  14, acGUI_FontDigitGraphics40_0076 } /* code 0076, LATIN SMALL LETTER V */
+  ,{  14,   9,   2,   7,  16, acGUI_FontDigitGraphics40_0077 } /* code 0077, LATIN SMALL LETTER W */
+  ,{  12,   9,   2,   7,  14, acGUI_FontDigitGraphics40_0078 } /* code 0078, LATIN SMALL LETTER X */
+  ,{  12,  12,   2,   7,  14, acGUI_FontDigitGraphics40_0079 } /* code 0079, LATIN SMALL LETTER Y */
+  ,{  12,   9,   2,   7,  14, acGUI_FontDigitGraphics40_007A } /* code 007A, LATIN SMALL LETTER Z */
+  ,{  13,   4,   2,   4,  14, acGUI_FontDigitGraphics40_007E } /* code 007E, TILDE */
+  ,{   1,   1,   0,  16,   8, acGUI_FontDigitGraphics40_00A0 } /* code 00A0, NO-BREAK SPACE */
+  ,{  11,  16,   1,   0,  14, acGUI_FontDigitGraphics40_FFFF } /* code FFFF */
 };
 
 GUI_CONST_STORAGE GUI_FONT_PROP_EXT GUI_FontDigitGraphics40_Prop4 = {
@@ -2253,13 +1497,13 @@ GUI_CONST_STORAGE GUI_FONT_PROP_EXT GUI_FontDigitGraphics40_Prop1 = {
 
 GUI_CONST_STORAGE GUI_FONT GUI_FontDigitGraphics40 = {
    GUI_FONTTYPE_PROP_EXT /* type of font    */
-  ,32 /* height of font  */
-  ,32 /* space of font y */
+  ,20 /* height of font  */
+  ,20 /* space of font y */
   ,1 /* magnification x */
   ,1 /* magnification y */
   ,{&GUI_FontDigitGraphics40_Prop1}
-  ,26 /* Baseline */
-  ,16 /* Height of lowercase characters */
-  ,24 /* Height of capital characters */
+  ,16 /* Baseline */
+  ,9 /* Height of lowercase characters */
+  ,15 /* Height of capital characters */
 };
 
