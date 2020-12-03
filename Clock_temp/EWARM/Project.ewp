@@ -1157,13 +1157,28 @@
                     <name>$PROJ_DIR$\..\Core\Src\icon_outdoor.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\icon_weather.c</name>
-                </file>
-                <file>
                     <name>$PROJ_DIR$\..\Core\Src\icon_wifi.c</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\Core\Src\weather_day_clear.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\Core\Src\weather_day_clouds.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\Core\Src\weather_day_dizzle.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\Core\Src\weather_day_Thunderstorms.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\Core\Src\weather_humidity.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\Core\Src\weather_night_clear.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\Core\Src\weather_night_clouds.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\Core\Src\weather_pressure.c</name>

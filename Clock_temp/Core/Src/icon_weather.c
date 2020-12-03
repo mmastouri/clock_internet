@@ -28,7 +28,7 @@
   #define GUI_CONST_STORAGE const
 #endif
 
-extern GUI_CONST_STORAGE GUI_BITMAP bmicon_weather;
+extern GUI_CONST_STORAGE GUI_BITMAP bmicon_weather_day_clouds;
 #if defined ( __ICCARM__ )
 #pragma location="ExtQSPIFlashSection" 
 #else
@@ -737,7 +737,7 @@ static GUI_CONST_STORAGE unsigned char _acicon_weather[] = {
         0xFF,0x7F,0xFF, 0xFF,0x7F,0xFF, 0xFF,0x7F,0xFF, 0xFF,0x7F,0xFF, 0xFF,0x7F,0xFF, 0xFF,0x7F,0xFF, 0xFF,0x7F,0xFF, 0xFF,0x7F,0xFF, 0xFF,0x7F,0xFF, 0xFF,0x7F,0xFF
 };
 
-GUI_CONST_STORAGE GUI_BITMAP bmicon_weather = {
+GUI_CONST_STORAGE GUI_BITMAP bmicon_weather_day_clouds = {
   100, // xSize
   100, // ySize
   300, // BytesPerLine

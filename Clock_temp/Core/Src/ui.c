@@ -158,7 +158,13 @@ extern GUI_CONST_STORAGE GUI_BITMAP bmbackground;
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_home;
 
 
-extern GUI_CONST_STORAGE GUI_BITMAP bmicon_weather;
+extern GUI_CONST_STORAGE GUI_BITMAP bmicon_weather_day_clouds;
+extern GUI_CONST_STORAGE GUI_BITMAP bmweather_night_clouds;
+extern GUI_CONST_STORAGE GUI_BITMAP bmweather_day_Thunderstorms;
+extern GUI_CONST_STORAGE GUI_BITMAP bmweather_day_clear;
+extern GUI_CONST_STORAGE GUI_BITMAP bmweather_night_clear;
+extern GUI_CONST_STORAGE GUI_BITMAP bmweather_day_dizzle;
+
 extern GUI_CONST_STORAGE GUI_BITMAP bmweather_temp;
 extern GUI_CONST_STORAGE GUI_BITMAP bmweather_humidity;
 extern GUI_CONST_STORAGE GUI_BITMAP bmweather_pressure;
@@ -169,18 +175,18 @@ extern  weather_t weather ;
 
 GUI_CONST_STORAGE GUI_BITMAP  *weather_condition_icon[] = 
 {
-&bmicon_weather,  //0  
-&bmicon_weather,  //1  
-&bmicon_weather,  //2  
-&bmicon_weather,  //3  
-&bmicon_weather,  //4  
-&bmicon_weather,  //5  
-&bmicon_weather,  //6  
-&bmicon_weather,  //7  
-&bmicon_weather,  //8  
-&bmicon_weather,  //9  
-&bmicon_weather,  //10  
-&bmicon_weather,  //11   
+&bmweather_day_Thunderstorms,  //0  Day-Thunderstorm
+&bmweather_day_dizzle,         //1  Day-Drizzle
+&bmweather_day_dizzle,         //2  Day-Rain
+&bmweather_day_dizzle,         //3  Day-Snow
+&bmweather_day_clear,          //4  Day-Clear
+&bmicon_weather_day_clouds,    //5  Day-Clouds
+&bmweather_day_Thunderstorms,  //6  Night-Thunderstorm
+&bmweather_day_dizzle,         //7  Night-Drizzle
+&bmweather_day_dizzle,         //8  Night-Rain
+&bmweather_day_dizzle,         //9  Night-Snow
+&bmweather_night_clear,        //10 Night-Clear 
+&bmweather_night_clouds,       //11 Night-Clouds  
 };
 ///*********************************************************************
 //*
