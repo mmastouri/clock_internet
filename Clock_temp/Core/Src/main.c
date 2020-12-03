@@ -54,7 +54,7 @@ int main(void)
   xTaskCreate((TaskFunction_t)WIFI_Task, "WIFI_Task", 1024, NULL, 1, &appGlobals.WIFITaskId);  
   
   appGlobals.touchPanelTimer = xTimerCreate ("Touch Screen", pdMS_TO_TICKS(100), pdTRUE, &appGlobals.touchPanelTimerId, TouchPanel_TimerCallback );
-  appGlobals.WifiTimer = xTimerCreate ("WifiBackgroundSynck", 60 * 60 * pdMS_TO_TICKS(1000), pdTRUE, &appGlobals.WifiTimerId, Wifi_TimerCallback );  
+  appGlobals.WifiTimer = xTimerCreate ("WifiBackgroundSynck", 60 * pdMS_TO_TICKS(1000), pdTRUE, &appGlobals.WifiTimerId, Wifi_TimerCallback );  
   
   vTaskStartScheduler();
   
