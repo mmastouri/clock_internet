@@ -147,6 +147,7 @@ extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigital_Font;
 extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigita_Clock;
 extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigitGraphics60;
 extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigitGraphics40;
+extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigitGraphics20;
 
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_wifi;
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_indoor;
@@ -158,6 +159,11 @@ extern GUI_CONST_STORAGE GUI_BITMAP bmicon_home;
 
 
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_weather;
+extern GUI_CONST_STORAGE GUI_BITMAP bmweather_temp;
+extern GUI_CONST_STORAGE GUI_BITMAP bmweather_humidity;
+extern GUI_CONST_STORAGE GUI_BITMAP bmweather_pressure;
+extern GUI_CONST_STORAGE GUI_BITMAP bmweather_wind;
+
 
 extern  weather_t weather ;
 
@@ -272,17 +278,20 @@ static const GUI_WIDGET_CREATE_INFO _aHomeDialogCreate[] = {
 static const GUI_WIDGET_CREATE_INFO _aWeatherDialogCreate[] = {
   { WINDOW_CreateIndirect, "Window", ID_WINDOW, 0, 0, 800, 180, (U16)(WM_CF_MOTION_X | WM_CF_SHOW), 0x0, sizeof(WINDOW_DATA *)},
   { IMAGE_CreateIndirect, "condition", ID_WEATHER_ICON, 65, 7, 150, 150, 0, 0, 0 }, 
-  { IMAGE_CreateIndirect, "Temperature", ID_TEMPERATURE_ICON, 245, 7, 150, 150, 0, 0, 0 }, 
-  { IMAGE_CreateIndirect, "Pressure", ID_PRESSURE_ICON, 375, 7, 150, 150, 0, 0, 0 }, 
-  { IMAGE_CreateIndirect, "Humidity", ID_HUMIDITY_ICON, 505, 7, 150, 150, 0, 0, 0 }, 
-  { IMAGE_CreateIndirect, "Wind", ID_WIND_ICON, 635, 7, 150, 150, 0, 0, 0 },   
   
-  { TEXT_CreateIndirect, "condition", ID_CONDITION_TXT, -15, 130, 260, 120, TEXT_CF_HCENTER, 0, 0 },   
-  { TEXT_CreateIndirect, "Temperatute", ID_TEMPERATURE_TXT, 160, 130, 260, 120, TEXT_CF_HCENTER, 0, 0 }, 
-  { TEXT_CreateIndirect, "Pressure", ID_PRESSURE_TXT, 290, 130, 260, 120, TEXT_CF_HCENTER, 0, 0 }, 
-  { TEXT_CreateIndirect, "Humidity", ID_HUMIDITY_TXT, 420, 130, 260, 120, TEXT_CF_HCENTER, 0, 0 },  
-  { TEXT_CreateIndirect, "Wind", ID_WIND_TXT, 550, 130, 260, 120, TEXT_CF_HCENTER, 0, 0 },     
- 
+  { IMAGE_CreateIndirect, "Temperature", ID_TEMPERATURE_ICON, 220, 0, 150, 150, 0, 0, 0 }, 
+  { IMAGE_CreateIndirect, "Humidity", ID_HUMIDITY_ICON, 244, 100, 150, 150, 0, 0, 0 }, 
+  
+  { IMAGE_CreateIndirect, "Pressure", ID_PRESSURE_ICON, 480, 20, 150, 150, 0, 0, 0 },   
+  { IMAGE_CreateIndirect, "Wind", ID_WIND_ICON, 480, 100, 150, 150, 0, 0, 0 },   
+  
+  { TEXT_CreateIndirect, "condition", ID_CONDITION_TXT, -15, 130, 260, 120, TEXT_CF_HCENTER, 0, 0 },
+  
+  { TEXT_CreateIndirect, "Temperatute", ID_TEMPERATURE_TXT, 310, 30, 260, 120, TEXT_CF_LEFT, 0, 0 }, 
+  { TEXT_CreateIndirect, "Humidity", ID_HUMIDITY_TXT, 310, 108, 260, 120, TEXT_CF_LEFT, 0, 0 },  
+  
+  { TEXT_CreateIndirect, "Pressure", ID_PRESSURE_TXT, 550, 30, 260, 120, TEXT_CF_LEFT, 0, 0 }, 
+  { TEXT_CreateIndirect, "Wind", ID_WIND_TXT, 550, 108, 260, 120, TEXT_CF_LEFT, 0, 0 },     
 };
 /*********************************************************************
 *
@@ -303,13 +312,13 @@ static void _cbWeatherDialog(WM_MESSAGE * pMsg) {
     
     hItem = WM_GetDialogItem(pMsg->hWin, ID_CONDITION_TXT);
     TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xCECECE));
-    TEXT_SetFont(hItem, &GUI_FontDigitGraphics40);
+    TEXT_SetFont(hItem, &GUI_FontDigitGraphics20);
     TEXT_SetText(hItem, "Few Clouds"); 
     
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEMPERATURE_TXT);
     TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xCECECE));
     TEXT_SetFont(hItem, &GUI_FontDigitGraphics40);
-    TEXT_SetText(hItem, "15 C"); 
+    TEXT_SetText(hItem, "25 C"); 
 
     hItem = WM_GetDialogItem(pMsg->hWin, ID_HUMIDITY_TXT);
     TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xCECECE));
@@ -330,16 +339,16 @@ static void _cbWeatherDialog(WM_MESSAGE * pMsg) {
     IMAGE_SetBitmap(hItem, weather_condition_icon[0]);
     
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEMPERATURE_ICON);
-    IMAGE_SetBitmap(hItem, weather_condition_icon[0]);
+    IMAGE_SetBitmap(hItem, &bmweather_temp);
 
     hItem = WM_GetDialogItem(pMsg->hWin, ID_PRESSURE_ICON);
-    IMAGE_SetBitmap(hItem, weather_condition_icon[0]);
+    IMAGE_SetBitmap(hItem, &bmweather_pressure);
 
     hItem = WM_GetDialogItem(pMsg->hWin, ID_HUMIDITY_ICON);
-    IMAGE_SetBitmap(hItem, weather_condition_icon[0]);
+    IMAGE_SetBitmap(hItem, &bmweather_humidity);
 
     hItem = WM_GetDialogItem(pMsg->hWin, ID_WIND_ICON);
-    IMAGE_SetBitmap(hItem, weather_condition_icon[0]);    
+    IMAGE_SetBitmap(hItem, &bmweather_wind);    
     break;
       
   case WEATHER_UPDATE:
@@ -351,7 +360,7 @@ static void _cbWeatherDialog(WM_MESSAGE * pMsg) {
     
     floatToInt(weather.temperature, &out_value, 1);
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEMPERATURE_TXT);
-    snprintf(temp, sizeof(temp), "%d.%dC", out_value.out_int, out_value.out_dec);
+    snprintf(temp, sizeof(temp), "%02d C", out_value.out_int);
     TEXT_SetText(hItem, temp); 
 
     hItem = WM_GetDialogItem(pMsg->hWin, ID_HUMIDITY_TXT);
@@ -365,7 +374,7 @@ static void _cbWeatherDialog(WM_MESSAGE * pMsg) {
 
     hItem = WM_GetDialogItem(pMsg->hWin, ID_WIND_TXT);
     floatToInt(weather.wind_speed, &out_value, 1);    
-    snprintf(temp, sizeof(temp), "%d.%d km/h", out_value.out_int, out_value.out_dec);
+    snprintf(temp, sizeof(temp), "%d km/h", out_value.out_int);
     TEXT_SetText(hItem, temp);    
 
     
