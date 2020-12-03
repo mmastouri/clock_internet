@@ -324,7 +324,8 @@ ESP_WIFI_Status_t WIFI_SyncWeatherData (ESP_WIFI_Object_t * pxObj){
     else if(strcmp(weather.description, "Clouds") == 0) weather.desc_idx = 5;
     else
     {
-      strcpy(weather.description, "Error");      
+      strcpy(weather.description, "Error");  
+      weather.desc_idx = 0;
       return ESP_WIFI_STATUS_ERROR;
     }
     
@@ -356,7 +357,7 @@ ESP_WIFI_Status_t WIFI_SyncWeatherData (ESP_WIFI_Object_t * pxObj){
     
     weatherStr = strstr(rxBuffer,  "\"speed\":");
     sscanf(weatherStr, "\"speed\":%f", &weather.wind_speed);     
-    weather.wind_speed = (weather.wind_speed * 1000) / 3600;
+    weather.wind_speed = (weather.wind_speed * 3600) / 1000;
     
     weatherStr = strstr(rxBuffer,  "\"deg\":");
     sscanf(weatherStr, "\"deg\":%f", &weather.wind_deg);
@@ -381,7 +382,7 @@ ESP_WIFI_Status_t WIFI_SyncWeatherData (ESP_WIFI_Object_t * pxObj){
     ss = timestamp;      
     
     if((cc < sr) || (cc > ss)) //night
-      weather.desc_idx += 5;
+      weather.desc_idx += 6;
     
     UI_ForceUpdateWhether();
   }

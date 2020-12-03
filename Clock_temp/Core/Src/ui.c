@@ -173,6 +173,8 @@ GUI_CONST_STORAGE GUI_BITMAP  *weather_condition_icon[] =
 &bmicon_weather,  //7  
 &bmicon_weather,  //8  
 &bmicon_weather,  //9  
+&bmicon_weather,  //10  
+&bmicon_weather,  //11   
 };
 ///*********************************************************************
 //*
