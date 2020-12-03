@@ -314,14 +314,15 @@ ESP_WIFI_Status_t WIFI_SyncWeatherData (ESP_WIFI_Object_t * pxObj){
     }
     while((weatherStr[count] != '"') && (count < 16));
     
-     weather.description[count] = 0;
-         
+    weather.description[count] = 0;
+    
     if(strcmp( weather.description, "Thunderstorm\"") == 0) weather.desc_idx = 0;
-       else if(strcmp( weather.description, "Drizzle") == 0) weather.desc_idx = 1;
-          else if(strcmp( weather.description, "Rain") == 0)weather.desc_idx = 2;
-             else if(strcmp(weather.description, "Snow") == 0) weather.desc_idx = 3;
-                else if(strcmp( weather.description, "Clear") == 0) weather.desc_idx = 4;
-                   else if(strcmp(weather.description, "Clouds") == 0) weather.desc_idx = 5;
+    else if(strcmp( weather.description, "Drizzle") == 0) weather.desc_idx = 1;
+    else if(strcmp( weather.description, "Rain") == 0)weather.desc_idx = 2;
+    else if(strcmp(weather.description, "Snow") == 0) weather.desc_idx = 3;
+    else if(strcmp( weather.description, "Clear") == 0) weather.desc_idx = 4;
+    else if(strcmp(weather.description, "Clouds") == 0) weather.desc_idx = 5;
+    else return ESP_WIFI_STATUS_ERROR;
     
     weatherStr = strstr(weatherStr, "\"temp\":");
     sscanf(weatherStr, "\"temp\":%f", &weather.temperature); 
