@@ -322,7 +322,11 @@ ESP_WIFI_Status_t WIFI_SyncWeatherData (ESP_WIFI_Object_t * pxObj){
     else if(strcmp(weather.description, "Snow") == 0) weather.desc_idx = 3;
     else if(strcmp( weather.description, "Clear") == 0) weather.desc_idx = 4;
     else if(strcmp(weather.description, "Clouds") == 0) weather.desc_idx = 5;
-    else return ESP_WIFI_STATUS_ERROR;
+    else
+    {
+      strcpy(weather.description, "Error");      
+      return ESP_WIFI_STATUS_ERROR;
+    }
     
     weatherStr = strstr(weatherStr, "\"temp\":");
     sscanf(weatherStr, "\"temp\":%f", &weather.temperature); 
