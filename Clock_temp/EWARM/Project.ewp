@@ -1127,6 +1127,9 @@
                     <name>$PROJ_DIR$\..\Core\Src\background.c</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\Core\Src\clock_icon.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\Core\Src\Digita_Clock.c</name>
                 </file>
                 <file>
@@ -1158,6 +1161,15 @@
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\Core\Src\icon_wifi.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\Core\Src\location_icon.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\Core\Src\profile_icon.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\Core\Src\refresh_icon.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\Core\Src\weather_day_clear.c</name>

@@ -65,6 +65,14 @@
 #define ID_HUMIDITY_TXT             (GUI_ID_USER + 0x73)
 #define ID_WIND_TXT                 (GUI_ID_USER + 0x74)
 
+#define ID_PROFILE_ICON             (GUI_ID_USER + 0x80)
+#define ID_REFRESH_ICON             (GUI_ID_USER + 0x81)
+#define ID_PROFILE_TXT              (GUI_ID_USER + 0x82)
+#define ID_REFRESH_TXT              (GUI_ID_USER + 0x83)
+#define ID_CLOCK_ICON               (GUI_ID_USER + 0x84)
+#define ID_LOCATION_ICON            (GUI_ID_USER + 0x85)
+
+
 
 #define TIME_SETTING_REFRESH_PERIOD 100
 #define WIFI_REFRESH_PERIOD         500
@@ -139,7 +147,7 @@ struct WINDOW_DATA {
 
 static RTC_TimeTypeDef Time;  
 static RTC_DateTypeDef Date; 
-static WM_HWIN hMainFrame, hHomeFrame, hWeatherFrame, hBottomFrame;
+static WM_HWIN hMainFrame, hHomeFrame, hWeatherFrame, hBottomFrame, hSettingsFrame;
 static uint32_t ui_enable_timeh_setting = 0;
 const char *dayofweek[] = {"Mon.", "Tue.", "Wed.", "Thu.", "Fri", "Sat.", "Sun."}; 
       
@@ -169,6 +177,11 @@ extern GUI_CONST_STORAGE GUI_BITMAP bmweather_temp;
 extern GUI_CONST_STORAGE GUI_BITMAP bmweather_humidity;
 extern GUI_CONST_STORAGE GUI_BITMAP bmweather_pressure;
 extern GUI_CONST_STORAGE GUI_BITMAP bmweather_wind;
+
+extern GUI_CONST_STORAGE GUI_BITMAP bmprofile_icon;
+extern GUI_CONST_STORAGE GUI_BITMAP bmrefresh_icon;
+extern GUI_CONST_STORAGE GUI_BITMAP bmclock_icon;
+extern GUI_CONST_STORAGE GUI_BITMAP bmlocation_icon;
 
 
 extern  weather_t weather ;
@@ -299,6 +312,51 @@ static const GUI_WIDGET_CREATE_INFO _aWeatherDialogCreate[] = {
   { TEXT_CreateIndirect, "Pressure", ID_PRESSURE_TXT, 550, 30, 260, 120, TEXT_CF_LEFT, 0, 0 }, 
   { TEXT_CreateIndirect, "Wind", ID_WIND_TXT, 550, 108, 260, 120, TEXT_CF_LEFT, 0, 0 },     
 };
+
+static const GUI_WIDGET_CREATE_INFO _aSettingsDialogCreate[] = {
+  { WINDOW_CreateIndirect, "Window", ID_WINDOW, 0, 0, 800, 180, WM_CF_SHOW, 0x0, sizeof(WINDOW_DATA *)},
+  { IMAGE_CreateIndirect, "Profile", ID_PROFILE_ICON, 65, 20, 150, 150, 0, 0, 0 }, 
+  { IMAGE_CreateIndirect, "Refresh", ID_REFRESH_ICON, 245, 20, 150, 150, 0, 0, 0 }, 
+  { IMAGE_CreateIndirect, "Clock", ID_CLOCK_ICON, 425, 10, 150, 150, 0, 0, 0 }, 
+  { IMAGE_CreateIndirect, "Location", ID_LOCATION_ICON, 615, 5, 150, 150, 0, 0, 0 },   
+   
+};
+
+/*********************************************************************
+*
+*       _cbSettingsDialog
+*/
+static void _cbSettingsDialog(WM_MESSAGE * pMsg) {
+  WM_HWIN hItem;  
+    
+  switch (pMsg->MsgId) {
+        
+  case WM_INIT_DIALOG:
+
+    hItem = pMsg->hWin;
+
+    WINDOW_SetBkColor(hItem, GUI_MAKE_COLOR(0xFF000000));
+    
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_PROFILE_ICON);
+    IMAGE_SetBitmap(hItem, &bmprofile_icon);  
+    
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_REFRESH_ICON);
+    IMAGE_SetBitmap(hItem, &bmrefresh_icon);    
+    
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_CLOCK_ICON);
+    IMAGE_SetBitmap(hItem, &bmclock_icon);  
+    
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_LOCATION_ICON);
+    IMAGE_SetBitmap(hItem, &bmlocation_icon);    
+ 
+    break;
+
+  default:
+    WM_DefaultProc(pMsg);
+    break;
+  }
+}
+
 /*********************************************************************
 *
 *       _cbHomeDialog
@@ -559,10 +617,6 @@ static void _cbWin(WM_MESSAGE* pMsg) {
         switch (pInfo->Cmd) {
         case WM_MOTION_INIT:
             WM_GetClientRectEx(pMsg->hWin, &Rect);
-            //
-            // Snap window at each quarter of the entire window
-            // Therefore we get several 'pages', each as big as the screen
-            //
             pInfo->SnapX = (Rect.x1 + 1)/2;
             break;
         }
@@ -628,6 +682,9 @@ static void _cbMainDialog(WM_MESSAGE * pMsg) {
         
     hHomeFrame = GUI_CreateDialogBox(_aHomeDialogCreate, GUI_COUNTOF(_aHomeDialogCreate), _cbHomeDialog, hBottomFrame, 0, 0);
     hWeatherFrame = GUI_CreateDialogBox(_aWeatherDialogCreate, GUI_COUNTOF(_aWeatherDialogCreate), _cbWeatherDialog, hBottomFrame, LCD_GetXSize(), 0);
+        
+    hSettingsFrame = GUI_CreateDialogBox(_aSettingsDialogCreate, GUI_COUNTOF(_aSettingsDialogCreate), _cbSettingsDialog, hMainFrame, 0, 300);
+    WM_HideWindow(hSettingsFrame);
     
     if(!TimeRefreshTimer) TimeRefreshTimer = WM_CreateTimer(pMsg->hWin, GUI_TIME_REFRESH_ID, TIME_REFRESH_PERIOD, 0);     
     WM_SendMessageNoPara (pMsg->hWin, TIME_UPDATE);
@@ -772,12 +829,17 @@ static void _cbMainDialog(WM_MESSAGE * pMsg) {
         {
           hItem = WM_GetDialogItem(pMsg->hWin, ID_MENU);
           IMAGE_SetBitmap(hItem, &bmicon_menu);
+
+          WM_ShowWindow(hBottomFrame);
+          WM_HideWindow(hSettingsFrame);            
         }
         else
         {
           hItem = WM_GetDialogItem(pMsg->hWin, ID_MENU);
           IMAGE_SetBitmap(hItem, &bmicon_home);  
-      
+          
+          WM_HideWindow(hBottomFrame);
+          WM_ShowWindow(hSettingsFrame);       
         }
         menu_state = 1- menu_state;
       }
@@ -946,6 +1008,7 @@ void UI_Init(void) {
  WM_SetCreateFlags(WM_CF_MEMDEV | WM_CF_MEMDEV_ON_REDRAW);
  WM_MULTIBUF_Enable(1);
  WM_MOTION_Enable(1);
+ WM_MOTION_SetDefaultPeriod (100);
 
  WM_SetCallback(WM_GetDesktopWindowEx(0), _cbBk);
 
