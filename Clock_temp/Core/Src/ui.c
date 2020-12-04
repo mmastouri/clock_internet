@@ -318,7 +318,7 @@ static const GUI_WIDGET_CREATE_INFO _aSettingsDialogCreate[] = {
   { IMAGE_CreateIndirect, "Profile", ID_PROFILE_ICON, 65, 20, 150, 150, 0, 0, 0 }, 
   { IMAGE_CreateIndirect, "Refresh", ID_REFRESH_ICON, 245, 20, 150, 150, 0, 0, 0 }, 
   { IMAGE_CreateIndirect, "Clock", ID_CLOCK_ICON, 425, 10, 150, 150, 0, 0, 0 }, 
-  { IMAGE_CreateIndirect, "Location", ID_LOCATION_ICON, 615, 5, 150, 150, 0, 0, 0 },   
+  { IMAGE_CreateIndirect, "Location", ID_LOCATION_ICON, 615, 15, 150, 150, 0, 0, 0 },   
    
 };
 
