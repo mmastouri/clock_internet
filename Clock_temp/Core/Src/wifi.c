@@ -340,7 +340,7 @@ ESP_WIFI_Status_t WIFI_SyncWeatherData (ESP_WIFI_Object_t * pxObj){
     sscanf(weatherStr, "\"temp\":%f", &weather.temperature); 
     weather.temperature -= 273.15;
     
-    if(temperature > 100)
+    if(weather.temperature > 100)
     {
       strcpy(weather.description, "Error");  
       weather.desc_idx = 0;
