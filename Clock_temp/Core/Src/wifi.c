@@ -215,7 +215,7 @@ static ESP_WIFI_Status_t WIFI_SyncData (ESP_WIFI_Object_t * pxObj,  const char *
         }
         while ( (pDataStr == NULL) && ((usRecvBytes > 0) || (xRet == ESP_WIFI_STATUS_TIMEOUT)) && (read < NET_BUF_SIZE));
         
-        if (pDataStr != NULL)
+        if ((pDataStr != NULL) && (read > 0))
         {
           xRet = ESP_WIFI_STATUS_OK;
         }
@@ -305,6 +305,13 @@ ESP_WIFI_Status_t WIFI_SyncWeatherData (ESP_WIFI_Object_t * pxObj){
     
     weatherStr = strstr(weatherStr, "\"main\":\"");
     
+    if(weatherStr == NULL)
+    {
+      strcpy(weather.description, "Error");  
+      weather.desc_idx = 0;
+      return ESP_WIFI_STATUS_ERROR;
+    }
+    
     weatherStr+= 8;
     int count = 0;
     do
@@ -332,6 +339,13 @@ ESP_WIFI_Status_t WIFI_SyncWeatherData (ESP_WIFI_Object_t * pxObj){
     weatherStr = strstr(weatherStr, "\"temp\":");
     sscanf(weatherStr, "\"temp\":%f", &weather.temperature); 
     weather.temperature -= 273.15;
+    
+    if(temperature > 100)
+    {
+      strcpy(weather.description, "Error");  
+      weather.desc_idx = 0;
+      return ESP_WIFI_STATUS_ERROR;
+    }
     
     weatherStr = strstr(rxBuffer,  "\"feels_like\":");
     sscanf(weatherStr, "\"feels_like\":%f", &weather.feels_like);

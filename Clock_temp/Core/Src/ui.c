@@ -139,7 +139,7 @@ struct WINDOW_DATA {
 
 static RTC_TimeTypeDef Time;  
 static RTC_DateTypeDef Date; 
-static WM_HWIN hMainFrame, hHomeFrame, hWeatherFrame;//, hMenuFrame;
+static WM_HWIN hMainFrame, hHomeFrame, hWeatherFrame, hBottomFrame;
 static uint32_t ui_enable_timeh_setting = 0;
 const char *dayofweek[] = {"Mon.", "Tue.", "Wed.", "Thu.", "Fri", "Sat.", "Sun."}; 
       
@@ -271,7 +271,7 @@ static const GUI_WIDGET_CREATE_INFO _aMainDialogCreate[] = {
 };
 
 static const GUI_WIDGET_CREATE_INFO _aHomeDialogCreate[] = {
-  { WINDOW_CreateIndirect, "Window", ID_WINDOW, 0, 0, 800, 180, (U16)(WM_CF_MOTION_X | WM_CF_SHOW), 0x0, sizeof(WINDOW_DATA *)},
+  { WINDOW_CreateIndirect, "Window", ID_WINDOW, 0, 0, 800, 180,  WM_CF_SHOW, 0x0, sizeof(WINDOW_DATA *)},
   { TEXT_CreateIndirect, "00.0 °C", ID_TEMPERATURE, 20, 60, 720, 120, 0, 0, 0 },    
   { TEXT_CreateIndirect, "DayofWeek", ID_DAYWEEK, 460, 40, 680, 120, 0, 0, 0 }, 
   { TEXT_CreateIndirect, "Week", ID_WEEK, 460, 110, 680, 120, 0, 0, 0 }, 
@@ -282,8 +282,8 @@ static const GUI_WIDGET_CREATE_INFO _aHomeDialogCreate[] = {
 
 
 static const GUI_WIDGET_CREATE_INFO _aWeatherDialogCreate[] = {
-  { WINDOW_CreateIndirect, "Window", ID_WINDOW, 0, 0, 800, 180, (U16)(WM_CF_MOTION_X | WM_CF_SHOW), 0x0, sizeof(WINDOW_DATA *)},
-  { IMAGE_CreateIndirect, "condition", ID_WEATHER_ICON, 65, 7, 150, 150, 0, 0, 0 }, 
+  { WINDOW_CreateIndirect, "Window", ID_WINDOW, 0, 0, 800, 180, WM_CF_SHOW, 0x0, sizeof(WINDOW_DATA *)},
+  { IMAGE_CreateIndirect, "condition", ID_WEATHER_ICON, 65, 20, 150, 150, 0, 0, 0 }, 
   
   { IMAGE_CreateIndirect, "Temperature", ID_TEMPERATURE_ICON, 220, 0, 150, 150, 0, 0, 0 }, 
   { IMAGE_CreateIndirect, "Humidity", ID_HUMIDITY_ICON, 244, 100, 150, 150, 0, 0, 0 }, 
@@ -305,16 +305,17 @@ static const GUI_WIDGET_CREATE_INFO _aWeatherDialogCreate[] = {
 */
 static void _cbWeatherDialog(WM_MESSAGE * pMsg) {
   WM_HWIN hItem;  
+ 
   displayFloatToInt_t out_value;      
-  int Id, Node;
   char temp[64];
     
   switch (pMsg->MsgId) {
+        
   case WM_INIT_DIALOG:
 
     hItem = pMsg->hWin;
 
-    WINDOW_SetBkColor(hItem, GUI_MAKE_COLOR(GUI_TRANSPARENT));
+    WINDOW_SetBkColor(hItem, GUI_MAKE_COLOR(0x80000000));
     
     hItem = WM_GetDialogItem(pMsg->hWin, ID_CONDITION_TXT);
     TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xCECECE));
@@ -322,17 +323,17 @@ static void _cbWeatherDialog(WM_MESSAGE * pMsg) {
     TEXT_SetText(hItem, "Few Clouds"); 
     
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEMPERATURE_TXT);
-    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xCECECE));
+    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0x008080FF));
     TEXT_SetFont(hItem, &GUI_FontDigitGraphics40);
     TEXT_SetText(hItem, "25 C"); 
 
     hItem = WM_GetDialogItem(pMsg->hWin, ID_HUMIDITY_TXT);
-    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xCECECE));
+    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xf7d4a3));
     TEXT_SetFont(hItem, &GUI_FontDigitGraphics40);
     TEXT_SetText(hItem, "50 %"); 
 
     hItem = WM_GetDialogItem(pMsg->hWin, ID_PRESSURE_TXT);
-    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xCECECE));
+    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(GUI_YELLOW));
     TEXT_SetFont(hItem, &GUI_FontDigitGraphics40);
     TEXT_SetText(hItem, "1000 Pa"); 
 
@@ -381,23 +382,9 @@ static void _cbWeatherDialog(WM_MESSAGE * pMsg) {
     hItem = WM_GetDialogItem(pMsg->hWin, ID_WIND_TXT);
     floatToInt(weather.wind_speed, &out_value, 1);    
     snprintf(temp, sizeof(temp), "%d km/h", out_value.out_int);
-    TEXT_SetText(hItem, temp);    
-
-    
+    TEXT_SetText(hItem, temp);      
     break;
-    
-    
-  case WM_NOTIFY_PARENT:
-    Id    = WM_GetId(pMsg->hWinSrc);     
-    Node = pMsg->Data.v;  
 
-    
-    if(Node == WM_NOTIFICATION_CLICKED)
-    {
-      Id    = WM_GetId(pMsg->hWinSrc);    /* Id of widget */   
-    }
-    break;
-    
   default:
     WM_DefaultProc(pMsg);
     break;
@@ -421,11 +408,12 @@ static void _cbHomeDialog(WM_MESSAGE * pMsg) {
   displayFloatToInt_t out_value;    
   
   switch (pMsg->MsgId) {
+        
   case WM_INIT_DIALOG:
 
     hItem = pMsg->hWin;
 
-    WINDOW_SetBkColor(hItem, GUI_MAKE_COLOR(GUI_TRANSPARENT));
+    WINDOW_SetBkColor(hItem, GUI_MAKE_COLOR(0xFF000000));
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEMPERATURE);
     TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0x008080FF));
     TEXT_SetFont(hItem, &GUI_FontDigital_Font);
@@ -527,7 +515,7 @@ static void _cbHomeDialog(WM_MESSAGE * pMsg) {
     Node = pMsg->Data.v;  
 
     
-    if(Node == WM_NOTIFICATION_CLICKED)
+    if(Node == WM_NOTIFICATION_RELEASED)
     {
       Id    = WM_GetId(pMsg->hWinSrc);    /* Id of widget */
 
@@ -549,6 +537,40 @@ static void _cbHomeDialog(WM_MESSAGE * pMsg) {
     WM_DefaultProc(pMsg);
     break;
   }
+}
+
+/*********************************************************************
+*
+*       _cbWin
+*/
+static void _cbWin(WM_MESSAGE* pMsg) {
+    GUI_RECT         Rect;
+    WM_MOTION_INFO* pInfo;
+
+    switch (pMsg->MsgId) {
+      
+    case WM_PAINT:
+      WINDOW_SetBkColor(pMsg->hWin, GUI_MAKE_COLOR(0xFF000000));      
+      GUI_Clear();
+      break;
+        
+    case WM_MOTION:
+        pInfo = (WM_MOTION_INFO*)pMsg->Data.p;
+        switch (pInfo->Cmd) {
+        case WM_MOTION_INIT:
+            WM_GetClientRectEx(pMsg->hWin, &Rect);
+            //
+            // Snap window at each quarter of the entire window
+            // Therefore we get several 'pages', each as big as the screen
+            //
+            pInfo->SnapX = (Rect.x1 + 1)/2;
+            break;
+        }
+        break;
+
+    default:
+        WM_DefaultProc(pMsg);
+    }
 }
 /*********************************************************************
 *
@@ -600,14 +622,13 @@ static void _cbMainDialog(WM_MESSAGE * pMsg) {
     hItem = WM_GetDialogItem(pMsg->hWin, ID_INTERNET);
     IMAGE_SetBitmap(hItem, &bmicon_internet);   
     WM_HideWin(hItem);
+
+    hBottomFrame = WM_CreateWindowAsChild(0, 300, LCD_GetXSize() * 2, 180, hMainFrame, WM_CF_SHOW | WM_CF_MOTION_X, _cbWin, 0);
+    WM_MOTION_SetMoveable(hBottomFrame, WM_CF_MOTION_X, 1);
+        
+    hHomeFrame = GUI_CreateDialogBox(_aHomeDialogCreate, GUI_COUNTOF(_aHomeDialogCreate), _cbHomeDialog, hBottomFrame, 0, 0);
+    hWeatherFrame = GUI_CreateDialogBox(_aWeatherDialogCreate, GUI_COUNTOF(_aWeatherDialogCreate), _cbWeatherDialog, hBottomFrame, LCD_GetXSize(), 0);
     
-//    pData = &Data;
-//    Data.xSize = LCD_GetXSize();
-//    Data.ySize = LCD_GetYSize();
-//    Data.TimeLastTouch = GUI_GetTime();
-    hHomeFrame = GUI_CreateDialogBox(_aHomeDialogCreate, GUI_COUNTOF(_aHomeDialogCreate), _cbHomeDialog, hMainFrame, 0, 300);
-    hWeatherFrame = GUI_CreateDialogBox(_aWeatherDialogCreate, GUI_COUNTOF(_aWeatherDialogCreate), _cbWeatherDialog, hMainFrame, 0, 300);
-    WM_HideWindow(hWeatherFrame);
     if(!TimeRefreshTimer) TimeRefreshTimer = WM_CreateTimer(pMsg->hWin, GUI_TIME_REFRESH_ID, TIME_REFRESH_PERIOD, 0);     
     WM_SendMessageNoPara (pMsg->hWin, TIME_UPDATE);
     break;
@@ -751,15 +772,12 @@ static void _cbMainDialog(WM_MESSAGE * pMsg) {
         {
           hItem = WM_GetDialogItem(pMsg->hWin, ID_MENU);
           IMAGE_SetBitmap(hItem, &bmicon_menu);
-          WM_HideWin(hWeatherFrame);             
-          WM_ShowWin(hHomeFrame);
         }
         else
         {
           hItem = WM_GetDialogItem(pMsg->hWin, ID_MENU);
           IMAGE_SetBitmap(hItem, &bmicon_home);  
-          WM_HideWin(hHomeFrame);
-          WM_ShowWin(hWeatherFrame);          
+      
         }
         menu_state = 1- menu_state;
       }
@@ -884,7 +902,7 @@ void UI_ForceUpdateWhether(void)
 
 static WM_HWIN UI_CreateMainFame(void) {
 
-
+  WM_SetSize(WM_HBKWIN, LCD_GetXSize(), LCD_GetYSize()); 
   hMainFrame = GUI_CreateDialogBox(_aMainDialogCreate, GUI_COUNTOF(_aMainDialogCreate), _cbMainDialog, WM_HBKWIN, 0, 0);
   return hMainFrame;
 }
@@ -924,16 +942,18 @@ void UI_Init(void) {
  LCD_Off();
  GUI_Clear();  
  GUI_Exec(); 
+ 
  WM_SetCreateFlags(WM_CF_MEMDEV | WM_CF_MEMDEV_ON_REDRAW);
  WM_MULTIBUF_Enable(1);
+ WM_MOTION_Enable(1);
 
  WM_SetCallback(WM_GetDesktopWindowEx(0), _cbBk);
-  
+
  GUI_SelectLayer(1);
  GUI_Clear(); 
 
  UI_CreateMainFame();
- WM_MOTION_Enable(1);
+
  LCD_On();
 }
 /*************************** End of file ****************************/
