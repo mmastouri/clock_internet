@@ -77,7 +77,7 @@
 #define XSIZE_PHYS      800 
 #define YSIZE_PHYS      480 
 
-#define ZONES           4
+#define ZONES           1
 #define VSYNC           1  
 #define VBP             1 
 #define VFP             1
@@ -902,7 +902,7 @@ void LCD_ReqTear(void)
   static uint8_t ScanLineParams[2];
 #if (ZONES == 4 )
   uint16_t scanline = 283;
-#elif (ZONES == 2 )
+#else
   uint16_t scanline = 200;
 #endif
   ScanLineParams[0] = scanline >> 8;
