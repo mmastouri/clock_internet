@@ -529,7 +529,7 @@ ESP_WIFI_Status_t ESP_WIFI_Init( ESP_WIFI_Object_t * pxObj )
         /* Reset the WiFi module */
         xRet = ESP_WIFI_Reset(pxObj);
 
-        ESP_WIFI_CheckDnsServer(pxObj);
+        //ESP_WIFI_CheckDnsServer(pxObj);
     }
 
     return xRet;
