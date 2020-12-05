@@ -298,8 +298,8 @@ static const GUI_WIDGET_CREATE_INFO _aHomeDialogCreate[] = {
   { TEXT_CreateIndirect, "00.0 °C", ID_TEMPERATURE, 20, 60, 720, 120, 0, 0, 0 },    
   { TEXT_CreateIndirect, "DayofWeek", ID_DAYWEEK, 460, 40, 680, 120, 0, 0, 0 }, 
   { TEXT_CreateIndirect, "Week", ID_WEEK, 460, 110, 680, 120, 0, 0, 0 }, 
-  { TEXT_CreateIndirect, "Day", ID_DAY, 670, 40, 120, 120, TEXT_CF_HCENTER, 0, 0 },   
-  { TEXT_CreateIndirect, "Month", ID_MONTH, 670, 110, 120, 120, TEXT_CF_HCENTER, 0, 0 },     
+  { TEXT_CreateIndirect, "Day", ID_DAY, 660, 40, 120, 120, TEXT_CF_HCENTER, 0, 0 },   
+  { TEXT_CreateIndirect, "Month", ID_MONTH, 660, 110, 120, 120, TEXT_CF_HCENTER, 0, 0 },     
   { IMAGE_CreateIndirect, "Image", ID_IN_OUTDOUR, 30, 7, 50, 50, 0, 0, 0 },    
 };
 
