@@ -42,6 +42,7 @@
 #define ID_INTERNET                 (GUI_ID_USER + 0x13)
 #define ID_IN_OUTDOUR               (GUI_ID_USER + 0x14)
 #define ID_MENU                     (GUI_ID_USER + 0x15)
+#define ID_PROFILE_INTERNET         (GUI_ID_USER + 0x16)
 
 #define ID_DAYWEEK                  (GUI_ID_USER + 0x17)
 #define ID_DAY                      (GUI_ID_USER + 0x18)
@@ -71,6 +72,8 @@
 #define ID_REFRESH_TXT              (GUI_ID_USER + 0x83)
 #define ID_CLOCK_ICON               (GUI_ID_USER + 0x84)
 #define ID_LOCATION_ICON            (GUI_ID_USER + 0x85)
+#define ID_LOCATION_TXT             (GUI_ID_USER + 0x86)
+#define ID_CLOCK_TXT                (GUI_ID_USER + 0x87)
 
 
 
@@ -148,9 +151,9 @@ struct WINDOW_DATA {
 static RTC_TimeTypeDef Time;  
 static RTC_DateTypeDef Date; 
 static WM_HWIN hMainFrame, hHomeFrame, hWeatherFrame, hBottomFrame, hSettingsFrame;
-static uint32_t ui_enable_timeh_setting = 0;
-const char *dayofweek[] = {"Mon.", "Tue.", "Wed.", "Thu.", "Fri", "Sat.", "Sun."}; 
-      
+static uint32_t ui_enable_time_setting = 0;
+const char *dayofweek[] = {"Mon.", "Tue.", "Wed.", "Thu.", "Fri.", "Sat.", "Sun."}; 
+const char *profile[] = {"[Home]","[Work]"};    
 extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigital_Font;
 extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigita_Clock;
 extern GUI_CONST_STORAGE GUI_FONT GUI_FontDigitGraphics60;
@@ -164,6 +167,9 @@ extern GUI_CONST_STORAGE GUI_BITMAP bmicon_menu;
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_outdoor;
 extern GUI_CONST_STORAGE GUI_BITMAP bmbackground;
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_home;
+extern GUI_CONST_STORAGE GUI_BITMAP bmicon_home_act;
+extern GUI_CONST_STORAGE GUI_BITMAP bmicon_menu;
+extern GUI_CONST_STORAGE GUI_BITMAP bmicon_menu_act;
 
 
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_weather_day_clouds;
@@ -185,7 +191,9 @@ extern GUI_CONST_STORAGE GUI_BITMAP bmlocation_icon;
 
 
 extern  weather_t weather ;
-
+extern  uint8_t wifi_profile;
+extern const ESP_AvHotspot_t Hotspot[];
+extern AppGlobals_s appGlobals;
 GUI_CONST_STORAGE GUI_BITMAP  *weather_condition_icon[] = 
 {
 &bmweather_day_Thunderstorms,  //0  Day-Thunderstorm
@@ -275,7 +283,9 @@ static const GUI_WIDGET_CREATE_INFO _aMainDialogCreate[] = {
   { WINDOW_CreateIndirect, "Window", ID_WINDOW, 0, 0, 800, 480, 0, 0, 0 }, 
   { IMAGE_CreateIndirect, "Image", ID_WIFI, 730, 7, 50, 50, 0, 0, 0 }, 
   { IMAGE_CreateIndirect, "Image", ID_INTERNET, 680, 7, 50, 50, 0, 0, 0 },     
-  { IMAGE_CreateIndirect, "Image", ID_MENU, 30, 7, 250, 250, 0, 0, 0 },   
+  { IMAGE_CreateIndirect, "Image", ID_MENU, 30, 7, 250, 250, 0, 0, 0 }, 
+  { TEXT_CreateIndirect, "profile", ID_PROFILE_INTERNET, 300, 13, 200, 220, TEXT_CF_HCENTER, 0, 0 },  
+  
   { TEXT_CreateIndirect, "00", ID_TIME_HOUR, 10, 100, 360, 220, TEXT_CF_HCENTER, 0, 0 },  
   { TEXT_CreateIndirect, "00", ID_TIME_MIN, 430, 100, 360, 220, TEXT_CF_HCENTER, 0, 0 },   
   { TEXT_CreateIndirect, ":", ID_DOT, 370, 100, 120, 220, 0, 0x66, 0 },    
@@ -315,10 +325,19 @@ static const GUI_WIDGET_CREATE_INFO _aWeatherDialogCreate[] = {
 
 static const GUI_WIDGET_CREATE_INFO _aSettingsDialogCreate[] = {
   { WINDOW_CreateIndirect, "Window", ID_WINDOW, 0, 0, 800, 180, WM_CF_SHOW, 0x0, sizeof(WINDOW_DATA *)},
-  { IMAGE_CreateIndirect, "Profile", ID_PROFILE_ICON, 65, 20, 150, 150, 0, 0, 0 }, 
-  { IMAGE_CreateIndirect, "Refresh", ID_REFRESH_ICON, 245, 20, 150, 150, 0, 0, 0 }, 
-  { IMAGE_CreateIndirect, "Clock", ID_CLOCK_ICON, 425, 10, 150, 150, 0, 0, 0 }, 
-  { IMAGE_CreateIndirect, "Location", ID_LOCATION_ICON, 615, 15, 150, 150, 0, 0, 0 },   
+  { IMAGE_CreateIndirect, "Profile", ID_PROFILE_ICON, 65, 10, 150, 150, 0, 0, 0 }, 
+  { TEXT_CreateIndirect, "[Profile]", ID_PROFILE_TXT, -5, 150, 260, 120, TEXT_CF_HCENTER, 0, 0 },
+  
+  
+  { IMAGE_CreateIndirect, "Refresh", ID_REFRESH_ICON, 245, 10, 150, 150, 0, 0, 0 }, 
+  { TEXT_CreateIndirect, "Refresh", ID_REFRESH_TXT, 170, 150, 260, 120, TEXT_CF_HCENTER, 0, 0 },
+  
+  { IMAGE_CreateIndirect, "Clock", ID_CLOCK_ICON, 425, 0, 150, 150, 0, 0, 0 },
+  { TEXT_CreateIndirect, "Settings", ID_CLOCK_TXT, 370, 150, 260, 120, TEXT_CF_HCENTER, 0, 0 },
+  
+  { IMAGE_CreateIndirect, "Location", ID_LOCATION_ICON, 615, 5, 150, 150, 0, 0, 0 }, 
+  { TEXT_CreateIndirect, "Tunis", ID_LOCATION_TXT, 540, 150, 260, 120, TEXT_CF_HCENTER, 0, 0 },  
+  
    
 };
 
@@ -327,8 +346,8 @@ static const GUI_WIDGET_CREATE_INFO _aSettingsDialogCreate[] = {
 *       _cbSettingsDialog
 */
 static void _cbSettingsDialog(WM_MESSAGE * pMsg) {
-  WM_HWIN hItem;  
-    
+  WM_HWIN     hItem;  
+  int         Id, Node;
   switch (pMsg->MsgId) {
         
   case WM_INIT_DIALOG:
@@ -348,9 +367,105 @@ static void _cbSettingsDialog(WM_MESSAGE * pMsg) {
     
     hItem = WM_GetDialogItem(pMsg->hWin, ID_LOCATION_ICON);
     IMAGE_SetBitmap(hItem, &bmlocation_icon);    
+    
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_PROFILE_TXT);
+    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xCECECE));
+    TEXT_SetFont(hItem, &GUI_FontDigitGraphics20);
+    TEXT_SetText(hItem, profile[wifi_profile]); 
+    
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_REFRESH_TXT);
+    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xCECECE));
+    TEXT_SetFont(hItem, &GUI_FontDigitGraphics20);
+    TEXT_SetText(hItem, "Sync Data"); 
+
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_CLOCK_TXT);
+    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xCECECE));
+    TEXT_SetFont(hItem, &GUI_FontDigitGraphics20);
+    TEXT_SetText(hItem, "Set Time"); 
+
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_LOCATION_TXT);
+    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xCECECE));
+    TEXT_SetFont(hItem, &GUI_FontDigitGraphics20);
+    TEXT_SetText(hItem, "[Tunis]");    
  
     break;
 
+  case WM_NOTIFY_PARENT:
+    Id    = WM_GetId(pMsg->hWinSrc);     
+    Node = pMsg->Data.v;      
+    if(Node == WM_NOTIFICATION_RELEASED)
+    {
+      Id    = WM_GetId(pMsg->hWinSrc);    /* Id of widget */
+
+      
+      if(Id == ID_PROFILE_ICON)
+      {  
+        hItem = WM_GetDialogItem(pMsg->hWin, ID_PROFILE_ICON);
+      }  
+      
+      if(Id == ID_CLOCK_ICON)
+      { 
+        hItem = WM_GetDialogItem(pMsg->hWin, ID_CLOCK_ICON);
+      }
+      
+      if(Id == ID_REFRESH_ICON)
+      { 
+        hItem = WM_GetDialogItem(pMsg->hWin, ID_REFRESH_ICON);
+      }
+      if(Id == ID_LOCATION_ICON)
+      { 
+        hItem = WM_GetDialogItem(pMsg->hWin, ID_LOCATION_ICON);
+      }      
+     
+      if(Id == ID_PROFILE_ICON)
+      {  
+        wifi_profile = (wifi_profile + 1)%2;        
+        hItem = WM_GetDialogItem(pMsg->hWin, ID_PROFILE_TXT);
+        TEXT_SetText(hItem, profile[wifi_profile]);  
+        k_BkupSaveParameter(RTC_BKP_DR1, wifi_profile);
+        WIFI_Task_Notify(APP_CONNECT_WIFI_BIT) ;   
+      }  
+      
+      if(Id == ID_CLOCK_ICON)
+      { 
+        ui_set_setting_mode();
+      }
+      
+      if(Id == ID_REFRESH_ICON)
+      { 
+        WIFI_Task_Notify(APP_SYNC_WEATHER_BIT | APP_SYNC_TIME_BIT ) ;  
+      }
+
+    }
+    
+   if(Node == WM_NOTIFICATION_CLICKED)
+    {
+      if(Id == ID_LOCATION_ICON)
+      { 
+        hItem = WM_GetDialogItem(pMsg->hWin, ID_LOCATION_ICON);
+      }  
+      
+      if(Id == ID_PROFILE_ICON)
+      {  
+        hItem = WM_GetDialogItem(pMsg->hWin, ID_PROFILE_ICON);
+      }  
+      
+      if(Id == ID_CLOCK_ICON)
+      { 
+        hItem = WM_GetDialogItem(pMsg->hWin, ID_CLOCK_ICON);
+      }
+      
+      if(Id == ID_REFRESH_ICON)
+      { 
+        hItem = WM_GetDialogItem(pMsg->hWin, ID_REFRESH_ICON);
+      }
+      GUI_SetBkColor(GUI_TRANSPARENT);
+      WM_SelectWindow (hItem);
+      GUI_Clear();
+      WM_Paint(pMsg->hWin);
+    }
+    break;
+    
   default:
     WM_DefaultProc(pMsg);
     break;
@@ -651,6 +766,12 @@ static void _cbMainDialog(WM_MESSAGE * pMsg) {
 
     WINDOW_SetBkColor(hItem, GUI_MAKE_COLOR(GUI_TRANSPARENT));    
     
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_PROFILE_INTERNET);
+    TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xCECECE));
+    TEXT_SetFont(hItem, &GUI_FontDigitGraphics20);
+    TEXT_SetText(hItem, "connecting...");
+    
+    
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TIME_HOUR);
     TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xf7d4a3));
     TEXT_SetFont(hItem, &GUI_FontDigita_Clock);
@@ -697,18 +818,28 @@ static void _cbMainDialog(WM_MESSAGE * pMsg) {
     WM_HideWin(hItem); 
     
     hItem = WM_GetDialogItem(pMsg->hWin, ID_INTERNET);
-    WM_HideWin(hItem);        
+    WM_HideWin(hItem); 
+    
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_PROFILE_INTERNET);
+    TEXT_SetText(hItem, "Wifi Disconnected");
+    
     break;
     
   case WIFI_CONNECTED:
     if(wifiTimer) WM_DeleteTimer(wifiTimer); 
     wifiTimer = 0;
     hItem = WM_GetDialogItem(pMsg->hWin, ID_WIFI);
-    WM_ShowWin(hItem);    
+    WM_ShowWin(hItem);
+
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_PROFILE_INTERNET);
+    TEXT_SetText(hItem, Hotspot[wifi_profile].SSID);
+    
     break;
     
   case WIFI_CONNECTING: 
-      if(!wifiTimer) wifiTimer = WM_CreateTimer(pMsg->hWin, WIFI_CONNECTING_TIMER_ID, WIFI_REFRESH_PERIOD, 0);       
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_PROFILE_INTERNET);
+    TEXT_SetText(hItem, "connecting...");
+    if(!wifiTimer) wifiTimer = WM_CreateTimer(pMsg->hWin, WIFI_CONNECTING_TIMER_ID, WIFI_REFRESH_PERIOD, 0);       
     break;
     
   case INTERNET_AVAILABLE:
@@ -733,7 +864,7 @@ static void _cbMainDialog(WM_MESSAGE * pMsg) {
   case WM_TIMER:  
     Id = WM_GetTimerId(pMsg->Data.v);
     
-    if(ui_enable_timeh_setting)
+    if(ui_enable_time_setting)
     {
       if((Id == TIME_HOUR_TIMER_ID) || (Id == TIME_MIN_TIMER_ID))
       {
@@ -828,27 +959,24 @@ static void _cbMainDialog(WM_MESSAGE * pMsg) {
         if (menu_state)
         {
           hItem = WM_GetDialogItem(pMsg->hWin, ID_MENU);
-          IMAGE_SetBitmap(hItem, &bmicon_menu);
-
-          WM_ShowWindow(hBottomFrame);
-          WM_HideWindow(hSettingsFrame);            
+          IMAGE_SetBitmap(hItem, &bmicon_home_act);
+          WM_InvalidateWindow(hItem);
+          WM_Update(hItem);
         }
         else
         {
           hItem = WM_GetDialogItem(pMsg->hWin, ID_MENU);
-          IMAGE_SetBitmap(hItem, &bmicon_home);  
-          
-          WM_HideWindow(hBottomFrame);
-          WM_ShowWindow(hSettingsFrame);       
+          IMAGE_SetBitmap(hItem, &bmicon_menu_act);    
+          WM_InvalidateWindow(hItem);
+          WM_Update(hItem);
         }
-        menu_state = 1- menu_state;
       }
       
     }
     
     if(Node == WM_NOTIFICATION_RELEASED)
     {
-      if(ui_enable_timeh_setting)
+      if(ui_enable_time_setting)
       {
         Id    = WM_GetId(pMsg->hWinSrc);    /* Id of widget */
         if(Id == ID_TIME_HOUR)
@@ -863,6 +991,32 @@ static void _cbMainDialog(WM_MESSAGE * pMsg) {
         }
         time_speed = 0;
       }
+      
+      if(Id == ID_MENU)
+      { 
+        if (menu_state)
+        {
+          hItem = WM_GetDialogItem(pMsg->hWin, ID_MENU);
+          IMAGE_SetBitmap(hItem, &bmicon_menu);          
+          WM_InvalidateWindow(hItem);
+          WM_Update(hItem);
+          WM_ShowWindow(hBottomFrame);
+          WM_HideWindow(hSettingsFrame);
+          ui_enable_time_setting = 1;
+          ui_set_setting_mode();
+          
+        }
+        else
+        {
+          hItem = WM_GetDialogItem(pMsg->hWin, ID_MENU);
+          IMAGE_SetBitmap(hItem, &bmicon_home);    
+          WM_InvalidateWindow(hItem);
+          WM_Update(hItem);
+          WM_HideWindow(hBottomFrame);
+          WM_ShowWindow(hSettingsFrame);       
+        }
+        menu_state = 1- menu_state;
+      }      
     
     }
     break;
@@ -877,12 +1031,11 @@ static void _cbMainDialog(WM_MESSAGE * pMsg) {
 *
 *       ui_set_setting_mode
 */
-void ui_set_setting_mode (uint32_t enable)
+void ui_set_setting_mode (void)
 {
   WM_HWIN hItem;  
-  ui_enable_timeh_setting = enable;
-  
-  if(enable)
+ 
+  if(!ui_enable_time_setting)
   {
     hItem = WM_GetDialogItem(hMainFrame, ID_TIME_HOUR);
     TEXT_SetTextColor(hItem, SETTINGS_COLOR);
@@ -900,6 +1053,7 @@ void ui_set_setting_mode (uint32_t enable)
     hItem = WM_GetDialogItem(hMainFrame, ID_DOT);
     TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xf7d4a3));     
   }
+  ui_enable_time_setting = 1- ui_enable_time_setting;
 }
 
 /*********************************************************************
@@ -917,6 +1071,7 @@ void UI_SetWifiDisconnected(void)
 */
 void UI_SetWifiConnected(void)
 {
+  
   WM_SendMessageNoPara (hMainFrame, WIFI_CONNECTED);     
 }
 /*********************************************************************

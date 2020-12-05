@@ -55,14 +55,15 @@ static char rxBuffer[NET_BUF_SIZE + 1];
 
 #define USE_HOME_PW
 
-static const ESP_AvHotspot_t Hotspot ={
-#ifdef USE_HOME_PW
+const ESP_AvHotspot_t Hotspot[2] ={
+  {
    .SSID = "MASTER_EXT" ,  
    .PWD  = "OSMNL7182oo21"
-#else
+  },
+  {
    .SSID = "Android" ,  
    .PWD  = "12345678"
-#endif     
+  }     
 };
 
  weather_t weather = 
@@ -83,6 +84,8 @@ static const ESP_AvHotspot_t Hotspot ={
   .sunset      = 1560396563,
   .updatetime  = 0,  
 };
+
+uint8_t wifi_profile = 0;
 
 static void Add1hour(uint8_t *hour,  uint8_t *day, uint8_t *month, uint8_t *year)
 {
@@ -117,51 +120,60 @@ static void Add1hour(uint8_t *hour,  uint8_t *day, uint8_t *month, uint8_t *year
   if((*month) > 10)  *month+= 6;
   
 }
+
 /*********************************************************************
 *
-*       WIFI_Start
+*       WIFI_Init
 */
-ESP_WIFI_Status_t WIFI_Start (ESP_WIFI_Object_t * pxObj){
+ESP_WIFI_Status_t WIFI_Init (ESP_WIFI_Object_t * pxObj){
+
+  pxObj->Timeout = WIFI_DEFAULT_TIMEOUT;
+  pxObj->IsMultiConn = pdFALSE;
+  pxObj->ActiveCmd = CMD_NONE;
+  
+  return ESP_WIFI_Init( pxObj);
+  
+}
+
+
+/*********************************************************************
+*
+*       WIFI_Connect
+*/
+ESP_WIFI_Status_t WIFI_Connect (ESP_WIFI_Object_t * pxObj){
 
   ESP_WIFI_Status_t xRet;
   uint8_t  IPAddr[4];
   uint32_t count;
   
-  pxObj->Timeout = WIFI_DEFAULT_TIMEOUT;
-  pxObj->IsMultiConn = pdFALSE;
-  pxObj->ActiveCmd = CMD_NONE;
+  UI_SetWifiDisconnected();
+  UI_SetWifiConnecting();
   
-  xRet = ESP_WIFI_Init( pxObj);
+  count = 10;
+  while(((xRet = ESP_WIFI_Connect( pxObj, Hotspot[wifi_profile].SSID,Hotspot[wifi_profile].PWD)) != ESP_WIFI_STATUS_OK)&& (count-- > 0) )
+  {
+    HAL_Delay(WIFI_TRIAL_TIMEOUT);
+  }
   
   if(xRet == ESP_WIFI_STATUS_OK)
-  {  
-    UI_SetWifiConnecting();
-
-    count = 10;
-    while(((xRet = ESP_WIFI_Connect( pxObj, Hotspot.SSID,Hotspot.PWD)) != ESP_WIFI_STATUS_OK)&& (count-- > 0) )
+  {
+    UI_SetWifiConnected(); 
+    
+    count = 10;  
+    while(((xRet = ESP_WIFI_GetHostIP( pxObj, TIME_SOURCE_HTTP_HOST , IPAddr )) != ESP_WIFI_STATUS_OK) && (count-- > 0) )
     {
       HAL_Delay(WIFI_TRIAL_TIMEOUT);
-    }
-    
+    } 
     if(xRet == ESP_WIFI_STATUS_OK)
     {
-      UI_SetWifiConnected(); 
-      
-      count = 10;  
-      while(((xRet = ESP_WIFI_GetHostIP( pxObj, TIME_SOURCE_HTTP_HOST , IPAddr )) != ESP_WIFI_STATUS_OK) && (count-- > 0) )
-      {
-        HAL_Delay(WIFI_TRIAL_TIMEOUT);
-      } 
-      if(xRet == ESP_WIFI_STATUS_OK)
-      {
-        UI_SetInternetAvailable();          
-      }
+      UI_SetInternetAvailable();          
     }
-    else
-    {
-      UI_SetWifiDisconnected();
-    }     
   }
+  else
+  {
+    UI_SetWifiDisconnected();
+  }     
+  
   return xRet;
 }
 

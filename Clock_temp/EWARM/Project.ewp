@@ -1091,9 +1091,6 @@
             <group>
                 <name>App</name>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\app.c</name>
-                </file>
-                <file>
                     <name>$PROJ_DIR$\..\Core\Src\bsp.c</name>
                 </file>
                 <file>

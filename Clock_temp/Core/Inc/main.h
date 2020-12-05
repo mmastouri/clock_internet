@@ -40,8 +40,7 @@
 #include "arm_math.h"
 #include "arm_common_tables.h"
 #include "bsp.h"   
-#include "ui.h"      
-#include "app.h"      
+#include "ui.h"       
 #include "wifi.h"    
 #include "esp8266_wifi.h"       
 
@@ -54,6 +53,15 @@ typedef struct {
 	int32_t	          WifiTimerId;
         ESP_WIFI_Object_t EspObj;
 } AppGlobals_s;
+
+#define ULONG_MAX 0xFFFFFFFFUL
+
+#define APP_CONNECT_WIFI_BIT 0x01
+#define APP_SYNC_WEATHER_BIT 0x02
+#define APP_SYNC_TIME_BIT    0x04
+        
+
+void WIFI_Task_Notify(uint32_t ulNotificationValue ) ;
 
 #ifdef __cplusplus
 }

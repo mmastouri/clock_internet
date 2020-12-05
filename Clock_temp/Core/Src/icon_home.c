@@ -29,6 +29,7 @@
 #endif
 
 extern GUI_CONST_STORAGE GUI_BITMAP bmicon_home;
+extern GUI_CONST_STORAGE GUI_BITMAP bmicon_home_act;
 
 /*********************************************************************
 *
@@ -48,8 +49,17 @@ static GUI_CONST_STORAGE GUI_COLOR _Colorsicon_home[] = {
   0xCECECE, 0x000000
 #else
   0xFFCECECE, 0xFF000000
-#endif
+#endif  
 
+
+};
+
+static GUI_CONST_STORAGE GUI_COLOR _Colorsicon_home_act[] = {
+#if (GUI_USE_ARGB == 0)
+  0xf7d4a3, 0x000000
+#else
+  0xFFf7d4a3, 0xFF000000
+#endif
 };
 
 static GUI_CONST_STORAGE GUI_LOGPALETTE _Palicon_home = {
@@ -57,6 +67,14 @@ static GUI_CONST_STORAGE GUI_LOGPALETTE _Palicon_home = {
   0,  // No transparency
   &_Colorsicon_home[0]
 };
+
+static GUI_CONST_STORAGE GUI_LOGPALETTE _Palicon_home_act = {
+  2,  // Number of entries
+  0,  // No transparency
+  &_Colorsicon_home_act[0]
+};
+
+
 #if defined ( __ICCARM__ )
 #pragma location="ExtQSPIFlashSection" 
 #else
@@ -112,6 +130,15 @@ GUI_CONST_STORAGE GUI_BITMAP bmicon_home = {
   1, // BitsPerPixel
   _acicon_home,  // Pointer to picture data (indices)
   &_Palicon_home   // Pointer to palette
+};
+
+GUI_CONST_STORAGE GUI_BITMAP bmicon_home_act = {
+  40, // xSize
+  40, // ySize
+  5, // BytesPerLine
+  1, // BitsPerPixel
+  _acicon_home,  // Pointer to picture data (indices)
+  &_Palicon_home_act   // Pointer to palette
 };
 
 /*************************** End of file ****************************/

@@ -33,7 +33,7 @@ static void WIFI_Task(void const *argument);
 static void TouchPanel_TimerCallback(TimerHandle_t pxTimer);
 static void Wifi_TimerCallback(TimerHandle_t pxTimer);
 static void SystemClock_Config(void);
-static AppGlobals_s appGlobals;
+AppGlobals_s appGlobals;
 
 /**
   * @brief  Main program
@@ -83,17 +83,60 @@ void GUI_Task(void const *arg) {
   */
 void WIFI_Task(void const *arg) {
   
-  if(WIFI_Start(&appGlobals.EspObj) == ESP_WIFI_STATUS_OK)
+  const TickType_t xMaxBlockTime = pdMS_TO_TICKS( 500 );
+  BaseType_t xResult;
+  uint32_t   ulNotifiedValue;
+  
+  if(WIFI_Init(&appGlobals.EspObj) == ESP_WIFI_STATUS_OK)
   {
-    WIFI_SyncClock (&appGlobals.EspObj);
-    WIFI_SyncWeatherData (&appGlobals.EspObj);
-    xTimerStart(appGlobals.WifiTimer, 0);
+    if(WIFI_Connect(&appGlobals.EspObj) == ESP_WIFI_STATUS_OK)
+    {
+      WIFI_SyncClock (&appGlobals.EspObj);
+      WIFI_SyncWeatherData (&appGlobals.EspObj);
+      xTimerStart(appGlobals.WifiTimer, 0);
+    }
   }
-  for (;;) {
-   osDelay(1000);    
-  }  
+  for( ;; )
+  {
+    /* Wait to be notified of an interrupt. */
+    xResult = xTaskNotifyWait( pdFALSE,    /* Don't clear bits on entry. */
+                              ULONG_MAX,        /* Clear all bits on exit. */
+                              &ulNotifiedValue, /* Stores the notified value. */
+                              xMaxBlockTime );
+    
+    if( xResult == pdPASS )
+    {
+      /* A notification was received.  See which bits were set. */
+      if( ( ulNotifiedValue & APP_CONNECT_WIFI_BIT ) != 0 )
+      {
+        ESP_WIFI_Disconnect (&appGlobals.EspObj);
+        WIFI_Connect(&appGlobals.EspObj);
+      }
+      
+      if( ( ulNotifiedValue & APP_SYNC_WEATHER_BIT ) != 0 )
+      {
+        WIFI_SyncWeatherData (&appGlobals.EspObj);
+      }
+      
+      if( ( ulNotifiedValue & APP_SYNC_TIME_BIT ) != 0 )
+      {
+        WIFI_SyncClock (&appGlobals.EspObj);
+      }
+    }
+  }
 }
 
+/**
+  * @brief  WIFI Task
+  * @param  WIFI Task args
+  * @retval None
+  */
+void WIFI_Task_Notify(uint32_t ulNotificationValue ) 
+{
+  xTaskNotify( appGlobals.WIFITaskId,
+              ulNotificationValue,
+              eSetBits);
+}
 
 /**
   * @brief  vApplicationTickHook
@@ -111,10 +154,7 @@ void vApplicationTickHook( void )
   * @retval None
   */
 static void TouchPanel_TimerCallback(TimerHandle_t pxTimer) {
-  
   k_TouchUpdate();
-
-  App_task();
 }
 
 /**

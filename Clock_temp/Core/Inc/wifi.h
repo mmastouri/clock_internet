@@ -52,7 +52,8 @@ typedef struct {
 }weather_t;
 
 /* Includes ------------------------------------------------------------------*/
-ESP_WIFI_Status_t WIFI_Start (ESP_WIFI_Object_t * pxObj);
+ESP_WIFI_Status_t WIFI_Init (ESP_WIFI_Object_t * pxObj);
+ESP_WIFI_Status_t WIFI_Connect (ESP_WIFI_Object_t * pxObj);
 ESP_WIFI_Status_t WIFI_SyncClock (ESP_WIFI_Object_t * pxObj);
 ESP_WIFI_Status_t WIFI_SyncWeatherData (ESP_WIFI_Object_t * pxObj);
 
