@@ -43,7 +43,8 @@
 #define ID_IN_OUTDOUR               (GUI_ID_USER + 0x14)
 #define ID_MENU                     (GUI_ID_USER + 0x15)
 #define ID_PROFILE_INTERNET         (GUI_ID_USER + 0x16)
-
+#define ID_RADIO_0                  (GUI_ID_USER + 0x22)
+#define ID_RADIO_1                  (GUI_ID_USER + 0x23)
 #define ID_DAYWEEK                  (GUI_ID_USER + 0x17)
 #define ID_DAY                      (GUI_ID_USER + 0x18)
 #define ID_MONTH                    (GUI_ID_USER + 0x19)
@@ -291,10 +292,12 @@ static const GUI_WIDGET_CREATE_INFO _aMainDialogCreate[] = {
   { TEXT_CreateIndirect, ":", ID_DOT, 370, 100, 120, 220, 0, 0x66, 0 },    
   { HEADER_CreateIndirect, "Header", ID_HEADER_1, 20, 50, 760, 5, 0, 0x0, 0 }, 
   { HEADER_CreateIndirect, "Header", ID_HEADER_0, 20, 290, 760, 5, 0, 0x0, 0 }, 
+  { RADIO_CreateIndirect, "Radio", ID_RADIO_0, 380, 465, 80, 16, 0, 0x1402, 0 },
+  { RADIO_CreateIndirect, "Radio", ID_RADIO_1, 402, 465, 80, 16, 0, 0x1402, 0 },  
 };
 
 static const GUI_WIDGET_CREATE_INFO _aHomeDialogCreate[] = {
-  { WINDOW_CreateIndirect, "Window", ID_WINDOW, 0, 0, 800, 180,  WM_CF_SHOW, 0x0, sizeof(WINDOW_DATA *)},
+  { WINDOW_CreateIndirect, "Window", ID_WINDOW, 0, 0, 800, 160,  WM_CF_SHOW, 0x0, sizeof(WINDOW_DATA *)},
   { TEXT_CreateIndirect, "00.0 °C", ID_TEMPERATURE, 20, 60, 720, 120, 0, 0, 0 },    
   { TEXT_CreateIndirect, "DayofWeek", ID_DAYWEEK, 460, 40, 680, 120, 0, 0, 0 }, 
   { TEXT_CreateIndirect, "Week", ID_WEEK, 460, 110, 680, 120, 0, 0, 0 }, 
@@ -305,7 +308,7 @@ static const GUI_WIDGET_CREATE_INFO _aHomeDialogCreate[] = {
 
 
 static const GUI_WIDGET_CREATE_INFO _aWeatherDialogCreate[] = {
-  { WINDOW_CreateIndirect, "Window", ID_WINDOW, 0, 0, 800, 180, WM_CF_SHOW, 0x0, sizeof(WINDOW_DATA *)},
+  { WINDOW_CreateIndirect, "Window", ID_WINDOW, 0, 0, 800, 160, WM_CF_SHOW, 0x0, sizeof(WINDOW_DATA *)},
   { IMAGE_CreateIndirect, "condition", ID_WEATHER_ICON, 65, 20, 150, 150, 0, 0, 0 }, 
   
   { IMAGE_CreateIndirect, "Temperature", ID_TEMPERATURE_ICON, 220, 0, 150, 150, 0, 0, 0 }, 
@@ -719,7 +722,7 @@ static void _cbHomeDialog(WM_MESSAGE * pMsg) {
 static void _cbWin(WM_MESSAGE* pMsg) {
     GUI_RECT         Rect;
     WM_MOTION_INFO* pInfo;
-
+    WM_HWIN hItem;
     switch (pMsg->MsgId) {
       
     case WM_PAINT:
@@ -734,6 +737,24 @@ static void _cbWin(WM_MESSAGE* pMsg) {
             WM_GetClientRectEx(pMsg->hWin, &Rect);
             pInfo->SnapX = (Rect.x1 + 1)/2;
             break;
+        }
+        if(pInfo->FinalMove)
+        {
+          WM_GetWindowRectEx(hHomeFrame, &Rect);
+          if( Rect.x0 >= 0)
+          {
+            hItem = WM_GetDialogItem(hMainFrame, ID_RADIO_0);
+            RADIO_SetValue(hItem, 1);
+            hItem = WM_GetDialogItem(hMainFrame, ID_RADIO_1);
+            RADIO_SetValue(hItem, 0);   
+          }
+          else
+          {
+            hItem = WM_GetDialogItem(hMainFrame, ID_RADIO_0);
+            RADIO_SetValue(hItem, 0);
+            hItem = WM_GetDialogItem(hMainFrame, ID_RADIO_1);
+            RADIO_SetValue(hItem, 1);   
+          }
         }
         break;
 
@@ -771,6 +792,10 @@ static void _cbMainDialog(WM_MESSAGE * pMsg) {
     TEXT_SetFont(hItem, &GUI_FontDigitGraphics20);
     TEXT_SetText(hItem, "connecting...");
     
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_RADIO_0);
+    RADIO_SetValue(hItem, 1);
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_RADIO_1);
+    RADIO_SetValue(hItem, 0);    
     
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TIME_HOUR);
     TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xf7d4a3));
@@ -798,7 +823,7 @@ static void _cbMainDialog(WM_MESSAGE * pMsg) {
     IMAGE_SetBitmap(hItem, &bmicon_internet);   
     WM_HideWin(hItem);
 
-    hBottomFrame = WM_CreateWindowAsChild(0, 300, LCD_GetXSize() * 2, 180, hMainFrame, WM_CF_SHOW | WM_CF_MOTION_X, _cbWin, 0);
+    hBottomFrame = WM_CreateWindowAsChild(0, 300, LCD_GetXSize() * 2, 160, hMainFrame, WM_CF_SHOW | WM_CF_MOTION_X, _cbWin, 0);
     WM_MOTION_SetMoveable(hBottomFrame, WM_CF_MOTION_X, 1);
         
     hHomeFrame = GUI_CreateDialogBox(_aHomeDialogCreate, GUI_COUNTOF(_aHomeDialogCreate), _cbHomeDialog, hBottomFrame, 0, 0);
