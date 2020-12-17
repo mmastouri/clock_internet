@@ -8,7 +8,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright © 2016 STMicroelectronics International N.V. 
+  * <h2><center>&copy; Copyright ï¿½ 2016 STMicroelectronics International N.V. 
   * All rights reserved.</center></h2>
   *
   * Redistribution and use in source and binary forms, with or without 
@@ -111,6 +111,7 @@ void k_TouchUpdate(void)
   static GUI_PID_STATE TS_State = {0, 0, 0, 0};
   __IO TS_StateTypeDef  ts;
   uint16_t xDiff, yDiff;
+  
   __disable_irq();
   BSP_TS_GetState((TS_StateTypeDef *)&ts);
   __enable_irq();
@@ -121,26 +122,20 @@ void k_TouchUpdate(void)
     ts.touchX[0] = 0;
     ts.touchY[0] = 0;
   }
-
+ 
   xDiff = (TS_State.x > ts.touchX[0]) ? (TS_State.x - ts.touchX[0]) : (ts.touchX[0] - TS_State.x);
-  yDiff = (TS_State.y > ts.touchY[0]) ? (TS_State.y - ts.touchY[0]) : (ts.touchY[0] - TS_State.y);
+  yDiff = (TS_State.y > ts.touchY[0]) ? (TS_State.y - ts.touchY[0]) : (ts.touchY[0] - TS_State.y);  
   
   if((TS_State.Pressed != ts.touchDetected ) ||
-     (xDiff > 20 )||
-       (yDiff > 20))
+     (xDiff > 0 )||
+       (yDiff > 0))
   {
+    
     TS_State.Pressed = ts.touchDetected;
     if(ts.touchDetected) 
     {
       TS_State.x = ts.touchX[0];
-      if(ts.touchY[0] < 240)
-      {
-        TS_State.y = ts.touchY[0] ;
-      }
-      else
-      {
-        TS_State.y = (ts.touchY[0] * 480) / 450;
-      }
+      TS_State.y = ts.touchY[0] ;
       GUI_TOUCH_StoreStateEx(&TS_State);
     }
     else

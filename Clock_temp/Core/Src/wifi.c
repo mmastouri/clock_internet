@@ -85,7 +85,7 @@ const ESP_AvHotspot_t Hotspot[2] ={
   .updatetime  = 0,  
 };
 
-uint8_t wifi_profile = 0;
+uint8_t wifi_profile = 1;
 
 static void Add1hour(uint8_t *hour,  uint8_t *day, uint8_t *month, uint8_t *year)
 {
@@ -130,6 +130,8 @@ ESP_WIFI_Status_t WIFI_Init (ESP_WIFI_Object_t * pxObj){
   pxObj->Timeout = WIFI_DEFAULT_TIMEOUT;
   pxObj->IsMultiConn = pdFALSE;
   pxObj->ActiveCmd = CMD_NONE;
+  
+  wifi_profile = k_BkupRestoreParameter(RTC_BKP_DR1);
   
   return ESP_WIFI_Init( pxObj);
   

@@ -298,7 +298,7 @@ static const GUI_WIDGET_CREATE_INFO _aMainDialogCreate[] = {
 
 static const GUI_WIDGET_CREATE_INFO _aHomeDialogCreate[] = {
   { WINDOW_CreateIndirect, "Window", ID_WINDOW, 0, 0, 800, 160,  WM_CF_SHOW, 0x0, sizeof(WINDOW_DATA *)},
-  { TEXT_CreateIndirect, "00.0 °C", ID_TEMPERATURE, 20, 60, 720, 120, 0, 0, 0 },    
+  { TEXT_CreateIndirect, "00.0 C", ID_TEMPERATURE, 20, 60, 720, 120, 0, 0, 0 },    
   { TEXT_CreateIndirect, "DayofWeek", ID_DAYWEEK, 460, 40, 680, 120, 0, 0, 0 }, 
   { TEXT_CreateIndirect, "Week", ID_WEEK, 460, 110, 680, 120, 0, 0, 0 }, 
   { TEXT_CreateIndirect, "Day", ID_DAY, 660, 40, 120, 120, TEXT_CF_HCENTER, 0, 0 },   
@@ -593,7 +593,7 @@ static void _cbHomeDialog(WM_MESSAGE * pMsg) {
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEMPERATURE);
     TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0x008080FF));
     TEXT_SetFont(hItem, &GUI_FontDigital_Font);
-    TEXT_SetText(hItem, "--.- °C"); 
+    TEXT_SetText(hItem, "--.- ï¿½C"); 
     
     hItem = WM_GetDialogItem(pMsg->hWin, ID_DAYWEEK);
     TEXT_SetTextColor(hItem, GUI_MAKE_COLOR(0xCECECE));
