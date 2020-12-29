@@ -1201,6 +1201,9 @@
                     <name>$PROJ_DIR$\..\Core\Src\bsp.c</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\cpu\cpu_utils.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\Core\Src\main.c</name>
                 </file>
                 <file>
@@ -1228,82 +1231,82 @@
             <group>
                 <name>GUI</name>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\background.c</name>
+                    <name>$PROJ_DIR$\..\Resources\background.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\clock_icon.c</name>
+                    <name>$PROJ_DIR$\..\Resources\clock_icon.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\Digita_Clock.c</name>
+                    <name>$PROJ_DIR$\..\Resources\Digita_Clock.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\Digital_Font.c</name>
+                    <name>$PROJ_DIR$\..\Resources\Digital_Font.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\DigitGraphics20.c</name>
+                    <name>$PROJ_DIR$\..\Resources\DigitGraphics20.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\DigitGraphics40.c</name>
+                    <name>$PROJ_DIR$\..\Resources\DigitGraphics40.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\DigitGraphics60.c</name>
+                    <name>$PROJ_DIR$\..\Resources\DigitGraphics60.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\icon_home.c</name>
+                    <name>$PROJ_DIR$\..\Resources\icon_home.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\icon_indoor.c</name>
+                    <name>$PROJ_DIR$\..\Resources\icon_indoor.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\icon_internet.c</name>
+                    <name>$PROJ_DIR$\..\Resources\icon_internet.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\icon_menu.c</name>
+                    <name>$PROJ_DIR$\..\Resources\icon_menu.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\icon_outdoor.c</name>
+                    <name>$PROJ_DIR$\..\Resources\icon_outdoor.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\icon_wifi.c</name>
+                    <name>$PROJ_DIR$\..\Resources\icon_wifi.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\location_icon.c</name>
+                    <name>$PROJ_DIR$\..\Resources\location_icon.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\profile_icon.c</name>
+                    <name>$PROJ_DIR$\..\Resources\profile_icon.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\refresh_icon.c</name>
+                    <name>$PROJ_DIR$\..\Resources\refresh_icon.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\weather_day_clear.c</name>
+                    <name>$PROJ_DIR$\..\Resources\weather_day_clear.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\weather_day_clouds.c</name>
+                    <name>$PROJ_DIR$\..\Resources\weather_day_clouds.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\weather_day_dizzle.c</name>
+                    <name>$PROJ_DIR$\..\Resources\weather_day_dizzle.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\weather_day_Thunderstorms.c</name>
+                    <name>$PROJ_DIR$\..\Resources\weather_day_thunderstorms.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\weather_humidity.c</name>
+                    <name>$PROJ_DIR$\..\Resources\weather_humidity.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\weather_night_clear.c</name>
+                    <name>$PROJ_DIR$\..\Resources\weather_night_clear.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\weather_night_clouds.c</name>
+                    <name>$PROJ_DIR$\..\Resources\weather_night_clouds.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\weather_pressure.c</name>
+                    <name>$PROJ_DIR$\..\Resources\weather_pressure.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\weather_temp.c</name>
+                    <name>$PROJ_DIR$\..\Resources\weather_temp.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\weather_wind.c</name>
+                    <name>$PROJ_DIR$\..\Resources\weather_wind.c</name>
                 </file>
             </group>
             <group>

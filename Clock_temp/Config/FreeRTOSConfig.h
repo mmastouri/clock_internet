@@ -87,7 +87,7 @@
 
 
 #define configUSE_PREEMPTION		        1
-#define configUSE_IDLE_HOOK			0
+#define configUSE_IDLE_HOOK			1
 #define configUSE_TICK_HOOK			1
 #define configCPU_CLOCK_HZ			( SystemCoreClock )
 #define configTICK_RATE_HZ			( ( TickType_t ) 1000 )
@@ -152,6 +152,9 @@ standard names. */
 /* IMPORTANT: This define MUST be commented when used with STM32Cube firmware, 
               to prevent overwriting SysTick_Handler defined within STM32Cube HAL */
 /* #define xPortSysTickHandler SysTick_Handler */
-
+#define traceTASK_SWITCHED_IN()  extern void StartIdleMonitor(void); \
+                                         StartIdleMonitor()
+#define traceTASK_SWITCHED_OUT() extern void EndIdleMonitor(void); \
+                                         EndIdleMonitor()
 #endif /* FREERTOS_CONFIG_H */
 
