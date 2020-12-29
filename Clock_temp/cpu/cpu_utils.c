@@ -85,7 +85,7 @@ void vApplicationIdleHook(void)
   * @param  None 
   * @retval None
   */
-void vApplicationTickHook (void)
+void osCPUIdleHook (void)
 {
   static int tick = 0;
   

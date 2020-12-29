@@ -53,6 +53,7 @@
 #define CALCULATION_PERIOD    1000
 
 /* Exported functions ------------------------------------------------------- */
+void osCPUIdleHook (void);
 uint16_t osGetCPUUsage (void);
 
 #ifdef __cplusplus

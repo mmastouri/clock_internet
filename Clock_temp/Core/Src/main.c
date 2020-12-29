@@ -27,6 +27,7 @@
 
 #include "main.h"
 #include "rtc.h"
+#include "cpu_utils.h"
 
 static void GUI_Task(void const *argument);
 static void WIFI_Task(void const *argument);
@@ -146,7 +147,8 @@ void WIFI_Task_Notify(uint32_t ulNotificationValue )
   */
 void vApplicationTickHook( void )
 {
-    HAL_IncTick();
+  osCPUIdleHook();  
+  HAL_IncTick();
 }
 
 /**
